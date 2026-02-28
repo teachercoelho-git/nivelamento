@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework - Vocabulário 4 Semanas</title>
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-success: #10b981;
+            --color-accent: #f59e0b;
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1e40af 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--color-bg);
+            border-bottom: 3px solid var(--color-primary);
+            overflow-x: auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .tab:hover {
+            background: #e0f2fe;
+        }
+
+        .tab.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .week-content {
+            display: none;
+        }
+
+        .week-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-box {
+            background: #fef3c7;
+            border-left: 5px solid var(--color-accent);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .intro-box h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .exercise-section {
+            margin-bottom: 40px;
+        }
+
+        .exercise-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .vocab-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--color-primary);
+        }
+
+        .vocab-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .vocab-card h4 {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .vocab-card p {
+            color: var(--color-text);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .vocab-card .phonetic {
+            color: #64748b;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .vocab-card .flip-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .vocab-card.flipped {
+            background: #f0fdf4;
+            border-color: var(--color-success);
+        }
+
+        .audio-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .audio-btn:hover {
+            background: #1e40af;
+            transform: scale(1.1);
+        }
+
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        .matching-game {
+            background: var(--color-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .match-item {
+            background: white;
+            padding: 15px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .match-item:hover {
+            background: #e0f2fe;
+            border-color: var(--color-primary);
+        }
+
+        .match-item.selected {
+            background: #dbeafe;
+            border-color: var(--color-primary);
+            transform: scale(1.05);
+        }
+
+        .match-item.matched {
+            background: #d1fae5;
+            border-color: var(--color-success);
+            pointer-events: none;
+        }
+
+        .fill-blank {
+            background: white;
+            border: 2px solid var(--color-border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .fill-blank p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 2;
+        }
+
+        .fill-blank input {
+            padding: 8px 12px;
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 1rem;
+            min-width: 150px;
+            margin: 0 5px;
+        }
+
+        .fill-blank input.correct {
+            border-color: var(--color-success);
+            background: #d1fae5;
+        }
+
+        .fill-blank input.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        .progress-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .progress-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: var(--color-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-success) 0%, #34d399 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sentence-builder {
+            background: var(--color-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-chip {
+            background: white;
+            padding: 10px 20px;
+            border: 2px solid var(--color-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .word-chip:hover {
+            background: #e0f2fe;
+            border-color: var(--color-primary);
+        }
+
+        .word-chip.used {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .sentence-area {
+            background: white;
+            min-height: 80px;
+            padding: 20px;
+            border: 2px dashed var(--color-border);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .matching-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Homework de Vocabulário</h1>
+            <p>4 Semanas de Prática Interativa - Vocabulário Simples para Viagem</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="changeWeek(1)">📅 Semana 1</button>
+            <button class="tab" onclick="changeWeek(2)">📅 Semana 2</button>
+            <button class="tab" onclick="changeWeek(3)">📅 Semana 3</button>
+            <button class="tab" onclick="changeWeek(4)">📅 Semana 4</button>
+        </div>
+
+        <div class="content">
+            <!-- SEMANA 1 -->
+            <div class="week-content active" id="week1">
+                <div class="intro-box">
+                    <h3>🏠 Semana 1: Objetos da Casa</h3>
+                    <p>Aprenda 20 palavras essenciais de objetos domésticos. Clique nos cards para ver exemplos!</p>
+                </div>
+
+                <div class="progress-box">
+                    <h3>Seu Progresso - Semana 1</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress1" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🖼️ Exercício 1: Flashcards Visuais (clique para virar)</h3>
+                    <div class="vocab-grid" id="vocab-week1"></div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🎯 Exercício 2: Ligue as Palavras</h3>
+                    <div class="matching-game">
+                        <p><strong>Combine a palavra em inglês com a tradução em português:</strong></p>
+                        <div class="matching-grid" id="match-week1"></div>
+                        <button class="btn" onclick="resetMatching(1)">🔄 Recomeçar</button>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>✍️ Exercício 3: Complete as Frases</h3>
+                    <div id="fillblank-week1"></div>
+                    <button class="btn" onclick="checkFillBlanks(1)">✓ Verificar Respostas</button>
+                </div>
+            </div>
+
+            <!-- SEMANA 2 -->
+            <div class="week-content" id="week2">
+                <div class="intro-box">
+                    <h3>✈️ Semana 2: Aeroporto e Viagem</h3>
+                    <p>Vocabulário essencial para aeroporto, check-in e transporte.</p>
+                </div>
+
+                <div class="progress-box">
+                    <h3>Seu Progresso - Semana 2</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress2" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🖼️ Exercício 1: Flashcards Visuais</h3>
+                    <div class="vocab-grid" id="vocab-week2"></div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🎯 Exercício 2: Ligue as Palavras</h3>
+                    <div class="matching-game">
+                        <p><strong>Combine a palavra em inglês com a tradução:</strong></p>
+                        <div class="matching-grid" id="match-week2"></div>
+                        <button class="btn" onclick="resetMatching(2)">🔄 Recomeçar</button>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>✍️ Exercício 3: Complete as Frases</h3>
+                    <div id="fillblank-week2"></div>
+                    <button class="btn" onclick="checkFillBlanks(2)">✓ Verificar Respostas</button>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🧩 Exercício 4: Monte a Frase</h3>
+                    <div class="sentence-builder">
+                        <p><strong>Organize as palavras para formar a frase: "Onde fica o portão de embarque?"</strong></p>
+                        <div class="word-bank" id="wordbank2"></div>
+                        <div class="sentence-area" id="sentence2"></div>
+                        <button class="btn" onclick="checkSentence(2)">✓ Verificar Frase</button>
+                        <button class="btn" onclick="resetSentence(2)" style="background: #64748b;">🔄 Limpar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMANA 3 -->
+            <div class="week-content" id="week3">
+                <div class="intro-box">
+                    <h3>🍔 Semana 3: Restaurantes e Comida</h3>
+                    <p>Vocabulário de comidas, bebidas e situações em restaurantes.</p>
+                </div>
+
+                <div class="progress-box">
+                    <h3>Seu Progresso - Semana 3</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress3" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🖼️ Exercício 1: Flashcards Visuais</h3>
+                    <div class="vocab-grid" id="vocab-week3"></div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🎯 Exercício 2: Ligue as Palavras</h3>
+                    <div class="matching-game">
+                        <p><strong>Combine a palavra em inglês com a tradução:</strong></p>
+                        <div class="matching-grid" id="match-week3"></div>
+                        <button class="btn" onclick="resetMatching(3)">🔄 Recomeçar</button>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>✍️ Exercício 3: Complete as Frases</h3>
+                    <div id="fillblank-week3"></div>
+                    <button class="btn" onclick="checkFillBlanks(3)">✓ Verificar Respostas</button>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🧩 Exercício 4: Monte a Frase</h3>
+                    <div class="sentence-builder">
+                        <p><strong>Organize as palavras: "Eu gostaria de um hambúrguer com batatas fritas"</strong></p>
+                        <div class="word-bank" id="wordbank3"></div>
+                        <div class="sentence-area" id="sentence3"></div>
+                        <button class="btn" onclick="checkSentence(3)">✓ Verificar Frase</button>
+                        <button class="btn" onclick="resetSentence(3)" style="background: #64748b;">🔄 Limpar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEMANA 4 -->
+            <div class="week-content" id="week4">
+                <div class="intro-box">
+                    <h3>🏥 Semana 4: Emergências e Saúde</h3>
+                    <p>Vocabulário importante para situações de emergência e farmácia.</p>
+                </div>
+
+                <div class="progress-box">
+                    <h3>Seu Progresso - Semana 4</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress4" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🖼️ Exercício 1: Flashcards Visuais</h3>
+                    <div class="vocab-grid" id="vocab-week4"></div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🎯 Exercício 2: Ligue as Palavras</h3>
+                    <div class="matching-game">
+                        <p><strong>Combine a palavra em inglês com a tradução:</strong></p>
+                        <div class="matching-grid" id="match-week4"></div>
+                        <button class="btn" onclick="resetMatching(4)">🔄 Recomeçar</button>
+                    </div>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>✍️ Exercício 3: Complete as Frases</h3>
+                    <div id="fillblank-week4"></div>
+                    <button class="btn" onclick="checkFillBlanks(4)">✓ Verificar Respostas</button>
+                </div>
+
+                <div class="exercise-section">
+                    <h3>🧩 Exercício 4: Monte a Frase</h3>
+                    <div class="sentence-builder">
+                        <p><strong>Organize as palavras: "Eu preciso de um analgésico"</strong></p>
+                        <div class="word-bank" id="wordbank4"></div>
+                        <div class="sentence-area" id="sentence4"></div>
+                        <button class="btn" onclick="checkSentence(4)">✓ Verificar Frase</button>
+                        <button class="btn" onclick="resetSentence(4)" style="background: #64748b;">🔄 Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>💡 <strong>Dica:</strong> Pratique 20-30 minutos por dia para melhores resultados!</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Revise todas as semanas antes da sua viagem!</p>
+        </footer>
+    </div>
+
+    <script>
+        const vocabularyData = {
+            1: [
+                { word: 'Doorknob', translation: 'Maçaneta', phonetic: '/ˈdɔːrnɑːb/', example: 'Turn the doorknob to open the door', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0f2fe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🚪 Doorknob%3C/text%3E%3C/svg%3E' },
+                { word: 'Faucet', translation: 'Torneira', phonetic: '/ˈfɔːsɪt/', example: 'Turn off the faucet after washing', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23dbeafe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💧 Faucet%3C/text%3E%3C/svg%3E' },
+                { word: 'Drawer', translation: 'Gaveta', phonetic: '/drɔːr/', example: 'Put the socks in the drawer', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23f0f9ff" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E📦 Drawer%3C/text%3E%3C/svg%3E' },
+                { word: 'Light switch', translation: 'Interruptor', phonetic: '/laɪt swɪtʃ/', example: 'Turn on the light switch', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fef3c7" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💡 Switch%3C/text%3E%3C/svg%3E' },
+                { word: 'Mirror', translation: 'Espelho', phonetic: '/ˈmɪrər/', example: 'Look at yourself in the mirror', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0e7ff" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🪞 Mirror%3C/text%3E%3C/svg%3E' },
+                { word: 'Pillow', translation: 'Travesseiro', phonetic: '/ˈpɪloʊ/', example: 'Put your head on the pillow', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fce7f3" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🛏️ Pillow%3C/text%3E%3C/svg%3E' },
+                { word: 'Blanket', translation: 'Cobertor', phonetic: '/ˈblæŋkɪt/', example: 'Cover yourself with a blanket', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23f0fdf4" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🛌 Blanket%3C/text%3E%3C/svg%3E' },
+                { word: 'Trash can', translation: 'Lixeira', phonetic: '/træʃ kæn/', example: 'Throw it in the trash can', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fed7aa" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🗑️ Trash can%3C/text%3E%3C/svg%3E' }
+            ],
+            2: [
+                { word: 'Boarding pass', translation: 'Cartão de embarque', phonetic: '/ˈbɔːrdɪŋ pæs/', example: 'Show your boarding pass at the gate', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23dbeafe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="18" text-anchor="middle" dy=".3em"%3E🎫 Boarding pass%3C/text%3E%3C/svg%3E' },
+                { word: 'Gate', translation: 'Portão de embarque', phonetic: '/ɡeɪt/', example: 'Go to gate 12', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0f2fe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🚪 Gate%3C/text%3E%3C/svg%3E' },
+                { word: 'Luggage', translation: 'Bagagem', phonetic: '/ˈlʌɡɪdʒ/', example: 'Check your luggage at the counter', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fef3c7" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🧳 Luggage%3C/text%3E%3C/svg%3E' },
+                { word: 'Security check', translation: 'Check-in de segurança', phonetic: '/sɪˈkjʊrəti tʃek/', example: 'Go through security check', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23f0fdf4" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="16" text-anchor="middle" dy=".3em"%3E🔍 Security%3C/text%3E%3C/svg%3E' },
+                { word: 'Customs', translation: 'Alfândega', phonetic: '/ˈkʌstəmz/', example: 'Pass through customs', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0e7ff" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🛂 Customs%3C/text%3E%3C/svg%3E' },
+                { word: 'Flight', translation: 'Voo', phonetic: '/flaɪt/', example: 'My flight leaves at 3 PM', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23ddd6fe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E✈️ Flight%3C/text%3E%3C/svg%3E' },
+                { word: 'Passport', translation: 'Passaporte', phonetic: '/ˈpæspɔːrt/', example: 'Show your passport', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fce7f3" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E📘 Passport%3C/text%3E%3C/svg%3E' },
+                { word: 'Taxi', translation: 'Táxi', phonetic: '/ˈtæksi/', example: 'Call a taxi to the hotel', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fed7aa" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🚕 Taxi%3C/text%3E%3C/svg%3E' }
+            ],
+            3: [
+                { word: 'Menu', translation: 'Cardápio', phonetic: '/ˈmenjuː/', example: 'Can I see the menu, please?', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fef3c7" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E📋 Menu%3C/text%3E%3C/svg%3E' },
+                { word: 'Burger', translation: 'Hambúrguer', phonetic: '/ˈbɜːrɡər/', example: 'I want a burger with fries', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fed7aa" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🍔 Burger%3C/text%3E%3C/svg%3E' },
+                { word: 'Fries', translation: 'Batatas fritas', phonetic: '/fraɪz/', example: 'French fries are delicious', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fef9c3" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🍟 Fries%3C/text%3E%3C/svg%3E' },
+                { word: 'Water', translation: 'Água', phonetic: '/ˈwɔːtər/', example: 'A glass of water, please', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23dbeafe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💧 Water%3C/text%3E%3C/svg%3E' },
+                { word: 'Check', translation: 'Conta', phonetic: '/tʃek/', example: 'Can I have the check?', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23f0fdf4" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🧾 Check%3C/text%3E%3C/svg%3E' },
+                { word: 'Waiter', translation: 'Garçom', phonetic: '/ˈweɪtər/', example: 'Call the waiter', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0e7ff" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E👨‍🍳 Waiter%3C/text%3E%3C/svg%3E' },
+                { word: 'Tip', translation: 'Gorjeta', phonetic: '/tɪp/', example: 'Leave a tip for the waiter', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23d1fae5" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💵 Tip%3C/text%3E%3C/svg%3E' },
+                { word: 'Reservation', translation: 'Reserva', phonetic: '/ˌrezərˈveɪʃən/', example: 'I have a reservation', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fce7f3" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="18" text-anchor="middle" dy=".3em"%3E📅 Reservation%3C/text%3E%3C/svg%3E' }
+            ],
+            4: [
+                { word: 'Headache', translation: 'Dor de cabeça', phonetic: '/ˈhedeɪk/', example: 'I have a headache', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fee2e2" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="18" text-anchor="middle" dy=".3em"%3E🤕 Headache%3C/text%3E%3C/svg%3E' },
+                { word: 'Fever', translation: 'Febre', phonetic: '/ˈfiːvər/', example: 'I think I have a fever', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fed7aa" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🌡️ Fever%3C/text%3E%3C/svg%3E' },
+                { word: 'Pharmacy', translation: 'Farmácia', phonetic: '/ˈfɑːrməsi/', example: 'Where is the nearest pharmacy?', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23d1fae5" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💊 Pharmacy%3C/text%3E%3C/svg%3E' },
+                { word: 'Medicine', translation: 'Remédio', phonetic: '/ˈmedɪsɪn/', example: 'Take this medicine twice a day', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23dbeafe" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E💊 Medicine%3C/text%3E%3C/svg%3E' },
+                { word: 'Painkiller', translation: 'Analgésico', phonetic: '/ˈpeɪnkɪlər/', example: 'I need a painkiller', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23e0e7ff" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="18" text-anchor="middle" dy=".3em"%3E💊 Painkiller%3C/text%3E%3C/svg%3E' },
+                { word: 'Doctor', translation: 'Médico', phonetic: '/ˈdɑːktər/', example: 'I need to see a doctor', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fef3c7" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E👨‍⚕️ Doctor%3C/text%3E%3C/svg%3E' },
+                { word: 'Emergency', translation: 'Emergência', phonetic: '/ɪˈmɜːrdʒənsi/', example: 'This is an emergency!', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23fecaca" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="18" text-anchor="middle" dy=".3em"%3E🚨 Emergency%3C/text%3E%3C/svg%3E' },
+                { word: 'Bandage', translation: 'Curativo/Atadura', phonetic: '/ˈbændɪdʒ/', example: 'Put a bandage on the wound', image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150"%3E%3Crect fill="%23f0fdf4" width="200" height="150"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" dy=".3em"%3E🩹 Bandage%3C/text%3E%3C/svg%3E' }
+            ]
+        };
+
+        const matchingPairs = {
+            1: [
+                { english: 'Doorknob', portuguese: 'Maçaneta' },
+                { english: 'Faucet', portuguese: 'Torneira' },
+                { english: 'Drawer', portuguese: 'Gaveta' },
+                { english: 'Light switch', portuguese: 'Interruptor' },
+                { english: 'Mirror', portuguese: 'Espelho' },
+                { english: 'Pillow', portuguese: 'Travesseiro' }
+            ],
+            2: [
+                { english: 'Boarding pass', portuguese: 'Cartão de embarque' },
+                { english: 'Gate', portuguese: 'Portão' },
+                { english: 'Luggage', portuguese: 'Bagagem' },
+                { english: 'Customs', portuguese: 'Alfândega' },
+                { english: 'Flight', portuguese: 'Voo' },
+                { english: 'Passport', portuguese: 'Passaporte' }
+            ],
+            3: [
+                { english: 'Menu', portuguese: 'Cardápio' },
+                { english: 'Burger', portuguese: 'Hambúrguer' },
+                { english: 'Fries', portuguese: 'Batatas fritas' },
+                { english: 'Water', portuguese: 'Água' },
+                { english: 'Check', portuguese: 'Conta' },
+                { english: 'Waiter', portuguese: 'Garçom' }
+            ],
+            4: [
+                { english: 'Headache', portuguese: 'Dor de cabeça' },
+                { english: 'Fever', portuguese: 'Febre' },
+                { english: 'Pharmacy', portuguese: 'Farmácia' },
+                { english: 'Medicine', portuguese: 'Remédio' },
+                { english: 'Painkiller', portuguese: 'Analgésico' },
+                { english: 'Doctor', portuguese: 'Médico' }
+            ]
+        };
+
+        const fillBlankSentences = {
+            1: [
+                { sentence: 'Turn the _____ to open the door.', answer: 'doorknob' },
+                { sentence: 'Turn off the _____ after washing your hands.', answer: 'faucet' },
+                { sentence: 'Put your socks in the _____.', answer: 'drawer' },
+                { sentence: 'Look at yourself in the _____.', answer: 'mirror' }
+            ],
+            2: [
+                { sentence: 'Show your _____ at the gate.', answer: 'boarding pass' },
+                { sentence: 'Go to _____ 12 for your flight.', answer: 'gate' },
+                { sentence: 'Check your _____ at the counter.', answer: 'luggage' },
+                { sentence: 'Show your _____ to the officer.', answer: 'passport' }
+            ],
+            3: [
+                { sentence: 'Can I see the _____, please?', answer: 'menu' },
+                { sentence: 'I want a _____ with fries.', answer: 'burger' },
+                { sentence: 'A glass of _____, please.', answer: 'water' },
+                { sentence: 'Can I have the _____, please?', answer: 'check' }
+            ],
+            4: [
+                { sentence: 'I have a terrible _____.', answer: 'headache' },
+                { sentence: 'I think I have a _____.', answer: 'fever' },
+                { sentence: 'Where is the nearest _____?', answer: 'pharmacy' },
+                { sentence: 'I need a _____ for my headache.', answer: 'painkiller' }
+            ]
+        };
+
+        const sentenceBuilding = {
+            2: { words: ['Where', 'is', 'the', 'boarding', 'gate', '?'], correct: 'Where is the boarding gate ?' },
+            3: { words: ['I', 'would', 'like', 'a', 'burger', 'with', 'fries'], correct: 'I would like a burger with fries' },
+            4: { words: ['I', 'need', 'a', 'painkiller'], correct: 'I need a painkiller' }
+        };
+
+        let selectedMatch = null;
+        let matchedPairs = [];
+
+        function changeWeek(weekNum) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById('week' + weekNum).classList.add('active');
+        }
+
+        function initVocabCards(week) {
+            const container = document.getElementById('vocab-week' + week);
+            const vocab = vocabularyData[week];
+            
+            container.innerHTML = '';
+            vocab.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'vocab-card';
+                card.innerHTML = `
+                    <span class="flip-hint">Clique!</span>
+                    <img src="${item.image}" alt="${item.word}">
+                    <h4>${item.word}</h4>
+                    <p class="phonetic">${item.phonetic}</p>
+                    <p style="display:none;">${item.translation}</p>
+                    <p style="display:none; font-size: 0.9rem; margin-top: 10px; color: #64748b;"><em>"${item.example}"</em></p>
+                `;
+                
+                const audioBtn = document.createElement('button');
+                audioBtn.className = 'audio-btn';
+                audioBtn.innerHTML = '🔊';
+                audioBtn.title = 'Ouvir pronúncia';
+                audioBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    
+                    if (!('speechSynthesis' in window)) {
+                        alert('Seu navegador não suporta síntese de voz. Por favor, use Chrome, Edge ou Safari.');
+                        return;
+                    }
+                    
+                    // Para iOS Safari - precisa de interação direta do usuário
+                    window.speechSynthesis.cancel();
+                    
+                    // Carregar vozes (necessário em alguns navegadores)
+                    let voices = window.speechSynthesis.getVoices();
+                    if (voices.length === 0) {
+                        window.speechSynthesis.onvoiceschanged = function() {
+                            voices = window.speechSynthesis.getVoices();
+                        };
+                    }
+                    
+                    const utterance = new SpeechSynthesisUtterance(item.word);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+                    
+                    // Tentar usar uma voz em inglês se disponível
+                    const enVoice = voices.find(voice => voice.lang.startsWith('en'));
+                    if (enVoice) {
+                        utterance.voice = enVoice;
+                    }
+                    
+                    utterance.onstart = function() {
+                        audioBtn.style.background = '#10b981';
+                        console.log('Áudio iniciado:', item.word);
+                    };
+                    
+                    utterance.onend = function() {
+                        audioBtn.style.background = '#2563eb';
+                        console.log('Áudio finalizado');
+                    };
+                    
+                    utterance.onerror = function(event) {
+                        audioBtn.style.background = '#ef4444';
+                        console.error('Erro ao reproduzir áudio:', event);
+                        setTimeout(() => {
+                            audioBtn.style.background = '#2563eb';
+                        }, 1000);
+                    };
+                    
+                    // Falar imediatamente (importante para iOS)
+                    window.speechSynthesis.speak(utterance);
+                };
+                card.appendChild(audioBtn);
+                card.onclick = function() {
+                    this.classList.toggle('flipped');
+                    const pTags = this.querySelectorAll('p');
+                    pTags[1].style.display = this.classList.contains('flipped') ? 'block' : 'none';
+                    pTags[2].style.display = this.classList.contains('flipped') ? 'block' : 'none';
+                    updateProgress(week);
+                };
+                container.appendChild(card);
+            });
+        }
+
+        function initMatching(week) {
+            const container = document.getElementById('match-week' + week);
+            const pairs = matchingPairs[week];
+            matchedPairs = [];
+            
+            const allItems = [];
+            pairs.forEach(pair => {
+                allItems.push({ text: pair.english, type: 'english', match: pair.portuguese });
+                allItems.push({ text: pair.portuguese, type: 'portuguese', match: pair.english });
+            });
+            
+            allItems.sort(() => Math.random() - 0.5);
+            
+            container.innerHTML = '';
+            allItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'match-item';
+                div.textContent = item.text;
+                div.dataset.text = item.text;
+                div.dataset.match = item.match;
+                div.onclick = function() {
+                    selectMatch(this, week);
+                };
+                container.appendChild(div);
+            });
+        }
+
+        function selectMatch(element, week) {
+            if (element.classList.contains('matched')) return;
+            
+            if (selectedMatch === null) {
+                document.querySelectorAll(`#match-week${week} .match-item`).forEach(el => el.classList.remove('selected'));
+                element.classList.add('selected');
+                selectedMatch = element;
+            } else {
+                if (selectedMatch === element) {
+                    element.classList.remove('selected');
+                    selectedMatch = null;
+                    return;
+                }
+                
+                if (selectedMatch.dataset.match === element.dataset.text) {
+                    selectedMatch.classList.add('matched');
+                    element.classList.add('matched');
+                    matchedPairs.push(selectedMatch.dataset.text);
+                    selectedMatch = null;
+                    updateProgress(week);
+                } else {
+                    element.classList.add('selected');
+                    setTimeout(() => {
+                        element.classList.remove('selected');
+                        selectedMatch.classList.remove('selected');
+                        selectedMatch = null;
+                    }, 500);
+                }
+            }
+        }
+
+        function resetMatching(week) {
+            selectedMatch = null;
+            initMatching(week);
+        }
+
+        function initFillBlanks(week) {
+            const container = document.getElementById('fillblank-week' + week);
+            const sentences = fillBlankSentences[week];
+            
+            container.innerHTML = '';
+            sentences.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'fill-blank';
+                div.innerHTML = `<p>${item.sentence.replace('_____', `<input type="text" id="blank${week}-${index}" data-answer="${item.answer}">`)}</p>`;
+                container.appendChild(div);
+            });
+        }
+
+        function checkFillBlanks(week) {
+            const inputs = document.querySelectorAll(`#fillblank-week${week} input`);
+            let correct = 0;
+            
+            inputs.forEach(input => {
+                const answer = input.dataset.answer.toLowerCase();
+                const value = input.value.toLowerCase().trim();
+                
+                if (value === answer) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                    correct++;
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            });
+            
+            alert(`Você acertou ${correct} de ${inputs.length} respostas!`);
+            updateProgress(week);
+        }
+
+        function initSentenceBuilder(week) {
+            if (!sentenceBuilding[week]) return;
+            
+            const wordBank = document.getElementById('wordbank' + week);
+            const words = [...sentenceBuilding[week].words];
+            words.sort(() => Math.random() - 0.5);
+            
+            wordBank.innerHTML = '';
+            words.forEach(word => {
+                const chip = document.createElement('div');
+                chip.className = 'word-chip';
+                chip.textContent = word;
+                chip.onclick = function() {
+                    if (!this.classList.contains('used')) {
+                        this.classList.add('used');
+                        addWordToSentence(word, week);
+                    }
+                };
+                wordBank.appendChild(chip);
+            });
+        }
+
+        function addWordToSentence(word, week) {
+            const sentence = document.getElementById('sentence' + week);
+            const chip = document.createElement('div');
+            chip.className = 'word-chip';
+            chip.textContent = word;
+            chip.style.background = '#dbeafe';
+            sentence.appendChild(chip);
+        }
+
+        function checkSentence(week) {
+            const sentence = document.getElementById('sentence' + week);
+            const words = Array.from(sentence.children).map(el => el.textContent);
+            const userSentence = words.join(' ');
+            const correct = sentenceBuilding[week].correct;
+            
+            if (userSentence === correct) {
+                alert('✅ Perfeito! Frase correta!');
+                updateProgress(week);
+            } else {
+                alert(`❌ Tente novamente!\n\nSua frase: "${userSentence}"\nFrase correta: "${correct}"`);
+            }
+        }
+
+        function resetSentence(week) {
+            document.getElementById('sentence' + week).innerHTML = '';
+            document.querySelectorAll(`#wordbank${week} .word-chip`).forEach(chip => {
+                chip.classList.remove('used');
+            });
+        }
+
+        function updateProgress(week) {
+            const flipped = document.querySelectorAll(`#vocab-week${week} .vocab-card.flipped`).length;
+            const totalVocab = vocabularyData[week].length;
+            const matched = matchedPairs.length;
+            const totalMatch = matchingPairs[week].length;
+            
+            const percentage = Math.round(((flipped / totalVocab) * 40 + (matched / totalMatch) * 60));
+            const progressBar = document.getElementById('progress' + week);
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+        }
+
+        function speakWord(word, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Seu navegador não suporta áudio de pronúncia. Tente usar Chrome, Edge ou Safari.');
+            }
+        }
+
+        window.onload = function() {
+            for (let i = 1; i <= 4; i++) {
+                initVocabCards(i);
+                initMatching(i);
+                initFillBlanks(i);
+                if (sentenceBuilding[i]) {
+                    initSentenceBuilder(i);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
+

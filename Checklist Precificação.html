@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Precificação - Lanches Saudáveis</title>
+    <style>
+        :root {
+            --color-primary: #10b981;
+            --color-primary-hover: #059669;
+            --color-primary-light: #d1fae5;
+            --color-secondary: #f59e0b;
+            --color-bg: #fef3c7;
+            --color-surface: #ffffff;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-completed: #10b981;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: var(--color-text);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .progress-section {
+            background: var(--color-surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.6s ease 0.2s both;
+        }
+
+        .progress-bar-container {
+            background: var(--color-border);
+            height: 16px;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 999px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .section {
+            background: var(--color-surface);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.6s ease both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section.completed .section-number {
+            background: var(--color-completed);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text);
+            flex: 1;
+        }
+
+        .section.completed .section-title {
+            color: var(--color-completed);
+        }
+
+        .toggle-icon {
+            color: var(--color-text-secondary);
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+        }
+
+        .section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            background: #fafafa;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .checklist-item:hover {
+            background: #f3f4f6;
+            border-color: var(--color-primary-light);
+        }
+
+        .checklist-item.checked {
+            background: var(--color-primary-light);
+            border-color: var(--color-primary);
+        }
+
+        .checkbox-wrapper {
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--color-primary);
+            transform: scale(1.2);
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-text {
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .checklist-item.checked .item-text {
+            color: var(--color-primary);
+            font-weight: 500;
+        }
+
+        .item-notes {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s ease;
+        }
+
+        .item-notes:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            animation: popIn 0.5s ease;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        .celebration h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .celebration p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .celebration-emoji {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            animation: bounce 1s infinite;
+        }
+
+        .btn-close {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-close:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--color-surface);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-export {
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-export:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(245, 158, 11, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+
+            .celebration {
+                padding: 30px 20px;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍰 Checklist de Precificação Profissional</h1>
+            <p>Organize suas informações para precificar com qualidade e valorização</p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% Completo (0 de 28 itens)</div>
+        </div>
+
+        <div class="section" data-section="1">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Fichas Técnicas por Produto</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Listar todos os ingredientes de cada receita (waffle, muffin etc.) com quantidade em gramas/ml</div>
+                        <textarea class="item-notes" placeholder="Ex: Waffle - Polvilho 200g, Leite 150ml, Queijo 100g..."></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Anotar o preço pago em cada insumo (R$/kg, R$/L, R$/unidade) e guardar notas</div>
+                        <textarea class="item-notes" placeholder="Ex: Polvilho R$8,50/kg, Leite R$5,00/L, Queijo R$45,00/kg..."></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Calcular o custo de cada ingrediente usado na receita (proporção do total comprado)</div>
+                        <textarea class="item-notes" placeholder="Ex: 200g de polvilho = (200/1000) × R$8,50 = R$1,70"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Anotar o rendimento real da receita: quantos waffles/muffins saem em tamanho padrão</div>
+                        <textarea class="item-notes" placeholder="Ex: Receita de waffle rende 12 unidades de 50g cada"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Repetir o teste pelo menos 2 vezes para confirmar rendimento e peso médio (consistência)</div>
+                        <textarea class="item-notes" placeholder="Teste 1: 12 unidades | Teste 2: 11 unidades | Média: 11,5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" data-section="2">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Custo por Unidade e Combo</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Somar o custo de todos os ingredientes → custo total da receita</div>
+                        <textarea class="item-notes" placeholder="Ex: R$1,70 + R$0,75 + R$4,50 + R$2,00 = R$8,95 por receita"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Dividir o custo total pelo número de unidades → custo de ingrediente por unidade</div>
+                        <textarea class="item-notes" placeholder="Ex: R$8,95 ÷ 12 unidades = R$0,75 por waffle"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Acrescentar custo da embalagem individual (saquinho + etiqueta) em cada unidade</div>
+                        <textarea class="item-notes" placeholder="Ex: Saquinho R$0,30 + Etiqueta R$0,10 = R$0,40 por unidade"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Estimar valor mensal de gás, energia, água, limpeza e fazer rateio por unidade</div>
+                        <textarea class="item-notes" placeholder="Ex: R$150/mês ÷ 600 unidades produzidas = R$0,25 por unidade"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Somar: ingrediente + embalagem + rateio = custo total unitário de produção</div>
+                        <textarea class="item-notes" placeholder="Ex: R$0,75 + R$0,40 + R$0,25 = R$1,40 custo total por waffle"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" data-section="3">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Tempo e Padrão de Trabalho</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Marcar quanto tempo leva para produzir 1 receita completa (início até embalado)</div>
+                        <textarea class="item-notes" placeholder="Ex: Waffle - 2h30min (preparo 40min, forno 1h, resfriamento 30min, embalar 20min)"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Definir um valor/hora mínimo para o trabalho (quanto esse tempo precisa valer)</div>
+                        <textarea class="item-notes" placeholder="Ex: Quero que meu trabalho valha pelo menos R$20/hora"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Distribuir custo de mão de obra pelas unidades (valor/hora × horas ÷ unidades)</div>
+                        <textarea class="item-notes" placeholder="Ex: R$20/h × 2,5h = R$50 ÷ 12 unidades = R$4,17 por waffle"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Anotar perdas (massa que sobra, produto que quebra) e incluir margem 3-5%</div>
+                        <textarea class="item-notes" placeholder="Ex: De 12 waffles, 1 sempre sai fora do padrão = 8% de perda"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" data-section="4">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Testes de Qualidade e Padronização</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Definir peso/volume padrão de 1 waffle e 1 muffin (mesma forma sempre) e pesar amostras</div>
+                        <textarea class="item-notes" placeholder="Ex: Waffle padrão = 50g ± 5g | Muffin padrão = 60g ± 5g"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Congelar por 1, 3, 7, 14 dias e testar qualidade (textura, sabor, umidade) após air fryer</div>
+                        <textarea class="item-notes" placeholder="Dia 1: perfeito | Dia 3: ok | Dia 7: ok | Dia 14: textura levemente seca"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Anotar tempo e temperatura ideais de air fryer para melhor resultado</div>
+                        <textarea class="item-notes" placeholder="Ex: Waffle - 180°C por 8 minutos | Muffin - 160°C por 10 minutos"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Fazer testes com mães de confiança: pedir feedback sobre sabor, tamanho, aceitação da criança</div>
+                        <textarea class="item-notes" placeholder="Feedback Mãe 1: criança adorou, pediu mais | Feedback Mãe 2: achou pequeno..."></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Ajustar receita, tamanho ou tempo se necessário - qualidade vem antes de escala</div>
+                        <textarea class="item-notes" placeholder="Ajuste realizado: aumentei 20% de queijo para sabor mais marcante"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" data-section="5">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Simulação de Preços com Margem Justa</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Com o custo total unitário, definir margem de lucro desejada (30-50% é comum em artesanal)</div>
+                        <textarea class="item-notes" placeholder="Ex: Quero 40% de margem de lucro sobre o preço final"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Aplicar fórmula: preço = custo total ÷ (1 - margem). Ex: R$4 ÷ 0,6 = R$6,67</div>
+                        <textarea class="item-notes" placeholder="Custo waffle R$5,57 ÷ 0,6 (40%) = R$9,28 preço de venda"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Calcular preço sugerido para: 1 waffle, 1 muffin, combo (1 waffle + 1 muffin)</div>
+                        <textarea class="item-notes" placeholder="Waffle R$9,28 | Muffin R$7,50 | Combo R$15,00 (desconto de R$1,78)"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Verificar se o preço calculado está próximo do que o público pagaria (R$15/dia)</div>
+                        <textarea class="item-notes" placeholder="Preço calculado R$15,00 está alinhado com expectativa do mercado? Sim/Não"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" data-section="6">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Kits Baseados em Dados</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Simular: com preço de 1 dia e custo real, quanto sobra de lucro por dia?</div>
+                        <textarea class="item-notes" placeholder="Ex: Venda R$15 - Custo R$9 = R$6 lucro líquido por dia de lanche"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Calcular lucro de kit semanal (5 dias) e kit mensal (20 dias)</div>
+                        <textarea class="item-notes" placeholder="Semanal: R$6 × 5 = R$30 lucro | Mensal: R$6 × 20 = R$120 lucro"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Calcular quantos kits mensais precisa vender para atingir meta de lucro (acima do salário mínimo)</div>
+                        <textarea class="item-notes" placeholder="Meta R$1.600/mês ÷ R$120 lucro/kit = 14 kits mensais necessários"></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="item-content">
+                        <div class="item-text">Definir se faz sentido dar desconto em kits fechados mantendo margem saudável</div>
+                        <textarea class="item-notes" placeholder="Kit mensal: R$300 normal → R$270 com 10% desconto (ainda mantém R$108 lucro)"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="export-section">
+            <h3 style="margin-bottom: 16px; color: var(--color-text);">Salve seu progresso!</h3>
+            <button class="btn-export" onclick="exportData()">📥 Exportar Minhas Anotações</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="celebration" id="celebration">
+        <div class="celebration-emoji">🎉</div>
+        <h2>Parabéns!</h2>
+        <p>Você completou todos os itens do checklist!<br>Agora você tem todas as informações para precificar com excelência.</p>
+        <button class="btn-close" onclick="closeCelebration()">Continuar</button>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.checkbox');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const sections = document.querySelectorAll('.section');
+        const celebration = document.getElementById('celebration');
+        const overlay = document.getElementById('overlay');
+
+        let totalItems = checkboxes.length;
+        let completedItems = 0;
+
+        // Toggle section collapse
+        sections.forEach(section => {
+            const header = section.querySelector('.section-header');
+            header.addEventListener('click', () => {
+                section.classList.toggle('collapsed');
+            });
+        });
+
+        // Update progress
+        function updateProgress() {
+            completedItems = document.querySelectorAll('.checkbox:checked').length;
+            const percentage = Math.round((completedItems / totalItems) * 100);
+            
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = `${percentage}% Completo (${completedItems} de ${totalItems} itens)`;
+
+            // Update section completion status
+            sections.forEach(section => {
+                const sectionCheckboxes = section.querySelectorAll('.checkbox');
+                const sectionChecked = section.querySelectorAll('.checkbox:checked').length;
+                
+                if (sectionChecked === sectionCheckboxes.length && sectionCheckboxes.length > 0) {
+                    section.classList.add('completed');
+                } else {
+                    section.classList.remove('completed');
+                }
+            });
+
+            // Show celebration when all items are checked
+            if (completedItems === totalItems && totalItems > 0) {
+                setTimeout(() => {
+                    celebration.classList.add('show');
+                    overlay.classList.add('show');
+                }, 500);
+            }
+
+            // Save progress to localStorage
+            saveProgress();
+        }
+
+        // Checkbox change handler
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('change', function() {
+                const item = this.closest('.checklist-item');
+                if (this.checked) {
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+                updateProgress();
+            });
+        });
+
+        // Save notes to localStorage
+        document.querySelectorAll('.item-notes').forEach((textarea, index) => {
+            textarea.addEventListener('input', () => {
+                saveProgress();
+            });
+        });
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const data = {
+                checkboxes: [],
+                notes: []
+            };
+
+            checkboxes.forEach((cb, i) => {
+                data.checkboxes.push(cb.checked);
+            });
+
+            document.querySelectorAll('.item-notes').forEach((note, i) => {
+                data.notes.push(note.value);
+            });
+
+            localStorage.setItem('checklistProgress', JSON.stringify(data));
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('checklistProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                
+                checkboxes.forEach((cb, i) => {
+                    if (data.checkboxes[i]) {
+                        cb.checked = true;
+                        cb.closest('.checklist-item').classList.add('checked');
+                    }
+                });
+
+                document.querySelectorAll('.item-notes').forEach((note, i) => {
+                    if (data.notes[i]) {
+                        note.value = data.notes[i];
+                    }
+                });
+
+                updateProgress();
+            }
+        }
+
+        // Close celebration
+        function closeCelebration() {
+            celebration.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        // Export data as text file
+        function exportData() {
+            let content = '=== CHECKLIST DE PRECIFICAÇÃO - LANCHES SAUDÁVEIS ===\n\n';
+            content += 'Data: ' + new Date().toLocaleString('pt-BR') + '\n\n';
+            content += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+            sections.forEach((section, sIndex) => {
+                const title = section.querySelector('.section-title').textContent;
+                content += `${sIndex + 1}. ${title}\n`;
+                content += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+                const items = section.querySelectorAll('.checklist-item');
+                items.forEach((item, iIndex) => {
+                    const checkbox = item.querySelector('.checkbox');
+                    const text = item.querySelector('.item-text').textContent;
+                    const note = item.querySelector('.item-notes').value;
+                    const status = checkbox.checked ? '✓' : '○';
+
+                    content += `   ${status} ${text}\n`;
+                    if (note.trim()) {
+                        content += `      → ${note}\n`;
+                    }
+                    content += '\n';
+                });
+
+                content += '\n';
+            });
+
+            content += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+            content += `Progresso: ${completedItems} de ${totalItems} itens completos (${Math.round((completedItems/totalItems)*100)}%)\n`;
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `checklist-precificacao-${new Date().toISOString().split('T')[0]}.txt`;
+            link.click();
+        }
+
+        // Load saved progress on page load
+        window.addEventListener('load', loadProgress);
+    </script>
+</body>
+</html>
+

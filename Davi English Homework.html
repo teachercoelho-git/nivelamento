@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davi's 7-Day English Homework</title>
+    <style>
+        :root {
+            --color-bg-primary: #0f172a;
+            --color-bg-secondary: #1e293b;
+            --color-bg-card: #334155;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-accent: #38bdf8;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+
+        header p {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .alert-box {
+            background: rgba(239, 68, 68, 0.15);
+            border: 2px solid var(--color-error);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: var(--color-text-primary);
+        }
+
+        .alert-box strong {
+            color: var(--color-error);
+        }
+
+        .progress-bar {
+            background: var(--color-bg-secondary);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .day-card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .day-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .day-card.completed {
+            border-color: var(--color-success);
+            opacity: 0.8;
+        }
+
+        .day-card.critical {
+            border-color: var(--color-error);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        .priority-badge {
+            background: var(--color-error);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .check-icon {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--color-text-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .day-card.completed .check-icon {
+            background: var(--color-success);
+            border-color: var(--color-success);
+        }
+
+        .day-topic {
+            font-size: 1rem;
+            color: var(--color-warning);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .day-activities {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .day-activities li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .day-activities li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-bg-card);
+            border: none;
+            color: var(--color-text-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--color-accent);
+        }
+
+        .exercise-section {
+            margin: 30px 0;
+        }
+
+        .exercise-section h3 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .exercise-item {
+            background: var(--color-bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .exercise-item p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            background: var(--color-bg-primary);
+            border: 2px solid var(--color-bg-card);
+            border-radius: 6px;
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: var(--color-success);
+            transform: scale(1.05);
+        }
+
+        .btn-complete {
+            background: var(--color-success);
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--color-success);
+            color: var(--color-success);
+        }
+
+        .feedback.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        .tips-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid var(--color-accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .tips-box h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .tips-box ul {
+            margin-left: 20px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        .error-box {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid var(--color-error);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .error-box h4 {
+            color: var(--color-error);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Davi's 7-Day English Homework</h1>
+            <p>30 minutes per day | Level: A2 (Elementary)</p>
+            <div class="alert-box">
+                <strong>⚠️ Critical Focus Areas:</strong> Present Perfect vs Past Simple • Future Forms (Will vs Going To) • Negative Past Structure • Reported Speech
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar">0% Complete</div>
+            </div>
+        </header>
+
+        <div class="days-grid" id="daysGrid"></div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const homework = {
+            day1: {
+                title: "Day 1",
+                topic: "Past Simple Negatives (CRITICAL)",
+                priority: "URGENT",
+                activities: ["didn't + base verb rule", "Common mistakes review", "25 practice exercises"],
+                content: {
+                    theory: `
+                        <h3>🔴 CRITICAL: Negative Past Simple Structure</h3>
+                        <div class="error-box">
+                            <h4>Your Test Error:</h4>
+                            <p>❌ Question 5: "They didn't <strong>finished</strong>" (INCORRECT)</p>
+                            <p>✅ Correct: "They didn't <strong>finish</strong>"</p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>The Golden Rule:</h4>
+                            <p><strong>didn't + BASE VERB (no -ed!)</strong></p>
+                            <ul>
+                                <li>✅ I didn't <strong>go</strong> (NOT "didn't went")</li>
+                                <li>✅ She didn't <strong>finish</strong> (NOT "didn't finished")</li>
+                                <li>✅ They didn't <strong>eat</strong> (NOT "didn't ate")</li>
+                                <li>✅ He didn't <strong>study</strong> (NOT "didn't studied")</li>
+                            </ul>
+                            <p><strong>Why?</strong> "Did" already shows past time, so the main verb stays in base form.</p>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'Yesterday, I _____ (not/go) to work.',
+                            answer: "didn't go",
+                            explanation: 'Negative past: didn\'t + base verb "go" (not "went")'
+                        },
+                        {
+                            question: 'She _____ (not/finish) her homework last night.',
+                            answer: "didn't finish",
+                            explanation: 'didn\'t + base verb "finish" (not "finished")'
+                        },
+                        {
+                            question: 'They _____ (not/eat) breakfast this morning.',
+                            answer: "didn't eat",
+                            explanation: 'didn\'t + base verb "eat" (not "ate")'
+                        },
+                        {
+                            question: 'We _____ (not/study) English yesterday.',
+                            answer: "didn't study",
+                            explanation: 'didn\'t + base verb "study" (not "studied")'
+                        },
+                        {
+                            question: 'He _____ (not/call) me last week.',
+                            answer: "didn't call",
+                            explanation: 'didn\'t + base verb "call" (not "called")'
+                        }
+                    ]
+                }
+            },
+            day2: {
+                title: "Day 2",
+                topic: "Present Perfect vs Past Simple (CRITICAL)",
+                priority: "URGENT",
+                activities: ["When to use each tense", "Time markers", "Transformation practice"],
+                content: {
+                    theory: `
+                        <h3>🔴 CRITICAL: Present Perfect vs Past Simple</h3>
+                        <div class="error-box">
+                            <h4>Your Test Errors:</h4>
+                            <p>❌ Question 8: "I <strong>went</strong> to Paris three times" (INCORRECT)</p>
+                            <p>✅ Correct: "I <strong>have been</strong> to Paris three times"</p>
+                            <p>❌ Question 9: "He <strong>lives</strong> here since 2020" (INCORRECT)</p>
+                            <p>✅ Correct: "He <strong>has lived</strong> here since 2020"</p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>When to Use Each Tense:</h4>
+                            <p><strong>Past Simple:</strong> Completed action at a specific time in the past</p>
+                            <ul>
+                                <li>✅ I went to Paris <strong>in 2020</strong></li>
+                                <li>✅ I saw that movie <strong>last week</strong></li>
+                                <li>Keywords: yesterday, last week, in 2020, two days ago</li>
+                            </ul>
+                            <p><strong>Present Perfect:</strong> Experience OR action that started in past and continues now</p>
+                            <ul>
+                                <li>✅ I <strong>have been</strong> to Paris <strong>three times</strong> (life experience)</li>
+                                <li>✅ He <strong>has lived</strong> here <strong>since 2020</strong> (still lives here now!)</li>
+                                <li>Keywords: <strong>since</strong>, <strong>for</strong>, three times, ever, never, already, yet</li>
+                            </ul>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'I _____ (visit) London three times in my life.',
+                            answer: 'have visited',
+                            explanation: '"Three times" = life experience, use Present Perfect'
+                        },
+                        {
+                            question: 'She _____ (live) in Brazil since 2015.',
+                            answer: 'has lived',
+                            explanation: '"Since 2015" = started in past, continues now, use Present Perfect'
+                        },
+                        {
+                            question: 'They _____ (go) to the beach last summer.',
+                            answer: 'went',
+                            explanation: '"Last summer" = specific past time, use Past Simple'
+                        },
+                        {
+                            question: 'I _____ (never/eat) Japanese food.',
+                            answer: 'have never eaten',
+                            explanation: '"Never" = life experience, use Present Perfect'
+                        },
+                        {
+                            question: 'We _____ (work) here for five years.',
+                            answer: 'have worked',
+                            explanation: '"For five years" = duration continuing to now, use Present Perfect'
+                        }
+                    ]
+                }
+            },
+            day3: {
+                title: "Day 3",
+                topic: "Future: Will vs Going To (CRITICAL)",
+                priority: "URGENT",
+                activities: ["Decision rules", "Common mistakes", "Context practice"],
+                content: {
+                    theory: `
+                        <h3>🔴 CRITICAL: Will vs Going To</h3>
+                        <div class="error-box">
+                            <h4>Your Test Errors:</h4>
+                            <p>❌ Question 11: "I think it <strong>going to</strong> rain" (INCORRECT)</p>
+                            <p>✅ Correct: "I think it <strong>will</strong> rain"</p>
+                            <p>❌ Question 12: "We <strong>will</strong> buy a car. We already decided." (INCORRECT)</p>
+                            <p>✅ Correct: "We <strong>are going to</strong> buy a car."</p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>Clear Decision Rules:</h4>
+                            <p><strong>Use WILL for:</strong></p>
+                            <ul>
+                                <li>🔮 <strong>Predictions/opinions</strong> (I think, I believe, probably, maybe)<br>
+                                ✅ "I think it <strong>will</strong> rain tomorrow."</li>
+                                <li>⚡ <strong>Instant decisions</strong> (deciding now while speaking)<br>
+                                ✅ "I'm thirsty. I <strong>will</strong> buy water."</li>
+                                <li>🤝 <strong>Promises/offers</strong><br>
+                                ✅ "Don't worry, I <strong>will</strong> help you."</li>
+                            </ul>
+                            <p><strong>Use GOING TO for:</strong></p>
+                            <ul>
+                                <li>📋 <strong>Plans already decided</strong><br>
+                                ✅ "We <strong>are going to</strong> buy a car next month. (We already decided!)"</li>
+                                <li>👀 <strong>Evidence-based predictions</strong> (you can see signs)<br>
+                                ✅ "Look at those clouds! It <strong>is going to</strong> rain."</li>
+                            </ul>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'I think Brazil _____ (win) the World Cup.',
+                            answer: 'will win',
+                            explanation: '"I think" = opinion/prediction → use WILL'
+                        },
+                        {
+                            question: 'We _____ (travel) to Europe next year. We already bought the tickets!',
+                            answer: 'are going to travel',
+                            explanation: 'Plan already decided (bought tickets) → use GOING TO'
+                        },
+                        {
+                            question: 'A: The phone is ringing. B: I _____ (answer) it!',
+                            answer: 'will answer',
+                            explanation: 'Instant decision (deciding now) → use WILL'
+                        },
+                        {
+                            question: 'Look at those dark clouds! It _____ (rain).',
+                            answer: 'is going to rain',
+                            explanation: 'Evidence-based prediction (can see clouds) → use GOING TO'
+                        },
+                        {
+                            question: 'She _____ (study) medicine. She decided last month.',
+                            answer: 'is going to study',
+                            explanation: 'Decision already made → use GOING TO'
+                        }
+                    ]
+                }
+            },
+            day4: {
+                title: "Day 4",
+                topic: "Reported Speech - Basics",
+                activities: ["Backshift rules", "Tense changes", "Practice exercises"],
+                content: {
+                    theory: `
+                        <h3>📖 Theory: Reported Speech</h3>
+                        <div class="error-box">
+                            <h4>Your Test Error:</h4>
+                            <p>❌ Question 17: "She said that she <strong>is</strong> tired" (INCORRECT)</p>
+                            <p>✅ Correct: "She said that she <strong>was</strong> tired"</p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>Backshift Rule: Move tenses ONE step back in time</h4>
+                            <ul>
+                                <li><strong>Present Simple → Past Simple</strong><br>
+                                "I <strong>am</strong> tired" → She said she <strong>was</strong> tired ✅</li>
+                                <li><strong>Present Continuous → Past Continuous</strong><br>
+                                "I <strong>am working</strong>" → He said he <strong>was working</strong></li>
+                                <li><strong>Will → Would</strong><br>
+                                "I <strong>will</strong> come" → She said she <strong>would</strong> come</li>
+                                <li><strong>Can → Could</strong><br>
+                                "I <strong>can</strong> help" → He said he <strong>could</strong> help</li>
+                            </ul>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'Direct: "I am tired." → Reported: She said she _____ tired.',
+                            answer: 'was',
+                            explanation: 'Present Simple "am" → Past Simple "was"'
+                        },
+                        {
+                            question: 'Direct: "I work here." → Reported: He said he _____ there.',
+                            answer: 'worked',
+                            explanation: 'Present Simple "work" → Past Simple "worked"'
+                        },
+                        {
+                            question: 'Direct: "I will call you." → Reported: She said she _____ call me.',
+                            answer: 'would',
+                            explanation: '"Will" → "would" in reported speech'
+                        },
+                        {
+                            question: 'Direct: "I can swim." → Reported: He said he _____ swim.',
+                            answer: 'could',
+                            explanation: '"Can" → "could" in reported speech'
+                        },
+                        {
+                            question: 'Direct: "I don\'t like coffee." → Reported: She said she _____ like coffee.',
+                            answer: "didn't",
+                            explanation: 'Present Simple negative "don\'t" → Past Simple "didn\'t"'
+                        }
+                    ]
+                }
+            },
+            day5: {
+                title: "Day 5",
+                topic: "Passive Voice & Fixed Expressions",
+                activities: ["Passive structure", "Look forward to", "Good at"],
+                content: {
+                    theory: `
+                        <h3>🔄 Passive Voice & Expressions</h3>
+                        <div class="error-box">
+                            <h4>Your Test Errors:</h4>
+                            <p>❌ Question 16: "The book <strong>was read</strong>" (when talking about "every year")</p>
+                            <p>✅ Correct: "The book <strong>is read</strong> every year"</p>
+                            <p>❌ Question 19: "looking forward <strong>to see</strong>"</p>
+                            <p>✅ Correct: "looking forward <strong>to seeing</strong>"</p>
+                            <p>❌ Question 20: "good <strong>in</strong> playing"</p>
+                            <p>✅ Correct: "good <strong>at</strong> playing"</p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>Passive Voice Structure:</h4>
+                            <p><strong>BE (correct tense) + Past Participle</strong></p>
+                            <ul>
+                                <li>Present: The book <strong>is read</strong> every year</li>
+                                <li>Past: The house <strong>was built</strong> in 1920</li>
+                            </ul>
+                            <h4>Fixed Expressions:</h4>
+                            <ul>
+                                <li><strong>look forward to + GERUND</strong><br>
+                                ✅ looking forward to <strong>seeing</strong> you (NOT "to see")</li>
+                                <li><strong>be good AT + GERUND</strong><br>
+                                ✅ good <strong>at</strong> playing (NOT "good in")</li>
+                                <li><strong>be interested IN + GERUND</strong><br>
+                                ✅ interested <strong>in</strong> learning</li>
+                            </ul>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'The movie _____ (show) every weekend. [present passive]',
+                            answer: 'is shown',
+                            explanation: 'Present Simple passive: is/are + past participle'
+                        },
+                        {
+                            question: 'The bridge _____ (build) in 1995. [past passive]',
+                            answer: 'was built',
+                            explanation: 'Past Simple passive: was/were + past participle'
+                        },
+                        {
+                            question: 'I\'m looking forward to _____ (meet) you.',
+                            answer: 'meeting',
+                            explanation: '"Look forward to" + gerund (verb + -ing)'
+                        },
+                        {
+                            question: 'She is good _____ (speak) English.',
+                            answer: 'at speaking',
+                            explanation: '"Good at" + gerund'
+                        },
+                        {
+                            question: 'They are interested _____ (learn) Portuguese.',
+                            answer: 'in learning',
+                            explanation: '"Interested in" + gerund'
+                        }
+                    ]
+                }
+            },
+            day6: {
+                title: "Day 6",
+                topic: "Writing Correction",
+                activities: ["Fix your test errors", "Verb tenses in writing", "New paragraph practice"],
+                content: {
+                    theory: `
+                        <h3>✍️ Your Writing Errors - Let's Fix Them!</h3>
+                        <div class="error-box">
+                            <h4>Your Original Text:</h4>
+                            <p style="color: #fca5a5;"><em>"I woke up and went to the gym and after i was take my breakfast<br>
+                            My last travel was to Chile, was my first time, so I can see the snow<br>
+                            For 2026 one of my biggest plans its upgrade my english for the best"</em></p>
+                        </div>
+                        <div class="tips-box">
+                            <h4>Corrections Needed:</h4>
+                            <ul>
+                                <li>❌ "i was take my breakfast" → ✅ "I <strong>took</strong> my breakfast"<br>
+                                (Past Simple: "took", not "was take")</li>
+                                <li>❌ "My last travel was... was my first time" → ✅ "My last <strong>trip</strong> was... <strong>It</strong> was my first time"<br>
+                                (Use "trip" not "travel" as noun, add "It")</li>
+                                <li>❌ "so I can see the snow" → ✅ "so I <strong>could</strong> see the snow"<br>
+                                (Past tense context requires "could", not "can")</li>
+                                <li>❌ "its upgrade" → ✅ "<strong>it's to</strong> upgrade" or "<strong>is to</strong> upgrade"<br>
+                                (Need verb "to be" + infinitive)</li>
+                                <li>❌ "upgrade my english for the best" → ✅ "upgrade my English <strong>to the best level</strong>"</li>
+                            </ul>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: 'Fix: "Yesterday I was take breakfast at 8am."',
+                            answer: 'Yesterday I took breakfast at 8am.',
+                            explanation: 'Past Simple: "took" (not "was take")'
+                        },
+                        {
+                            question: 'Fix: "My last travel was to Chile, so I can see the snow."',
+                            answer: 'My last trip was to Chile, so I could see the snow.',
+                            explanation: 'Use "trip" (noun) and "could" (past context)'
+                        },
+                        {
+                            question: 'Fix: "For 2026 my plan its travel to Europe."',
+                            answer: 'For 2026 my plan is to travel to Europe.',
+                            explanation: 'Need "is to" before infinitive verb'
+                        },
+                        {
+                            question: 'Write a sentence about your morning routine (use Past Simple correctly)',
+                            answer: 'open',
+                            explanation: 'Example: "I woke up at 7am, took a shower, and had breakfast."'
+                        },
+                        {
+                            question: 'Write about a past trip (use "could" correctly)',
+                            answer: 'open',
+                            explanation: 'Example: "Last year I went to the beach, so I could swim every day."'
+                        }
+                    ]
+                }
+            },
+            day7: {
+                title: "Day 7",
+                topic: "Final Review & Challenge",
+                activities: ["Mix all topics", "Final test", "Progress assessment"],
+                content: {
+                    theory: `
+                        <h3>🏆 Final Challenge: Test Everything You Learned!</h3>
+                        <div class="tips-box">
+                            <h4>This week you practiced:</h4>
+                            <ul>
+                                <li>✅ Past Simple Negatives (didn't + base verb)</li>
+                                <li>✅ Present Perfect vs Past Simple</li>
+                                <li>✅ Will vs Going To</li>
+                                <li>✅ Reported Speech (backshift)</li>
+                                <li>✅ Passive Voice</li>
+                                <li>✅ Fixed Expressions</li>
+                                <li>✅ Writing Correction</li>
+                            </ul>
+                            <p><strong>Goal:</strong> Show improvement in ALL critical areas!</p>
+                        </div>
+                    `,
+                    exercises: [
+                        {
+                            question: '(Past Negative) They _____ (not/finish) the homework yesterday.',
+                            answer: "didn't finish",
+                            explanation: 'didn\'t + base verb (not "didn\'t finished")'
+                        },
+                        {
+                            question: '(Present Perfect) I _____ (be) to Paris three times.',
+                            answer: 'have been',
+                            explanation: '"Three times" = experience, use Present Perfect'
+                        },
+                        {
+                            question: '(Future) I think it _____ (rain) tomorrow.',
+                            answer: 'will rain',
+                            explanation: '"I think" = opinion → use WILL'
+                        },
+                        {
+                            question: '(Reported Speech) Direct: "I am tired." → She said she _____ tired.',
+                            answer: 'was',
+                            explanation: 'Backshift: Present "am" → Past "was"'
+                        },
+                        {
+                            question: '(Expression) I\'m looking forward to _____ (see) you.',
+                            answer: 'seeing',
+                            explanation: '"Look forward to" + gerund'
+                        },
+                        {
+                            question: '(Writing) Fix this: "Yesterday I was eat pizza."',
+                            answer: 'Yesterday I ate pizza.',
+                            explanation: 'Past Simple: "ate" (not "was eat")'
+                        }
+                    ]
+                }
+            }
+        };
+
+        let completedDays = JSON.parse(localStorage.getItem('daviCompletedDays') || '[]');
+
+        function renderDays() {
+            const grid = document.getElementById('daysGrid');
+            grid.innerHTML = '';
+
+            Object.keys(homework).forEach(dayKey => {
+                const day = homework[dayKey];
+                const isCompleted = completedDays.includes(dayKey);
+
+                const card = document.createElement('div');
+                card.className = `day-card ${isCompleted ? 'completed' : ''} ${day.priority ? 'critical' : ''}`;
+                card.onclick = () => openDay(dayKey);
+
+                const priorityBadge = day.priority ? `<span class="priority-badge">${day.priority}</span>` : '';
+
+                card.innerHTML = `
+                    <div class="day-header">
+                        <div>
+                            <span class="day-title">${day.title}</span>
+                            ${priorityBadge}
+                        </div>
+                        <div class="check-icon">${isCompleted ? '✓' : ''}</div>
+                    </div>
+                    <div class="day-topic">${day.topic}</div>
+                    <ul class="day-activities">
+                        ${day.activities.map(act => `<li>${act}</li>`).join('')}
+                    </ul>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            updateProgress();
+        }
+
+        function openDay(dayKey) {
+            const day = homework[dayKey];
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modalBody');
+
+            let exercisesHTML = '';
+            day.content.exercises.forEach((ex, i) => {
+                exercisesHTML += `
+                    <div class="exercise-item">
+                        <p><strong>Exercise ${i + 1}:</strong> ${ex.question}</p>
+                        <input type="text" class="answer-input" id="answer-${dayKey}-${i}" placeholder="Type your answer here...">
+                        <button class="btn" onclick="checkAnswer('${dayKey}', ${i})">Check Answer</button>
+                        <div class="feedback" id="feedback-${dayKey}-${i}"></div>
+                    </div>
+                `;
+            });
+
+            modalBody.innerHTML = `
+                <h2>${day.title}: ${day.topic}</h2>
+                ${day.content.theory}
+                <div class="exercise-section">
+                    <h3>💪 Exercises</h3>
+                    ${exercisesHTML}
+                </div>
+                <button class="btn btn-complete" onclick="completeDay('${dayKey}')">✓ Mark Day as Complete</button>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function checkAnswer(dayKey, exerciseIndex) {
+            const exercise = homework[dayKey].content.exercises[exerciseIndex];
+            const userAnswer = document.getElementById(`answer-${dayKey}-${exerciseIndex}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback-${dayKey}-${exerciseIndex}`);
+
+            if (exercise.answer === 'open') {
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `<strong>Good job!</strong> ${exercise.explanation}`;
+                return;
+            }
+
+            const correctAnswers = exercise.answer.toLowerCase().split('/').map(a => a.trim());
+            const isCorrect = correctAnswers.some(ans => {
+                const userNormalized = userAnswer.replace(/['']/g, "'");
+                const ansNormalized = ans.replace(/['']/g, "'");
+                return userNormalized.includes(ansNormalized) || ansNormalized.includes(userNormalized);
+            });
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `<strong>Correct! ✓</strong> ${exercise.explanation}`;
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `<strong>Not quite.</strong> The correct answer is: <strong>${exercise.answer}</strong><br>${exercise.explanation}`;
+            }
+        }
+
+        function completeDay(dayKey) {
+            if (!completedDays.includes(dayKey)) {
+                completedDays.push(dayKey);
+                localStorage.setItem('daviCompletedDays', JSON.stringify(completedDays));
+                renderDays();
+            }
+            closeModal();
+        }
+
+        function updateProgress() {
+            const progress = (completedDays.length / 7) * 100;
+            const bar = document.getElementById('progressBar');
+            bar.style.width = progress + '%';
+            bar.textContent = Math.round(progress) + '% Complete';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        renderDays();
+    </script>
+</body>
+</html>

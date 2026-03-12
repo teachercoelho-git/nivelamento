@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michigan Travel English - Interactive Class</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+                --color-bg-1: rgba(29, 78, 216, 0.15);
+                --color-bg-2: rgba(180, 83, 9, 0.15);
+                --color-bg-3: rgba(21, 128, 61, 0.15);
+                --color-bg-4: rgba(185, 28, 28, 0.15);
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-primary-active: var(--color-teal-800);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-btn-primary-text: var(--color-slate-900);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            padding: var(--space-20);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: var(--space-24);
+            padding: var(--space-24);
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+        }
+
+        h1 {
+            color: var(--color-primary);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-12);
+        }
+
+        .subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: var(--space-8);
+            margin-bottom: var(--space-24);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: var(--space-12) var(--space-24);
+            background-color: var(--color-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .tab-btn:hover {
+            background-color: var(--color-secondary-hover);
+        }
+
+        .tab-btn.active {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border-color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-20);
+        }
+
+        .card h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+            font-size: 1.8rem;
+        }
+
+        .card h3 {
+            color: var(--color-text);
+            margin-top: var(--space-16);
+            margin-bottom: var(--space-12);
+            font-size: 1.3rem;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-20);
+        }
+
+        .visual-card {
+            background-color: var(--color-surface);
+            border: 2px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .visual-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .visual-card .icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-12);
+        }
+
+        .visual-card h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+            font-size: 1.2rem;
+        }
+
+        .practice-prompt {
+            background: var(--color-bg-1);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin: var(--space-16) 0;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .practice-prompt strong {
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: var(--space-8);
+            font-size: 1.1rem;
+        }
+
+        .phrase-box {
+            background: var(--color-bg-2);
+            padding: var(--space-12);
+            border-radius: var(--radius-base);
+            margin: var(--space-8) 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .slang-item {
+            background: var(--color-bg-3);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-12);
+        }
+
+        .slang-term {
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: var(--space-8);
+        }
+
+        .conversation-box {
+            background: var(--color-bg-4);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin: var(--space-12) 0;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .roleplay-btn {
+            display: inline-block;
+            padding: var(--space-12) var(--space-24);
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: var(--space-8);
+            transition: all 0.2s;
+        }
+
+        .roleplay-btn:hover {
+            background-color: var(--color-primary-hover);
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .scenario-container {
+            margin-top: var(--space-16);
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: var(--space-8);
+        }
+
+        ul {
+            margin-left: var(--space-20);
+            margin-top: var(--space-12);
+        }
+
+        li {
+            margin-bottom: var(--space-8);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 Michigan Travel English 🏖️</h1>
+            <p class="subtitle">Interactive Speaking Practice for Your June Trip!</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('destinations')">📍 Destinations</button>
+            <button class="tab-btn" onclick="switchTab('phrases')">💬 Essential Phrases</button>
+            <button class="tab-btn" onclick="switchTab('slang')">🗣️ Local Slang</button>
+            <button class="tab-btn" onclick="switchTab('roleplay')">🎭 Role-Play</button>
+            <button class="tab-btn" onclick="switchTab('activities')">🎯 June Activities</button>
+        </div>
+
+        <div id="destinations" class="tab-content active">
+            <div class="card">
+                <h2>🗺️ Top Michigan Destinations in June</h2>
+                
+                <div class="practice-prompt">
+                    <strong>🎤 SPEAKING PRACTICE: Look at each place and answer:</strong>
+                    <p>1. Which place looks most interesting to you? Why?</p>
+                    <p>2. What would you like to do there?</p>
+                    <p>3. Have you been to similar places before? Describe them.</p>
+                </div>
+
+                <div class="visual-grid">
+                    <div class="visual-card" onclick="discussPlace('Sleeping Bear Dunes')">
+                        <div class="icon">⛰️</div>
+                        <h4>Sleeping Bear Dunes</h4>
+                        <p>Massive sand dunes overlooking Lake Michigan</p>
+                    </div>
+
+                    <div class="visual-card" onclick="discussPlace('Mackinac Island')">
+                        <div class="icon">🏝️</div>
+                        <h4>Mackinac Island</h4>
+                        <p>Historic island with no cars - bikes and horses only!</p>
+                    </div>
+
+                    <div class="visual-card" onclick="discussPlace('Traverse City')">
+                        <div class="icon">🍒</div>
+                        <h4>Traverse City</h4>
+                        <p>Cherry capital celebrating 100th Cherry Festival</p>
+                    </div>
+
+                    <div class="visual-card" onclick="discussPlace('Detroit')">
+                        <div class="icon">🎵</div>
+                        <h4>Detroit</h4>
+                        <p>Motown Museum &amp; vibrant music scene</p>
+                    </div>
+
+                    <div class="visual-card" onclick="discussPlace('Grand Rapids')">
+                        <div class="icon">🎨</div>
+                        <h4>Grand Rapids</h4>
+                        <p>Art galleries, sculpture parks &amp; festivals</p>
+                    </div>
+
+                    <div class="visual-card" onclick="discussPlace('Pictured Rocks')">
+                        <div class="icon">🚣</div>
+                        <h4>Pictured Rocks</h4>
+                        <p>Colorful cliffs and kayaking adventures</p>
+                    </div>
+                </div>
+
+                <div class="conversation-box">
+                    <div class="speaker">🎤 CONVERSATION STARTER:</div>
+                    <p><strong>Teacher:</strong> "Tell me about three places that caught your attention. Use complete sentences and explain your choices!"</p>
+                    <p style="margin-top: 12px;"><em>Example answer: "I'm really interested in Mackinac Island because I've never been to a place without cars. I think it would be peaceful and different..."</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="phrases" class="tab-content">
+            <div class="card">
+                <h2>💬 Essential Travel Phrases</h2>
+
+                <h3>🏨 At the Hotel</h3>
+                <div class="practice-prompt">
+                    <strong>🎤 PRACTICE: Say each phrase out loud 3 times, then create your own version!</strong>
+                </div>
+                
+                <div class="phrase-box">
+                    "I have a reservation under [your name]"
+                </div>
+                <div class="phrase-box">
+                    "What time is check-out?"
+                </div>
+                <div class="phrase-box">
+                    "Could you recommend a good restaurant nearby?"
+                </div>
+                <div class="phrase-box">
+                    "Is there a shuttle to downtown?"
+                </div>
+
+                <h3>🍽️ At Restaurants</h3>
+                <div class="phrase-box">
+                    "Could I see the menu, please?"
+                </div>
+                <div class="phrase-box">
+                    "What do you recommend?"
+                </div>
+                <div class="phrase-box">
+                    "I'd like to try the local specialty"
+                </div>
+                <div class="phrase-box">
+                    "Could we have the check, please?"
+                </div>
+                <div class="phrase-box">
+                    "Is tipping included?"
+                </div>
+
+                <h3>🗺️ Asking for Directions</h3>
+                <div class="phrase-box">
+                    "Excuse me, how do I get to [place]?"
+                </div>
+                <div class="phrase-box">
+                    "Is it within walking distance?"
+                </div>
+                <div class="phrase-box">
+                    "Which way is the beach?"
+                </div>
+                <div class="phrase-box">
+                    "Could you point me in the right direction?"
+                </div>
+
+                <h3>🛍️ Shopping &amp; Activities</h3>
+                <div class="phrase-box">
+                    "How much does this cost?"
+                </div>
+                <div class="phrase-box">
+                    "Do you accept credit cards?"
+                </div>
+                <div class="phrase-box">
+                    "What time do you open/close?"
+                </div>
+                <div class="phrase-box">
+                    "Are there any tours available?"
+                </div>
+
+                <div class="conversation-box">
+                    <div class="speaker">🎤 SPEAKING CHALLENGE:</div>
+                    <p><strong>Practice with your teacher:</strong> Choose 3 phrases from each category and create mini-dialogues. Your teacher will respond, and you continue the conversation!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="slang" class="tab-content">
+            <div class="card">
+                <h2>🗣️ Michigan Slang &amp; Local Expressions</h2>
+                
+                <div class="practice-prompt">
+                    <strong>🎤 SPEAKING ACTIVITY: Read each slang term, then tell a story using it!</strong>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">🥤 Pop (not soda!)</div>
+                    <p><strong>Meaning:</strong> Soft drinks like Coke or Pepsi</p>
+                    <p><strong>Use it:</strong> "Can I get a pop?" or "I'd love a cold pop!"</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Order a drink using "pop" in a sentence</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">🌲 Up North</div>
+                    <p><strong>Meaning:</strong> Northern Michigan vacation areas with lakes and cabins</p>
+                    <p><strong>Use it:</strong> "We're heading up north for the weekend!"</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Describe a vacation using "up north"</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">🧤 The Mitten</div>
+                    <p><strong>Meaning:</strong> Michigan's Lower Peninsula (shaped like a mitten)</p>
+                    <p><strong>Use it:</strong> "I'm visiting the Mitten state!" or "Show me on your hand!" (locals use their hand as a map)</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Use your hand to show Michigan locations!</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">📍 Where at?</div>
+                    <p><strong>Meaning:</strong> "Where?" (Michiganders add "at")</p>
+                    <p><strong>Use it:</strong> "There's a concert tonight!" "Oh cool, where at?"</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Ask questions using "where at?"</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">🏔️ Yooper</div>
+                    <p><strong>Meaning:</strong> Someone from Michigan's Upper Peninsula (U.P.)</p>
+                    <p><strong>Use it:</strong> "Are you a Yooper?"</p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">🍫 Fudgie</div>
+                    <p><strong>Meaning:</strong> Tourist who visits lakeside towns and buys fudge</p>
+                    <p><strong>Use it:</strong> "I'm totally a fudgie - I need to try that famous Mackinac fudge!"</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Tell a funny story about being a tourist</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">✅ Yeah no / No yeah</div>
+                    <p><strong>Meaning:</strong> "Yeah no" = No, "No yeah" = Yes (the last word counts!)</p>
+                    <p><strong>Use it:</strong> "Want to go?" "No yeah!" (means yes!)</p>
+                    <p class="practice-prompt" style="margin-top: 8px;">🎤 <em>Practice: Use these in quick responses to questions</em></p>
+                </div>
+
+                <div class="slang-item">
+                    <div class="slang-term">👀 Lookit</div>
+                    <p><strong>Meaning:</strong> "Look at it" (said quickly)</p>
+                    <p><strong>Use it:</strong> "I found a Petoskey stone!" "Wow, lookit!"</p>
+                </div>
+
+                <div class="conversation-box">
+                    <div class="speaker">🎤 FUN CHALLENGE:</div>
+                    <p><strong>Create a 2-minute story about your Michigan trip using at least 5 slang terms!</strong> Your teacher will count how many you use correctly. Make it funny!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="roleplay" class="tab-content">
+            <div class="card">
+                <h2>🎭 Role-Play Scenarios</h2>
+                
+                <div class="practice-prompt">
+                    <strong>🎤 YOUR TIME TO SHINE: Choose a scenario and speak for 2-3 minutes!</strong>
+                    <p>Your teacher will play the other person. Focus on speaking naturally and asking questions!</p>
+                </div>
+
+                <h3>Choose Your Scenario:</h3>
+                <div>
+                    <button class="roleplay-btn" onclick="showScenario('hotel')">🏨 Hotel Check-in</button>
+                    <button class="roleplay-btn" onclick="showScenario('restaurant')">🍽️ Restaurant Order</button>
+                    <button class="roleplay-btn" onclick="showScenario('directions')">🗺️ Ask Directions</button>
+                    <button class="roleplay-btn" onclick="showScenario('shop')">🛍️ Gift Shop</button>
+                    <button class="roleplay-btn" onclick="showScenario('tour')">🚤 Book a Tour</button>
+                    <button class="roleplay-btn" onclick="showScenario('local')">👋 Meet a Local</button>
+                </div>
+
+                <div id="scenario-hotel" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-1);">
+                        <h3>🏨 Hotel Check-in Scenario</h3>
+                        <p><strong>Your role:</strong> You're checking into your hotel in Traverse City. You're tired from traveling.</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Greet the receptionist</li>
+                                <li>Give your reservation name</li>
+                                <li>Ask about hotel amenities (pool, breakfast, WiFi)</li>
+                                <li>Ask for restaurant recommendations</li>
+                                <li>Ask what time checkout is</li>
+                                <li>Ask about parking</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Useful phrases:</strong> "I have a reservation..." / "Could you tell me about..." / "What time does... ?" / "Is there a...?"
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scenario-restaurant" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-2);">
+                        <h3>🍽️ Restaurant Ordering Scenario</h3>
+                        <p><strong>Your role:</strong> You're at a popular Michigan restaurant. You want to try local food!</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Greet the server</li>
+                                <li>Ask for recommendations (Michigan specialties)</li>
+                                <li>Ask about ingredients you don't know</li>
+                                <li>Order drinks using "pop" if appropriate</li>
+                                <li>Order your meal</li>
+                                <li>Ask about dessert</li>
+                                <li>Request the check and ask about tipping</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Michigan foods to try:</strong> Cherry pie, whitefish, pasties (meat pies), Coney dogs, Mackinac fudge
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scenario-directions" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-3);">
+                        <h3>🗺️ Asking for Directions Scenario</h3>
+                        <p><strong>Your role:</strong> You're lost in downtown Detroit. You need to find the Motown Museum.</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Politely get someone's attention</li>
+                                <li>Ask for directions</li>
+                                <li>Ask if it's walkable</li>
+                                <li>Ask about how long it takes</li>
+                                <li>Ask if there's a bus or shuttle</li>
+                                <li>Thank them warmly</li>
+                                <li>Ask one more question about what else to see nearby</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Try using:</strong> "Excuse me, could you help me?" / "Where at?" / "Is it within walking distance?"
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scenario-shop" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-4);">
+                        <h3>🛍️ Gift Shop Scenario</h3>
+                        <p><strong>Your role:</strong> You're in a Mackinac Island fudge shop. You want souvenirs for family.</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Browse and ask to try samples</li>
+                                <li>Ask about different flavors</li>
+                                <li>Ask about prices</li>
+                                <li>Joke about being a "fudgie"</li>
+                                <li>Ask what's most popular</li>
+                                <li>Ask about shipping options</li>
+                                <li>Make your purchase and ask about local recommendations</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Be friendly!</strong> Chat with the shopkeeper, ask questions, make jokes about being a tourist!
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scenario-tour" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-1);">
+                        <h3>🚤 Booking a Tour Scenario</h3>
+                        <p><strong>Your role:</strong> You want to book a kayak tour at Pictured Rocks.</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Ask about available tours</li>
+                                <li>Ask about difficulty level (you're a beginner)</li>
+                                <li>Ask what to bring</li>
+                                <li>Ask about weather and if tours get cancelled</li>
+                                <li>Ask about duration and price</li>
+                                <li>Ask if you need to know how to swim</li>
+                                <li>Book your tour and confirm the details</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Show enthusiasm!</strong> "That sounds amazing!" / "I'm really excited to try this!" / "I've heard great things about..."
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scenario-local" class="scenario-container hidden">
+                    <div class="card" style="background: var(--color-bg-2);">
+                        <h3>👋 Meeting a Local Scenario</h3>
+                        <p><strong>Your role:</strong> You meet a friendly local at a beach. They're curious about your trip!</p>
+                        
+                        <div class="practice-prompt">
+                            <strong>What to do:</strong>
+                            <ul>
+                                <li>Introduce yourself and say where you're from</li>
+                                <li>Tell them why you're visiting Michigan</li>
+                                <li>Ask for their recommendations</li>
+                                <li>Ask about local slang or expressions</li>
+                                <li>Share what you've enjoyed so far</li>
+                                <li>Ask about their favorite Michigan places</li>
+                                <li>Exchange contact info or social media</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="phrase-box">
+                            <strong>Be conversational!</strong> Ask questions back, show interest, use the slang you learned! Mention Brazil!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conversation-box" style="margin-top: 20px;">
+                    <div class="speaker">🎤 AFTER EACH ROLE-PLAY:</div>
+                    <p><strong>Discussion questions:</strong></p>
+                    <ul>
+                        <li>What went well? What was difficult?</li>
+                        <li>What new words or phrases did you use?</li>
+                        <li>How could you improve next time?</li>
+                        <li>Did you understand everything your teacher said?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="activities" class="tab-content">
+            <div class="card">
+                <h2>🎯 Must-Do June Activities</h2>
+                
+                <div class="practice-prompt">
+                    <strong>🎤 PLANNING PRACTICE: Choose 5 activities and explain WHY you want to do them!</strong>
+                    <p>Use phrases like: "I'm really interested in... because..." / "I've always wanted to..." / "This would be exciting because..."</p>
+                </div>
+
+                <h3>🌊 Beach &amp; Water Activities</h3>
+                <div class="visual-grid">
+                    <div class="visual-card">
+                        <div class="icon">🏖️</div>
+                        <h4>Sleeping Bear Dunes</h4>
+                        <p>Climb massive sand dunes, swim in crystal clear water</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🛶</div>
+                        <h4>Kayak Pictured Rocks</h4>
+                        <p>Paddle along colorful 200-ft cliffs on Lake Superior</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🏊</div>
+                        <h4>Silver Lake Sand Dunes</h4>
+                        <p>Off-road dune buggies and beach swimming</p>
+                    </div>
+                </div>
+
+                <h3>🎉 June 2026 Special Events</h3>
+                <div class="visual-grid">
+                    <div class="visual-card">
+                        <div class="icon">🍒</div>
+                        <h4>National Cherry Festival</h4>
+                        <p>100th anniversary celebration in Traverse City (early July but plan ahead!)</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🎨</div>
+                        <h4>Lakeshore Art Festival</h4>
+                        <p>Music, food, street performers in Muskegon (late June)</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🌸</div>
+                        <h4>Frederik Meijer Gardens</h4>
+                        <p>Dale Chihuly glass art exhibition in Grand Rapids</p>
+                    </div>
+                </div>
+
+                <h3>🏰 Cultural Experiences</h3>
+                <div class="visual-grid">
+                    <div class="visual-card">
+                        <div class="icon">🎵</div>
+                        <h4>Motown Museum</h4>
+                        <p>See where legendary music was recorded in Detroit</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🚲</div>
+                        <h4>Mackinac Island</h4>
+                        <p>Bike the 8-mile loop, no cars allowed!</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🗿</div>
+                        <h4>Petoskey Stones</h4>
+                        <p>Hunt for Michigan's state stone on northern beaches</p>
+                    </div>
+                </div>
+
+                <h3>🌅 Unique Michigan Experiences</h3>
+                <div class="visual-grid">
+                    <div class="visual-card">
+                        <div class="icon">🌉</div>
+                        <h4>Mackinac Bridge</h4>
+                        <p>Cross the 5-mile "gateway to paradise"</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">💡</div>
+                        <h4>Lighthouse Tours</h4>
+                        <p>Visit historic lighthouses like Big Sable Point</p>
+                    </div>
+                    <div class="visual-card">
+                        <div class="icon">🍺</div>
+                        <h4>Craft Breweries</h4>
+                        <p>Grand Rapids has over 80 breweries!</p>
+                    </div>
+                </div>
+
+                <div class="conversation-box">
+                    <div class="speaker">🎤 EXTENDED SPEAKING EXERCISE:</div>
+                    <p><strong>Plan your perfect 5-day Michigan itinerary:</strong></p>
+                    <ul>
+                        <li>Day 1: Where will you arrive? What will you do first?</li>
+                        <li>Day 2-4: Choose activities from above</li>
+                        <li>Day 5: Where will you go before leaving?</li>
+                    </ul>
+                    <p><strong>Speak for 5 minutes about your plan! Use:</strong></p>
+                    <ul>
+                        <li>Future tense ("I will..." / "I'm going to...")</li>
+                        <li>Preferences ("I'd prefer..." / "I'd rather...")</li>
+                        <li>Michigan slang when appropriate</li>
+                        <li>Reasons for each choice</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="background: var(--color-bg-3); margin-top: 24px;">
+                    <h3>🌤️ June Weather Tips</h3>
+                    <p><strong>Temperature:</strong> 65-80°F (18-27°C) - warm and comfortable!</p>
+                    <p><strong>What to bring:</strong></p>
+                    <ul>
+                        <li>Layers - mornings can be cool, afternoons warm</li>
+                        <li>Swimsuit - lakes are swimmable by June!</li>
+                        <li>Sunscreen - strong summer sun</li>
+                        <li>Light rain jacket - occasional showers</li>
+                        <li>Comfortable walking shoes</li>
+                    </ul>
+                    <div class="practice-prompt" style="margin-top: 16px;">
+                        🎤 <strong>Practice:</strong> Describe what you'll pack and why!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function discussPlace(place) {
+            alert(`Great choice! Now tell your teacher:\n\n1. Why does ${place} interest you?\n2. What activities would you do there?\n3. Who would you want to go with?\n4. What questions do you have about this place?\n\nSpeak for at least 2 minutes!`);
+        }
+
+        function showScenario(scenarioId) {
+            const scenarios = document.querySelectorAll('.scenario-container');
+            scenarios.forEach(s => s.classList.add('hidden'));
+            
+            const selected = document.getElementById('scenario-' + scenarioId);
+            selected.classList.remove('hidden');
+            
+            selected.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
+

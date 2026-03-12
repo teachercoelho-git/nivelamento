@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Estudos - 4 Semanas</title>
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-hover: #1d4ed8;
+            --color-success: #10b981;
+            --color-error: #ef4444;
+            --color-warning: #f59e0b;
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-text-secondary: #64748b;
+            --color-border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .progress-bar {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-track {
+            height: 24px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            transition: width 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .week-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .week-btn {
+            padding: 20px;
+            border: 2px solid var(--color-border);
+            background: var(--color-surface);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .week-btn:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .week-btn.active {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .week-btn.completed {
+            border-color: var(--color-success);
+            background: #ecfdf5;
+            color: var(--color-success);
+        }
+
+        .week-content {
+            display: none;
+        }
+
+        .week-content.active {
+            display: block;
+        }
+
+        .lesson-card {
+            background: var(--color-surface);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .lesson-title {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .lesson-subtitle {
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .explanation {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--color-warning);
+        }
+
+        .explanation h3 {
+            margin-bottom: 12px;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--color-success);
+        }
+
+        .example-box strong {
+            color: var(--color-success);
+        }
+
+        .exercise {
+            margin: 25px 0;
+        }
+
+        .question {
+            background: var(--color-surface);
+            padding: 20px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 15px 20px;
+            border: 2px solid var(--color-border);
+            background: var(--color-surface);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .option-btn:hover {
+            border-color: var(--color-primary);
+            background: #eff6ff;
+        }
+
+        .option-btn.selected {
+            border-color: var(--color-primary);
+            background: #dbeafe;
+        }
+
+        .option-btn.correct {
+            border-color: var(--color-success);
+            background: #ecfdf5;
+            color: var(--color-success);
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--color-error);
+            background: #fef2f2;
+            color: var(--color-error);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #ecfdf5;
+            border: 2px solid var(--color-success);
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background: #fef2f2;
+            border: 2px solid var(--color-error);
+            color: #991b1b;
+        }
+
+        .feedback strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .summary-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .next-week-btn {
+            padding: 15px 40px;
+            background: var(--color-success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .next-week-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .review-section {
+            background: #fef3c7;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 4px solid var(--color-warning);
+        }
+
+        .review-section h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge.beginner {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge.essential {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .week-nav {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .lesson-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Plano de Estudos Personalizado</h1>
+            <p>4 semanas para dominar o básico do inglês</p>
+        </header>
+
+        <div class="progress-bar">
+            <div class="progress-label">
+                <span>Progresso Geral</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+            </div>
+        </div>
+
+        <div class="week-nav">
+            <button class="week-btn active" onclick="showWeek(1)">
+                <div>📅 Semana 1</div>
+                <small>Verb "To Be"</small>
+            </button>
+            <button class="week-btn" onclick="showWeek(2)">
+                <div>📅 Semana 2</div>
+                <small>Present Simple</small>
+            </button>
+            <button class="week-btn" onclick="showWeek(3)">
+                <div>📅 Semana 3</div>
+                <small>Past Simple</small>
+            </button>
+            <button class="week-btn" onclick="showWeek(4)">
+                <div>📅 Semana 4</div>
+                <small>Revisão Final</small>
+            </button>
+        </div>
+
+        <!-- SEMANA 1 -->
+        <div id="week-1" class="week-content active">
+            <div class="lesson-card">
+                <div class="lesson-header">
+                    <div>
+                        <h2 class="lesson-title">Semana 1: Verb "To Be" (Presente)</h2>
+                        <p class="lesson-subtitle"><span class="badge beginner">Nível Iniciante</span> <span class="badge essential">Essencial</span></p>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 O que é o verbo "To Be"?</h3>
+                    <p>O verbo <strong>"To Be"</strong> é o verbo mais importante do inglês. Ele significa <strong>"ser" ou "estar"</strong> em português. É usado para falar sobre identidade, características, profissões e localização.</p>
+                    <br>
+                    <p><strong>Formas no presente:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>I am</strong> (Eu sou/estou) → Contração: <strong>I'm</strong></li>
+                        <li><strong>You are</strong> (Você é/está) → Contração: <strong>You're</strong></li>
+                        <li><strong>He is</strong> (Ele é/está) → Contração: <strong>He's</strong></li>
+                        <li><strong>She is</strong> (Ela é/está) → Contração: <strong>She's</strong></li>
+                        <li><strong>It is</strong> (Ele/Ela é/está - para coisas) → Contração: <strong>It's</strong></li>
+                        <li><strong>We are</strong> (Nós somos/estamos) → Contração: <strong>We're</strong></li>
+                        <li><strong>They are</strong> (Eles são/estão) → Contração: <strong>They're</strong></li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <strong>✓ Exemplos Corretos:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>My name <strong>is</strong> Carlos and I <strong>am</strong> from Brazil.</li>
+                        <li>She <strong>is</strong> a teacher.</li>
+                        <li>There <strong>is</strong> a book on the table. (singular)</li>
+                        <li>There <strong>are</strong> books on the table. (plural)</li>
+                    </ul>
+                </div>
+
+                <div class="explanation">
+                    <h3>🎯 Regra de Ouro</h3>
+                    <p><strong>Use "AM" apenas com "I"</strong></p>
+                    <p><strong>Use "IS" com he/she/it e palavras no singular</strong></p>
+                    <p><strong>Use "ARE" com you/we/they e palavras no plural</strong></p>
+                </div>
+
+                <h3 style="margin: 30px 0 20px 0; color: var(--color-primary);">🏋️ Exercícios Práticos</h3>
+
+                <div class="exercise">
+                    <div class="question" data-answer="c">
+                        <div class="question-text">1. My name _____ Carlos and I _____ from Brazil.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Meu nome _____ Carlos e eu _____ do Brasil.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) is / is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) am / is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) is / am</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) are / am</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">2. There _____ a book on the table.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Há/Existe _____ um livro na mesa.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) am</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) are</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) be</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">3. We _____ students at the university.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Nós _____ estudantes na universidade.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) am</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) are</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) be</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="a">
+                        <div class="question-text">4. She _____ my best friend.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ela _____ minha melhor amiga.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) are</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) am</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) be</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="c">
+                        <div class="question-text">5. They _____ from Japan.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Eles/Elas _____ do Japão.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) am</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) are</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) be</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <h3>📝 Resumo da Semana 1</h3>
+                    <ul>
+                        <li>I AM - sempre com "I"</li>
+                        <li>IS - com he/she/it e singular</li>
+                        <li>ARE - com you/we/they e plural</li>
+                        <li>There IS (singular) / There ARE (plural)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEMANA 2 -->
+        <div id="week-2" class="week-content">
+            <div class="lesson-card">
+                <div class="lesson-header">
+                    <div>
+                        <h2 class="lesson-title">Semana 2: Present Simple</h2>
+                        <p class="lesson-subtitle"><span class="badge beginner">Nível Iniciante</span> <span class="badge essential">Essencial</span></p>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 O que é o Present Simple?</h3>
+                    <p>O <strong>Present Simple</strong> é usado para falar sobre <strong>hábitos, rotinas, fatos gerais e verdades universais</strong>.</p>
+                    <br>
+                    <p><strong>Como conjugar:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>I/You/We/They</strong> + verbo na forma base</li>
+                        <li><strong>He/She/It</strong> + verbo + <strong>S</strong> ou <strong>ES</strong></li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <strong>✓ Exemplos Corretos:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>I <strong>study</strong> English every day.</li>
+                        <li>She <strong>studies</strong> English every day. (he/she/it → adiciona S)</li>
+                        <li>He <strong>watches</strong> TV. (verbos terminados em -ch, -sh, -x, -o → adiciona ES)</li>
+                        <li>They <strong>play</strong> soccer on weekends.</li>
+                    </ul>
+                </div>
+
+                <div class="explanation">
+                    <h3>🎯 Regra de Ouro</h3>
+                    <p><strong>He/She/It → Adiciona S ou ES ao verbo</strong></p>
+                    <p><strong>I/You/We/They → Verbo na forma base (sem alteração)</strong></p>
+                    <br>
+                    <p><strong>Regras especiais:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Verbos terminados em <strong>-ch, -sh, -ss, -x, -o</strong> → adiciona <strong>ES</strong> (watches, washes, goes)</li>
+                        <li>Verbos terminados em <strong>consoante + y</strong> → muda <strong>y</strong> para <strong>IES</strong> (study → studies, fly → flies)</li>
+                        <li>Verbos terminados em <strong>vogal + y</strong> → adiciona <strong>S</strong> (play → plays, enjoy → enjoys)</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin: 30px 0 20px 0; color: var(--color-primary);">🏋️ Exercícios Práticos</h3>
+
+                <div class="exercise">
+                    <div class="question" data-answer="b">
+                        <div class="question-text">1. She _____ English every day.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ela _____ inglês todo dia.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) study</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) studies</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) studying</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) is study</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="a">
+                        <div class="question-text">2. I _____ to work by bus.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Eu _____ para o trabalho de ônibus.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) go</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) goes</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) going</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) am go</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">3. He _____ TV every night.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ele _____ TV toda noite.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) watch</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) watches</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) watching</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) is watch</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="a">
+                        <div class="question-text">4. We _____ soccer on weekends.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Nós _____ futebol nos fins de semana.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) play</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) plays</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) playing</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) are play</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">5. She _____ in a hospital.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ela _____ em um hospital.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) work</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) works</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) working</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) is work</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <h3>📝 Resumo da Semana 2</h3>
+                    <ul>
+                        <li>Present Simple = hábitos e rotinas</li>
+                        <li>He/She/It → verbo + S ou ES</li>
+                        <li>I/You/We/They → verbo sem alteração</li>
+                        <li>Verbos em -ch, -sh, -x, -o → adiciona ES</li>
+                        <li>Consoante + y → muda para IES (studies)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEMANA 3 -->
+        <div id="week-3" class="week-content">
+            <div class="lesson-card">
+                <div class="lesson-header">
+                    <div>
+                        <h2 class="lesson-title">Semana 3: Past Simple</h2>
+                        <p class="lesson-subtitle"><span class="badge beginner">Nível Iniciante</span> <span class="badge essential">Essencial</span></p>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 O que é o Past Simple?</h3>
+                    <p>O <strong>Past Simple</strong> é usado para falar sobre <strong>ações que aconteceram e terminaram no passado</strong>.</p>
+                    <br>
+                    <p><strong>Como formar:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Verbos regulares:</strong> adiciona <strong>-ED</strong> (played, worked, studied)</li>
+                        <li><strong>Verbos irregulares:</strong> forma especial (go → went, see → saw, have → had)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <strong>✓ Exemplos Corretos:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Last year I <strong>went</strong> to Italy. (go → went = irregular)</li>
+                        <li>They <strong>finished</strong> the homework. (finish → finished = regular)</li>
+                        <li><strong>Did</strong> you see the movie? (perguntas usam DID + verbo base)</li>
+                        <li>I <strong>didn't go</strong> to school yesterday. (negativas usam DIDN'T + verbo base)</li>
+                    </ul>
+                </div>
+
+                <div class="explanation">
+                    <h3>🎯 Regras Importantes</h3>
+                    <p><strong>Perguntas:</strong> DID + sujeito + verbo base</p>
+                    <p><strong>Negativas:</strong> sujeito + DIDN'T + verbo base</p>
+                    <p><strong>❌ NUNCA use verbo no passado após DID ou DIDN'T</strong></p>
+                    <br>
+                    <p><strong>Exemplos:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Did you <strong>see</strong> the movie? (correto)</li>
+                        <li>✗ Did you <strong>saw</strong> the movie? (ERRADO)</li>
+                        <li>✓ I didn't <strong>finish</strong> it. (correto)</li>
+                        <li>✗ I didn't <strong>finished</strong> it. (ERRADO)</li>
+                    </ul>
+                </div>
+
+                <div class="review-section">
+                    <h3>⚠️ Principais Verbos Irregulares</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>go → <strong>went</strong></li>
+                        <li>see → <strong>saw</strong></li>
+                        <li>have → <strong>had</strong></li>
+                        <li>do → <strong>did</strong></li>
+                        <li>make → <strong>made</strong></li>
+                        <li>come → <strong>came</strong></li>
+                        <li>take → <strong>took</strong></li>
+                        <li>get → <strong>got</strong></li>
+                    </ul>
+                </div>
+
+                <h3 style="margin: 30px 0 20px 0; color: var(--color-primary);">🏋️ Exercícios Práticos</h3>
+
+                <div class="exercise">
+                    <div class="question" data-answer="b">
+                        <div class="question-text">1. Last year I _____ to Italy on vacation.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ano passado eu _____ para a Itália de férias.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) go</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) went</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) goed</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) going</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="c">
+                        <div class="question-text">2. They _____ the homework yesterday.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Eles/Elas não _____ o dever de casa ontem.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) doesn't finish</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) don't finish</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) didn't finish</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) didn't finished</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">3. _____ you see the new movie last weekend?
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (_____ você viu o filme novo no último fim de semana?)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) Do</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) Did</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) Does</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) Are</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="a">
+                        <div class="question-text">4. She _____ to the party last night.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ela _____ para a festa ontem à noite.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) came</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) comed</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) coming</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) come</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">5. I _____ breakfast this morning.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Eu _____ café da manhã hoje de manhã.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) have</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) had</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) having</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) has</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <h3>📝 Resumo da Semana 3</h3>
+                    <ul>
+                        <li>Past Simple = ações terminadas no passado</li>
+                        <li>Verbos regulares: adiciona -ED</li>
+                        <li>Verbos irregulares: forma especial (went, saw, had)</li>
+                        <li>Perguntas: DID + verbo base</li>
+                        <li>Negativas: DIDN'T + verbo base</li>
+                        <li>NUNCA use passado após DID/DIDN'T</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEMANA 4 -->
+        <div id="week-4" class="week-content">
+            <div class="lesson-card">
+                <div class="lesson-header">
+                    <div>
+                        <h2 class="lesson-title">Semana 4: Revisão Final + Tópicos Extras</h2>
+                        <p class="lesson-subtitle"><span class="badge essential">Preparação para o Teste</span></p>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 Present Continuous</h3>
+                    <p>Usado para ações <strong>acontecendo AGORA, neste momento</strong>.</p>
+                    <br>
+                    <p><strong>Estrutura:</strong> sujeito + AM/IS/ARE + verbo + ING</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>I <strong>am reading</strong> a book now.</li>
+                        <li>She <strong>is studying</strong> at this moment.</li>
+                        <li>They <strong>are playing</strong> soccer right now.</li>
+                    </ul>
+                    <br>
+                    <p><strong>Palavras-chave:</strong> now, right now, at the moment, currently</p>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 Future: Going To</h3>
+                    <p>Usado para falar sobre <strong>planos futuros já decididos</strong>.</p>
+                    <br>
+                    <p><strong>Estrutura:</strong> sujeito + AM/IS/ARE + GOING TO + verbo base</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>I <strong>am going to</strong> travel next month.</li>
+                        <li>We <strong>are going to buy</strong> a new car. (decisão já tomada)</li>
+                        <li>She <strong>is going to study</strong> medicine.</li>
+                    </ul>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 Future: Will</h3>
+                    <p>Usado para <strong>previsões, promessas e decisões tomadas no momento</strong>.</p>
+                    <br>
+                    <p><strong>Estrutura:</strong> sujeito + WILL + verbo base</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>I think it <strong>will rain</strong> tomorrow. (previsão)</li>
+                        <li>I <strong>will help</strong> you. (decisão no momento)</li>
+                        <li>She <strong>will be</strong> a great doctor. (previsão)</li>
+                    </ul>
+                </div>
+
+                <div class="explanation">
+                    <h3>📖 Preposições Comuns</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Good AT:</strong> He's good <strong>at</strong> playing piano.</li>
+                        <li><strong>Look forward TO + ING:</strong> I'm looking forward <strong>to seeing</strong> you.</li>
+                        <li><strong>IN:</strong> in the morning, in 2024, in Brazil</li>
+                        <li><strong>ON:</strong> on Monday, on the table, on my birthday</li>
+                        <li><strong>AT:</strong> at night, at 3pm, at school</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin: 30px 0 20px 0; color: var(--color-primary);">🏋️ Simulado Final - Teste Completo</h3>
+
+                <div class="exercise">
+                    <div class="question" data-answer="c">
+                        <div class="question-text">1. Right now, she _____ a book in her room.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Agora mesmo, ela _____ um livro no quarto dela.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) reads</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) read</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) is reading</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) reading</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">2. Tomorrow I _____ to the gym at 7 a.m.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Amanhã eu _____ para a academia às 7h.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) go</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) am going</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) went</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) going</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">3. I think it _____ rain tomorrow.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Eu acho que _____ chover amanhã.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) is</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) will</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) going to</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) is going</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">4. We _____ buy a new car next month. We already decided.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Nós _____ comprar um carro novo no mês que vem. Já decidimos.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) will</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) are going to</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) might</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) are</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">5. I'm looking forward _____ you next week.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Estou ansioso(a) _____ ver você na semana que vem.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) to see</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) to seeing</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) see</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) seeing</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="b">
+                        <div class="question-text">6. He's good _____ playing the piano.
+                            <div style="color: #64748b; font-size: 0.9rem; font-style: italic; margin-top: 8px;">
+                                (Ele é bom _____ tocar piano.)
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button class="option-btn" onclick="checkAnswer(this, 'a')">a) in</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'b')">b) at</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'c')">c) on</button>
+                            <button class="option-btn" onclick="checkAnswer(this, 'd')">d) for</button>
+                        </div>
+                        <div class="feedback">
+                            <strong></strong>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <h3>🎯 Checklist Final - Você Está Pronto?</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Domina verb TO BE (am/is/are)</li>
+                        <li>✓ Sabe conjugar Present Simple (he/she/it + S)</li>
+                        <li>✓ Conhece Past Simple (regulares + irregulares)</li>
+                        <li>✓ Usa DID/DIDN'T corretamente (+ verbo base)</li>
+                        <li>✓ Entende Present Continuous (am/is/are + ING)</li>
+                        <li>✓ Diferencia WILL e GOING TO</li>
+                        <li>✓ Sabe preposições básicas (at, to, in, on)</li>
+                    </ul>
+                </div>
+
+                <div class="summary-box">
+                    <h3>🎓 Você Completou o Curso!</h3>
+                    <p style="margin-top: 15px;">Parabéns! Agora você tem as bases sólidas para fazer o teste novamente. Continue praticando e revise sempre que tiver dúvidas.</p>
+                    <p style="margin-top: 15px;"><strong>Dica Final:</strong> Refaça todos os exercícios desta plataforma até conseguir 100% de acertos sem ajuda!</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="next-week-btn" onclick="nextWeek()" id="next-week-btn" style="display: none;">
+            Próxima Semana →
+        </button>
+    </div>
+
+    <script>
+        let currentWeek = 1;
+        const totalWeeks = 4;
+        let weekProgress = {1: 0, 2: 0, 3: 0, 4: 0};
+        let completedWeeks = [];
+
+        const feedbackData = {
+            // Semana 1
+            '1-1': {
+                correct: 'c',
+                correctMsg: '✅ Excelente! "My name IS" porque usamos IS com singular (name), e "I AM" porque sempre usamos AM com "I".',
+                incorrectMsg: '❌ Lembre-se: "My name" é singular → usa IS. E "I" sempre usa AM, nunca IS ou ARE.'
+            },
+            '1-2': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "There IS a book" porque "book" é singular. Usamos IS com singular e ARE com plural.',
+                incorrectMsg: '❌ "Book" é singular (um livro). Com singular, usamos IS. Se fosse "books" (plural), usaríamos ARE.'
+            },
+            '1-3': {
+                correct: 'b',
+                correctMsg: '✅ Correto! "We ARE" porque WE (nós) sempre usa ARE, assim como YOU e THEY.',
+                incorrectMsg: '❌ WE (nós) sempre usa ARE. Lembre: I→AM, He/She/It→IS, You/We/They→ARE'
+            },
+            '1-4': {
+                correct: 'a',
+                correctMsg: '✅ Ótimo! "She IS" porque SHE (ela) sempre usa IS, assim como HE e IT.',
+                incorrectMsg: '❌ SHE (ela) sempre usa IS. Lembre: He/She/It sempre usam IS no presente.'
+            },
+            '1-5': {
+                correct: 'c',
+                correctMsg: '✅ Excelente! "They ARE" porque THEY (eles/elas) sempre usa ARE, assim como YOU e WE.',
+                incorrectMsg: '❌ THEY (eles/elas) sempre usa ARE. Lembre: You/We/They sempre usam ARE.'
+            },
+
+            // Semana 2
+            '2-1': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "She STUDIES" - com HE/SHE/IT, adicionamos S ao verbo. Study termina em consoante+y, então muda para STUDIES.',
+                incorrectMsg: '❌ Com SHE (he/she/it), o verbo recebe S. Como "study" termina em consoante+Y, muda para STUDIES (y→ies).'
+            },
+            '2-2': {
+                correct: 'a',
+                correctMsg: '✅ Correto! "I GO" - com I/YOU/WE/THEY, o verbo fica na forma base, sem adicionar S.',
+                incorrectMsg: '❌ Com "I" (assim como you/we/they), o verbo não muda. Fica na forma base: GO (sem S).'
+            },
+            '2-3': {
+                correct: 'b',
+                correctMsg: '✅ Ótimo! "He WATCHES" - verbos terminados em -ch, -sh, -ss, -x, -o adicionam ES (não só S).',
+                incorrectMsg: '❌ Com HE, o verbo recebe S. Mas "watch" termina em CH, então adiciona ES: WATCHES.'
+            },
+            '2-4': {
+                correct: 'a',
+                correctMsg: '✅ Excelente! "We PLAY" - com WE (you/we/they), o verbo fica na forma base.',
+                incorrectMsg: '❌ WE (assim como I/you/they) usa o verbo sem mudança: PLAY (sem S).'
+            },
+            '2-5': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "She WORKS" - com SHE (he/she/it), adiciona S ao verbo.',
+                incorrectMsg: '❌ Com SHE, o verbo recebe S: WORKS. Só he/she/it recebem S no Present Simple.'
+            },
+
+            // Semana 3
+            '3-1': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "WENT" é o passado irregular de GO. Ações no passado usam Past Simple.',
+                incorrectMsg: '❌ Para falar do passado, use Past Simple. GO é irregular: GO → WENT (não existe "goed").'
+            },
+            '3-2': {
+                correct: 'c',
+                correctMsg: '✅ Correto! "DIDN\'T FINISH" - negativas no passado usam DIDN\'T + verbo base (finish, NÃO finished).',
+                incorrectMsg: '❌ No passado negativo, use DIDN\'T + verbo base. NUNCA use verbo no passado após didn\'t: didn\'t FINISH (não finished).'
+            },
+            '3-3': {
+                correct: 'b',
+                correctMsg: '✅ Ótimo! "DID you see" - perguntas no passado usam DID + verbo base (see, NÃO saw).',
+                incorrectMsg: '❌ Perguntas no passado usam DID + verbo base. NUNCA use verbo no passado após DID: DID you SEE (não saw).'
+            },
+            '3-4': {
+                correct: 'a',
+                correctMsg: '✅ Excelente! "CAME" é o passado irregular de COME. Last night indica passado.',
+                incorrectMsg: '❌ COME é um verbo irregular. No passado: COME → CAME (não existe "comed").'
+            },
+            '3-5': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "HAD" é o passado irregular de HAVE. This morning indica passado.',
+                incorrectMsg: '❌ HAVE é irregular. No passado: HAVE → HAD.'
+            },
+
+            // Semana 4
+            '4-1': {
+                correct: 'c',
+                correctMsg: '✅ Perfeito! "IS READING" - Present Continuous (am/is/are + ING) para ações acontecendo AGORA.',
+                incorrectMsg: '❌ "Right now" indica ação acontecendo AGORA. Use Present Continuous: IS READING (is + verbo+ING).'
+            },
+            '4-2': {
+                correct: 'b',
+                correctMsg: '✅ Correto! "AM GOING" - para planos futuros, use AM/IS/ARE + GOING (to) + verbo.',
+                incorrectMsg: '❌ "Tomorrow" indica futuro planejado. Use going to: AM GOING to the gym.'
+            },
+            '4-3': {
+                correct: 'b',
+                correctMsg: '✅ Ótimo! "WILL rain" - WILL para previsões sobre o futuro.',
+                incorrectMsg: '❌ "I think" indica previsão. Use WILL + verbo base: WILL rain.'
+            },
+            '4-4': {
+                correct: 'b',
+                correctMsg: '✅ Excelente! "ARE GOING TO buy" - plano já decidido usa GOING TO.',
+                incorrectMsg: '❌ "We already decided" indica plano feito. Use GOING TO (não will): ARE GOING TO buy.'
+            },
+            '4-5': {
+                correct: 'b',
+                correctMsg: '✅ Perfeito! "TO SEEING" - após "look forward to", o verbo sempre vai com ING.',
+                incorrectMsg: '❌ "Look forward TO" é seguido de verbo+ING (não infinitivo): TO SEEING.'
+            },
+            '4-6': {
+                correct: 'b',
+                correctMsg: '✅ Correto! "Good AT" - sempre usamos AT após "good" para habilidades.',
+                incorrectMsg: '❌ A expressão fixa é "good AT" (bom em): He\'s good AT playing piano.'
+            }
+        };
+
+        function showWeek(weekNum) {
+            currentWeek = weekNum;
+            
+            document.querySelectorAll('.week-content').forEach(w => w.classList.remove('active'));
+            document.getElementById(`week-${weekNum}`).classList.add('active');
+            
+            document.querySelectorAll('.week-btn').forEach((btn, idx) => {
+                btn.classList.remove('active');
+                if (idx + 1 === weekNum) {
+                    btn.classList.add('active');
+                }
+            });
+
+            updateNextButton();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function nextWeek() {
+            if (currentWeek < totalWeeks) {
+                showWeek(currentWeek + 1);
+            }
+        }
+
+        function updateNextButton() {
+            const btn = document.getElementById('next-week-btn');
+            if (currentWeek < totalWeeks) {
+                btn.style.display = 'block';
+                btn.textContent = `Próxima Semana (${currentWeek + 1}) →`;
+            } else {
+                btn.style.display = 'none';
+            }
+        }
+
+        function checkAnswer(button, selectedAnswer) {
+            const question = button.closest('.question');
+            const correctAnswer = question.dataset.answer;
+            const feedback = question.querySelector('.feedback');
+            const options = question.querySelectorAll('.option-btn');
+            
+            const weekNum = currentWeek;
+            const questionIndex = Array.from(question.parentElement.children).indexOf(question) + 1;
+            const key = `${weekNum}-${questionIndex}`;
+            const feedbackInfo = feedbackData[key];
+
+            options.forEach(opt => {
+                opt.disabled = true;
+                const optAnswer = opt.textContent.trim()[0];
+                if (optAnswer === correctAnswer) {
+                    opt.classList.add('correct');
+                }
+            });
+
+            button.classList.add('selected');
+            
+            if (selectedAnswer === correctAnswer) {
+                feedback.classList.add('show', 'correct');
+                feedback.querySelector('strong').textContent = '🎉 Correto!';
+                feedback.querySelector('p').textContent = feedbackInfo.correctMsg;
+                
+                weekProgress[currentWeek]++;
+                updateProgress();
+            } else {
+                button.classList.add('incorrect');
+                feedback.classList.add('show', 'incorrect');
+                feedback.querySelector('strong').textContent = '❌ Incorreto';
+                feedback.querySelector('p').textContent = feedbackInfo.incorrectMsg;
+            }
+        }
+
+        function updateProgress() {
+            const questionsPerWeek = {1: 5, 2: 5, 3: 5, 4: 6};
+            let totalAnswered = 0;
+            let totalQuestions = 0;
+            
+            for (let week in weekProgress) {
+                totalQuestions += questionsPerWeek[week];
+                totalAnswered += weekProgress[week];
+            }
+            
+            const percentage = Math.round((totalAnswered / totalQuestions) * 100);
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+            progressText.textContent = percentage + '%';
+
+            if (weekProgress[currentWeek] === questionsPerWeek[currentWeek] && !completedWeeks.includes(currentWeek)) {
+                completedWeeks.push(currentWeek);
+                const weekBtns = document.querySelectorAll('.week-btn');
+                weekBtns[currentWeek - 1].classList.add('completed');
+            }
+        }
+
+        updateNextButton();
+    </script>
+</body>
+</html>
+

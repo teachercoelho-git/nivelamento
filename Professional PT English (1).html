@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Gym English Class - 40 Minutes</title>
+    <style>
+        :root {
+            --color-primary: #38bdf8;
+            --color-primary-hover: #0ea5e9;
+            --color-bg: #0f172a;
+            --color-surface: #1e293b;
+            --color-text: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-success: #10b981;
+            --color-accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid var(--color-primary);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .timer-section {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .timer {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin: 15px 0;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .sections-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .section-btn {
+            padding: 10px 20px;
+            background: var(--color-surface);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .section-btn:hover {
+            border-color: var(--color-primary);
+        }
+
+        .section-btn.active {
+            background: var(--color-primary);
+            color: var(--color-bg);
+            border-color: var(--color-primary);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .vocab-card {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .vocab-word {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .pronunciation {
+            color: var(--color-accent);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .translation {
+            color: var(--color-success);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            background: rgba(56, 189, 248, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .exercise-box {
+            background: var(--color-surface);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .exercise-title {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .question {
+            background: rgba(56, 189, 248, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option {
+            padding: 12px 16px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-surface);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--color-primary);
+        }
+
+        .option.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--color-success);
+        }
+
+        .option.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .dialogue-section {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-top: 15px;
+        }
+
+        .dialogue-line {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .category-box {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            border-top: 4px solid var(--color-primary);
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .vocab-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .vocab-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-surface);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            transition: width 0.5s;
+        }
+
+        .note {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--color-accent);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .note-title {
+            color: var(--color-accent);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .timer {
+                font-size: 2rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💪 Professional Personal Trainer English Course</h1>
+            <p>Advanced Self-Study Program for Working in Australia - 60 Minutes</p>
+            <p style="font-size: 0.9rem; color: var(--color-accent); margin-top: 10px;">Designed for Certified Personal Trainers | Australian Industry Focus</p>
+        </header>
+
+        <div class="timer-section">
+            <h3>Study Session Timer</h3>
+            <div class="timer" id="timer">60:00</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="timer-controls">
+                <button class="btn btn-primary" id="startBtn">Start Class</button>
+                <button class="btn btn-secondary" id="pauseBtn">Pause</button>
+                <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <div class="sections-nav">
+            <button class="section-btn active" data-section="intro">Introduction (3 min)</button>
+            <button class="section-btn" data-section="australia">Australia Requirements (8 min)</button>
+            <button class="section-btn" data-section="assessment">Client Assessment (10 min)</button>
+            <button class="section-btn" data-section="prescription">Exercise Prescription (12 min)</button>
+            <button class="section-btn" data-section="communication">Client Communication (12 min)</button>
+            <button class="section-btn" data-section="scenarios">Professional Scenarios (10 min)</button>
+            <button class="section-btn" data-section="practice">Practice Exercises (5 min)</button>
+        </div>
+
+        <div id="intro" class="content-section active">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">👨‍🏫 Welcome, Professional Trainer!</h2>
+            
+            <div class="note">
+                <div class="note-title">🎯 Course Objectives / Objetivos do Curso:</div>
+                <ul>
+                    <li>Master professional terminology for Australian fitness industry / Dominar terminologia profissional da indústria australiana</li>
+                    <li>Learn client assessment and screening vocabulary / Aprender vocabulário de avaliação e triagem de clientes</li>
+                    <li>Practice exercise prescription language (FITT-VP principles) / Praticar linguagem de prescrição (princípios FITT-VP)</li>
+                    <li>Develop advanced client communication skills / Desenvolver habilidades avançadas de comunicação com clientes</li>
+                    <li>Understand Australian industry requirements and standards / Entender requisitos e padrões da indústria australiana</li>
+                </ul>
+            </div>
+
+            <div class="note" style="background: rgba(16, 185, 129, 0.1); border-color: var(--color-success);">
+                <div class="note-title" style="color: var(--color-success);">💡 Study Tips for Self-Learning:</div>
+                <ul>
+                    <li><strong>Read aloud:</strong> Practice pronunciation by reading all examples out loud / Leia em voz alta todos os exemplos</li>
+                    <li><strong>Record yourself:</strong> Use your phone to record and listen back / Grave-se falando e escute novamente</li>
+                    <li><strong>Shadow technique:</strong> Repeat phrases immediately after reading / Repita as frases imediatamente após ler</li>
+                    <li><strong>Daily practice:</strong> Study one section per day, then review / Estude uma seção por dia, depois revise</li>
+                    <li><strong>Create scenarios:</strong> Imagine real client situations using this vocabulary / Imagine situações reais usando este vocabulário</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Why This Course Is Different</h3>
+            
+            <div class="vocab-card">
+                <p>This is <strong>NOT</strong> a basic gym English course. As a certified personal trainer, you already know fitness concepts. This course focuses on:</p>
+                <ul style="margin-top: 15px; line-height: 1.8;">
+                    <li>✅ <strong>Professional terminology</strong> used by PTs in Australia</li>
+                    <li>✅ <strong>Client consultation language</strong> for assessments and goal-setting</li>
+                    <li>✅ <strong>Exercise prescription</strong> using FITT-VP principles</li>
+                    <li>✅ <strong>Business communication</strong> for independent trainers</li>
+                    <li>✅ <strong>Industry-specific phrases</strong> for working in Australian gyms</li>
+                </ul>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Your Professional Background / Seu Background Profissional</div>
+                <p><strong>You are:</strong> A certified personal trainer with professional experience</p>
+                <p><strong>Você é:</strong> Um personal trainer certificado com experiência profissional</p>
+                <p style="margin-top: 15px;"><strong>You already know:</strong> Exercise science, program design, anatomy, physiology</p>
+                <p><strong>Você já sabe:</strong> Ciência do exercício, design de programas, anatomia, fisiologia</p>
+                <p style="margin-top: 15px;"><strong>You need to learn:</strong> How to express this knowledge professionally in English for the Australian market</p>
+                <p><strong>Você precisa aprender:</strong> Como expressar este conhecimento profissionalmente em inglês para o mercado australiano</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Study Structure / Estrutura de Estudo</div>
+                <p>This 60-minute self-study session is divided into 6 sections:</p>
+                <ol style="margin-top: 15px; line-height: 1.8; margin-left: 20px;">
+                    <li><strong>Australia Requirements (8 min):</strong> Certification, industry standards, legal requirements</li>
+                    <li><strong>Client Assessment (10 min):</strong> Screening, PAR-Q, health history, fitness testing</li>
+                    <li><strong>Exercise Prescription (12 min):</strong> FITT-VP principles, program design terminology</li>
+                    <li><strong>Client Communication (12 min):</strong> Consultation phrases, motivation, feedback delivery</li>
+                    <li><strong>Professional Scenarios (10 min):</strong> Real dialogues for Australian gym environments</li>
+                    <li><strong>Practice Exercises (5 min):</strong> Test your knowledge with professional scenarios</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="australia" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">🇦🇺 Section 1: Working in Australia (8 minutes)</h2>
+            
+            <div class="note">
+                <div class="note-title">🎯 Why This Matters:</div>
+                <p>Understanding Australian industry requirements is ESSENTIAL for legal practice and professional credibility.</p>
+                <p>Entender os requisitos da indústria australiana é ESSENCIAL para prática legal e credibilidade profissional.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Qualifications &amp; Certification / Qualificações &amp; Certificação</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Certificate IV in Fitness (SIS40221)</div>
+                <div class="pronunciation">/sərˈtɪf.ɪ.kət fɔːr ɪn ˈfɪt.nəs/</div>
+                <div class="translation">🇧🇷 Certificado IV em Fitness (qualificação mínima obrigatória)</div>
+                <p><strong>Definition:</strong> The minimum nationally recognized qualification required to work as a personal trainer in Australia.</p>
+                <div class="example">
+                    <strong>Professional Usage:</strong> "To work independently as a PT in Australia, you must hold a Certificate IV in Fitness."<br>
+                    <strong>Tradução:</strong> "Para trabalhar independentemente como PT na Austrália, você deve ter um Certificado IV em Fitness."
+                </div>
+                <p style="margin-top: 10px;"><strong>Important:</strong> This is regulated by Australian Skills Quality Authority (ASQA) and Registered Training Organisations (RTOs).</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">RTO (Registered Training Organisation)</div>
+                <div class="pronunciation">/ɑːr tiː oʊ/</div>
+                <div class="translation">🇧🇷 Organização de Treinamento Registrada</div>
+                <p><strong>Definition:</strong> Government-approved training providers authorized to issue nationally recognized qualifications.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Make sure your Certificate IV is from an accredited RTO recognized by ASQA."<br>
+                    <strong>Tradução:</strong> "Certifique-se de que seu Certificado IV é de um RTO credenciado reconhecido pela ASQA."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">AUSactive / Fitness Australia</div>
+                <div class="pronunciation">/ɔːz ˈæk.tɪv/</div>
+                <div class="translation">🇧🇷 Principais associações da indústria fitness australiana</div>
+                <p><strong>Definition:</strong> Peak fitness industry associations that provide professional registration, insurance, and continuing education.</p>
+                <div class="example">
+                    <strong>Example:</strong> "I'm registered with Fitness Australia and carry professional indemnity insurance."<br>
+                    <strong>Tradução:</strong> "Estou registrado na Fitness Australia e tenho seguro de indenização profissional."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Professional Indemnity Insurance</div>
+                <div class="pronunciation">/prəˈfeʃ.ən.əl ɪnˈdem.nə.ti ɪnˈʃʊr.əns/</div>
+                <div class="translation">🇧🇷 Seguro de responsabilidade profissional</div>
+                <p><strong>Definition:</strong> Mandatory insurance that protects trainers against claims of professional negligence or injury.</p>
+                <div class="example">
+                    <strong>Example:</strong> "You cannot legally train clients in Australia without current professional indemnity insurance."<br>
+                    <strong>Tradução:</strong> "Você não pode legalmente treinar clientes na Austrália sem seguro de responsabilidade profissional vigente."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Public Liability Insurance</div>
+                <div class="pronunciation">/ˈpʌb.lɪk ˌlaɪ.əˈbɪl.ə.ti ɪnˈʃʊr.əns/</div>
+                <div class="translation">🇧🇷 Seguro de responsabilidade civil</div>
+                <p><strong>Definition:</strong> Insurance covering claims from third parties for injury or property damage during training sessions.</p>
+                <div class="example">
+                    <strong>Example:</strong> "My public liability insurance covers up to $20 million per claim."<br>
+                    <strong>Tradução:</strong> "Meu seguro de responsabilidade civil cobre até 20 milhões de dólares por reclamação."
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Scope of Practice / Escopo de Prática</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Scope of Practice</div>
+                <div class="pronunciation">/skoʊp ʌv ˈpræk.tɪs/</div>
+                <div class="translation">🇧🇷 Escopo de prática (limites profissionais)</div>
+                <p><strong>Definition:</strong> The boundaries of what a personal trainer can legally and ethically do based on their qualifications.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Diagnosing injuries is outside my scope of practice. I refer clients to physiotherapists."<br>
+                    <strong>Tradução:</strong> "Diagnosticar lesões está fora do meu escopo de prática. Eu encaminho clientes para fisioterapeutas."
+                </div>
+            </div>
+
+            <div class="note">
+                <div class="note-title">⚠️ Critical Scope Limitations:</div>
+                <p><strong>Personal Trainers in Australia CAN:</strong></p>
+                <ul>
+                    <li>Design and deliver exercise programs / Criar e entregar programas de exercício</li>
+                    <li>Provide general healthy eating information / Fornecer informações gerais sobre alimentação saudável</li>
+                    <li>Conduct fitness assessments / Conduzir avaliações de fitness</li>
+                    <li>Motivate and coach clients / Motivar e treinar clientes</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Personal Trainers CANNOT:</strong></p>
+                <ul>
+                    <li>❌ Diagnose medical conditions / Diagnosticar condições médicas</li>
+                    <li>❌ Provide specific meal plans (need nutrition qualification) / Fornecer planos alimentares específicos</li>
+                    <li>❌ Treat injuries or prescribe rehabilitation / Tratar lesões ou prescrever reabilitação</li>
+                    <li>❌ Recommend supplements as medical treatment / Recomendar suplementos como tratamento médico</li>
+                </ul>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Allied Health Professional</div>
+                <div class="pronunciation">/əˈlaɪd helθ prəˈfeʃ.ən.əl/</div>
+                <div class="translation">🇧🇷 Profissional de saúde aliado</div>
+                <p><strong>Definition:</strong> Healthcare professionals such as physiotherapists, exercise physiologists, dietitians, and occupational therapists.</p>
+                <div class="example">
+                    <strong>Example:</strong> "I work closely with allied health professionals to provide comprehensive client care."<br>
+                    <strong>Tradução:</strong> "Trabalho em estreita colaboração com profissionais de saúde aliados para fornecer cuidado abrangente aos clientes."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Referral Pathway</div>
+                <div class="pronunciation">/rɪˈfɜː.rəl ˈpɑːθ.weɪ/</div>
+                <div class="translation">🇧🇷 Caminho de encaminhamento</div>
+                <p><strong>Definition:</strong> The process of referring clients to appropriate healthcare professionals when issues arise outside your scope.</p>
+                <div class="example">
+                    <strong>Example:</strong> "I have established referral pathways with local physiotherapists and dietitians."<br>
+                    <strong>Tradução:</strong> "Estabeleci caminhos de encaminhamento com fisioterapeutas e nutricionistas locais."
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Industry Standards &amp; Code of Practice / Padrões da Indústria</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Code of Practice</div>
+                <div class="pronunciation">/koʊd ʌv ˈpræk.tɪs/</div>
+                <div class="translation">🇧🇷 Código de conduta profissional</div>
+                <p><strong>Definition:</strong> Professional and ethical standards that fitness professionals must follow, including client confidentiality, informed consent, and duty of care.</p>
+                <div class="example">
+                    <strong>Example:</strong> "The National Code of Practice outlines our responsibilities for client safety and ethical conduct."<br>
+                    <strong>Tradução:</strong> "O Código Nacional de Prática define nossas responsabilidades pela segurança do cliente e conduta ética."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Duty of Care</div>
+                <div class="pronunciation">/ˈduː.ti ʌv ker/</div>
+                <div class="translation">🇧🇷 Dever de cuidado</div>
+                <p><strong>Definition:</strong> Legal obligation to ensure client safety and wellbeing during all training activities.</p>
+                <div class="example">
+                    <strong>Example:</strong> "My duty of care requires me to screen clients for health risks before starting any program."<br>
+                    <strong>Tradução:</strong> "Meu dever de cuidado exige que eu avalie clientes quanto a riscos de saúde antes de iniciar qualquer programa."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Informed Consent</div>
+                <div class="pronunciation">/ɪnˈfɔːrmd kənˈsent/</div>
+                <div class="translation">🇧🇷 Consentimento informado</div>
+                <p><strong>Definition:</strong> Formal agreement from clients after being fully informed about potential risks, benefits, and procedures of training.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Before beginning any fitness program, I ensure clients provide informed consent by signing a waiver."<br>
+                    <strong>Tradução:</strong> "Antes de iniciar qualquer programa de fitness, garanto que os clientes forneçam consentimento informado assinando uma declaração."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">CPD (Continuing Professional Development)</div>
+                <div class="pronunciation">/siː piː diː/</div>
+                <div class="translation">🇧🇷 Desenvolvimento Profissional Contínuo</div>
+                <p><strong>Definition:</strong> Ongoing education and training required to maintain registration and stay current with industry standards.</p>
+                <div class="example">
+                    <strong>Example:</strong> "I complete 20 hours of CPD annually to maintain my Fitness Australia registration."<br>
+                    <strong>Tradução:</strong> "Completo 20 horas de DPC anualmente para manter meu registro na Fitness Australia."
+                </div>
+            </div>
+        </div>
+
+        <div id="assessment" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">📋 Section 2: Client Assessment &amp; Screening (10 minutes)</h2>
+
+            <div class="note">
+                <div class="note-title">🎯 Professional Context:</div>
+                <p>Client screening is a LEGAL requirement in Australia. Proper assessment protects both you and your clients.</p>
+                <p>A triagem de clientes é um requisito LEGAL na Austrália. Avaliação adequada protege você e seus clientes.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Pre-Exercise Screening / Triagem Pré-Exercício</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">PAR-Q (Physical Activity Readiness Questionnaire)</div>
+                <div class="pronunciation">/piː eɪ ɑːr kjuː/</div>
+                <div class="translation">🇧🇷 Questionário de Prontidão para Atividade Física</div>
+                <p><strong>Definition:</strong> Standard screening tool used to identify individuals who should seek medical clearance before starting exercise.</p>
+                <div class="example">
+                    <strong>Professional Usage:</strong> "All new clients must complete a PAR-Q before their first session."<br>
+                    <strong>Tradução:</strong> "Todos os novos clientes devem completar um PAR-Q antes da primeira sessão."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Medical Clearance</div>
+                <div class="pronunciation">/ˈmed.ɪ.kəl ˈklɪə.rəns/</div>
+                <div class="translation">🇧🇷 Autorização médica</div>
+                <p><strong>Definition:</strong> Written approval from a doctor confirming a client is safe to participate in exercise.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Due to your heart condition, I'll need medical clearance from your GP before we begin training."<br>
+                    <strong>Tradução:</strong> "Devido à sua condição cardíaca, precisarei de autorização médica do seu clínico geral antes de começarmos o treino."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Contraindications</div>
+                <div class="pronunciation">/ˌkɒn.trə.ɪn.dɪˈkeɪ.ʃənz/</div>
+                <div class="translation">🇧🇷 Contraindicações</div>
+                <p><strong>Definition:</strong> Specific conditions or factors that make a particular exercise or activity inadvisable or unsafe.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Pregnancy in the third trimester has several contraindications for high-impact exercise."<br>
+                    <strong>Tradução:</strong> "Gravidez no terceiro trimestre tem várias contraindicações para exercício de alto impacto."
+                </div>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">Risk Stratification</div>
+                <div class="pronunciation">/rɪsk ˌstræt.ɪ.fɪˈkeɪ.ʃən/</div>
+                <div class="translation">🇧🇷 Estratificação de risco</div>
+                <p><strong>Definition:</strong> Process of categorizing clients into low, moderate, or high risk based on health history and risk factors.</p>
+                <div class="example">
+                    <strong>Example:</strong> "Based on risk stratification, this client is moderate-risk and requires modified programming."<br>
+                    <strong>Tradução:</strong> "Baseado na estratificação de risco, este cliente é de risco moderado e requer programação modificada."
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Health History &amp; Client Consultation / Histórico de Saúde</h3>
+
+            <div class="grid-2">
+                <div class="vocab-card">
+                    <div class="vocab-word">Frequency (F)</div>
+                    <div class="pronunciation">/ˈfriː.kwən.si/</div>
+                    <div class="translation">🇧🇷 Frequência</div>
+                    <p><strong>Definition:</strong> How often exercise should be performed (days per week).</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "I recommend a frequency of 4 sessions per week for your strength goals."<br>
+                        <strong>Tradução:</strong> "Recomendo uma frequência de 4 sessões por semana para seus objetivos de força."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Intensity (I)</div>
+                    <div class="pronunciation">/ɪnˈten.sə.ti/</div>
+                    <div class="translation">🇧🇷 Intensidade</div>
+                    <p><strong>Definition:</strong> How hard the exercise is performed (% of max heart rate, % of 1RM, RPE).</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "We'll work at 70-80% of your maximum heart rate for moderate intensity cardio."<br>
+                        <strong>Tradução:</strong> "Trabalharemos a 70-80% de sua frequência cardíaca máxima para cardio de intensidade moderada."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Time (T)</div>
+                    <div class="pronunciation">/taɪm/</div>
+                    <div class="translation">🇧🇷 Tempo (duração)</div>
+                    <p><strong>Definition:</strong> Duration of each exercise session.</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "Your cardio sessions should last 30-45 minutes at the prescribed intensity."<br>
+                        <strong>Tradução:</strong> "Suas sessões de cardio devem durar 30-45 minutos na intensidade prescrita."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Type (T)</div>
+                    <div class="pronunciation">/taɪp/</div>
+                    <div class="translation">🇧🇷 Tipo (modalidade)</div>
+                    <p><strong>Definition:</strong> The mode or modality of exercise performed.</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "The type of exercise will include resistance training and steady-state cardio."<br>
+                        <strong>Tradução:</strong> "O tipo de exercício incluirá treinamento de resistência e cardio de estado estável."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Volume (V)</div>
+                    <div class="pronunciation">/ˈvɒl.juːm/</div>
+                    <div class="translation">🇧🇷 Volume</div>
+                    <p><strong>Definition:</strong> Total amount of work (sets × reps × weight for resistance; total distance/time for cardio).</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "We'll increase training volume by 10% each week to ensure progressive overload."<br>
+                        <strong>Tradução:</strong> "Aumentaremos o volume de treino em 10% cada semana para garantir sobrecarga progressiva."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Progression (P)</div>
+                    <div class="pronunciation">/prəˈɡreʃ.ən/</div>
+                    <div class="translation">🇧🇷 Progressão</div>
+                    <p><strong>Definition:</strong> How to systematically increase training demands over time to continue adaptations.</p>
+                    <div class="example">
+                        <strong>Professional Usage:</strong> "The progression plan includes increasing weight by 2.5kg every 2 weeks when you complete all reps."<br>
+                        <strong>Tradução:</strong> "O plano de progressão inclui aumentar o peso em 2,5kg a cada 2 semanas quando você completar todas as repetições."
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Program Design Terminology / Terminologia de Design de Programa</h3>
+
+            <div class="grid-2">
+                <div class="vocab-card">
+                    <div class="vocab-word">Health History Questionnaire</div>
+                    <div class="pronunciation">/helθ ˈhɪs.tər.i ˌkwes.tʃəˈner/</div>
+                    <div class="translation">🇧🇷 Questionário de histórico de saúde</div>
+                    <p>Comprehensive form documenting past and present medical conditions, medications, injuries, and lifestyle factors.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "The health history questionnaire helps me identify any red flags before program design."<br>
+                        <strong>Tradução:</strong> "O questionário de histórico de saúde me ajuda a identificar sinais de alerta antes do design do programa."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Chronic Conditions</div>
+                    <div class="pronunciation">/ˈkrɒn.ɪk kənˈdɪʃ.ənz/</div>
+                    <div class="translation">🇧🇷 Condições crônicas</div>
+                    <p>Long-term health conditions requiring special consideration (diabetes, hypertension, arthritis, asthma).</p>
+                    <div class="example">
+                        <strong>Example:</strong> "Clients with chronic conditions require modified exercise prescription and close monitoring."<br>
+                        <strong>Tradução:</strong> "Clientes com condições crônicas requerem prescrição de exercício modificada e monitoramento próximo."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Musculoskeletal History</div>
+                    <div class="pronunciation">/ˌmʌs.kjʊ.loʊˈskel.ə.təl ˈhɪs.tər.i/</div>
+                    <div class="translation">🇧🇷 Histórico musculoesquelético</div>
+                    <p>Record of past injuries, surgeries, or ongoing issues affecting muscles, bones, joints, and connective tissues.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "Your musculoskeletal history shows a previous ACL tear, so we'll avoid high-impact movements initially."<br>
+                        <strong>Tradução:</strong> "Seu histórico musculoesquelético mostra uma ruptura anterior de LCA, então evitaremos movimentos de alto impacto inicialmente."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Lifestyle Factors</div>
+                    <div class="pronunciation">/ˈlaɪf.staɪl ˈfæk.tərz/</div>
+                    <div class="translation">🇧🇷 Fatores de estilo de vida</div>
+                    <p>Elements including occupation, stress levels, sleep patterns, nutrition, alcohol, and smoking that impact training.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "We need to consider lifestyle factors like your shift work and sleep quality when designing your program."<br>
+                        <strong>Tradução:</strong> "Precisamos considerar fatores de estilo de vida como seu trabalho em turnos e qualidade do sono ao desenhar seu programa."
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Fitness Testing &amp; Assessment / Testes de Fitness</h3>
+
+            <div class="grid-2">
+                <div class="vocab-card">
+                    <div class="vocab-word">Baseline Assessment</div>
+                    <div class="pronunciation">/ˈbeɪs.laɪn əˈses.mənt/</div>
+                    <div class="translation">🇧🇷 Avaliação inicial</div>
+                    <p>Initial measurements taken before starting a program to track progress and inform program design.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "We'll conduct a baseline assessment including body composition, cardiovascular fitness, and strength tests."<br>
+                        <strong>Tradução:</strong> "Faremos uma avaliação inicial incluindo composição corporal, fitness cardiovascular e testes de força."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Anthropometric Measurements</div>
+                    <div class="pronunciation">/ˌæn.θrə.pəˈmet.rɪk ˈmeʒ.ər.mənts/</div>
+                    <div class="translation">🇧🇷 Medidas antropométricas</div>
+                    <p>Physical measurements including height, weight, BMI, circumferences, and skinfold thickness.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "I'll take anthropometric measurements today and repeat them every 4 weeks to track changes."<br>
+                        <strong>Tradução:</strong> "Farei medidas antropométricas hoje e repetirei a cada 4 semanas para acompanhar mudanças."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Functional Movement Screen (FMS)</div>
+                    <div class="pronunciation">/ˈfʌŋk.ʃən.əl ˈmuːv.mənt skriːn/</div>
+                    <div class="translation">🇧🇷 Avaliação de movimento funcional</div>
+                    <p>Systematic assessment tool identifying movement limitations and asymmetries that may increase injury risk.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "The functional movement screen revealed limited hip mobility, which we'll address through corrective exercises."<br>
+                        <strong>Tradução:</strong> "A avaliação de movimento funcional revelou mobilidade limitada do quadril, que abordaremos através de exercícios corretivos."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">1RM (One Repetition Maximum)</div>
+                    <div class="pronunciation">/wʌn ˌrep.əˈtɪʃ.ən ˈmæk.sɪ.məm/</div>
+                    <div class="translation">🇧🇷 Uma repetição máxima</div>
+                    <p>The maximum weight a person can lift for one complete repetition of an exercise.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "We'll estimate your 1RM using a submaximal test rather than having you lift maximum weight."<br>
+                        <strong>Tradução:</strong> "Estimaremos seu 1RM usando um teste submáximo em vez de fazer você levantar peso máximo."
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">VO₂ Max Assessment</div>
+                    <div class="pronunciation">/viː oʊ tuː mæks əˈses.mənt/</div>
+                    <div class="translation">🇧🇷 Avaliação de VO₂ máximo</div>
+                    <p>Test measuring maximum oxygen uptake during intense exercise, indicating cardiovascular fitness level.</p>
+                    <div class="example">
+                        <strong>Example:</strong> "Your VO₂ max assessment shows excellent cardiovascular capacity for your age group."<br>
+                        <strong>Tradução:</strong> "Sua avaliação de VO₂ máximo mostra excelente capacidade cardiovascular para sua faixa etária."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="prescription" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">📝 Section 3: Exercise Prescription Language (12 minutes)</h2>
+
+            <div class="note">
+                <div class="note-title">🎯 Professional Excellence:</div>
+                <p>Precise exercise prescription language demonstrates professionalism and ensures client safety and results.</p>
+                <p>Linguagem precisa de prescrição de exercício demonstra profissionalismo e garante segurança e resultados do cliente.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">FITT-VP Principles / Princípios FITT-VP</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Is this equipment available?"</div>
+                <div class="translation">🇧🇷 "Este equipamento está disponível?"</div>
+                <p><strong>When to use:</strong> When you want to use a machine or bench that someone might be using.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"How many sets do you have left?"</div>
+                <div class="translation">🇧🇷 "Quantas séries faltam para você?"</div>
+                <p><strong>When to use:</strong> To politely ask when equipment will be free.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Can I work in with you?"</div>
+                <div class="translation">🇧🇷 "Posso revezar com você?" / "Posso usar entre suas séries?"</div>
+                <p><strong>When to use:</strong> Asking to alternate using equipment with someone.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Could you spot me?"</div>
+                <div class="translation">🇧🇷 "Você pode me auxiliar/dar segurança?"</div>
+                <p><strong>When to use:</strong> Asking someone to help you lift heavy weights safely.</p>
+                <p><strong>Note:</strong> "To spot" = ajudar alguém durante um exercício pesado para segurança</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"How do I use this machine?"</div>
+                <div class="translation">🇧🇷 "Como eu uso esta máquina?"</div>
+                <p><strong>When to use:</strong> When you're unsure how to operate gym equipment.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Giving &amp; Receiving Help / Dando &amp; Recebendo Ajuda</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Can you help me adjust this?"</div>
+                <div class="translation">🇧🇷 "Você pode me ajudar a ajustar isso?"</div>
+                <p><strong>Context:</strong> Asking for help with seat height, weight settings, etc.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Sure, no problem!"</div>
+                <div class="translation">🇧🇷 "Claro, sem problema!"</div>
+                <p><strong>Context:</strong> Positive response when someone asks for help.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"I've got one more set."</div>
+                <div class="translation">🇧🇷 "Eu tenho mais uma série."</div>
+                <p><strong>Context:</strong> Telling someone how long you'll be using equipment.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Encouragement &amp; Motivation / Encorajamento &amp; Motivação</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"You got this!" / "You can do it!"</div>
+                <div class="translation">🇧🇷 "Você consegue!" / "Vai lá!"</div>
+                <p><strong>Context:</strong> Encouraging someone during a difficult exercise.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Push through!"</div>
+                <div class="translation">🇧🇷 "Vai até o fim!" / "Aguenta firme!"</div>
+                <p><strong>Context:</strong> Motivating someone to finish their last reps.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Great job!" / "Well done!"</div>
+                <div class="translation">🇧🇷 "Ótimo trabalho!" / "Muito bem!"</div>
+                <p><strong>Context:</strong> Congratulating someone after completing an exercise.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"Keep it up!"</div>
+                <div class="translation">🇧🇷 "Continue assim!"</div>
+                <p><strong>Context:</strong> Encouraging someone to maintain their effort.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Talking About Your Workout / Falando Sobre Seu Treino</h3>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"I'm working on my legs today."</div>
+                <div class="translation">🇧🇷 "Estou treinando pernas hoje."</div>
+                <p><strong>Context:</strong> Explaining which muscle group you're focusing on.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"I'm sore from yesterday's workout."</div>
+                <div class="translation">🇧🇷 "Estou com dor muscular do treino de ontem."</div>
+                <p><strong>Note:</strong> "Sore" = dor muscular pós-treino (normal e positivo)</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"I'm trying to build muscle / lose weight / get in shape."</div>
+                <div class="translation">🇧🇷 "Estou tentando ganhar músculo / perder peso / entrar em forma."</div>
+                <p><strong>Context:</strong> Explaining your fitness goals.</p>
+            </div>
+
+            <div class="vocab-card">
+                <div class="vocab-word">"I go to the gym three times a week."</div>
+                <div class="translation">🇧🇷 "Eu vou à academia três vezes por semana."</div>
+                <p><strong>Context:</strong> Describing your workout routine frequency.</p>
+            </div>
+
+            <h3 style="color: var(--color-primary); margin: 30px 0 20px 0;">Common Gym Slang / Gírias de Academia</h3>
+
+            <div class="grid-2">
+                <div class="vocab-card">
+                    <div class="vocab-word">Gains</div>
+                    <div class="translation">🇧🇷 Ganhos musculares</div>
+                    <p><strong>Slang for:</strong> Muscle growth and visible results</p>
+                    <div class="example">
+                        <strong>Example:</strong> "I'm making great gains!"<br>
+                        <strong>Tradução:</strong> "Estou fazendo ótimos ganhos!"
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Ripped / Shredded / Jacked</div>
+                    <div class="translation">🇧🇷 Muito definido, musculoso</div>
+                    <p><strong>Slang for:</strong> Very muscular with low body fat</p>
+                    <div class="example">
+                        <strong>Example:</strong> "That guy is ripped!"<br>
+                        <strong>Tradução:</strong> "Aquele cara é super definido!"
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Crush it</div>
+                    <div class="translation">🇧🇷 Arrasar, mandar bem</div>
+                    <p><strong>Slang for:</strong> Do something really well</p>
+                    <div class="example">
+                        <strong>Example:</strong> "Let's crush this workout!"<br>
+                        <strong>Tradução:</strong> "Vamos arrasar neste treino!"
+                    </div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Leg Day</div>
+                    <div class="translation">🇧🇷 Dia de treino de pernas</div>
+                    <p><strong>Context:</strong> A workout day focused on legs (often considered the hardest)</p>
+                    <div class="example">
+                        <strong>Example:</strong> "Never skip leg day!"<br>
+                        <strong>Tradução:</strong> "Nunca pule o dia de pernas!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="communication" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">💬 Section 4: Client Communication Skills (12 minutes)</h2>
+
+            <div class="note">
+                <div class="note-title">📖 Learning Activity:</div>
+                <p>Read this dialogue aloud to practice pronunciation and natural conversation flow. Try reading both parts!</p>
+                <p>Leia este diálogo em voz alta para praticar pronúncia e fluência natural. Tente ler ambas as partes!</p>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Dialogue 1: First Day at the Gym</h3>
+                
+                <div class="speaker">New Member (Alex):</div>
+                <div class="dialogue-line">"Hi! This is my first time at this gym. Could you help me?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Oi! Esta é minha primeira vez nesta academia. Você pode me ajudar?"</div>
+
+                <div class="speaker">Trainer (Sarah):</div>
+                <div class="dialogue-line">"Of course! Welcome! What are your fitness goals?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Claro! Bem-vindo! Quais são seus objetivos de fitness?"</div>
+
+                <div class="speaker">Alex:</div>
+                <div class="dialogue-line">"I want to lose weight and build some muscle. I'm a complete beginner."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Eu quero perder peso e ganhar um pouco de músculo. Sou totalmente iniciante."</div>
+
+                <div class="speaker">Sarah:</div>
+                <div class="dialogue-line">"Great! Let's start with a proper warm-up. We'll do 10 minutes on the treadmill, then I'll show you some basic exercises."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Ótimo! Vamos começar com um aquecimento adequado. Faremos 10 minutos na esteira, depois vou te mostrar alguns exercícios básicos."</div>
+
+                <div class="speaker">Alex:</div>
+                <div class="dialogue-line">"Sounds good! How often should I come to the gym?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Parece bom! Com que frequência devo vir à academia?"</div>
+
+                <div class="speaker">Sarah:</div>
+                <div class="dialogue-line">"For beginners, I recommend 3 to 4 times per week. Make sure to take rest days between workouts so your muscles can recover."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Para iniciantes, eu recomendo 3 a 4 vezes por semana. Certifique-se de ter dias de descanso entre os treinos para que seus músculos possam se recuperar."</div>
+
+                <div class="speaker">Alex:</div>
+                <div class="dialogue-line">"Perfect! I'm ready to get started!"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Perfeito! Estou pronto para começar!"</div>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Dialogue 2: Asking to Share Equipment</h3>
+                
+                <div class="speaker">Mike:</div>
+                <div class="dialogue-line">"Hey, excuse me. Are you using this bench?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Ei, com licença. Você está usando este banco?"</div>
+
+                <div class="speaker">Tom:</div>
+                <div class="dialogue-line">"Yes, but I only have one more set. You can work in with me if you want."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Sim, mas só tenho mais uma série. Você pode revezar comigo se quiser."</div>
+
+                <div class="speaker">Mike:</div>
+                <div class="dialogue-line">"That would be great, thanks! How much weight are you lifting?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Seria ótimo, obrigado! Quanto peso você está levantando?"</div>
+
+                <div class="speaker">Tom:</div>
+                <div class="dialogue-line">"I'm using 60 kilos. I'm doing 3 sets of 8 reps."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Estou usando 60 quilos. Estou fazendo 3 séries de 8 repetições."</div>
+
+                <div class="speaker">Mike:</div>
+                <div class="dialogue-line">"OK, I'll use 50. Let me know when you're ready for your next set."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "OK, vou usar 50. Me avise quando estiver pronto para sua próxima série."</div>
+
+                <div class="speaker">Tom:</div>
+                <div class="dialogue-line">"Will do. Actually, could you spot me on this last set? I'm going heavy."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Pode deixar. Na verdade, você pode me dar segurança nesta última série? Vou pesado."</div>
+
+                <div class="speaker">Mike:</div>
+                <div class="dialogue-line">"Sure, no problem! You got this!"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Claro, sem problema! Você consegue!"</div>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Dialogue 3: Post-Workout Conversation</h3>
+                
+                <div class="speaker">Lisa:</div>
+                <div class="dialogue-line">"Wow, that was an intense workout! I'm exhausted."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Uau, foi um treino intenso! Estou exausta."</div>
+
+                <div class="speaker">Maria:</div>
+                <div class="dialogue-line">"Me too! My legs are going to be so sore tomorrow. We really crushed leg day!"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Eu também! Minhas pernas vão estar muito doloridas amanhã. Nós realmente arrasamos no dia de pernas!"</div>
+
+                <div class="speaker">Lisa:</div>
+                <div class="dialogue-line">"Definitely! Don't forget to do your cool-down and stretching."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Com certeza! Não esqueça de fazer seu desaquecimento e alongamento."</div>
+
+                <div class="speaker">Maria:</div>
+                <div class="dialogue-line">"Good idea. Are you coming tomorrow?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Boa ideia. Você vem amanhã?"</div>
+
+                <div class="speaker">Lisa:</div>
+                <div class="dialogue-line">"Yes! Tomorrow is upper body day. I'm focusing on chest and back."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Sim! Amanhã é dia de parte superior. Vou focar em peito e costas."</div>
+
+                <div class="speaker">Maria:</div>
+                <div class="dialogue-line">"Perfect! I'll see you here. Keep up the good work!"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Perfeito! Te vejo aqui. Continue com o bom trabalho!"</div>
+            </div>
+        </div>
+
+        <div id="scenarios" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">🎭 Section 5: Professional Scenarios (10 minutes)</h2>
+
+            <div class="note">
+                <div class="note-title">🎯 Role-Play Practice:</div>
+                <p>Read these dialogues aloud multiple times, switching roles. Record yourself to identify pronunciation improvements.</p>
+                <p>Leia estes diálogos em voz alta várias vezes, alternando papéis. Grave-se para identificar melhorias de pronúncia.</p>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Scenario 1: Initial Client Consultation</h3>
+                
+                <div class="speaker">Personal Trainer (You):</div>
+                <div class="dialogue-line">"Thanks for coming in today, Sarah. Before we start, I need to complete a comprehensive health screening. Have you filled out the PAR-Q I sent you?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Obrigado por vir hoje, Sarah. Antes de começarmos, preciso completar uma triagem de saúde abrangente. Você preencheu o PAR-Q que enviei?"</div>
+
+                <div class="speaker">Client (Sarah):</div>
+                <div class="dialogue-line">"Yes, I have. I answered 'yes' to question 3 about chest pain during activity."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Sim, preenchi. Respondi 'sim' à pergunta 3 sobre dor no peito durante atividade."</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"Thank you for being honest. Due to that response, I need to request medical clearance from your GP before we can begin training. This is a standard safety protocol and protects both of us."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Obrigado pela honestidade. Devido a essa resposta, preciso solicitar autorização médica do seu clínico geral antes de começarmos o treino. Este é um protocolo de segurança padrão e protege nós dois."</div>
+
+                <div class="speaker">Client:</div>
+                <div class="dialogue-line">"Oh, I see. How long will that take?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Ah, entendo. Quanto tempo isso vai levar?"</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"It depends on your doctor's availability, but typically 1-2 weeks. I'll provide you with a medical clearance form that explains what information we need. Once approved, we can begin with a baseline fitness assessment."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Depende da disponibilidade do seu médico, mas tipicamente 1-2 semanas. Fornecerei um formulário de autorização médica que explica quais informações precisamos. Após aprovado, podemos começar com uma avaliação de fitness inicial."</div>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Scenario 2: Exercise Prescription Discussion</h3>
+                
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"Based on your baseline assessment and goals, I've designed a 12-week progressive resistance training program. Let me explain the prescription using FITT-VP principles."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Com base na sua avaliação inicial e objetivos, criei um programa progressivo de treinamento de resistência de 12 semanas. Deixe-me explicar a prescrição usando princípios FITT-VP."</div>
+
+                <div class="speaker">Client (Mark):</div>
+                <div class="dialogue-line">"That sounds professional. What exactly does that mean?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Parece profissional. O que exatamente isso significa?"</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"FITT-VP stands for Frequency, Intensity, Time, Type, Volume, and Progression. For you, we'll start with a frequency of 3 sessions per week, focusing on full-body compound movements. Intensity will be moderate - around 65-70% of your estimated 1RM. Each session will last 45-60 minutes."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "FITT-VP significa Frequência, Intensidade, Tempo, Tipo, Volume e Progressão. Para você, começaremos com frequência de 3 sessões por semana, focando em movimentos compostos de corpo inteiro. Intensidade será moderada - cerca de 65-70% do seu 1RM estimado. Cada sessão durará 45-60 minutos."</div>
+
+                <div class="speaker">Client:</div>
+                <div class="dialogue-line">"What about progression? How will you increase the difficulty?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "E quanto à progressão? Como você aumentará a dificuldade?"</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"Great question! We'll use a linear periodization model. Every two weeks, we'll increase volume by adding one set, or increase intensity by 2.5-5kg when you can complete all prescribed reps with proper form. This ensures progressive overload while managing fatigue."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Ótima pergunta! Usaremos um modelo de periodização linear. A cada duas semanas, aumentaremos o volume adicionando uma série, ou aumentaremos a intensidade em 2,5-5kg quando você conseguir completar todas as repetições prescritas com forma adequada. Isso garante sobrecarga progressiva enquanto gerenciamos fadiga."</div>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Scenario 3: Scope of Practice Boundary</h3>
+                
+                <div class="speaker">Client (Jenny):</div>
+                <div class="dialogue-line">"I've been having sharp pain in my lower back during deadlifts. Can you diagnose what's wrong and fix it?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Tenho sentido dor aguda na lombar durante levantamento terra. Você pode diagnosticar o problema e consertar?"</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"I appreciate you bringing this to my attention, Jenny. However, diagnosing injuries is outside my scope of practice as a personal trainer. What I can do is immediately modify your program to avoid movements that aggravate the pain."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Agradeço por trazer isso à minha atenção, Jenny. No entanto, diagnosticar lesões está fora do meu escopo de prática como personal trainer. O que posso fazer é modificar imediatamente seu programa para evitar movimentos que agravem a dor."</div>
+
+                <div class="speaker">Client:</div>
+                <div class="dialogue-line">"So what should I do?"</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Então o que devo fazer?"</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"I strongly recommend seeing a physiotherapist who specializes in sports injuries. I have established referral pathways with several excellent physios in the area. Once they've assessed and treated the issue, they'll provide me with guidance on exercise modifications. We can continue training other muscle groups in the meantime."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Recomendo fortemente consultar um fisioterapeuta especializado em lesões esportivas. Tenho caminhos de encaminhamento estabelecidos com vários fisios excelentes na área. Após avaliarem e tratarem o problema, eles me fornecerão orientação sobre modificações de exercício. Podemos continuar treinando outros grupos musculares enquanto isso."</div>
+
+                <div class="speaker">Client:</div>
+                <div class="dialogue-line">"That makes sense. I appreciate your honesty and professionalism."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Faz sentido. Agradeço sua honestidade e profissionalismo."</div>
+            </div>
+
+            <div class="dialogue-section">
+                <h3 style="color: var(--color-primary); margin-bottom: 15px;">Scenario 4: Motivational Coaching</h3>
+                
+                <div class="speaker">Client (David):</div>
+                <div class="dialogue-line">"I'm feeling really discouraged. I've been training for 6 weeks and I don't see any results."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Estou me sentindo realmente desanimado. Estou treinando há 6 semanas e não vejo nenhum resultado."</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"I hear your frustration, David, and those feelings are completely valid. Let's look at the objective data from your baseline assessment compared to your progress testing we did yesterday."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Entendo sua frustração, David, e esses sentimentos são completamente válidos. Vamos olhar os dados objetivos da sua avaliação inicial comparados ao teste de progresso que fizemos ontem."</div>
+
+                <div class="speaker">Trainer (continued):</div>
+                <div class="dialogue-line">"Your squat 1RM has increased from 60kg to 75kg - that's a 25% strength gain. Your resting heart rate has decreased by 8 beats per minute, indicating improved cardiovascular fitness. And you've lost 2cm around your waist. These are significant physiological adaptations."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Seu 1RM de agachamento aumentou de 60kg para 75kg - isso é um ganho de força de 25%. Sua frequência cardíaca em repouso diminuiu 8 batimentos por minuto, indicando fitness cardiovascular melhorado. E você perdeu 2cm na cintura. Essas são adaptações fisiológicas significativas."</div>
+
+                <div class="speaker">Client:</div>
+                <div class="dialogue-line">"I hadn't thought about it that way. I guess I was just focusing on the scale."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Não havia pensado dessa forma. Acho que estava apenas focando na balança."</div>
+
+                <div class="speaker">Trainer:</div>
+                <div class="dialogue-line">"Body composition changes take time, especially when you're building muscle simultaneously. The scale doesn't tell the whole story. Let's take progress photos and measurements every 4 weeks to track the changes you can't see daily. Remember, sustainable transformation is a marathon, not a sprint."</div>
+                <div class="dialogue-line" style="color: var(--color-text-secondary); font-style: italic;">🇧🇷 "Mudanças de composição corporal levam tempo, especialmente quando você está construindo músculo simultaneamente. A balança não conta a história completa. Vamos fazer fotos de progresso e medidas a cada 4 semanas para acompanhar as mudanças que você não vê diariamente. Lembre-se, transformação sustentável é uma maratona, não um sprint."</div>
+            </div>
+        </div>
+
+        <div id="practice" class="content-section">
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">✏️ Section 6: Practice Exercises (5 minutes)</h2>
+
+            <div class="note">
+                <div class="note-title">📝 Instructions:</div>
+                <p>Complete these exercises to test your understanding. Click on the options to check your answers!</p>
+                <p>Complete estes exercícios para testar seu entendimento. Clique nas opções para verificar suas respostas!</p>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-title">Exercise 1: Match the Equipment</div>
+                <div class="question">
+                    <p><strong>Question 1:</strong> What equipment do you use for running indoors?</p>
+                    <div class="options">
+                        <div class="option" data-correct="true">Treadmill</div>
+                        <div class="option" data-correct="false">Elliptical</div>
+                        <div class="option" data-correct="false">Rowing machine</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p><strong>Question 2:</strong> What are small handheld weights called?</p>
+                    <div class="options">
+                        <div class="option" data-correct="false">Barbells</div>
+                        <div class="option" data-correct="true">Dumbbells</div>
+                        <div class="option" data-correct="false">Kettlebells</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-title">Exercise 2: Complete the Sentences</div>
+                <div class="question">
+                    <p><strong>Question 3:</strong> "I do 3 _____ of 12 _____."</p>
+                    <div class="options">
+                        <div class="option" data-correct="false">reps, sets</div>
+                        <div class="option" data-correct="true">sets, reps</div>
+                        <div class="option" data-correct="false">exercises, workouts</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p><strong>Question 4:</strong> "Before exercising, you should always do a _____."</p>
+                    <div class="options">
+                        <div class="option" data-correct="true">warm-up</div>
+                        <div class="option" data-correct="false">cool-down</div>
+                        <div class="option" data-correct="false">rest day</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-title">Exercise 3: Choose the Correct Phrase</div>
+                <div class="question">
+                    <p><strong>Question 5:</strong> How do you ask someone to help you with heavy weights?</p>
+                    <div class="options">
+                        <div class="option" data-correct="false">"Can you lift this for me?"</div>
+                        <div class="option" data-correct="true">"Could you spot me?"</div>
+                        <div class="option" data-correct="false">"Can I work with you?"</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p><strong>Question 6:</strong> What do you say when someone asks if equipment is free?</p>
+                    <div class="options">
+                        <div class="option" data-correct="false">"I'm finished"</div>
+                        <div class="option" data-correct="true">"I've got one more set"</div>
+                        <div class="option" data-correct="false">"It's your turn"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-title">Exercise 4: Body Parts</div>
+                <div class="question">
+                    <p><strong>Question 7:</strong> Push-ups mainly work your _____ and _____.</p>
+                    <div class="options">
+                        <div class="option" data-correct="true">chest, triceps</div>
+                        <div class="option" data-correct="false">legs, glutes</div>
+                        <div class="option" data-correct="false">back, biceps</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <p><strong>Question 8:</strong> Squats are great for your _____ and _____.</p>
+                    <div class="options">
+                        <div class="option" data-correct="false">arms, shoulders</div>
+                        <div class="option" data-correct="false">chest, back</div>
+                        <div class="option" data-correct="true">legs, glutes</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <div class="exercise-title">Bonus: Translation Practice</div>
+                <p style="margin-bottom: 15px;"><strong>Translate these sentences to English:</strong></p>
+                
+                <div class="vocab-card">
+                    <p><strong>1.</strong> "Eu vou à academia quatro vezes por semana."</p>
+                    <p style="color: var(--color-success); margin-top: 10px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px;">
+                        <strong>Answer:</strong> "I go to the gym four times a week."
+                    </p>
+                </div>
+
+                <div class="vocab-card">
+                    <p><strong>2.</strong> "Este equipamento está disponível?"</p>
+                    <p style="color: var(--color-success); margin-top: 10px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px;">
+                        <strong>Answer:</strong> "Is this equipment available?"
+                    </p>
+                </div>
+
+                <div class="vocab-card">
+                    <p><strong>3.</strong> "Minhas pernas estão doloridas do treino de ontem."</p>
+                    <p style="color: var(--color-success); margin-top: 10px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 6px;">
+                        <strong>Answer:</strong> "My legs are sore from yesterday's workout."
+                    </p>
+                </div>
+            </div>
+
+            <div class="note" style="margin-top: 30px;">
+                <div class="note-title">🎉 Congratulations!</div>
+                <p>You've completed the 40-minute Interactive Gym English Class!</p>
+                <p><strong>Next Steps / Próximos Passos:</strong></p>
+                <ul>
+                    <li>Review the vocabulary cards regularly / Revise os cartões de vocabulário regularmente</li>
+                    <li>Practice the dialogues with a partner / Pratique os diálogos com um parceiro</li>
+                    <li>Use these phrases next time you're at the gym / Use essas frases na próxima vez que for à academia</li>
+                    <li>Keep a gym vocabulary journal / Mantenha um diário de vocabulário de academia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 60 * 60;
+        let timerInterval = null;
+        let isRunning = false;
+
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const totalTime = 60 * 60;
+            const progress = ((totalTime - timeLeft) / totalTime) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startBtn.textContent = 'Running...';
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateDisplay();
+                    } else {
+                        pauseTimer();
+                        alert('Class time completed! Tempo de aula completado!');
+                    }
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            startBtn.textContent = 'Resume';
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = 60 * 60;
+            startBtn.textContent = 'Start Class';
+            updateDisplay();
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        pauseBtn.addEventListener('click', pauseTimer);
+        resetBtn.addEventListener('click', resetTimer);
+
+        const sectionBtns = document.querySelectorAll('.section-btn');
+        const sections = document.querySelectorAll('.content-section');
+
+        sectionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetSection = btn.dataset.section;
+                
+                sectionBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetSection) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        const options = document.querySelectorAll('.option');
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const parent = option.parentElement;
+                const siblings = parent.querySelectorAll('.option');
+                
+                siblings.forEach(sib => {
+                    sib.classList.remove('correct', 'incorrect');
+                });
+
+                if (option.dataset.correct === 'true') {
+                    option.classList.add('correct');
+                } else {
+                    option.classList.add('incorrect');
+                    siblings.forEach(sib => {
+                        if (sib.dataset.correct === 'true') {
+                            sib.classList.add('correct');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

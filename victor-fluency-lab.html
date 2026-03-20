@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor's Fluency Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+:root{
+  --font-body:"Plus Jakarta Sans","Helvetica Neue",sans-serif;
+  --font-display:"Instrument Serif",Georgia,serif;
+  --text-xs:clamp(0.75rem,0.7rem + 0.25vw,0.875rem);
+  --text-sm:clamp(0.875rem,0.8rem + 0.35vw,1rem);
+  --text-base:clamp(1rem,0.95rem + 0.25vw,1.125rem);
+  --text-lg:clamp(1.125rem,1rem + 0.75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --text-hero:clamp(2.5rem,1rem + 5vw,5rem);
+  --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+  --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;
+  --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+  --tr:180ms cubic-bezier(0.16,1,0.3,1);
+}
+:root,[data-theme="dark"]{
+  --bg:#0d0f1a;--surf:#12152b;--surf2:#171b33;--surf3:#1c2240;--surf4:#232b52;
+  --div:#232947;--brd:#2d3566;
+  --tx:#e8eaf6;--txm:#8892c8;--txf:#4a5494;--txi:#0d0f1a;
+  --pr:#4f8ef7;--prh:#6ba3ff;--prhi:#1a2e5a;
+  --ac:#e63946;--ach:#ff5260;--achi:#3a1820;
+  --gd:#ffd166;--gdh:#ffe8a0;--gdhi:#3a2e10;
+  --ok:#56c57a;--okhi:#14301e;
+  --er:#e63946;--erhi:#3a1820;
+  --sh1:0 1px 3px rgba(0,0,0,.3);--sh2:0 4px 16px rgba(0,0,0,.4);
+  --sh3:0 12px 40px rgba(0,0,0,.5);--shg:0 0 24px rgba(79,142,247,.25);
+}
+[data-theme="light"]{
+  --bg:#f5f6fa;--surf:#fff;--surf2:#f0f2ff;--surf3:#e8ebf9;--surf4:#dde0f5;
+  --div:#d0d4ee;--brd:#c0c6e6;
+  --tx:#1a1e42;--txm:#4a5494;--txf:#8892c8;--txi:#f5f6fa;
+  --pr:#2855c8;--prh:#1a3fa0;--prhi:#dce6ff;
+  --ac:#cc2233;--ach:#b01c2a;--achi:#ffe5e8;
+  --gd:#b58800;--gdh:#8a6600;--gdhi:#fff3cc;
+  --ok:#2d7a4a;--okhi:#d6f5e3;
+  --er:#cc2233;--erhi:#ffe5e8;
+  --sh1:0 1px 3px rgba(26,30,66,.08);--sh2:0 4px 16px rgba(26,30,66,.1);
+  --sh3:0 12px 40px rgba(26,30,66,.15);--shg:0 0 24px rgba(40,85,200,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-font-smoothing:antialiased}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--tx);background:var(--bg);line-height:1.65;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.2}
+p{max-width:72ch}
+input,textarea{font:inherit;color:inherit;background:var(--surf2);border:1.5px solid var(--brd);border-radius:var(--r-md);padding:var(--sp3) var(--sp4);width:100%;outline:none;transition:border-color var(--tr),box-shadow var(--tr)}
+input:focus,textarea:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(79,142,247,.18)}
+details>summary{list-style:none;cursor:pointer;font-size:var(--text-xs);font-weight:700;color:var(--pr);padding:var(--sp2) 0;user-select:none}
+details>summary::-webkit-details-marker{display:none}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,15,26,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--div);padding:var(--sp3) var(--sp6);display:flex;align-items:center;justify-content:space-between;gap:var(--sp4)}
+[data-theme="light"] .navbar{background:rgba(245,246,250,.9)}
+.nb-brand{display:flex;align-items:center;gap:var(--sp3)}
+.nb-logo{width:34px;height:34px;flex-shrink:0}
+.nb-title{font-size:var(--text-sm);font-weight:800;letter-spacing:-.01em}
+.nb-title span{color:var(--pr)}
+.nb-nav{display:flex;align-items:center;gap:var(--sp1)}
+.nb-nav a{font-size:var(--text-xs);font-weight:600;color:var(--txm);padding:var(--sp2) var(--sp3);border-radius:var(--r-full);transition:color var(--tr),background var(--tr);white-space:nowrap}
+.nb-nav a:hover{color:var(--tx);background:var(--surf3)}
+.nb-nav a.act{color:var(--pr);background:var(--prhi)}
+.ttog{width:36px;height:36px;border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;color:var(--txm);background:var(--surf3);transition:all var(--tr);flex-shrink:0}
+.ttog:hover{color:var(--tx);background:var(--surf4)}
+.prog{position:fixed;top:0;left:0;height:3px;background:var(--pr);z-index:101;transition:width .2s ease}
+
+.main{padding-top:64px}
+.cont{max-width:900px;margin-inline:auto;padding-inline:var(--sp6)}
+.sec{padding-block:clamp(var(--sp12),6vw,var(--sp20))}
+
+.hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-block:var(--sp20)}
+.hbg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,142,247,.22) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 80%,rgba(230,57,70,.1) 0%,transparent 50%),var(--bg)}
+.hst{position:absolute;inset:0;z-index:0;background-image:radial-gradient(1.5px 1.5px at 15% 20%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 55% 8%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(2px 2px at 82% 45%,rgba(255,255,255,.3) 0%,transparent 100%),radial-gradient(1px 1px at 35% 75%,rgba(255,255,255,.3) 0%,transparent 100%)}
+[data-theme="light"] .hst{display:none}
+.hcon{position:relative;z-index:1;text-align:center;width:100%}
+.hbadge{display:inline-flex;align-items:center;gap:var(--sp2);background:var(--prhi);color:var(--pr);border:1px solid rgba(79,142,247,.3);font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:var(--sp2) var(--sp4);border-radius:var(--r-full);margin-bottom:var(--sp6)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--pr);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero h1{font-size:var(--text-hero);font-weight:400;margin-bottom:var(--sp6);line-height:1.1}
+.hero h1 em{color:var(--pr);font-style:italic}
+.hero h1 .hl{color:var(--ac)}
+.hsub{font-size:var(--text-lg);color:var(--txm);max-width:50ch;margin:0 auto var(--sp10);font-weight:400}
+.hcta{display:flex;gap:var(--sp4);justify-content:center;flex-wrap:wrap}
+.hst2{display:flex;gap:var(--sp8);justify-content:center;flex-wrap:wrap;margin-top:var(--sp12);padding-top:var(--sp8);border-top:1px solid var(--div)}
+.hsv{text-align:center}
+.hsvv{font-size:var(--text-xl);font-family:var(--font-display);color:var(--pr)}
+.hsvl{font-size:var(--text-xs);color:var(--txm);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+
+.btn{display:inline-flex;align-items:center;gap:var(--sp2);font-size:var(--text-sm);font-weight:700;padding:var(--sp3) var(--sp6);border-radius:var(--r-full);transition:all var(--tr);border:2px solid transparent;cursor:pointer;white-space:nowrap}
+.btn-p{background:var(--pr);color:#fff}
+.btn-p:hover{background:var(--prh);transform:translateY(-1px);box-shadow:var(--shg)}
+.btn-p:active{transform:translateY(0)}
+.btn-o{background:transparent;color:var(--pr);border-color:rgba(79,142,247,.4)}
+.btn-o:hover{background:var(--prhi);border-color:var(--pr)}
+.btn-gh{color:var(--txm);padding:var(--sp2) var(--sp4)}
+.btn-gh:hover{color:var(--tx);background:var(--surf3)}
+.btn-gd{background:var(--gd);color:#1a1200}
+.btn-gd:hover{background:var(--gdh)}
+.btn-sm{font-size:var(--text-xs);padding:var(--sp2) var(--sp4)}
+
+.slbl{font-size:var(--text-xs);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pr);margin-bottom:var(--sp3);display:flex;align-items:center;gap:var(--sp2)}
+.slbl::before{content:"";width:24px;height:2px;background:var(--pr);border-radius:2px}
+.stit{font-size:var(--text-xl);margin-bottom:var(--sp4)}
+.sdesc{color:var(--txm);font-size:var(--text-base);max-width:56ch}
+.shdr{margin-bottom:var(--sp10)}
+
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:var(--sp5)}
+.mcard{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r-xl);overflow:hidden;cursor:pointer;transition:all var(--tr)}
+.mcard:hover{box-shadow:var(--sh2);transform:translateY(-3px);border-color:rgba(79,142,247,.4)}
+.mch{padding:var(--sp5);border-bottom:1px solid var(--div);position:relative}
+.mnum{font-size:var(--text-xs);font-weight:800;color:var(--pr);letter-spacing:.06em;text-transform:uppercase}
+.mctit{font-size:var(--text-base);font-weight:700;margin-top:var(--sp1);font-family:var(--font-body)}
+.memoji{font-size:1.8rem;position:absolute;top:var(--sp4);right:var(--sp5)}
+.mcb{padding:var(--sp5)}
+.mcdesc{font-size:var(--text-sm);color:var(--txm);margin-bottom:var(--sp4)}
+.mtags{display:flex;flex-wrap:wrap;gap:var(--sp2)}
+.tag{font-size:var(--text-xs);font-weight:600;padding:var(--sp1) var(--sp3);border-radius:var(--r-full);background:var(--surf3);color:var(--txm)}
+.tag-p{background:var(--prhi);color:var(--pr)}
+.tag-a{background:var(--achi);color:var(--ac)}
+
+.mov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:var(--sp4);opacity:0;pointer-events:none;transition:opacity .25s ease}
+.mov.open{opacity:1;pointer-events:all}
+.modal{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r-xl);width:100%;max-width:720px;max-height:90dvh;overflow-y:auto;padding:var(--sp8);transform:scale(.96) translateY(16px);transition:transform .25s cubic-bezier(0.16,1,0.3,1);scrollbar-width:thin;scrollbar-color:var(--brd) transparent}
+.mov.open .modal{transform:scale(1) translateY(0)}
+.mhdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--sp6)}
+.mtitle{font-size:var(--text-xl)}
+.mclose{width:36px;height:36px;border-radius:var(--r-full);background:var(--surf3);color:var(--txm);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--tr)}
+.mclose:hover{background:var(--surf4);color:var(--tx)}
+
+.lsec{margin-bottom:var(--sp8)}
+.lstit{font-size:var(--text-xs);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pr);margin-bottom:var(--sp4);display:flex;align-items:center;gap:var(--sp2);padding-bottom:var(--sp3);border-bottom:1px solid var(--div);font-family:var(--font-body)}
+.clo{background:var(--surf2);border:1px solid var(--brd);border-left:3px solid var(--pr);border-radius:var(--r-lg);padding:var(--sp4) var(--sp5);margin-bottom:var(--sp4)}
+.clo-ac{border-left-color:var(--ac)}.clo-gd{border-left-color:var(--gd)}.clo-ok{border-left-color:var(--ok)}
+.clo-t{font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--txm);margin-bottom:var(--sp2)}
+.pbox{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r-lg);padding:var(--sp4);margin-bottom:var(--sp3)}
+.ptx{font-family:var(--font-display);font-size:var(--text-lg);color:var(--pr);margin-bottom:var(--sp1)}
+.pipa{font-size:var(--text-xs);color:var(--txf);font-family:monospace;margin-bottom:var(--sp2)}
+.pmn{font-size:var(--text-sm);color:var(--txm)}
+
+.spkbtn{display:inline-flex;align-items:center;gap:var(--sp2);background:var(--prhi);color:var(--pr);border:1px solid rgba(79,142,247,.3);border-radius:var(--r-full);padding:var(--sp2) var(--sp4);font-size:var(--text-xs);font-weight:700;cursor:pointer;transition:all var(--tr);margin-top:var(--sp3)}
+.spkbtn:hover{background:var(--pr);color:#fff}
+.spkbtn.play{background:var(--ac);color:#fff;border-color:var(--ac)}
+
+.qq{font-size:var(--text-base);font-weight:600;margin-bottom:var(--sp4)}
+.qopts{display:flex;flex-direction:column;gap:var(--sp3)}
+.qopt{background:var(--surf2);border:2px solid var(--brd);border-radius:var(--r-lg);padding:var(--sp4) var(--sp5);cursor:pointer;transition:all var(--tr);font-size:var(--text-sm);text-align:left;display:flex;align-items:center;gap:var(--sp3)}
+.qopt:hover:not(:disabled){border-color:var(--pr);background:var(--prhi)}
+.qopt.cor{border-color:var(--ok);background:var(--okhi);color:var(--ok)}
+.qopt.wrg{border-color:var(--er);background:var(--erhi);color:var(--er)}
+.qopt:disabled{cursor:default}
+.qfb{margin-top:var(--sp4);padding:var(--sp4);border-radius:var(--r-lg);font-size:var(--text-sm);font-weight:600;display:none}
+.qfb.show{display:block}
+.qfb.cor{background:var(--okhi);color:var(--ok)}
+.qfb.wrg{background:var(--erhi);color:var(--er)}
+
+.dial{display:flex;flex-direction:column;gap:var(--sp4);margin-bottom:var(--sp6)}
+.dln{display:flex;gap:var(--sp3);align-items:flex-start}
+.dln.you{flex-direction:row-reverse}
+.dav{width:36px;height:36px;border-radius:var(--r-full);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--surf3)}
+.dln.you .dav{background:var(--prhi)}
+.dbub{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r-lg);padding:var(--sp3) var(--sp4);font-size:var(--text-sm);max-width:75%}
+.dln.you .dbub{background:var(--prhi);border-color:rgba(79,142,247,.3);color:var(--pr)}
+.dnm{font-size:var(--text-xs);font-weight:700;color:var(--txm);margin-bottom:var(--sp1)}
+
+.shtrk{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r-xl);padding:var(--sp6);margin-bottom:var(--sp5)}
+.shstep{display:flex;align-items:flex-start;gap:var(--sp4);margin-bottom:var(--sp5)}
+.shstep:last-child{margin-bottom:0}
+.shnum{width:28px;height:28px;border-radius:var(--r-full);flex-shrink:0;background:var(--prhi);color:var(--pr);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);font-weight:800}
+.shphr{font-family:var(--font-display);font-size:var(--text-lg);color:var(--tx);margin-bottom:var(--sp2)}
+.shnote{font-size:var(--text-xs);color:var(--txm)}
+.shact{display:flex;gap:var(--sp3);flex-wrap:wrap;margin-top:var(--sp3)}
+
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(175px,100%),1fr));gap:var(--sp4)}
+.ci{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r-lg);padding:var(--sp4);text-align:center;cursor:pointer;transition:all var(--tr)}
+.ci:hover{border-color:var(--pr);background:var(--prhi)}
+.ci.rev .cf{display:none}
+.ci.rev .cb{display:block}
+.cb{display:none}
+.cft{font-family:var(--font-display);font-size:var(--text-base);color:var(--pr);margin-bottom:var(--sp2)}
+.cfh{font-size:var(--text-xs);color:var(--txf)}
+.cbt{font-size:var(--text-sm);color:var(--txm)}
+.cbe{font-size:var(--text-xs);color:var(--txf);margin-top:var(--sp2);font-style:italic}
+
+.tipls{display:flex;flex-direction:column;gap:var(--sp4)}
+.tipit{display:flex;gap:var(--sp4);align-items:flex-start;padding:var(--sp4);background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r-lg)}
+.tipic{width:40px;height:40px;border-radius:var(--r-md);background:var(--prhi);color:var(--pr);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tiptt{font-size:var(--text-sm);font-weight:700;margin-bottom:var(--sp1)}
+.tipd{font-size:var(--text-sm);color:var(--txm)}
+
+.ctasec{background:radial-gradient(ellipse 80% 100% at 50% 50%,rgba(79,142,247,.15) 0%,transparent 70%),var(--surf);border:1px solid rgba(79,142,247,.25);border-radius:var(--r-xl);padding:var(--sp12) var(--sp8);text-align:center}
+
+.strkbnr{position:fixed;bottom:var(--sp6);right:var(--sp6);z-index:150;background:var(--gdhi);color:var(--gd);border:1px solid rgba(255,209,102,.4);border-radius:var(--r-xl);padding:var(--sp3) var(--sp5);font-size:var(--text-sm);font-weight:800;box-shadow:var(--sh3);transform:translateX(200%);transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
+.strkbnr.show{transform:translateX(0)}
+
+.compov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:var(--sp6);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.compov.show{opacity:1;pointer-events:all}
+.compc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r-xl);padding:var(--sp10);max-width:480px;width:100%;text-align:center;transform:scale(.9);transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
+.compov.show .compc{transform:scale(1)}
+
+.cfp{position:fixed;pointer-events:none;z-index:999;animation:cfall 1.2s ease-in forwards;border-radius:2px}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeIn .5s cubic-bezier(0.16,1,0.3,1) both}
+@supports (animation-timeline:scroll()){
+  .fi{opacity:0;animation:rfade linear both;animation-timeline:view();animation-range:entry 0% entry 90%}
+  @keyframes rfade{to{opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media (max-width:768px){
+  .nb-nav{display:none}
+  .hero h1{font-size:var(--text-2xl)}
+  .hst2{gap:var(--sp6)}
+  .modal{padding:var(--sp5)}
+  .cont{padding-inline:var(--sp4)}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nb-brand">
+    <svg class="nb-logo" viewBox="0 0 34 34" fill="none" aria-label="FluencyLab logo">
+      <rect width="34" height="34" rx="8" fill="var(--prhi)"/>
+      <path d="M7 24 L12 7 L17 18 L22 11 L27 24" stroke="var(--pr)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+      <circle cx="12" cy="7" r="2.5" fill="var(--ac)"/>
+      <circle cx="27" cy="24" r="2" fill="var(--gd)"/>
+    </svg>
+    <span class="nb-title">Fluency<span>Lab</span></span>
+  </div>
+  <nav class="nb-nav">
+    <a href="#intro" class="act">Intro</a>
+    <a href="#modules">Modules</a>
+    <a href="#strategies">Strategies</a>
+    <a href="#challenge">Challenge</a>
+  </nav>
+  <button class="ttog" data-ttog aria-label="Toggle theme">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</nav>
+<div class="prog" id="rprog" style="width:0%"></div>
+
+<main class="main">
+
+<section class="hero" id="intro">
+  <div class="hbg"></div>
+  <div class="hst"></div>
+  <div class="cont hcon anim">
+    <div class="hbadge"><span class="dot"></span> Milwaukee Bound &bull; June 2025</div>
+    <h1>Hey, <em>Victor</em>.<br>Let&#x27;s talk like a <span class="hl">native</span>.</h1>
+    <p class="hsub">Your listening is already exceptional. Today we turn that superpower into unstoppable speaking fluency &mdash; before your trip to Milwaukee.</p>
+    <div class="hcta">
+      <button class="btn btn-p" onclick="openMod('shadowing')">
+        <i data-lucide="play" width="16" height="16"></i> Start Now
+      </button>
+      <a href="#modules" class="btn btn-o">
+        <i data-lucide="layout-grid" width="16" height="16"></i> Browse Modules
+      </a>
+    </div>
+    <div class="hst2">
+      <div class="hsv"><div class="hsvv">5</div><div class="hsvl">Modules</div></div>
+      <div class="hsv"><div class="hsvv">40+</div><div class="hsvl">Native Phrases</div></div>
+      <div class="hsv"><div class="hsvv">3</div><div class="hsvl">Real Scenarios</div></div>
+      <div class="hsv"><div class="hsvv">&#x1F1FA;&#x1F1F8;</div><div class="hsvl">Milwaukee Ready</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="modules">
+  <div class="cont">
+    <div class="shdr fi">
+      <div class="slbl">Your Curriculum</div>
+      <h2 class="stit">5 Modules to Native Fluency</h2>
+      <p class="sdesc">Each module targets a specific skill. Work through them in order, or jump to what you need most.</p>
+    </div>
+    <div class="mgrid">
+      <div class="mcard fi" onclick="openMod('shadowing')">
+        <div class="mch"><div class="mnum">Module 01</div><div class="mctit">Shadowing Workout</div><div class="memoji">&#x1F3A4;</div></div>
+        <div class="mcb"><p class="mcdesc">Mirror native speakers and rewire your rhythm. The fastest path to natural intonation.</p>
+        <div class="mtags"><span class="tag tag-p">Pronunciation</span><span class="tag">Intonation</span><span class="tag">Rhythm</span></div></div>
+      </div>
+      <div class="mcard fi" onclick="openMod('idioms')">
+        <div class="mch"><div class="mnum">Module 02</div><div class="mctit">Idioms &amp; Chunks</div><div class="memoji">&#x1F9E9;</div></div>
+        <div class="mcb"><p class="mcdesc">Pre-built language chunks that make you sound effortlessly fluent. The native speaker secret.</p>
+        <div class="mtags"><span class="tag tag-p">Idioms</span><span class="tag">Chunks</span><span class="tag">Slang</span></div></div>
+      </div>
+      <div class="mcard fi" onclick="openMod('airport')">
+        <div class="mch"><div class="mnum">Module 03</div><div class="mctit">Airport Survival</div><div class="memoji">&#x2708;&#xFE0F;</div></div>
+        <div class="mcb"><p class="mcdesc">Navigate check-in, TSA, and baggage claim at O&#x27;Hare or MKE like you&#x27;ve done it a hundred times.</p>
+        <div class="mtags"><span class="tag tag-a">Real Scenario</span><span class="tag">Travel</span><span class="tag">Role-play</span></div></div>
+      </div>
+      <div class="mcard fi" onclick="openMod('restaurant')">
+        <div class="mch"><div class="mnum">Module 04</div><div class="mctit">Restaurant &amp; Food</div><div class="memoji">&#x1F354;</div></div>
+        <div class="mcb"><p class="mcdesc">Order confidently, customize your meal, and handle every waiter interaction with natural charm.</p>
+        <div class="mtags"><span class="tag tag-a">Real Scenario</span><span class="tag">Social</span><span class="tag">Small Talk</span></div></div>
+      </div>
+      <div class="mcard fi" onclick="openMod('friends')">
+        <div class="mch"><div class="mnum">Module 05</div><div class="mctit">Hanging with Americans</div><div class="memoji">&#x1F91D;</div></div>
+        <div class="mcb"><p class="mcdesc">Casual talk, modern slang, humor, and how to not sound like a textbook. The fun one.</p>
+        <div class="mtags"><span class="tag tag-p">Casual</span><span class="tag">Humor</span><span class="tag">Culture</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="strategies" style="background:var(--surf)">
+  <div class="cont">
+    <div class="shdr fi">
+      <div class="slbl">Pro Strategies</div>
+      <h2 class="stit">Why You&#x27;re Not Fluent Yet &mdash; and How to Fix It</h2>
+    </div>
+    <div class="tipls">
+      <div class="tipit fi"><div class="tipic"><i data-lucide="cpu" width="20" height="20"></i></div>
+        <div><div class="tiptt">You&#x27;re translating in your head</div><div class="tipd">Your brain still runs: Portuguese &rarr; English before speaking. Fix: think in pre-built chunks. "I was wondering if..." is one pre-stored unit, not 5 words.</div></div>
+      </div>
+      <div class="tipit fi"><div class="tipic"><i data-lucide="volume-2" width="20" height="20"></i></div>
+        <div><div class="tiptt">Shadowing rewires your muscle memory</div><div class="tipd">Listen and repeat simultaneously. Focus on rhythm and stress, not perfection. 10 minutes daily beats 2 hours on weekends, every time.</div></div>
+      </div>
+      <div class="tipit fi"><div class="tipic"><i data-lucide="zap" width="20" height="20"></i></div>
+        <div><div class="tiptt">Fillers buy you time &mdash; and sound native</div><div class="tipd">Natives say "You know what?", "I mean...", "It&#x27;s like..." to think out loud. Using these sounds fluent. Silence sounds awkward.</div></div>
+      </div>
+      <div class="tipit fi"><div class="tipic"><i data-lucide="repeat" width="20" height="20"></i></div>
+        <div><div class="tiptt">Speak first, then think</div><div class="tipd">Stop waiting for the perfect sentence. Start talking before you know how you&#x27;ll finish. Native speakers adjust mid-sentence constantly &mdash; it sounds confident.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="challenge">
+  <div class="cont">
+    <div class="ctasec fi">
+      <div style="font-size:3rem;margin-bottom:16px">&#x1F1FA;&#x1F1F8;</div>
+      <h2 style="font-size:var(--text-xl);margin-bottom:16px">Milwaukee is waiting, Victor.</h2>
+      <p style="color:var(--txm);font-size:var(--text-base);max-width:48ch;margin:0 auto 32px">Complete all 5 modules and you&#x27;ll walk off that plane speaking like you&#x27;ve lived there. Let&#x27;s go.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-p" onclick="openMod('shadowing')"><i data-lucide="play" width="16" height="16"></i> Module 1: Shadowing</button>
+        <button class="btn btn-gd" onclick="openMod('friends')"><i data-lucide="star" width="16" height="16"></i> Jump to the Fun One</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="strkbnr" id="strkbnr">&#x1F525; <span id="strkTx">Nice!</span></div>
+
+<div class="compov" id="compov">
+  <div class="compc">
+    <div style="font-size:4rem;margin-bottom:24px">&#x1F3C6;</div>
+    <h2 style="font-size:var(--text-xl);margin-bottom:12px">Module Complete!</h2>
+    <div style="font-size:var(--text-2xl);font-family:var(--font-display);color:var(--gd);margin-bottom:16px" id="compsc">100%</div>
+    <p style="font-size:var(--text-sm);color:var(--txm);margin-bottom:32px" id="compdsc">Outstanding! Milwaukee doesn&#x27;t know what&#x27;s coming.</p>
+    <button class="btn btn-p" onclick="closeComp()"><i data-lucide="arrow-right" width="16" height="16"></i> Keep Going</button>
+  </div>
+</div>
+
+<div class="mov" id="moverlay" onclick="handleOvClick(event)">
+  <div class="modal" id="mcontent" role="dialog" aria-modal="true"></div>
+</div>
+
+<script>
+// THEME
+(function(){
+  var t=document.querySelector('[data-ttog]'),r=document.documentElement;
+  var d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  function setIco(th){if(t)t.innerHTML=th==='dark'
+    ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+    :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+  setIco(d);
+  if(t)t.addEventListener('click',function(){d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);setIco(d);});
+})();
+
+// SCROLL PROGRESS
+window.addEventListener('scroll',function(){
+  var m=document.body.scrollHeight-window.innerHeight;
+  document.getElementById('rprog').style.width=(window.scrollY/m*100)+'%';
+  document.querySelectorAll('.nb-nav a').forEach(function(a){
+    var s=document.querySelector(a.getAttribute('href'));
+    if(s){var rc=s.getBoundingClientRect();a.classList.toggle('act',rc.top<=80&&rc.bottom>=80);}
+  });
+});
+
+// STREAK
+var pts=0;
+function showStrk(msg){
+  var b=document.getElementById('strkbnr');
+  document.getElementById('strkTx').textContent=msg;
+  b.classList.add('show');setTimeout(function(){b.classList.remove('show');},2800);
+}
+
+// CONFETTI
+function confetti(){
+  var cols=['#4f8ef7','#e63946','#ffd166','#56c57a','#a78bfa'];
+  for(var i=0;i<60;i++){(function(){
+    var p=document.createElement('div');p.className='cfp';
+    p.style.cssText='left:'+Math.random()*100+'vw;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-delay:'+Math.random()*.6+'s;animation-duration:'+(0.8+Math.random()*.8)+'s;width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(p);setTimeout(function(){p.remove();},2000);
+  })();}
+}
+
+// COMPLETION
+function showComp(sc,msg){
+  document.getElementById('compsc').textContent=sc+'%';
+  document.getElementById('compdsc').textContent=msg;
+  document.getElementById('compov').classList.add('show');
+  confetti();
+}
+function closeComp(){document.getElementById('compov').classList.remove('show');}
+
+// SPEECH
+function speak(text,btn){
+  if(!('speechSynthesis' in window)){return;}
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.87;u.pitch=1.0;
+  var vs=window.speechSynthesis.getVoices();
+  var v=vs.find(function(x){return x.lang==='en-US'&&x.name.indexOf('Google')>-1;})||
+        vs.find(function(x){return x.lang==='en-US';})||vs[0];
+  if(v)u.voice=v;
+  if(btn){btn.classList.add('play');u.onend=function(){btn.classList.remove('play');};u.onerror=function(){btn.classList.remove('play');};}
+  window.speechSynthesis.speak(u);
+}
+
+// QUIZ ENGINE
+var QD={};
+function setupQ(cid,qs){QD[cid]={qs:qs,cur:0,sc:0};renderQ(cid);}
+function renderQ(cid){
+  var el=document.getElementById(cid);if(!el)return;
+  var st=QD[cid];if(!st)return;
+  if(st.cur>=st.qs.length){
+    var pct=Math.round(st.sc/st.qs.length*100);
+    el.innerHTML='<div class="clo clo-ok"><div class="clo-t">Quiz Complete!</div>'
+      +'<div style="font-size:var(--text-xl);font-family:var(--font-display);color:var(--ok);margin:8px 0">'+pct+'%</div>'
+      +'<p style="font-size:var(--text-sm);color:var(--txm)">Got '+st.sc+'/'+st.qs.length+'. '+(pct>=80?'Excellent! 🏆':pct>=60?'Good job! 👍':'Keep at it! 💪')+'</p>'
+      +'<button class="btn btn-p btn-sm" style="margin-top:16px" onclick="setupQ(\''+cid+'\',QD[\''+cid+'\'].qs)">Retry</button></div>';
+    if(pct>=80){pts+=20;showStrk('Quiz ace! +20 pts 🎉');confetti();}
+    return;
+  }
+  var q=st.qs[st.cur];
+  el.innerHTML='<div class="qq">'+(st.cur+1)+'/'+st.qs.length+' — '+q.q+'</div>'
+    +'<div class="qopts">'+q.opts.map(function(o,i){
+      return '<button class="qopt" onclick="ansQ(\''+cid+'\','+i+','+q.c+')">'
+        +'<span style="width:22px;height:22px;border-radius:50%;border:2px solid var(--brd);flex-shrink:0;font-size:var(--text-xs);display:flex;align-items:center;justify-content:center;font-weight:700">'+'ABCD'[i]+'</span>'+o+'</button>';
+    }).join('')+'</div>'
+    +'<div class="qfb" id="qfb_'+cid+'"></div>';
+}
+function ansQ(cid,ch,cor){
+  var st=QD[cid];if(!st)return;
+  document.querySelectorAll('#'+cid+' .qopt').forEach(function(o,i){
+    o.disabled=true;
+    if(i===cor)o.classList.add('cor');
+    else if(i===ch)o.classList.add('wrg');
+  });
+  var ok=ch===cor;if(ok)st.sc++;
+  var fb=document.getElementById('qfb_'+cid);
+  var q=st.qs[st.cur];
+  fb.className='qfb show '+(ok?'cor':'wrg');
+  fb.innerHTML=ok?'✅ Correct! '+(q.e||''):'❌ Right: <strong>'+q.opts[cor]+'</strong>. '+(q.e||'');
+  setTimeout(function(){st.cur++;renderQ(cid);},1900);
+}
+
+// CHUNKS
+function toggleC(el){el.classList.toggle('rev');pts+=2;if(pts>0&&pts%24===0)showStrk(pts+' points! 🚀');}
+
+// MODAL
+var curMod=null;
+function openMod(id){
+  curMod=id;
+  var c=document.getElementById('mcontent');
+  var o=document.getElementById('moverlay');
+  c.innerHTML=getContent(id);
+  o.classList.add('open');
+  document.body.style.overflow='hidden';
+  lucide.createIcons();
+  setTimeout(function(){initQ(id);},80);
+}
+function closeModal(){
+  document.getElementById('moverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleOvClick(e){if(e.target===document.getElementById('moverlay'))closeModal();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+function initQ(id){
+  var qs={
+    idioms:[
+      {q:'What does "hit the ground running" mean?',opts:['Start slowly','Begin with great energy','Run to catch a flight','Exercise in the morning'],c:1,e:'Use it: "I want to hit the ground running on this project."'},
+      {q:'"I\'m down for that" means:',opts:['I\'m sad','I\'m under something','I\'m willing/excited to do it','I disagree'],c:2,e:'"Wanna grab a burger?" → "I\'m totally down!"'},
+      {q:'"That\'s a long shot" means:',opts:['Very likely','Unlikely but possible','Good photo','Long distance'],c:1,e:'"Getting tickets last minute is a long shot, but worth trying."'},
+      {q:'"No worries" as a response means:',opts:['I\'m worried','It\'s not a problem','You have no issues','Don\'t think'],c:1,e:'No worries = it\'s fine / de nada.'},
+      {q:'What does "hang out" mean?',opts:['Dry clothes','Spend time casually with someone','Hang a picture','Leave a party'],c:1,e:'"Wanna hang out this weekend?" — most common casual invitation.'},
+    ],
+    airport:[
+      {q:'"Window or aisle?" — most natural response:',opts:['"I want a window please"','Just "Window, please"','I need to think','I don\'t care'],c:1,e:'Keep it short. Add "if possible" to be polite.'},
+      {q:'TSA says "Step aside please." You should:',opts:['Run','Argue','Calmly move and say "Of course"','Say "No thank you"'],c:2,e:'Stay calm and friendly. Happens to everyone.'},
+      {q:'Most natural way to ask where your gate is:',opts:['"Where is located the Gate?"','"Excuse me, do you know where Gate 14B is?"','"Gate. Where?"','"Can you tell me the location?"'],c:1,e:'"Do you know where..." is very natural American English.'},
+    ],
+    restaurant:[
+      {q:'"How\'s everything tasting?" — most natural response:',opts:['"The food is adequate"','"Delicious, thanks!"','"It is very tasty"','"Everything is good"'],c:1,e:'Short, warm, natural. Americans love brief enthusiasm.'},
+      {q:'"Can I get the check?" means:',opts:['Check online','Pay now','Check the menu','Get a discount'],c:1,e:'"Check" = "bill" in American English.'},
+      {q:'Politely ask for no onions:',opts:['"I hate onions"','"Could I get that without onions, please?"','"No onions"','"Allergic to onions"'],c:1,e:'"Could I get that without..." is the gold standard.'},
+    ],
+    friends:[
+      {q:'"What\'s up?" — most natural reply:',opts:['"The sky"','"Nothing much, you?"','"I am fine, thank you"','"I am doing well"'],c:1,e:'"Nothing much, you?" or "Not much, just chilling."'},
+      {q:'"That\'s sick!" in casual American slang means:',opts:['Disgusting','Impressive/awesome','Unhealthy','I don\'t like it'],c:1,e:'Sick, fire, bussin\' all mean amazing/great.'},
+      {q:'Someone makes a hilarious joke. Native reaction:',opts:['"I laughed"','"That was amusing"','"Dude, I\'m dead 💀"','"Very funny"'],c:2,e:'"I\'m dead" = laughing hard. Very modern and natural.'},
+    ]
+  };
+  var map={shadowing:null,idioms:'idiomsQ',airport:'airportQ',restaurant:'restaurantQ',friends:'friendsQ'};
+  var qid=map[id];
+  if(qid&&qs[id])setupQ(qid,qs[id]);
+}
+
+// MODULE CONTENT
+function getContent(id){
+  if(id==='shadowing')return shadContent();
+  if(id==='idioms')return idiomsContent();
+  if(id==='airport')return airportContent();
+  if(id==='restaurant')return restContent();
+  if(id==='friends')return friendsContent();
+  return '<p>Not found.</p>';
+}
+
+function mhdr(n,title,emoji){
+  return '<div class="mhdr"><div><div style="font-size:var(--text-xs);font-weight:800;color:var(--pr);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Module '+n+'</div><h2 class="mtitle">'+emoji+' '+title+'</h2></div>'
+    +'<button class="mclose" onclick="closeModal()" aria-label="Close"><i data-lucide="x" width="16" height="16"></i></button></div>';
+}
+function mftr(next,nextId,nextLbl){
+  return '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:24px">'
+    +(next?'<button class="btn btn-p" onclick="closeModal();openMod(\''+next+'\')"><i data-lucide="arrow-right" width="16" height="16"></i> Next: '+nextLbl+'</button>':'')
+    +(nextId?'<button class="btn btn-gd" onclick="closeModal();showComp(100,\'You completed all 5 modules! Milwaukee doesn\'t know what\'s coming! 🇺🇸🔥\')"><i data-lucide="trophy" width="16" height="16"></i> Complete All Modules!</button>':'')
+    +'<button class="btn btn-gh" onclick="closeModal()">Done for now</button></div>';
+}
+function clo(type,title,body){return '<div class="clo'+(type?' clo-'+type:'')+'"><div class="clo-t">'+title+'</div>'+body+'</div>';}
+function pbox(phrase,ipa,note,speak_txt){
+  var s=speak_txt||phrase;
+  return '<div class="pbox"><div class="ptx">&ldquo;'+phrase+'&rdquo;</div>'+(ipa?'<div class="pipa">'+ipa+'</div>':'')+'<div class="pmn">'+note+'</div>'
+    +'<button class="spkbtn" onclick="speak(\''+s.replace(/'/g,"\\'")+'&zwj;\',this)"><i data-lucide="volume-2" width="14" height="14"></i> Listen</button></div>';
+}
+function dialLine(who,emoji,msg,isYou){
+  var cls='dln'+(isYou?' you':'');
+  return '<div class="'+cls+'"><div class="dav">'+emoji+'</div><div><div class="dnm">'+who+'</div><div class="dbub">'+msg+'</div></div></div>';
+}
+function shStep(n,phrase,note,speak_txt){
+  var s=speak_txt||phrase;
+  return '<div class="shstep"><div class="shnum">'+n+'</div><div><div class="shphr">&ldquo;'+phrase+'&rdquo;</div><div class="shnote">'+note+'</div>'
+    +'<div class="shact"><button class="spkbtn" onclick="speak(\''+s.replace(/'/g,"\\'")+'&zwj;\',this)"><i data-lucide="volume-2" width="14" height="14"></i> Listen &amp; Shadow</button></div></div></div>';
+}
+function ccard(f,m,e){
+  return '<div class="ci" onclick="toggleC(this)"><div class="cf"><div class="cft">&ldquo;'+f+'&rdquo;</div><div class="cfh">Tap to reveal</div></div>'
+    +'<div class="cb"><div style="font-size:var(--text-xs);font-weight:800;color:var(--pr);margin-bottom:8px">Meaning</div><div class="cbt">'+m+'</div><div class="cbe">'+e+'</div></div></div>';
+}
+
+function shadContent(){
+  return mhdr('01','Shadowing Workout','🎤')
+  +'<div class="lsec">'+clo('','What is Shadowing?','<p style="font-size:var(--text-sm)">Listen to a native phrase, then repeat it immediately out loud &mdash; like a shadow. Don\'t wait, don\'t think. Mirror the rhythm, stress, and melody. Your brain handles grammar automatically.</p>')
+  +clo('gd','⚡ Victor\'s Goal','<p style="font-size:var(--text-sm)">You already understand everything. Shadowing trains your <strong>mouth</strong> to keep up with your ears. Repeat each phrase 3x minimum, out loud.</p>')+'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="mic" width="14" height="14"></i> Track 1 &mdash; Greetings &amp; Openers</div>'
+  +'<div class="shtrk">'
+  +shStep(1,"What's up, man? Long time no see!",'Stress: <strong>UP</strong>, <strong>LONG</strong>, <strong>SEE</strong> &mdash; crush the unstressed syllables')
+  +shStep(2,"Oh yeah, for sure — I totally get that.",'Link "for sure" as one sound: <em>forsure</em>. "Totally" = natural agreement filler')
+  +shStep(3,"Honestly? I don't know, it's kind of a big deal.",'Opener filler "Honestly?" buys thinking time. "Kind of" = natural hedge')
+  +shStep(4,"I was just about to say that, actually!",'React with energy. "Actually" at the end sounds natural, not formal')
+  +'</div></div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="mic" width="14" height="14"></i> Track 2 &mdash; Intelligent Fillers</div>'
+  +'<p style="font-size:var(--text-sm);color:var(--txm);margin-bottom:20px">These are smart fillers that keep conversation flowing while you think. Use them freely.</p>'
+  +'<div class="shtrk">'
+  +shStep(1,"You know what I mean?",'Ends a sentence &mdash; checks the person is following. Use frequently.')
+  +shStep(2,"That's actually a really good point.",'Agree while buying 2&ndash;3 seconds to think of your response.')
+  +shStep(3,"No, yeah, totally.",'Classic American triple-confirmation. Say with energy &mdash; not sarcasm.')
+  +shStep(4,"I mean... it depends, right?",'Natural hedge. Avoids committing before you\'re sure. Extremely common.')
+  +'</div></div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="check-circle" width="14" height="14"></i> Self-Check</div>'
+  +clo('ok','After each phrase, ask yourself:','<ul style="font-size:var(--text-sm);padding-left:20px;display:flex;flex-direction:column;gap:8px;margin-top:8px"><li>✅ Did I match the speed and rhythm?</li><li>✅ Did I stress the right syllables?</li><li>✅ Did I link words smoothly (not word-by-word)?</li><li>✅ Did I feel the sentence &mdash; not just recite it?</li></ul>')
+  +'</div>'
+  +mftr('idioms','','Idioms &amp; Chunks');
+}
+
+function idiomsContent(){
+  return mhdr('02','Idioms &amp; Chunks','🧩')
+  +'<div class="lsec">'+clo('gd','💡 The Chunk Method','<p style="font-size:var(--text-sm)">Native speakers retrieve whole <strong>chunks</strong>, not individual words. "I was wondering if..." is one pre-stored unit. Tap each card to see meaning and usage.</p>')+'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="layers" width="14" height="14"></i> Essential Chunks &mdash; Tap to Reveal</div>'
+  +'<div class="cgrid">'
+  +ccard("Hit the ground running","Start with great energy",'"I want to hit the ground running at my new job."')
+  +ccard("No worries","It\'s fine / de nada",'"Thanks so much!" → "No worries!"')
+  +ccard("I\'m down for that","I\'m in / count me in",'"Grab food?" → "I\'m totally down!"')
+  +ccard("Hang out","Spend time casually",'"Wanna hang out this weekend?"')
+  +ccard("It\'s a long shot","Unlikely but possible",'"Getting tickets last minute is a long shot."')
+  +ccard("Catch up","Reconnect after time apart",'"We need to catch up soon!"')
+  +ccard("My bad","My mistake / sorry",'"Oh, my bad &mdash; I thought you said 6."')
+  +ccard("That tracks","That makes sense",'"She moved to LA?" → "Yeah, that tracks."')
+  +ccard("Low-key","Secretly / a little bit",'"I\'m low-key obsessed with Milwaukee food."')
+  +ccard("For real?","Seriously? / Really?",'"I got the job!" → "For real?!"')
+  +ccard("I\'m good","No thank you / I\'m fine",'"More water?" → "I\'m good, thanks."')
+  +ccard("You\'re killing it","You\'re doing great",'"You\'re absolutely killing it!"')
+  +'</div></div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="map-pin" width="14" height="14"></i> Milwaukee-Ready Phrases</div>'
+  +pbox("The Brewers are on a roll!","","💬 Doing very well consistently &mdash; Talk sports and locals will love you","The Brewers are on a roll!")
+  +pbox("This place is a hidden gem!","","💬 Great spot not many know about &mdash; Compliment local spots and people open up","This place is a hidden gem!")
+  +pbox("It\'s freezing out here!","","💬 Very cold &mdash; Milwaukee in June can still be chilly. You\'ll need this one!","It\'s freezing out here!")
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="help-circle" width="14" height="14"></i> Idioms Quiz</div><div id="idiomsQ"></div></div>'
+  +mftr('airport','','Airport Survival');
+}
+
+function airportContent(){
+  return mhdr('03','Airport Survival','✈️')
+  +'<div class="lsec">'+clo('','🗺️ Your Route','<p style="font-size:var(--text-sm)">São Paulo GRU &rarr; Chicago O\'Hare ORD &rarr; Milwaukee MKE. You\'ll face: check-in, TSA security, gate lounges, baggage claim. Let\'s cover all of it.</p>')+'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="message-circle" width="14" height="14"></i> Scene 1: Check-In Counter</div>'
+  +'<div class="dial">'
+  +dialLine('Agent','👤','Good morning! Can I see your passport and boarding pass, please?',false)
+  +dialLine('Victor','😎','Of course, here you go. I have a connection through Chicago — does my luggage go straight through to Milwaukee?',true)
+  +dialLine('Agent','👤','Yes, your bags go all the way through. Window or aisle?',false)
+  +dialLine('Victor','😎','Window, please — if there\'s one available. And is this flight on time?',true)
+  +dialLine('Agent','👤','It is! Boarding at 9:45, Gate B14. Have a great flight!',false)
+  +dialLine('Victor','😎','Thank you so much — have a good one!',true)
+  +'</div>'
+  +'<button class="spkbtn" onclick="speak(\'Of course, here you go. I have a connection through Chicago. Does my luggage go straight through to Milwaukee?&zwj;\',this)"><i data-lucide="volume-2" width="14" height="14"></i> Victor\'s line</button>'
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="message-circle" width="14" height="14"></i> Scene 2: TSA Security</div>'
+  +clo('ac','🚨 TSA Culture','<p style="font-size:var(--text-sm)">Be polite, quick, and calm. Never joke about security. "Of course" and "No problem" are your best friends. TSA agents appreciate cooperative, friendly travelers.</p>')
+  +'<div class="dial">'
+  +dialLine('TSA Agent','🛡️','Take your shoes off and place your laptop in a separate bin, please.',false)
+  +dialLine('Victor','😎','Sure, no problem. Do I need to take my iPad out too?',true)
+  +dialLine('TSA Agent','🛡️','Yes, everything with a screen. Step right through when you\'re ready.',false)
+  +dialLine('Victor','😎','Got it. Thanks!',true)
+  +'</div></div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="key" width="14" height="14"></i> Essential Airport Phrases</div>'
+  +pbox("Excuse me, do you know where Gate 14B is?","/ɪkˈskjuːz miː, dʊ jʊ noʊ wɛr/","📌 Very common at big airports like O\'Hare")
+  +pbox("Could you repeat that, please?","/kʊd jʊ rɪˈpiːt ðæt/","📌 Never be embarrassed to ask &mdash; it\'s completely normal")
+  +pbox("Is this seat taken?","/ɪz ðɪs siːt ˈteɪkən/","📌 At the gate lounge &mdash; you\'ll use this")
+  +pbox("I\'d like to see if there\'s an upgrade available.","","📌 Ask at the gate 30 min before boarding")
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="help-circle" width="14" height="14"></i> Airport Quiz</div><div id="airportQ"></div></div>'
+  +mftr('restaurant','','Restaurant &amp; Food');
+}
+
+function restContent(){
+  return mhdr('04','Restaurant &amp; Food','🍔')
+  +'<div class="lsec">'+clo('gd','🍺 Milwaukee Food Culture','<p style="font-size:var(--text-sm)">Milwaukee is famous for Friday Fish Fries, bratwurst, and craft beer. Locals are proud of their food &mdash; compliment it sincerely and you\'ll make instant friends. Tip 18&ndash;20%.</p>')+'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="message-circle" width="14" height="14"></i> Scene: A Milwaukee Diner</div>'
+  +'<div class="dial">'
+  +dialLine('Server','🧑‍🍳','Hey there! Welcome in. Can I start you off with some drinks?',false)
+  +dialLine('Victor','😎','Yeah, I\'ll have a water and — what craft beers do you have on tap?',true)
+  +dialLine('Server','🧑‍🍳','We\'ve got Spotted Cow, Lakefront IPA, and a couple of seasonals. I\'d recommend the Spotted Cow.',false)
+  +dialLine('Victor','😎','Sold. I\'ll go with that. And could I get the fish fry — can I swap the coleslaw for fries?',true)
+  +dialLine('Server','🧑‍🍳','Totally can do that! No problem at all.',false)
+  +dialLine('Victor','😎','Perfect, thank you so much!',true)
+  +'</div>'
+  +'<button class="spkbtn" onclick="speak(\'Yeah, I\'ll have a water. What craft beers do you have on tap?&zwj;\',this)"><i data-lucide="volume-2" width="14" height="14"></i> Victor\'s opener</button>'
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="edit-3" width="14" height="14"></i> Role-Play: Your Turn</div>'
+  +clo('','🎭 Practice Out Loud First','<p style="font-size:var(--text-sm)">The server says a line. You respond <em>out loud first</em>, then tap to reveal the ideal answer. Be brave &mdash; make it your own!</p>')
+  +[['Are you ready to order?','I think so! Could I get the burger — medium, please? And no pickles if that\'s possible.'],
+    ['How\'s everything tasting?','Honestly? So good. This might be the best burger I\'ve had. Seriously.'],
+    ['Can I get you anything else?','Actually, yeah — could I get the check when you get a chance? No rush at all.'],
+    ['Have a great day!','You too! Thanks for the great service!'],
+  ].map(function(x){
+    var s=x[0],y=x[1];
+    return '<div class="pbox" style="margin-bottom:16px">'
+      +'<div style="font-size:var(--text-xs);font-weight:800;color:var(--txm);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">🧑‍🍳 Server:</div>'
+      +'<div style="font-size:var(--text-base);margin-bottom:12px">&ldquo;'+s+'&rdquo;</div>'
+      +'<details><summary>👁️ Reveal Victor\'s response</summary>'
+      +'<div style="margin-top:12px;padding:12px;background:var(--prhi);border-radius:var(--r-md);font-size:var(--text-sm);color:var(--pr)">&ldquo;😎 '+y+'&rdquo;'
+      +'<div style="margin-top:12px"><button class="spkbtn" onclick="speak(\''+y.replace(/'/g,"\\'")+'&zwj;\',this)" style="font-size:var(--text-xs)"><i data-lucide="volume-2" width="12" height="12"></i> Listen</button></div>'
+      +'</div></details></div>';
+  }).join('')
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="help-circle" width="14" height="14"></i> Restaurant Quiz</div><div id="restaurantQ"></div></div>'
+  +mftr('friends','','Hanging with Americans');
+}
+
+function friendsContent(){
+  return mhdr('05','Hanging with Americans','🤝')
+  +'<div class="lsec">'+clo('gd','🌟 The Real Secret','<p style="font-size:var(--text-sm)">It\'s not grammar or vocabulary. It\'s <strong>energy and matching the vibe</strong>. Americans love enthusiasm, eye contact, genuine curiosity. Use their name. Laugh easily. Ask follow-up questions. You\'ll be unforgettable.</p>')+'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="message-circle" width="14" height="14"></i> Meeting Your Sister\'s Friends</div>'
+  +'<div class="dial">'
+  +dialLine('Sarah (sister\'s friend)','🙋','Oh hey! You must be Victor! I\'ve heard so much about you!',false)
+  +dialLine('Victor','😎','Haha, hopefully only the good stuff! Yeah, I\'m Victor — great to finally meet you, Sarah!',true)
+  +dialLine('Sarah','🙋','Is this your first time in Milwaukee? What do you think so far?',false)
+  +dialLine('Victor','😎','Honestly? I\'m obsessed. The architecture by the lake is insane. And I had the fish fry last night — I\'m low-key thinking about moving here just for the food.',true)
+  +dialLine('Sarah','🙋','Ha! Right?! Okay you\'ve earned it — welcome to Milwaukee!',false)
+  +'</div>'
+  +'<button class="spkbtn" onclick="speak(\'Honestly? I\'m obsessed. The architecture by the lake is insane. And I had the fish fry last night. I\'m low-key thinking about moving here just for the food.&zwj;\',this)"><i data-lucide="volume-2" width="14" height="14"></i> Victor\'s killer line</button>'
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="zap" width="14" height="14"></i> Modern Slang 2024&ndash;2025 &mdash; Tap to Reveal</div>'
+  +'<div class="cgrid">'
+  +ccard("That\'s fire 🔥","= amazing, excellent",'"This pizza is absolutely fire!"')
+  +ccard("No cap","= no lie / seriously",'"No cap, best trip ever."')
+  +ccard("Low-key / High-key","subtle vs obvious feeling",'"I\'m low-key nervous right now."')
+  +ccard("I\'m dead 💀","= laughing so hard",'"That story is hilarious — I\'m dead!"')
+  +ccard("It\'s giving...","= it has the vibe of...",'"This place is giving NYC energy."')
+  +ccard("Bussin\'","= extremely good (food)","\"This brat is bussin', for real.\"")
+  +ccard("IYKYK","If you know, you know",'"Milwaukee fish fry on Friday — IYKYK."')
+  +ccard("No shot","= no way / impossible",'"No shot they sold out already!"')
+  +ccard("Main character","acting like the story\'s hero",'"Exploring Milwaukee solo? Main character energy."')
+  +ccard("Understood the assignment","did exactly the right thing",'"Victor understood the assignment."')
+  +ccard("Let him cook","let someone do their thing",'"Don\'t interrupt — let him cook."')
+  +ccard("Slay","= excel / do great",'"You\'re gonna slay that trip!"')
+  +'</div></div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="mic" width="14" height="14"></i> Talk About Brazil Naturally</div>'
+  +'<p style="font-size:var(--text-sm);color:var(--txm);margin-bottom:20px">Americans WILL ask about Brazil. Don\'t just say "It\'s nice." Use these hooks to start great conversations.</p>'
+  +pbox("Back home in São Paulo, it\'s like... 20 million people. Milwaukee feels cozy compared to that!","","💡 Makes Americans feel special about their city. They love this.","Back home in Sao Paulo, it\'s like 20 million people. Milwaukee feels cozy compared to that!")
+  +pbox("I\'ve been trying to explain Brazilian BBQ to Americans — it\'s basically a sport for us.","","💡 Self-deprecating cultural humor = instant connection.","I\'ve been trying to explain Brazilian BBQ to Americans — it\'s basically a sport for us.")
+  +pbox("The weather here is wild — I wore a jacket in June. In Brazil that would be winter.","","💡 Weather small talk always works. Americans bond over it.","The weather here is wild — I wore a jacket in June. In Brazil that would be winter.")
+  +'</div>'
+  +'<div class="lsec"><div class="lstit"><i data-lucide="help-circle" width="14" height="14"></i> Casual Conversation Quiz</div><div id="friendsQ"></div></div>'
+  +mftr('',true,'');
+}
+
+window.addEventListener('load',function(){
+  lucide.createIcons();
+  if('speechSynthesis' in window)window.speechSynthesis.getVoices();
+});
+</script>
+</body>
+</html>

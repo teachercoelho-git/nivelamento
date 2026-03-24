@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English B1 &mdash; Travel Experiences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --bg:#eef6ff;--surf:#fff;--surf2:#f5f9ff;--surfoff:#ddeeff;--div:#c5dff7;--bdr:#a8cef0;
+  --tx:#152c42;--txm:#3d6e98;--txf:#7aaacf;--txi:#eef6ff;
+  --pri:#1055b0;--prih:#0a3d87;--pril:#deeeff;
+  --acc:#d44f00;--acch:#a83c00;--accl:#fff0e6;
+  --suc:#1f6e29;--sucl:#e6f5e8;--err:#b52020;--errl:#fce8e8;
+  --wrn:#e07700;--wrnl:#fff8e1;--pur:#6416a0;--purl:#f4eaff;
+  --tel:#005e52;--tell:#e0f5f2;--gld:#c98800;--gldl:#fff8e1;
+  --rs:.375rem;--rm:.5rem;--rl:.75rem;--rx:1rem;--r2:1.5rem;--rf:9999px;
+  --ss:0 1px 3px rgba(16,85,176,.07);--sm:0 4px 16px rgba(16,85,176,.10);--sl:0 12px 40px rgba(16,85,176,.14);
+  --tr:180ms cubic-bezier(.16,1,.3,1);--fb:"Nunito","Segoe UI",sans-serif;--fd:"Instrument Serif",Georgia,serif;
+  --txs:clamp(.75rem,.7rem + .25vw,.875rem);--txb:clamp(.875rem,.8rem + .35vw,1rem);
+  --txn:clamp(1rem,.95rem + .25vw,1.125rem);--txl:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --txh:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--txd:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.25rem;--s6:1.5rem;
+  --s8:2rem;--s10:2.5rem;--s12:3rem;--s16:4rem
+}
+[data-theme="dark"]{
+  --bg:#0c1927;--surf:#131f30;--surf2:#192838;--surfoff:#1a2e42;--div:#253d58;--bdr:#30506e;
+  --tx:#c8dff0;--txm:#6a9dc0;--txf:#3d6888;--txi:#0c1927;
+  --pri:#5aabef;--prih:#82c0f5;--pril:#1a3050;
+  --acc:#ff9a5c;--acch:#ffb680;--accl:#2a1a08;
+  --suc:#72c276;--sucl:#0e2010;--err:#f07070;--errl:#280f0f;
+  --wrn:#ffd060;--wrnl:#1e1600;--pur:#c070f5;--purl:#28104a;
+  --tel:#60d0c0;--tell:#082820;--gld:#ffd060;--gldl:#1e1600;
+  --ss:0 1px 3px rgba(0,0,0,.3);--sm:0 4px 16px rgba(0,0,0,.4);--sl:0 12px 40px rgba(0,0,0,.5)
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--fb);font-size:var(--txn);color:var(--tx);background:var(--bg);min-height:100dvh;line-height:1.65}
+img,video{display:block;max-width:100%;height:auto}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+input,textarea,select{font:inherit;color:inherit}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2}
+:focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:var(--rs)}
+::selection{background:rgba(90,171,239,.25)}
+a,button,[role="button"]{transition:color var(--tr),background var(--tr),border-color var(--tr),box-shadow var(--tr),transform var(--tr)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.topnav{position:sticky;top:0;z-index:100;background:var(--surf);border-bottom:1px solid var(--div);box-shadow:var(--ss);padding:var(--s3) var(--s6);display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:var(--s2);font-family:var(--fd);font-size:var(--txl);color:var(--pri);text-decoration:none;font-weight:600}
+.npills{display:flex;align-items:center;gap:var(--s1);list-style:none;padding:0;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center}
+.npills::-webkit-scrollbar{display:none}
+.np{font-size:var(--txs);font-weight:800;letter-spacing:.04em;padding:var(--s1) var(--s3);border-radius:var(--rf);border:1.5px solid transparent;cursor:pointer;white-space:nowrap;color:var(--txm);background:transparent}
+.np:hover{background:var(--pril);color:var(--pri);border-color:var(--pri)}
+.np.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.nr{display:flex;align-items:center;gap:var(--s3);flex-shrink:0}
+.tbtn{width:36px;height:36px;border-radius:var(--rf);display:flex;align-items:center;justify-content:center;background:var(--surfoff)}
+.tbtn:hover{background:var(--pril);color:var(--pri)}
+.sbadge{display:flex;align-items:center;gap:var(--s1);background:var(--gldl);color:var(--gld);border:1.5px solid var(--gld);border-radius:var(--rf);padding:var(--s1) var(--s3);font-size:var(--txb);font-weight:800}
+.tmr{display:flex;align-items:center;gap:var(--s1);background:var(--accl);color:var(--acc);border:1.5px solid currentColor;border-radius:var(--rf);padding:var(--s1) var(--s3);font-size:var(--txb);font-weight:700;cursor:pointer}
+.tmr:hover,.tmr-on{background:var(--acc);color:#fff}
+.pw{padding:var(--s2) var(--s6) 0;max-width:900px;margin:0 auto}
+.pbo{background:var(--div);border-radius:var(--rf);height:8px;overflow:hidden;margin-bottom:var(--s2)}
+.pbi{height:100%;border-radius:var(--rf);background:linear-gradient(90deg,var(--pri),var(--tel));transition:width .6s cubic-bezier(.16,1,.3,1)}
+.pl{font-size:var(--txs);color:var(--txm);font-weight:700;display:flex;justify-content:space-between}
+.sec{display:none;min-height:calc(100dvh - 64px);padding:var(--s8) var(--s4);max-width:900px;margin:0 auto;animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both}
+.sec.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.sh{text-align:center;margin-bottom:var(--s10)}
+.sb{display:inline-flex;align-items:center;gap:var(--s2);background:var(--pril);color:var(--pri);border:1.5px solid var(--pri);border-radius:var(--rf);font-size:var(--txs);font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:var(--s1) var(--s4);margin-bottom:var(--s4)}
+.st{font-family:var(--fd);font-size:var(--txd);color:var(--tx);line-height:1.2;margin-bottom:var(--s3)}
+.ss{font-size:var(--txn);color:var(--txm);max-width:60ch;margin:0 auto}
+.card{background:var(--surf);border-radius:var(--rx);box-shadow:var(--sm);border:1px solid var(--div);padding:var(--s6);transition:box-shadow var(--tr)}
+.card:hover{box-shadow:var(--sl)}
+.cg2{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}
+.cg3{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+.btn{display:inline-flex;align-items:center;gap:var(--s2);padding:var(--s3) var(--s6);border-radius:var(--rf);font-size:var(--txb);font-weight:700;cursor:pointer;border:2px solid transparent;text-decoration:none}
+.btp{background:var(--pri);color:#fff;border-color:var(--pri)}
+.btp:hover{background:var(--prih);transform:translateY(-1px);box-shadow:var(--sm)}
+.bts{background:var(--surf);color:var(--pri);border-color:var(--pri)}
+.bts:hover{background:var(--pril)}
+.bta{background:var(--acc);color:#fff;border-color:var(--acc)}
+.bta:hover{background:var(--acch);transform:translateY(-1px)}
+.btg{background:transparent;color:var(--txm);border-color:var(--div)}
+.btg:hover{background:var(--surfoff);color:var(--tx)}
+.btok{background:var(--suc);color:#fff;border-color:var(--suc)}
+.chips{display:flex;align-items:center;gap:var(--s3);justify-content:center;flex-wrap:wrap;margin-bottom:var(--s8)}
+.chip{display:flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s4);border-radius:var(--rf);font-size:var(--txb);font-weight:700;border:2px solid;box-shadow:var(--ss)}
+.cj{background:var(--purl);color:var(--pur);border-color:var(--pur)}
+.ct{background:var(--tell);color:var(--tel);border-color:var(--tel)}
+.cg{background:var(--accl);color:var(--acc);border-color:var(--acc)}
+.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;flex-shrink:0}
+.avj{background:var(--pur);color:#fff}.avt{background:var(--tel);color:#fff}.avg{background:var(--acc);color:#fff}
+.hero{background:linear-gradient(135deg,var(--pri) 0%,var(--tel) 50%,var(--pri) 100%);background-size:200% 200%;animation:gf 7s ease infinite;border-radius:var(--r2);padding:var(--s12) var(--s8);text-align:center;color:#fff;margin-bottom:var(--s8);position:relative;overflow:hidden}
+@keyframes gf{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.07) 0%,transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(255,255,255,.05) 0%,transparent 60%);pointer-events:none}
+.he{font-size:4rem;margin-bottom:var(--s4);display:block;animation:bnc 2.5s ease-in-out infinite}
+@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero h1{font-family:var(--fd);font-size:var(--txh);color:#fff;margin-bottom:var(--s3);text-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hero p{font-size:var(--txn);opacity:.9;max-width:50ch;margin:0 auto var(--s6)}
+.olist{text-align:left;display:inline-flex;flex-direction:column;gap:var(--s2)}
+.oi{display:flex;align-items:center;gap:var(--s2);font-size:var(--txb)}
+.oi::before{content:"checkmark";content:"\2713";background:rgba(255,255,255,.25);min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
+.vc{background:var(--surf);border-radius:var(--rx);border:1.5px solid var(--div);padding:var(--s5);transition:all var(--tr)}
+.vc:hover{border-color:var(--pri);box-shadow:var(--sm);transform:translateY(-2px)}
+.vce{font-size:2.2rem;margin-bottom:var(--s3);display:block}
+.vcw{font-size:var(--txl);font-weight:800;color:var(--pri);margin-bottom:var(--s1)}
+.vcp{font-size:var(--txs);color:var(--txm);font-style:italic;margin-bottom:var(--s2)}
+.vcd{font-size:var(--txb);color:var(--txm);margin-bottom:var(--s3)}
+.vcx{font-size:var(--txb);background:var(--pril);color:var(--pri);border-radius:var(--rm);padding:var(--s2) var(--s3);border-left:3px solid var(--pri);font-style:italic}
+.vcpt{margin-top:var(--s3);font-size:var(--txs);background:var(--surfoff);border-radius:var(--rm);padding:var(--s2) var(--s3);color:var(--txm)}
+.abtn{display:flex;align-items:center;gap:var(--s1);background:var(--pri);color:#fff;border:none;border-radius:var(--rf);padding:var(--s1) var(--s3);font-size:var(--txs);font-weight:700;cursor:pointer;margin-top:var(--s3);transition:all var(--tr)}
+.abtn:hover{background:var(--prih);transform:scale(1.04)}
+.abtn.pl{background:var(--suc);animation:pulse .8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.vw{border-radius:var(--rx);overflow:hidden;box-shadow:var(--sl);margin-bottom:var(--s6);background:#000}
+.vph{aspect-ratio:16/9;background:linear-gradient(135deg,#0a2560,#0d47a1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer;position:relative}
+.vph:hover .pbtn{transform:scale(1.1)}
+.pbtn{width:72px;height:72px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:var(--s4);transition:transform var(--tr);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.pbtn svg{color:#1055b0;margin-left:4px}
+.vtitle{font-size:var(--txl);font-weight:800;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.vsub{font-size:var(--txb);opacity:.8;margin-top:var(--s2)}
+.vlabs{position:absolute;top:var(--s3);left:var(--s3);display:flex;gap:var(--s2)}
+.vlab{background:rgba(0,0,0,.6);color:#fff;font-size:var(--txs);font-weight:700;padding:2px 8px;border-radius:var(--rf)}
+.rv{width:100%;aspect-ratio:16/9;border:none}
+.cq{background:var(--surf);border-radius:var(--rl);border:1.5px solid var(--div);padding:var(--s5);margin-bottom:var(--s4);transition:border-color var(--tr)}
+.cq:focus-within{border-color:var(--pri)}
+.cqt{font-size:var(--txn);font-weight:700;margin-bottom:var(--s3)}
+.cqo{display:grid;gap:var(--s2)}
+.cqol{display:flex;align-items:center;gap:var(--s2);cursor:pointer;font-size:var(--txb);padding:var(--s2) var(--s3);border-radius:var(--rm);transition:background var(--tr)}
+.cqol:hover{background:var(--surfoff)}
+.cqol input{accent-color:var(--pri);width:16px;height:16px;flex-shrink:0}
+.qt{font-size:var(--txl);font-weight:700;margin-bottom:var(--s5);line-height:1.4}
+.qo{display:grid;gap:var(--s3)}
+.qob{padding:var(--s4) var(--s5);border-radius:var(--rl);border:2px solid var(--div);background:var(--surf);cursor:pointer;font-size:var(--txn);font-weight:600;transition:all var(--tr);text-align:left;display:flex;align-items:center;gap:var(--s3)}
+.qob:hover:not(:disabled){border-color:var(--pri);background:var(--pril);color:var(--pri);transform:translateX(4px)}
+.qob.ok{background:var(--sucl);border-color:var(--suc);color:var(--suc)}
+.qob.no{background:var(--errl);border-color:var(--err);color:var(--err)}
+.qob:disabled{cursor:not-allowed}
+.ql{width:32px;height:32px;border-radius:50%;background:var(--surfoff);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:var(--txb);flex-shrink:0}
+.qob.ok .ql{background:var(--suc);color:#fff}
+.qob.no .ql{background:var(--err);color:#fff}
+.qfb{margin-top:var(--s4);padding:var(--s4);border-radius:var(--rl);font-size:var(--txn);font-weight:600;display:none;line-height:1.5}
+.qfb.show{display:block;animation:popin .3s cubic-bezier(.16,1,.3,1)}
+@keyframes popin{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.fbok{background:var(--sucl);color:var(--suc);border:2px solid var(--suc)}
+.fberr{background:var(--errl);color:var(--err);border:2px solid var(--err)}
+.qdots{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s5)}
+.qdot{width:10px;height:10px;border-radius:50%;background:var(--div);transition:all var(--tr)}
+.qdot.c{background:var(--pri);transform:scale(1.2)}.qdot.ok{background:var(--suc)}.qdot.no{background:var(--err)}
+.fcs{perspective:1000px;cursor:pointer;user-select:none}
+.fci{position:relative;width:100%;min-height:220px;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.fcs.fl .fci{transform:rotateY(180deg)}
+.fff,.ffb{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--rx);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s6);text-align:center;box-shadow:var(--sm)}
+.fff{background:linear-gradient(135deg,var(--pri),var(--tel));color:#fff}
+.ffb{background:var(--surf2);border:2px solid var(--div);transform:rotateY(180deg)}
+.ffw{font-family:var(--fd);font-size:var(--txh);margin-bottom:var(--s2)}
+.ffh{font-size:var(--txb);opacity:.8}
+.fftl{font-family:var(--fd);font-size:var(--txh);color:var(--pri);margin-bottom:var(--s3)}
+.ffex{font-size:var(--txb);color:var(--txm);font-style:italic;max-width:35ch}
+.ffflip{font-size:var(--txs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:var(--s3)}
+.fcnav{display:flex;align-items:center;justify-content:center;gap:var(--s4);margin-top:var(--s5)}
+.fcc{font-size:var(--txb);font-weight:700;color:var(--txm)}
+.dlg{display:flex;flex-direction:column;gap:var(--s4)}
+.dl{display:flex;gap:var(--s3);align-items:flex-start}
+.dbl{background:var(--surf);border:1.5px solid var(--div);border-radius:var(--rx);padding:var(--s4) var(--s5);flex:1;box-shadow:var(--ss)}
+.dl:nth-child(1) .dbl,.dl:nth-child(4) .dbl{border-color:var(--pur);background:var(--purl)}
+.dl:nth-child(2) .dbl,.dl:nth-child(5) .dbl{border-color:var(--tel);background:var(--tell)}
+.dl:nth-child(3) .dbl,.dl:nth-child(6) .dbl{border-color:var(--acc);background:var(--accl)}
+.dsp{font-size:var(--txs);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--txm);margin-bottom:var(--s2)}
+.dpr{font-size:var(--txb);color:var(--tx);font-weight:600;margin-bottom:var(--s2)}
+.din{width:100%;border:1.5px solid var(--div);border-radius:var(--rm);padding:var(--s2) var(--s3);font-size:var(--txb);background:var(--bg);color:var(--tx);resize:none;min-height:60px;transition:border-color var(--tr)}
+.din:focus{border-color:var(--pri);outline:none}
+.din::placeholder{color:var(--txf)}
+.dzone{display:flex;flex-wrap:wrap;gap:var(--s2);min-height:52px;padding:var(--s3);border-radius:var(--rl);background:var(--surfoff);border:2px dashed var(--div);transition:all var(--tr)}
+.dzone.ov{border-color:var(--pri);background:var(--pril)}
+.ditem{padding:var(--s2) var(--s4);border-radius:var(--rf);background:var(--pri);color:#fff;font-size:var(--txb);font-weight:700;cursor:grab;transition:all var(--tr);user-select:none}
+.ditem:active{cursor:grabbing;transform:rotate(2deg) scale(1.05)}
+.ditem.drag{opacity:.5}
+.wa{width:100%;min-height:130px;border:2px solid var(--div);border-radius:var(--rl);padding:var(--s4);font-size:var(--txn);background:var(--surf);color:var(--tx);resize:vertical;transition:border-color var(--tr);font-family:var(--fb);line-height:1.7}
+.wa:focus{border-color:var(--pri);outline:none;box-shadow:0 0 0 3px rgba(16,85,176,.1)}
+.wc{font-size:var(--txs);color:var(--txm);font-weight:700;text-align:right;margin-top:var(--s1)}
+.wc span{color:var(--pri)}
+.rb{display:flex;align-items:center;gap:var(--s2);padding:var(--s3) var(--s5);border-radius:var(--rf);background:var(--errl);color:var(--err);border:2px solid var(--err);font-size:var(--txb);font-weight:700;cursor:pointer;transition:all var(--tr)}
+.rb:hover{background:var(--err);color:#fff}
+.rb.rec{background:var(--err);color:#fff;animation:pulse 1s ease-in-out infinite}
+.rd{width:10px;height:10px;border-radius:50%;background:currentColor}
+.stars{display:flex;gap:var(--s2);justify-content:center;margin:var(--s4) 0}
+.star{font-size:2rem;cursor:pointer;transition:all var(--tr);filter:grayscale(.8);opacity:.5}
+.star:hover,.star.on{filter:none;opacity:1;transform:scale(1.2)}
+.tabs{display:flex;gap:var(--s2);border-bottom:2px solid var(--div);margin-bottom:var(--s6);flex-wrap:wrap}
+.tab{padding:var(--s2) var(--s4);font-size:var(--txb);font-weight:700;color:var(--txm);border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;border-radius:var(--rm) var(--rm) 0 0;transition:all var(--tr)}
+.tab:hover{color:var(--pri);background:var(--pril)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri);background:var(--pril)}
+.tp{display:none}.tp.on{display:block;animation:fadeUp .3s cubic-bezier(.16,1,.3,1)}
+.tip{background:var(--wrnl);border:1.5px solid var(--wrn);border-radius:var(--rl);padding:var(--s4);margin-bottom:var(--s5);display:flex;gap:var(--s3)}
+.tip p{font-size:var(--txb);color:var(--tx)}
+.sf{display:flex;justify-content:space-between;align-items:center;margin-top:var(--s12);padding-top:var(--s6);border-top:1px solid var(--div);gap:var(--s4);flex-wrap:wrap}
+.cw{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+.cp{position:absolute;width:10px;height:10px;top:-10px;animation:fall linear forwards;border-radius:2px}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.ach{position:fixed;top:80px;right:var(--s4);z-index:200;background:var(--gldl);border:2px solid var(--gld);border-radius:var(--rx);padding:var(--s3) var(--s5);display:flex;align-items:center;gap:var(--s3);box-shadow:var(--sl);transform:translateX(420px);transition:transform .5s cubic-bezier(.16,1,.3,1);max-width:280px}
+.ach.show{transform:translateX(0)}
+.aico{font-size:1.8rem}
+.ach strong{display:block;font-size:var(--txb);color:var(--wrn);font-weight:800}
+.ach span{font-size:var(--txs);color:var(--txm)}
+.fbs{background:linear-gradient(135deg,var(--pril),var(--tell));border:2px solid var(--pri);border-radius:var(--rx);padding:var(--s6);text-align:center}
+.fbs h3{font-family:var(--fd);font-size:var(--txl);color:var(--pri);margin-bottom:var(--s3)}
+.sbn{font-size:3rem;font-weight:800;color:var(--pri)}
+@media(max-width:600px){.npills{display:none}.sec{padding:var(--s5) var(--s3)}.hero{padding:var(--s8) var(--s4)}.sf{flex-direction:column;align-items:stretch}.sf .btn{justify-content:center}}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--div);border-radius:var(--rf)}::-webkit-scrollbar-thumb:hover{background:var(--pri)}
+</style>
+</head>
+<body>
+<div class="ach" id="achT" role="status" aria-live="polite">
+  <div class="aico" id="achI">&#127942;</div>
+  <div><strong id="achTi">Great job!</strong><span id="achD">You earned points!</span></div>
+</div>
+<div class="cw" id="cw" aria-hidden="true"></div>
+
+<nav class="topnav" role="navigation" aria-label="Lesson navigation">
+  <a href="#" class="logo" aria-label="English B1 Lesson">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#1055b0"/><text x="14" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="white" font-family="sans-serif">EN</text></svg>
+    Travel B1
+  </a>
+  <ul class="npills" role="list">
+    <li><button class="np on" onclick="goto(0)">1&#xb7;Intro</button></li>
+    <li><button class="np" onclick="goto(1)">2&#xb7;Vocab</button></li>
+    <li><button class="np" onclick="goto(2)">3&#xb7;Video</button></li>
+    <li><button class="np" onclick="goto(3)">4&#xb7;Dialogue</button></li>
+    <li><button class="np" onclick="goto(4)">5&#xb7;Quiz</button></li>
+    <li><button class="np" onclick="goto(5)">6&#xb7;Writing</button></li>
+    <li><button class="np" onclick="goto(6)">7&#xb7;Finish</button></li>
+  </ul>
+  <div class="nr">
+    <div class="sbadge" aria-label="Score">&#11088; <span id="sNum">0</span> pts</div>
+    <button class="tmr" id="tBtn" onclick="toggleTimer()" aria-label="Start/stop timer">&#9201; <span id="tDisp">60:00</span></button>
+    <button class="tbtn" id="thBtn" data-theme-toggle aria-label="Toggle dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="pw">
+  <div class="pl"><span>Lesson Progress</span><span id="pLbl">Section 1 of 7</span></div>
+  <div class="pbo" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">
+    <div class="pbi" id="pFill" style="width:14%"></div>
+  </div>
+</div>
+
+<!-- SECTION 1: INTRO -->
+<section class="sec on" id="s0" aria-labelledby="t0">
+  <div class="sh">
+    <div class="sb">&#9992; Section 1 of 7</div>
+    <h1 class="st" id="t0">Welcome to the Lesson!</h1>
+    <p class="ss">Theme: <strong>Travel Experiences</strong> &mdash; talk about trips, destinations and adventures in English.</p>
+  </div>
+  <div class="hero">
+    <span class="he" aria-hidden="true">&#9992;</span>
+    <h1>Travel Experiences</h1>
+    <p>Have you ever been to another country? Today we practise talking about travel using the <strong>Present Perfect</strong> and essential vocabulary!</p>
+    <div class="olist" role="list">
+      <div class="oi" role="listitem">Present Perfect for experiences</div>
+      <div class="oi" role="listitem">8 essential travel words</div>
+      <div class="oi" role="listitem">Real conversation practice</div>
+      <div class="oi" role="listitem">Writing and speaking production</div>
+    </div>
+  </div>
+  <div class="chips" role="group" aria-label="Students">
+    <div class="chip cj"><div class="av avj">J</div> Juliana</div>
+    <div class="chip ct"><div class="av avt">T</div> Tatiane</div>
+    <div class="chip cg"><div class="av avg">G</div> Galeno</div>
+  </div>
+  <div class="cg3" style="margin-bottom:var(--s6)">
+    <div class="card" style="border-top:4px solid var(--pri);text-align:center">
+      <div style="font-size:2rem;margin-bottom:var(--s2)">&#9201;</div>
+      <div style="font-weight:800;font-size:var(--txl);color:var(--pri)">1 hour</div>
+      <div style="font-size:var(--txb);color:var(--txm)">Total duration</div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--tel);text-align:center">
+      <div style="font-size:2rem;margin-bottom:var(--s2)">&#128218;</div>
+      <div style="font-weight:800;font-size:var(--txl);color:var(--tel)">Level B1</div>
+      <div style="font-size:var(--txb);color:var(--txm)">Intermediate</div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--acc);text-align:center">
+      <div style="font-size:2rem;margin-bottom:var(--s2)">&#127919;</div>
+      <div style="font-weight:800;font-size:var(--txl);color:var(--acc)">7 Activities</div>
+      <div style="font-size:var(--txb);color:var(--txm)">Interactive &amp; gamified</div>
+    </div>
+  </div>
+  <div class="tip"><span style="font-size:1.4rem">&#128161;</span><p><strong>Grammar focus:</strong> The <strong>Present Perfect</strong> &mdash; &ldquo;I have been to France.&rdquo; / &ldquo;Have you ever visited Japan?&rdquo; Use these structures throughout to earn bonus points!</p></div>
+  <div class="sf"><div></div><button class="btn btp" onclick="nxt()">Start Lesson &#8594;</button></div>
+</section>
+
+<!-- SECTION 2: VOCABULARY -->
+<section class="sec" id="s1" aria-labelledby="t1">
+  <div class="sh">
+    <div class="sb">&#128218; Section 2 of 7 &mdash; ~10 min</div>
+    <h2 class="st" id="t1">Travel Vocabulary</h2>
+    <p class="ss">Click <strong>&#128266; Listen</strong> to hear each word pronounced. Repeat aloud three times!</p>
+  </div>
+  <div class="tip"><span style="font-size:1.3rem">&#127919;</span><p><strong>Study tip:</strong> The phonetic transcription shows exactly how to pronounce each word. Try to say it slowly, then at normal speed.</p></div>
+  <div class="cg2" id="vcG"></div>
+  <div class="sf">
+    <button class="btn btg" onclick="prv()">&#8592; Back</button>
+    <button class="btn btp" onclick="completeVocab()">I know these words! &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 3: VIDEO -->
+<section class="sec" id="s2" aria-labelledby="t2">
+  <div class="sh">
+    <div class="sb">&#127909; Section 3 of 7 &mdash; ~12 min</div>
+    <h2 class="st" id="t2">Listening &amp; Comprehension</h2>
+    <p class="ss">Watch the video, then answer the comprehension questions below.</p>
+  </div>
+  <div class="vw" id="vW">
+    <div class="vph" id="vPH" onclick="loadV()" role="button" tabindex="0" aria-label="Play embedded video" onkeydown="if(event.key==='Enter')loadV()">
+      <div class="vlabs"><span class="vlab">B1</span><span class="vlab">~5 min</span></div>
+      <div class="pbtn"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <div class="vtitle">Travel Experiences &mdash; Conversation Practice</div>
+      <div class="vsub">Click to watch &middot; English subtitles available</div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s6)">
+    <h3 style="font-size:var(--txl);font-weight:800;margin-bottom:var(--s5)">&#10067; Comprehension Questions</h3>
+    <div id="cqA"></div>
+    <button class="btn btp" style="margin-top:var(--s5)" onclick="checkCQ()">&#10003; Check Answers</button>
+    <div id="cqFb" style="margin-top:var(--s4)"></div>
+  </div>
+  <div class="sf">
+    <button class="btn btg" onclick="prv()">&#8592; Back</button>
+    <button class="btn btp" onclick="nxt()">Next: Dialogue &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 4: DIALOGUE -->
+<section class="sec" id="s3" aria-labelledby="t3">
+  <div class="sh">
+    <div class="sb">&#128172; Section 4 of 7 &mdash; ~10 min</div>
+    <h2 class="st" id="t3">Guided Dialogue</h2>
+    <p class="ss">Complete each line of the conversation. Edit the text boxes with your own words!</p>
+  </div>
+  <div class="chips" role="group" aria-label="Students in dialogue">
+    <div class="chip cj"><div class="av avj">J</div> Juliana</div>
+    <div class="chip ct"><div class="av avt">T</div> Tatiane</div>
+    <div class="chip cg"><div class="av avg">G</div> Galeno</div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s6)">
+    <div class="dlg" id="dlgB"></div>
+    <div style="margin-top:var(--s5);display:flex;gap:var(--s3);flex-wrap:wrap">
+      <button class="btn btp" onclick="checkDlg()">&#10003; Check Dialogue</button>
+      <button class="btn btg" onclick="resetDlg()">&#8635; Reset</button>
+    </div>
+    <div id="dlgF" style="margin-top:var(--s4)"></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:var(--txl);font-weight:800;margin-bottom:var(--s2)">&#127921; Bonus: Build the Sentence!</h3>
+    <p style="font-size:var(--txb);color:var(--txm);margin-bottom:var(--s5)">Drag the words into the correct order to form a correct sentence.</p>
+    <div id="dragA"></div>
+    <div style="display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s4)">
+      <button class="btn bts" onclick="checkDrag()">&#10003; Check Order</button>
+      <button class="btn btg" onclick="resetDrag()">&#128256; Shuffle</button>
+    </div>
+    <div id="dragF" style="margin-top:var(--s4)"></div>
+  </div>
+  <div class="sf">
+    <button class="btn btg" onclick="prv()">&#8592; Back</button>
+    <button class="btn btp" onclick="nxt()">Next: Quiz &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 5: QUIZ & FLASHCARDS -->
+<section class="sec" id="s4" aria-labelledby="t4">
+  <div class="sh">
+    <div class="sb">&#9889; Section 5 of 7 &mdash; ~10 min</div>
+    <h2 class="st" id="t4">Quiz &amp; Flashcards</h2>
+    <p class="ss">Test your knowledge with the multiple-choice quiz, then review with interactive flashcards!</p>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" role="tab" aria-selected="true" id="tQ" onclick="stab('q')">&#129504; Multiple Choice Quiz</button>
+    <button class="tab" role="tab" aria-selected="false" id="tF" onclick="stab('f')">&#127921; Flashcards</button>
+  </div>
+  <div class="tp on" id="pQ" role="tabpanel" aria-labelledby="tQ">
+    <div class="card" id="qCard">
+      <div class="qdots" id="qDots" role="status" aria-live="polite"></div>
+      <div class="qt" id="qT"></div>
+      <div class="qo" id="qO"></div>
+      <div class="qfb" id="qFb"></div>
+      <div style="margin-top:var(--s5)"><button class="btn btp" onclick="nextQ()" id="nQB" style="display:none">Next Question &#8594;</button></div>
+    </div>
+    <div id="qRes" style="display:none">
+      <div class="card" style="text-align:center;padding:var(--s10)">
+        <div style="font-size:3.5rem;margin-bottom:var(--s4)" id="rE">&#127881;</div>
+        <h3 style="font-family:var(--fd);font-size:var(--txh);margin-bottom:var(--s3)" id="rT"></h3>
+        <div style="font-size:var(--txd);font-weight:800;color:var(--pri);margin-bottom:var(--s2)" id="rS"></div>
+        <p style="color:var(--txm);margin-bottom:var(--s6)" id="rM"></p>
+        <button class="btn bts" onclick="rqz()">&#8635; Try Again</button>
+      </div>
+    </div>
+  </div>
+  <div class="tp" id="pF" role="tabpanel" aria-labelledby="tF">
+    <div style="max-width:480px;margin:0 auto">
+      <div class="fcs" id="fcS" onclick="flipFC()" role="button" tabindex="0" aria-label="Flashcard - click to flip">
+        <div class="fci" id="fcI">
+          <div class="fff">
+            <div class="ffw" id="fcW"></div>
+            <div class="ffh" id="fcH"></div>
+            <div class="ffflip">TAP TO FLIP &#8596;</div>
+          </div>
+          <div class="ffb">
+            <div class="fftl" id="fcTl"></div>
+            <div class="ffex" id="fcEx"></div>
+            <div class="ffflip">TAP TO FLIP BACK</div>
+          </div>
+        </div>
+      </div>
+      <div class="fcnav">
+        <button class="btn btg" onclick="prevFC()" aria-label="Previous flashcard">&#8592;</button>
+        <span class="fcc" id="fcC">1 / 8</span>
+        <button class="btn btg" onclick="nextFC()" aria-label="Next flashcard">&#8594;</button>
+      </div>
+      <div style="display:flex;gap:var(--s3);justify-content:center;margin-top:var(--s4);flex-wrap:wrap">
+        <button class="btn btg" onclick="mFC(false)" style="color:var(--err);border-color:var(--err)">&#10007; Still learning</button>
+        <button class="btn btg" onclick="mFC(true)" style="color:var(--suc);border-color:var(--suc)">&#10003; I know it! (+5 pts)</button>
+      </div>
+      <p style="text-align:center;font-size:var(--txs);color:var(--txm);margin-top:var(--s3)" id="fcKn"></p>
+    </div>
+  </div>
+  <div class="sf">
+    <button class="btn btg" onclick="prv()">&#8592; Back</button>
+    <button class="btn btp" onclick="nxt()">Next: Writing &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 6: WRITING & SPEAKING -->
+<section class="sec" id="s5" aria-labelledby="t5">
+  <div class="sh">
+    <div class="sb">&#9999; Section 6 of 7 &mdash; ~12 min</div>
+    <h2 class="st" id="t5">Free Production</h2>
+    <p class="ss">Each student has a writing task. Write at least <strong>30 words</strong> each, then record your answer!</p>
+  </div>
+  <div class="cg3" style="margin-bottom:var(--s6)">
+    <div class="card" style="border-left:4px solid var(--pur)">
+      <div class="av avj" style="margin-bottom:var(--s2)">J</div>
+      <strong style="color:var(--pur)">Juliana</strong>
+      <p style="font-size:var(--txb);color:var(--txm);margin-top:var(--s1)">Describe your dream trip using <em>would like to</em> and <em>because</em>.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--tel)">
+      <div class="av avt" style="margin-bottom:var(--s2)">T</div>
+      <strong style="color:var(--tel)">Tatiane</strong>
+      <p style="font-size:var(--txb);color:var(--txm);margin-top:var(--s1)">Describe a place you have visited using the <em>Present Perfect</em>.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--acc)">
+      <div class="av avg" style="margin-bottom:var(--s2)">G</div>
+      <strong style="color:var(--acc)">Galeno</strong>
+      <p style="font-size:var(--txb);color:var(--txm);margin-top:var(--s1)">Compare two destinations using <em>more than / less than / as&hellip;as</em>.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s5)">
+    <div style="display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s4)">
+      <div class="av avj">J</div>
+      <div><div style="font-weight:800;color:var(--pur)">Juliana</div><div style="font-size:var(--txs);color:var(--txm)">Dream trip &mdash; min. 30 words</div></div>
+    </div>
+    <textarea class="wa" id="wJ" placeholder="I would like to travel to... because it is... I would love to see..." aria-label="Juliana writing area"></textarea>
+    <div class="wc">Words: <span id="wcJ">0</span></div>
+    <div style="margin-top:var(--s4);display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap">
+      <button class="rb" onclick="togRec('Juliana')" id="rJuliana" aria-label="Record Juliana's answer"><div class="rd"></div> Record Answer</button>
+      <span id="rStJuliana" style="font-size:var(--txs);color:var(--txm)"></span>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s5)">
+    <div style="display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s4)">
+      <div class="av avt">T</div>
+      <div><div style="font-weight:800;color:var(--tel)">Tatiane</div><div style="font-size:var(--txs);color:var(--txm)">Travel experience &mdash; min. 30 words</div></div>
+    </div>
+    <textarea class="wa" id="wT" placeholder="I have visited... It was... I really enjoyed... The most amazing thing was..." aria-label="Tatiane writing area"></textarea>
+    <div class="wc">Words: <span id="wcT">0</span></div>
+    <div style="margin-top:var(--s4);display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap">
+      <button class="rb" onclick="togRec('Tatiane')" id="rTatiane" aria-label="Record Tatiane's answer"><div class="rd"></div> Record Answer</button>
+      <span id="rStTatiane" style="font-size:var(--txs);color:var(--txm)"></span>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s5)">
+    <div style="display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s4)">
+      <div class="av avg">G</div>
+      <div><div style="font-weight:800;color:var(--acc)">Galeno</div><div style="font-size:var(--txs);color:var(--txm)">Compare destinations &mdash; min. 30 words</div></div>
+    </div>
+    <textarea class="wa" id="wG" placeholder="Paris is more expensive than... but it is less crowded than... Both cities are as beautiful as..." aria-label="Galeno writing area"></textarea>
+    <div class="wc">Words: <span id="wcG">0</span></div>
+    <div style="margin-top:var(--s4);display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap">
+      <button class="rb" onclick="togRec('Galeno')" id="rGaleno" aria-label="Record Galeno's answer"><div class="rd"></div> Record Answer</button>
+      <span id="rStGaleno" style="font-size:var(--txs);color:var(--txm)"></span>
+    </div>
+  </div>
+  <button class="btn bta" onclick="submitW()" style="width:100%;justify-content:center;padding:var(--s4)">&#128228; Submit All Writing</button>
+  <div id="wFb" style="margin-top:var(--s4)"></div>
+  <div class="sf">
+    <button class="btn btg" onclick="prv()">&#8592; Back</button>
+    <button class="btn btp" onclick="nxt()">Finish Lesson &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 7: FINISH -->
+<section class="sec" id="s6" aria-labelledby="t6">
+  <div class="sh">
+    <div class="sb">&#127942; Section 7 of 7</div>
+    <h2 class="st" id="t6">Lesson Complete! &#127882;</h2>
+    <p class="ss">Congratulations! Here is your performance summary and feedback.</p>
+  </div>
+  <div class="fbs card" style="margin-bottom:var(--s6)">
+    <div style="font-size:3rem;margin-bottom:var(--s2)">&#127942;</div>
+    <h3>Your Final Score</h3>
+    <div class="sbn" id="fScore">0</div>
+    <div style="font-size:var(--txb);color:var(--txm);margin-bottom:var(--s5)">points earned this lesson</div>
+    <div class="pbo" style="height:14px"><div class="pbi" id="fBar" style="width:0%"></div></div>
+    <div id="fBadge" style="margin-top:var(--s4)"></div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s6)">
+    <h3 style="font-size:var(--txl);font-weight:800;margin-bottom:var(--s5)">&#128218; What You Practised Today</h3>
+    <div class="cg2">
+      <div style="padding:var(--s4);background:var(--pril);border-radius:var(--rl)">
+        <div style="font-weight:800;color:var(--pri);margin-bottom:var(--s2)">&#9992; Present Perfect</div>
+        <p style="font-size:var(--txb);color:var(--txm)">&ldquo;I have visited Paris.&rdquo; / &ldquo;Have you ever been to Japan?&rdquo; For experiences without a specific time.</p>
+      </div>
+      <div style="padding:var(--s4);background:var(--tell);border-radius:var(--rl)">
+        <div style="font-weight:800;color:var(--tel);margin-bottom:var(--s2)">&#128506; Travel Vocabulary</div>
+        <p style="font-size:var(--txb);color:var(--txm)">8 key words: itinerary, accommodation, destination, landmark, sightseeing, backpacker, souvenir, jet-lag.</p>
+      </div>
+      <div style="padding:var(--s4);background:var(--purl);border-radius:var(--rl)">
+        <div style="font-weight:800;color:var(--pur);margin-bottom:var(--s2)">&#128172; Conversation</div>
+        <p style="font-size:var(--txb);color:var(--txm)">Asking and answering about travel. Comparisons: &ldquo;more&hellip;than&rdquo;, &ldquo;as&hellip;as&rdquo;, &ldquo;less&hellip;than&rdquo;.</p>
+      </div>
+      <div style="padding:var(--s4);background:var(--accl);border-radius:var(--rl)">
+        <div style="font-weight:800;color:var(--acc);margin-bottom:var(--s2)">&#9999; Writing &amp; Speaking</div>
+        <p style="font-size:var(--txb);color:var(--txm)">Described dream trips, shared real experiences and compared destinations in English.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:var(--s6)">
+    <h3 style="font-size:var(--txl);font-weight:800;margin-bottom:var(--s4);text-align:center">Rate This Lesson</h3>
+    <p style="text-align:center;font-size:var(--txb);color:var(--txm);margin-bottom:var(--s4)">How was today&rsquo;s class?</p>
+    <div class="stars" role="group" aria-label="Lesson rating">
+      <button class="star" onclick="rate(1)" aria-label="1 star">&#11088;</button>
+      <button class="star" onclick="rate(2)" aria-label="2 stars">&#11088;</button>
+      <button class="star" onclick="rate(3)" aria-label="3 stars">&#11088;</button>
+      <button class="star" onclick="rate(4)" aria-label="4 stars">&#11088;</button>
+      <button class="star" onclick="rate(5)" aria-label="5 stars">&#11088;</button>
+    </div>
+    <div id="sMg" style="text-align:center;font-size:var(--txn);font-weight:700;color:var(--pri);min-height:26px"></div>
+    <div style="margin-top:var(--s5)">
+      <label for="cmtA" style="font-size:var(--txb);font-weight:700;display:block;margin-bottom:var(--s2)">Comments (optional):</label>
+      <textarea id="cmtA" class="wa" style="min-height:70px" placeholder="What did you enjoy most? What would you like to practise more?" aria-label="Lesson comments"></textarea>
+    </div>
+    <button class="btn btok" style="margin-top:var(--s4);width:100%;justify-content:center" onclick="sendFb()">&#128228; Send Feedback</button>
+    <div id="fbSent" style="display:none;margin-top:var(--s4);text-align:center;color:var(--suc);font-weight:700">&#128591; Thank you! See you next class!</div>
+  </div>
+  <div class="card" style="border:2px solid var(--pri);background:var(--pril)">
+    <h3 style="font-size:var(--txn);font-weight:800;color:var(--pri);margin-bottom:var(--s4)">&#128197; Homework &amp; Next Steps</h3>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s3)">
+      <li style="display:flex;gap:var(--s3);font-size:var(--txb)"><span>&#128221;</span><span>Write 50 words about a real or imaginary trip you have taken.</span></li>
+      <li style="display:flex;gap:var(--s3);font-size:var(--txb)"><span>&#127911;</span><span>Listen to an English travel podcast for at least 10 minutes.</span></li>
+      <li style="display:flex;gap:var(--s3);font-size:var(--txb)"><span>&#128172;</span><span>Ask a classmate 5 &ldquo;Have you ever&hellip;?&rdquo; questions about travel.</span></li>
+      <li style="display:flex;gap:var(--s3);font-size:var(--txb)"><span>&#128241;</span><span>Review the 8 vocabulary words &mdash; aim for 100% on flashcards!</span></li>
+    </ul>
+  </div>
+  <div style="margin-top:var(--s8);text-align:center">
+    <button class="btn btp" onclick="goto(0)" style="padding:var(--s4) var(--s10)">&#127882; Restart Lesson</button>
+  </div>
+</section>
+
+<script>
+// THEME TOGGLE
+const html=document.documentElement;
+let theme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+html.setAttribute('data-theme',theme);
+const thBtn=document.getElementById('thBtn');
+function updTH(){thBtn.innerHTML=theme==='dark'?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+updTH();thBtn.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';html.setAttribute('data-theme',theme);updTH();});
+
+// SCORE
+let score=0;
+function addPts(n){score+=n;document.getElementById('sNum').textContent=score;document.getElementById('fScore').textContent=score;const p=Math.min(Math.round((score/300)*100),100);document.getElementById('fBar').style.width=p+'%';}
+
+// TIMER
+let secs=3600,running=false,tiv=null;
+function toggleTimer(){running=!running;if(running){tiv=setInterval(()=>{secs=Math.max(0,secs-1);updT();if(!secs){clearInterval(tiv);running=false;}},1000);}else{clearInterval(tiv);}updT();}
+function updT(){const m=String(Math.floor(secs/60)).padStart(2,'0'),s=String(secs%60).padStart(2,'0');document.getElementById('tDisp').textContent=m+':'+s;document.getElementById('tBtn').classList.toggle('tmr-on',running);}
+
+// NAVIGATION
+let cur=0;
+const sEls=document.querySelectorAll('.sec'),pEls=document.querySelectorAll('.np');
+function goto(i){sEls[cur].classList.remove('on');pEls[cur].classList.remove('on');cur=i;sEls[i].classList.add('on');pEls[i].classList.add('on');window.scrollTo({top:0,behavior:'smooth'});const p=Math.round(((i+1)/sEls.length)*100);document.getElementById('pFill').style.width=p+'%';document.getElementById('pFill').parentElement.setAttribute('aria-valuenow',p);document.getElementById('pLbl').textContent='Section '+(i+1)+' of '+sEls.length;}
+function nxt(){if(cur<sEls.length-1)goto(cur+1);}
+function prv(){if(cur>0)goto(cur-1);}
+
+// ACHIEVEMENT TOAST
+function toast(icon,title,desc){document.getElementById('achI').textContent=icon;document.getElementById('achTi').textContent=title;document.getElementById('achD').textContent=desc;const el=document.getElementById('achT');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),3500);}
+
+// CONFETTI
+function confetti(){const w=document.getElementById('cw');const cols=['#1055b0','#d44f00','#005e52','#6416a0','#c98800','#1f6e29','#b52020'];for(let i=0;i<80;i++){const p=document.createElement('div');p.className='cp';p.style.cssText='left:'+(Math.random()*100)+'%;background:'+cols[~~(Math.random()*cols.length)]+';width:'+(6+~~(Math.random()*10))+'px;height:'+(6+~~(Math.random()*10))+'px;border-radius:'+(Math.random()>.5?'50%':'2px')+';animation-duration:'+(1.5+Math.random()*2)+'s;animation-delay:'+(Math.random()*.8)+'s';w.appendChild(p);p.addEventListener('animationend',()=>p.remove());}}
+
+// VOCABULARY DATA
+const vocab=[
+{w:'Itinerary',ph:'/&#618;&#712;t&#618;n.&#601;r.&#601;r.i/',em:'&#128467;',d:'A detailed plan for a journey, listing places and times.',ex:'We planned a 10-day itinerary across Europe.',pt:'Roteiro'},
+{w:'Accommodation',ph:'/&#601;&#716;k&#596;m.&#601;&#712;de&#618;.&#643;&#601;n/',em:'&#127976;',d:'A place where you sleep during a trip.',ex:'We found great accommodation near the beach.',pt:'Hospedagem'},
+{w:'Destination',ph:'/&#716;des.t&#618;&#712;ne&#618;.&#643;&#601;n/',em:'&#128205;',d:'The place you are travelling to.',ex:'Tokyo is on my list of dream destinations.',pt:'Destino'},
+{w:'Landmark',ph:'/&#712;l&#230;nd.m&#593;&#720;k/',em:'&#128509;',d:'A famous or important building or place.',ex:'The Eiffel Tower is Paris\'s most famous landmark.',pt:'Ponto tur&#237;stico'},
+{w:'Sightseeing',ph:'/&#712;sa&#618;t&#716;si&#720;.&#618;&#331;/',em:'&#128302;',d:'Visiting famous places as a tourist.',ex:'We spent the whole day sightseeing in Rome.',pt:'Turismo / Passeio'},
+{w:'Backpacker',ph:'/&#712;b&#230;k.p&#230;k.&#601;r/',em:'&#127376;',d:'A budget traveller who carries a backpack.',ex:'She travelled as a backpacker through Southeast Asia.',pt:'Mochileiro'},
+{w:'Souvenir',ph:'/&#716;su&#720;.v&#601;&#712;n&#618;&#601;r/',em:'&#128717;',d:'A small item bought to remember a trip.',ex:'He bought a souvenir magnet from every city.',pt:'Lembrança'},
+{w:'Jet-lag',ph:'/&#712;d&#658;et.l&#230;&#609;/',em:'&#128564;',d:'Tiredness after a long flight across time zones.',ex:'After 14 hours flying, she had terrible jet-lag.',pt:'Jet-lag'}
+];
+
+function buildVocab(){document.getElementById('vcG').innerHTML=vocab.map((v,i)=>`<div class="vc"><span class="vce">${v.em}</span><div class="vcw">${v.w}</div><div class="vcp">${v.ph}</div><div class="vcd">${v.d}</div><div class="vcx">&ldquo;${v.ex}&rdquo;</div><div class="vcpt">&#127463;&#127479; <strong>${v.pt}</strong></div><button class="abtn" onclick="speak(event,'${v.w}',${i})" aria-label="Hear ${v.w}">&#128266; Listen</button></div>`).join('');}
+
+function speak(e,word,i){e.stopPropagation();const b=e.currentTarget;if('speechSynthesis' in window){window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(word);u.lang='en-US';u.rate=0.85;b.classList.add('pl');b.textContent='&#128266; Playing...';u.onend=u.onerror=()=>{b.classList.remove('pl');b.innerHTML='&#128266; Listen';}; speechSynthesis.speak(u);}else{b.innerHTML='Audio N/A';}}
+
+function completeVocab(){addPts(20);toast('&#128218;','Vocab Master!','You studied all 8 travel words! +20 pts');nxt();}
+
+// VIDEO
+function loadV(){document.getElementById('vW').innerHTML='<iframe class="rv" src="https://www.youtube.com/embed/bhqk6NMdIyk?cc_load_policy=1&hl=en" title="Travel Experiences English Lesson" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>';}
+
+// COMPREHENSION QUESTIONS
+const cqD=[
+{q:'1. Which tense is used for travel experiences without a specific time?',opts:['Simple Past','Present Perfect','Future Simple','Past Continuous'],ans:1},
+{q:'2. Which question is grammatically correct?',opts:['Did you ever been to Paris?','Have you ever been to Paris?','Have you ever went to Paris?','Did you ever go in Paris?'],ans:1},
+{q:'3. What does "jet-lag" mean?',opts:['A type of aircraft','Tiredness after crossing time zones','A travel document','A famous tourist attraction'],ans:1}
+];
+function buildCQ(){document.getElementById('cqA').innerHTML=cqD.map((q,qi)=>`<div class="cq"><div class="cqt">${q.q}</div><div class="cqo">${q.opts.map((o,oi)=>`<label class="cqol"><input type="radio" name="cq${qi}" value="${oi}" aria-label="${o}"> ${o}</label>`).join('')}</div></div>`).join('');}
+function checkCQ(){let ok=0;cqD.forEach((q,qi)=>{const s=document.querySelector('input[name="cq'+qi+'"]:checked');if(s&&+s.value===q.ans)ok++;});const fb=document.getElementById('cqFb');if(ok===cqD.length){fb.innerHTML='<div class="qfb fbok show">&#127881; Perfect! All '+ok+' correct! +30 pts</div>';addPts(30);toast('&#127919;','Sharp Listener!','Perfect comprehension score!');}else{fb.innerHTML='<div class="qfb fberr show">You got '+ok+'/'+cqD.length+'. Review the video and try again! +'+ok*10+' pts</div>';addPts(ok*10);}}
+
+// DIALOGUE
+const dlgL=[
+{who:'Juliana',av:'J',cls:'avj',col:'var(--pur)',pr:'Ask Tatiane if she has ever been to another country.',ph:'Tatiane, have you ever been abroad?'},
+{who:'Tatiane',av:'T',cls:'avt',col:'var(--tel)',pr:'Answer yes and say where. Use Present Perfect.',ph:'Yes! I have been to Argentina. It was amazing!'},
+{who:'Galeno',av:'G',cls:'avg',col:'var(--acc)',pr:'Ask about the accommodation.',ph:'Where did you stay? Was the accommodation comfortable?'},
+{who:'Tatiane',av:'T',cls:'avt',col:'var(--tel)',pr:'Describe accommodation and compare it to home.',ph:'We stayed in a hostel — it was cheaper than a hotel!'},
+{who:'Juliana',av:'J',cls:'avj',col:'var(--pur)',pr:'Tell about your dream destination.',ph:'I would love to visit Japan. I have never been there!'},
+{who:'Galeno',av:'G',cls:'avg',col:'var(--acc)',pr:'Respond and say what you would do there.',ph:'Japan is on my list too! I would try all the local food.'}
+];
+function buildDlg(){document.getElementById('dlgB').innerHTML=dlgL.map((l,i)=>`<div class="dl" id="dl${i}"><div class="av ${l.cls}" style="flex-shrink:0;margin-top:4px">${l.av}</div><div class="dbl"><div class="dsp" style="color:${l.col}">${l.who}</div><div class="dpr">${l.pr}</div><textarea class="din" id="di${i}" rows="2" placeholder="${l.ph}" aria-label="${l.who}: ${l.pr}"></textarea></div></div>`).join('');}
+function checkDlg(){const f=dlgL.filter((_,i)=>document.getElementById('di'+i).value.trim().length>5).length;const fb=document.getElementById('dlgF');if(f===dlgL.length){fb.innerHTML='<div class="qfb fbok show">&#10003; All 6 lines completed! Great dialogue! +25 pts</div>';addPts(25);toast('&#128172;','Dialogue Pro!','Full dialogue completed!');}else{fb.innerHTML='<div class="qfb fberr show">'+f+'/'+dlgL.length+' lines done. Please fill in all boxes!</div>';}}
+function resetDlg(){dlgL.forEach((_,i)=>{document.getElementById('di'+i).value='';});document.getElementById('dlgF').innerHTML='';}
+
+// DRAG & DROP
+const correct=['I','have','never','been','to','Asia','before'];
+let dragged=null;
+function buildDrag(){const sh=[...correct].sort(()=>Math.random()-.5);document.getElementById('dragA').innerHTML=`<div style="font-size:var(--txb);color:var(--txm);font-weight:600;margin-bottom:var(--s2)">Arrange these words to form a correct sentence:</div><div class="dzone" id="wB" ondrop="dropTo(event,'wB')" ondragover="adrop(event)">${sh.map(w=>'<div class="ditem" draggable="true" ondragstart="dstart(event)" ondragend="dend(event)" data-w="'+w+'">'+w+'</div>').join('')}</div><div style="font-size:var(--txb);font-weight:700;color:var(--txm);margin:var(--s4) 0 var(--s2)">Your sentence:</div><div class="dzone" id="sZ" ondrop="dropTo(event,\'sZ\')" ondragover="adrop(event)" style="min-height:52px"></div>`;}
+function adrop(e){e.preventDefault();e.currentTarget.classList.add('ov');}
+function dstart(e){dragged=e.target;e.target.classList.add('drag');}
+function dend(e){e.target.classList.remove('drag');document.querySelectorAll('.dzone').forEach(z=>z.classList.remove('ov'));}
+function dropTo(e,z){e.preventDefault();document.getElementById(z).classList.remove('ov');if(dragged){document.getElementById(z).appendChild(dragged);dragged=null;}}
+function checkDrag(){const items=[...document.getElementById('sZ').querySelectorAll('.ditem')].map(el=>el.dataset.w);const fb=document.getElementById('dragF');if(JSON.stringify(items)===JSON.stringify(correct)){fb.innerHTML='<div class="qfb fbok show">&#127881; Perfect! "'+items.join(' ')+'" +15 pts</div>';addPts(15);toast('&#127921;','Puzzle Solved!','Sentence arranged correctly!');}else if(items.length===correct.length){fb.innerHTML='<div class="qfb fberr show">&#10060; Not quite. Correct: "'+correct.join(' ')+'"</div>';}else{fb.innerHTML='<div class="qfb fberr show">Move all words into the sentence zone first.</div>';}}
+function resetDrag(){buildDrag();document.getElementById('dragF').innerHTML='';}
+
+// QUIZ
+const qD=[
+{q:'Which sentence uses the Present Perfect correctly?',opts:['I have went to Brazil last year.','I went to Brazil last year when I was a child.','I have go to Brazil last year.','I was go to Brazil last year.'],ans:1,exp:'Use Simple Past (went) when a specific past time is mentioned.'},
+{q:'Choose the correct Present Perfect question:',opts:['Did you ever visit Italy?','Have you ever visited Italy?','Are you ever visited Italy?','Have you ever visit Italy?'],ans:1,exp:'Present Perfect: Have/Has + subject + past participle (visited).'},
+{q:"What is the opposite of 'check in' at a hotel?",opts:['Check away','Check out','Check off','Check over'],ans:1,exp:"'Check out' means to pay your bill and leave the hotel."},
+{q:"Fill in: 'This is my first time ___ Japan.'",opts:['visiting','visited','I visit','goes'],ans:0,exp:"'First time + -ing' is the most common pattern: first time visiting."},
+{q:'Which word means a small item bought as a memory of a trip?',opts:['Landmark','Itinerary','Souvenir','Backpacker'],ans:2,exp:'A souvenir is an object kept as a reminder of a trip or holiday.'},
+{q:'She _____ to Europe twice. She loves it there!',opts:['went','has been','was','have been'],ans:1,exp:"Use 'has been' (Present Perfect) for experiences with no specific time."}
+];
+let qi=0,qa=[];
+function bQ(){qi=0;qa=[];rQ();}
+function rQ(){if(qi>=qD.length){shRes();return;}document.getElementById('qCard').style.display='block';document.getElementById('qRes').style.display='none';const q=qD[qi];document.getElementById('qDots').innerHTML=qD.map((_,i)=>'<div class="qdot '+(i<qi?(qa[i]===qD[i].ans?'ok':'no'):i===qi?'c':'')+'"></div>').join('')+'<span style="font-size:var(--txs);color:var(--txm);font-weight:700;margin-left:var(--s2)">'+(qi+1)+'/'+qD.length+'</span>';document.getElementById('qT').textContent=q.q;document.getElementById('qO').innerHTML=q.opts.map((o,i)=>'<button class="qob" onclick="pickA('+i+')"><span class="ql">'+String.fromCharCode(65+i)+'</span>'+o+'</button>').join('');document.getElementById('qFb').className='qfb';document.getElementById('qFb').textContent='';document.getElementById('nQB').style.display='none';}
+function pickA(i){const q=qD[qi];document.querySelectorAll('.qob').forEach(o=>o.disabled=true);document.querySelectorAll('.qob')[i].classList.add(i===q.ans?'ok':'no');if(i!==q.ans)document.querySelectorAll('.qob')[q.ans].classList.add('ok');qa[qi]=i;const fb=document.getElementById('qFb');if(i===q.ans){fb.textContent='&#10003; Correct! '+q.exp;fb.className='qfb fbok show';addPts(20);}else{fb.textContent='&#10060; '+q.exp;fb.className='qfb fberr show';}if(qi<qD.length-1){document.getElementById('nQB').style.display='flex';}else{setTimeout(shRes,1400);}}
+function nextQ(){qi++;rQ();}
+function shRes(){document.getElementById('qCard').style.display='none';document.getElementById('qRes').style.display='block';const ok=qa.filter((a,i)=>a===qD[i].ans).length;const pct=Math.round((ok/qD.length)*100);document.getElementById('rS').textContent=ok+'/'+qD.length+' ('+pct+'%)';let em='&#128522;',ti='Good effort!',mg='Keep practising!';if(pct===100){em='&#127942;';ti='Perfect Score!';mg='Outstanding performance!';confetti();toast('&#127942;','Quiz Champion!','100% on the grammar quiz!');}else if(pct>=80){em='&#127881;';ti='Excellent!';mg='Great work! Almost perfect!';toast('&#11088;','Quiz Star!','80%+ correct! Well done!');}else if(pct>=60){em='&#128076;';ti='Not bad!';mg='Review the questions you missed.';}document.getElementById('rE').textContent=em;document.getElementById('rT').textContent=ti;document.getElementById('rM').textContent=mg;}
+function rqz(){document.getElementById('qRes').style.display='none';bQ();}
+
+// TABS
+function stab(n){['q','f'].forEach(x=>{document.getElementById('t'+x.toUpperCase()).classList.toggle('on',x===n);document.getElementById('p'+x.toUpperCase()).classList.toggle('on',x===n);document.getElementById('t'+x.toUpperCase()).setAttribute('aria-selected',x===n);});}
+
+// FLASHCARDS
+let fci=0,fcKn=new Array(vocab.length).fill(false);
+function rFC(){const v=vocab[fci];document.getElementById('fcS').classList.remove('fl');document.getElementById('fcW').textContent=v.em+' '+v.w;document.getElementById('fcH').textContent=v.ph+' - '+v.d.split('.')[0];document.getElementById('fcTl').innerHTML='&#127463;&#127479; '+v.pt;document.getElementById('fcEx').textContent='"'+v.ex+'"';document.getElementById('fcC').textContent=(fci+1)+' / '+vocab.length;document.getElementById('fcKn').textContent='Known: '+fcKn.filter(Boolean).length+' / '+vocab.length;}
+function flipFC(){document.getElementById('fcS').classList.toggle('fl');}
+function nextFC(){fci=(fci+1)%vocab.length;rFC();}
+function prevFC(){fci=(fci-1+vocab.length)%vocab.length;rFC();}
+function mFC(k){fcKn[fci]=k;if(k)addPts(5);if(fcKn.every(Boolean)){toast('&#127920;','Flashcard Master!','You know all 8 vocabulary words!');confetti();}nextFC();}
+document.getElementById('fcS').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipFC();}});
+
+// WORD COUNTERS
+function wc(s){return s.trim().split(/\s+/).filter(w=>w.length).length;}
+[['wJ','wcJ'],['wT','wcT'],['wG','wcG']].forEach(([ta,wci])=>{const el=document.getElementById(ta);const cnt=document.getElementById(wci);if(el&&cnt)el.addEventListener('input',()=>{const n=wc(el.value);cnt.textContent=n;cnt.style.color=n>=30?'var(--suc)':'var(--pri)';});});
+
+// RECORDING
+const rSt={};
+function togRec(n){const b=document.getElementById('r'+n),st=document.getElementById('rSt'+n);if(!rSt[n]){rSt[n]=true;b.classList.add('rec');b.innerHTML='<div class="rd"></div> Stop Recording';st.textContent='&#128308; Recording...';if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){navigator.mediaDevices.getUserMedia({audio:true}).then(()=>{}).catch(()=>{st.textContent='Microphone not available (simulation mode)';});}}else{rSt[n]=false;b.classList.remove('rec');b.innerHTML='<div class="rd"></div> Record Again';st.textContent='&#10003; Saved! +10 pts';addPts(10);toast('&#127908;','Speaker!',n+' recorded their answer!');}}
+
+// SUBMIT WRITING
+function submitW(){const p=[['wJ','Juliana'],['wT','Tatiane'],['wG','Galeno']];let msgs=[],pts=0;p.forEach(([id,nm])=>{const n=wc(document.getElementById(id).value);if(n>=30){msgs.push('&#10003; '+nm+': Excellent! ('+n+' words)');pts+=20;}else if(n>0){msgs.push('&#9888; '+nm+': '+n+'/30 words &mdash; add more!');pts+=5;}else{msgs.push('&#10060; '+nm+': Please write your answer.');}});const all=p.every(([id])=>wc(document.getElementById(id).value)>=30);document.getElementById('wFb').innerHTML='<div class="qfb '+(all?'fbok':'fberr')+' show">'+msgs.join('<br>')+'<br><strong>+'+pts+' points earned!</strong></div>';addPts(pts);if(all){toast('&#9999;','Writer!','All writing tasks complete!');confetti();}}
+
+// RATING
+let sv=0;
+const sMs=['','Needs improvement &#128543;','It was okay &#128578;','Good lesson! &#128522;','Great class! &#128515;','Amazing! Loved it! &#129321;'];
+function rate(n){sv=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('on',i<n));document.getElementById('sMg').innerHTML=sMs[n];}
+function sendFb(){if(!sv){document.getElementById('sMg').innerHTML='&#9888; Please select a rating first!';return;}addPts(10);document.getElementById('fbSent').style.display='block';toast('&#127881;','Lesson Complete!','Thanks for your feedback! +10 pts');confetti();}
+
+// INIT
+buildVocab();buildCQ();buildDlg();buildDrag();bQ();rFC();
+</script>
+</body>
+</html>

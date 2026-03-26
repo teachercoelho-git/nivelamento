@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel & Adventure — English with Juliane ✈️</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Art direction: Travel & Adventure → Energetic, warm, playful, tropical vibes
+         Palette: warm coral accent + ocean teal secondary + sunny yellows
+         Typography: Sora (display) + Nunito (body) — friendly, rounded, modern
+         Density: spacious and playful */
+
+      --font-display: 'Sora', 'Arial Rounded MT Bold', sans-serif;
+      --font-body: 'Nunito', 'Segoe UI', sans-serif;
+
+      /* Type Scale */
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-hero: clamp(2.2rem,   1rem    + 4vw,    4.5rem);
+
+      /* Spacing */
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+      --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+      --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+      --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+      /* Radius */
+      --radius-sm: 0.5rem; --radius-md: 0.75rem; --radius-lg: 1rem;
+      --radius-xl: 1.5rem; --radius-2xl: 2rem; --radius-full: 9999px;
+
+      /* Transitions */
+      --transition-ui: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Travel & Adventure Custom Palette — Light Mode */
+      --color-bg: #fff9f5;
+      --color-surface: #fffcfa;
+      --color-surface-2: #fff5ef;
+      --color-surface-offset: #ffeee4;
+      --color-divider: #f0d9cc;
+      --color-border: #e8d0c2;
+
+      --color-text: #2d1a0e;
+      --color-text-muted: #7a5a47;
+      --color-text-faint: #c4a593;
+      --color-text-inverse: #fffcfa;
+
+      --color-primary: #e05c2a;     /* Coral/Sunset Orange */
+      --color-primary-hover: #c44a1a;
+      --color-primary-active: #a33a10;
+      --color-primary-highlight: #fce8de;
+
+      --color-teal: #0d7a72;        /* Ocean Teal */
+      --color-teal-hover: #0a6060;
+      --color-teal-highlight: #d4ecea;
+
+      --color-yellow: #f2b825;      /* Sunny Yellow */
+      --color-yellow-hover: #e0a010;
+      --color-yellow-highlight: #fef5d4;
+
+      --color-purple: #7c5cbf;
+      --color-green: #2e8b5a;
+      --color-blue: #1a6fa8;
+
+      --color-success: #2e8b5a;
+      --color-success-highlight: #d4ead9;
+      --color-error: #c0392b;
+      --color-error-highlight: #fde8e6;
+
+      --shadow-sm: 0 1px 3px oklch(0.35 0.05 40 / 0.08);
+      --shadow-md: 0 4px 12px oklch(0.35 0.05 40 / 0.12);
+      --shadow-lg: 0 8px 28px oklch(0.35 0.05 40 / 0.15);
+      --shadow-xl: 0 16px 48px oklch(0.35 0.05 40 / 0.18);
+
+      --content-narrow: 640px;
+      --content-default: 900px;
+      --content-wide: 1100px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #1a100a;
+      --color-surface: #211510;
+      --color-surface-2: #271a13;
+      --color-surface-offset: #301f17;
+      --color-divider: #3a2820;
+      --color-border: #4a3028;
+      --color-text: #f0ddd0;
+      --color-text-muted: #b09080;
+      --color-text-faint: #6a5046;
+      --color-text-inverse: #1a100a;
+      --color-primary: #ff7c4a;
+      --color-primary-hover: #ff9468;
+      --color-primary-active: #ffac88;
+      --color-primary-highlight: #3a2010;
+      --color-teal: #4db8b0;
+      --color-teal-hover: #70ccc6;
+      --color-teal-highlight: #10302e;
+      --color-yellow: #ffc93d;
+      --color-yellow-hover: #ffd870;
+      --color-yellow-highlight: #2e2408;
+      --color-success: #5bc88a;
+      --color-success-highlight: #103020;
+      --color-error: #ff6b60;
+      --color-error-highlight: #301010;
+      --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3);
+      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+      --shadow-lg: 0 8px 28px oklch(0 0 0 / 0.5);
+    }
+
+    /* ===== BASE STYLES ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100dvh;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    ::selection { background: var(--color-primary-highlight); color: var(--color-text); }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in oklch, var(--color-bg) 90%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-divider);
+      padding: var(--space-3) var(--space-6);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-family: var(--font-display); font-weight: 800;
+      font-size: var(--text-lg); color: var(--color-primary);
+    }
+    .nav-logo svg { width: 32px; height: 32px; }
+    .nav-links {
+      display: flex; gap: var(--space-2); list-style: none; flex-wrap: wrap;
+    }
+    .nav-links a {
+      font-size: var(--text-sm); font-weight: 600; padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-full); color: var(--color-text-muted);
+      transition: color var(--transition-ui), background var(--transition-ui);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--color-primary); background: var(--color-primary-highlight);
+    }
+    .nav-right { display: flex; align-items: center; gap: var(--space-3); }
+    .progress-badge {
+      font-size: var(--text-xs); font-weight: 700; padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full); background: var(--color-yellow-highlight);
+      color: var(--color-yellow-hover); border: 1.5px solid var(--color-yellow);
+      display: flex; align-items: center; gap: var(--space-1);
+    }
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-muted); border: 1.5px solid var(--color-border);
+      transition: all var(--transition-ui);
+      background: var(--color-surface);
+    }
+    .theme-toggle:hover { color: var(--color-primary); border-color: var(--color-primary); }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg in oklch, var(--color-primary-highlight) 0%, var(--color-teal-highlight) 50%, var(--color-yellow-highlight) 100%);
+      padding: var(--space-16) var(--space-6) var(--space-12);
+      text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='30' cy='30' r='2' fill='%23e05c2a' opacity='0.08'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: var(--content-default); margin: 0 auto; }
+    .hero-greeting {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-surface); border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-full); padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm); font-weight: 700; color: var(--color-teal);
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      animation: float 4s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-size: var(--text-hero); font-weight: 900;
+      background: linear-gradient(135deg in oklch, var(--color-primary), var(--color-teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-4); line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-size: var(--text-lg); color: var(--color-text-muted); font-weight: 600;
+      max-width: 520px; margin: 0 auto var(--space-8);
+    }
+    .hero-img {
+      max-width: 580px; margin: 0 auto; border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-xl);
+      animation: float 6s ease-in-out infinite 1s;
+      border: 3px solid var(--color-surface);
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center;
+      margin-top: var(--space-6);
+    }
+    .hero-tag {
+      font-size: var(--text-xs); font-weight: 700; padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full); border: 1.5px solid;
+    }
+    .hero-tag.coral { color: var(--color-primary); border-color: var(--color-primary); background: var(--color-primary-highlight); }
+    .hero-tag.teal { color: var(--color-teal); border-color: var(--color-teal); background: var(--color-teal-highlight); }
+    .hero-tag.yellow { color: var(--color-yellow-hover); border-color: var(--color-yellow); background: var(--color-yellow-highlight); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-wrapper {
+      max-width: var(--content-default); margin: 0 auto;
+      padding: var(--space-12) var(--space-6);
+    }
+    .section-header {
+      display: flex; align-items: center; gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    .section-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .icon-coral { background: var(--color-primary-highlight); }
+    .icon-teal { background: var(--color-teal-highlight); }
+    .icon-yellow { background: var(--color-yellow-highlight); }
+    .icon-purple { background: #ede8f7; }
+    [data-theme="dark"] .icon-purple { background: #2a2040; }
+    .section-label {
+      font-size: var(--text-xs); font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: var(--space-1);
+    }
+    .label-coral { color: var(--color-primary); }
+    .label-teal { color: var(--color-teal); }
+    .label-yellow { color: var(--color-yellow-hover); }
+    .label-purple { color: var(--color-purple); }
+    .section-title {
+      font-size: var(--text-xl); font-weight: 800; color: var(--color-text);
+    }
+
+    /* ===== SECTION DIVIDERS ===== */
+    .section-divider {
+      height: 4px; border-radius: var(--radius-full);
+      margin: 0; border: none;
+    }
+    .divider-coral { background: linear-gradient(90deg, var(--color-primary), var(--color-yellow)); }
+    .divider-teal  { background: linear-gradient(90deg, var(--color-teal), var(--color-primary)); }
+    .divider-yellow { background: linear-gradient(90deg, var(--color-yellow), var(--color-teal)); }
+    .divider-purple { background: linear-gradient(90deg, var(--color-purple), var(--color-primary)); }
+
+    .bg-teal-subtle { background: color-mix(in oklch, var(--color-teal-highlight) 60%, var(--color-bg)); }
+    .bg-yellow-subtle { background: color-mix(in oklch, var(--color-yellow-highlight) 60%, var(--color-bg)); }
+    .bg-coral-subtle { background: color-mix(in oklch, var(--color-primary-highlight) 60%, var(--color-bg)); }
+    .bg-purple-subtle { background: #f7f4fd; }
+    [data-theme="dark"] .bg-purple-subtle { background: #1c1728; }
+    [data-theme="dark"] .bg-teal-subtle { background: color-mix(in oklch, var(--color-teal-highlight) 80%, var(--color-bg)); }
+    [data-theme="dark"] .bg-yellow-subtle { background: color-mix(in oklch, var(--color-yellow-highlight) 80%, var(--color-bg)); }
+    [data-theme="dark"] .bg-coral-subtle { background: color-mix(in oklch, var(--color-primary-highlight) 80%, var(--color-bg)); }
+
+    /* ===== VOCAB FLASHCARDS ===== */
+    .flashcard-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-4);
+    }
+    .flashcard {
+      perspective: 1000px; height: 160px; cursor: pointer;
+    }
+    .flashcard-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.2, 0.64, 1);
+      border-radius: var(--radius-xl);
+    }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: var(--radius-xl);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: var(--space-4);
+      box-shadow: var(--shadow-md);
+      border: 2px solid transparent;
+      transition: box-shadow var(--transition-ui);
+    }
+    .flashcard:hover .flashcard-front, .flashcard:hover .flashcard-back {
+      box-shadow: var(--shadow-lg);
+    }
+    .flashcard-front {
+      background: var(--color-surface);
+      border-color: var(--color-border);
+    }
+    .flashcard-back {
+      background: linear-gradient(135deg in oklch, var(--color-primary), color-mix(in oklch, var(--color-primary) 60%, var(--color-teal)));
+      transform: rotateY(180deg);
+      color: white;
+    }
+    .flashcard-emoji { font-size: 2.2rem; margin-bottom: var(--space-2); }
+    .flashcard-word {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: var(--text-lg); text-align: center;
+      color: var(--color-text);
+    }
+    .flashcard-hint {
+      font-size: var(--text-xs); color: var(--color-text-faint);
+      margin-top: var(--space-1);
+    }
+    .flashcard-translation {
+      font-size: var(--text-base); font-weight: 700;
+      text-align: center; margin-bottom: var(--space-1);
+    }
+    .flashcard-example {
+      font-size: var(--text-xs); text-align: center;
+      opacity: 0.85; font-style: italic; line-height: 1.4;
+    }
+    .flashcard-flip-hint {
+      font-size: var(--text-xs); margin-top: var(--space-2);
+      color: var(--color-text-faint); display: flex; align-items: center; gap: 4px;
+    }
+
+    /* ===== AUDIO PHRASE CARDS ===== */
+    .phrase-list { display: flex; flex-direction: column; gap: var(--space-3); }
+    .phrase-card {
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4) var(--space-5);
+      display: flex; align-items: center; gap: var(--space-4);
+      transition: all var(--transition-ui);
+      box-shadow: var(--shadow-sm);
+    }
+    .phrase-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--color-teal); }
+    .phrase-play-btn {
+      width: 44px; height: 44px; border-radius: var(--radius-full); flex-shrink: 0;
+      background: var(--color-teal); color: white;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition-bounce);
+      box-shadow: 0 2px 8px oklch(from var(--color-teal) l c h / 0.35);
+    }
+    .phrase-play-btn:hover { transform: scale(1.12); background: var(--color-teal-hover); }
+    .phrase-play-btn.playing { background: var(--color-primary); animation: pulse-ring 1s ease-out infinite; }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 oklch(from var(--color-primary) l c h / 0.5); }
+      70% { box-shadow: 0 0 0 10px oklch(from var(--color-primary) l c h / 0); }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
+    .phrase-content { flex: 1; }
+    .phrase-en { font-weight: 700; font-size: var(--text-base); color: var(--color-text); }
+    .phrase-pt { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: 2px; }
+    .phrase-context {
+      font-size: var(--text-xs); color: var(--color-primary); font-weight: 600;
+      background: var(--color-primary-highlight); border-radius: var(--radius-full);
+      padding: 2px 8px; display: inline-block; margin-top: var(--space-1);
+    }
+
+    /* ===== DRAG AND DROP ===== */
+    .dnd-container {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-6); margin-top: var(--space-6);
+    }
+    @media (max-width: 600px) { .dnd-container { grid-template-columns: 1fr; } }
+    .dnd-panel {
+      background: var(--color-surface); border-radius: var(--radius-xl);
+      padding: var(--space-5); border: 1.5px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .dnd-panel-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); margin-bottom: var(--space-4);
+      color: var(--color-text-muted); text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: var(--space-2);
+    }
+    .dnd-words { display: flex; flex-wrap: wrap; gap: var(--space-2); min-height: 56px; }
+    .dnd-word {
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-surface-2); border: 2px solid var(--color-border);
+      border-radius: var(--radius-full); cursor: grab; user-select: none;
+      font-weight: 700; font-size: var(--text-sm); color: var(--color-text);
+      transition: all var(--transition-bounce);
+      box-shadow: var(--shadow-sm);
+    }
+    .dnd-word:hover { transform: translateY(-3px) scale(1.04); box-shadow: var(--shadow-md); border-color: var(--color-primary); color: var(--color-primary); }
+    .dnd-word.dragging { opacity: 0.4; transform: scale(0.95); }
+    .dnd-word.placed-correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-success); }
+    .dnd-word.placed-wrong { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-error); }
+    .dnd-sentences { display: flex; flex-direction: column; gap: var(--space-3); }
+    .dnd-sentence {
+      display: flex; align-items: center; gap: var(--space-2);
+      background: var(--color-bg); border: 2px dashed var(--color-divider);
+      border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4);
+      min-height: 52px; font-size: var(--text-sm); font-weight: 600;
+      transition: all var(--transition-ui); flex-wrap: wrap;
+    }
+    .dnd-sentence.drag-over { border-color: var(--color-teal); background: var(--color-teal-highlight); }
+    .dnd-sentence.correct { border-color: var(--color-success); border-style: solid; background: var(--color-success-highlight); }
+    .dnd-sentence.wrong { border-color: var(--color-error); border-style: solid; background: var(--color-error-highlight); }
+    .dnd-blank {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 80px; height: 34px; border-bottom: 2.5px solid var(--color-teal);
+      color: var(--color-teal); font-weight: 800; padding: 0 var(--space-2);
+    }
+    .dnd-blank.filled { border-style: solid; border-radius: var(--radius-sm); border-color: var(--color-teal); background: var(--color-teal-highlight); }
+    .dnd-check-btn {
+      display: flex; align-items: center; gap: var(--space-2);
+      background: var(--color-teal); color: white;
+      padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+      font-weight: 700; font-size: var(--text-sm);
+      transition: all var(--transition-bounce);
+      margin-top: var(--space-5);
+      box-shadow: 0 4px 16px oklch(from var(--color-teal) l c h / 0.3);
+    }
+    .dnd-check-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-lg); }
+
+    /* ===== QUIZ ===== */
+    .quiz-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+      border: 1.5px solid var(--color-border);
+      max-width: 640px; margin: 0 auto;
+    }
+    .quiz-progress-track {
+      height: 8px; background: var(--color-surface-offset);
+      border-radius: var(--radius-full); margin-bottom: var(--space-6); overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%; border-radius: var(--radius-full);
+      background: linear-gradient(90deg, var(--color-primary), var(--color-teal));
+      transition: width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+    .quiz-counter {
+      font-size: var(--text-xs); font-weight: 700; color: var(--color-text-muted);
+      margin-bottom: var(--space-4); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .quiz-question {
+      font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800;
+      color: var(--color-text); margin-bottom: var(--space-6); line-height: 1.3;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: var(--space-3); }
+    .quiz-option {
+      display: flex; align-items: center; gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-bg); border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg); cursor: pointer;
+      font-weight: 600; font-size: var(--text-base);
+      transition: all var(--transition-ui);
+      text-align: left;
+    }
+    .quiz-option:hover:not(:disabled) { border-color: var(--color-primary); background: var(--color-primary-highlight); color: var(--color-primary); }
+    .quiz-option.selected-correct { border-color: var(--color-success); background: var(--color-success-highlight); color: var(--color-success); }
+    .quiz-option.selected-wrong { border-color: var(--color-error); background: var(--color-error-highlight); color: var(--color-error); }
+    .quiz-option:disabled { cursor: default; }
+    .quiz-option-letter {
+      width: 28px; height: 28px; border-radius: var(--radius-full); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--text-xs); font-weight: 800;
+      background: var(--color-surface-offset); color: var(--color-text-muted);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-5); padding: var(--space-4);
+      border-radius: var(--radius-lg); font-weight: 600; font-size: var(--text-sm);
+      display: none; align-items: center; gap: var(--space-2);
+    }
+    .quiz-feedback.show { display: flex; }
+    .quiz-feedback.correct { background: var(--color-success-highlight); color: var(--color-success); border: 1.5px solid var(--color-success); }
+    .quiz-feedback.wrong { background: var(--color-error-highlight); color: var(--color-error); border: 1.5px solid var(--color-error); }
+    .quiz-next-btn {
+      display: none; margin-top: var(--space-5);
+      background: var(--color-primary); color: white;
+      padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+      font-weight: 800; font-size: var(--text-base);
+      transition: all var(--transition-bounce);
+      box-shadow: 0 4px 16px oklch(from var(--color-primary) l c h / 0.3);
+      align-items: center; gap: var(--space-2);
+    }
+    .quiz-next-btn.show { display: flex; }
+    .quiz-next-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-lg); }
+    .quiz-score-card {
+      text-align: center; display: none;
+    }
+    .quiz-score-card.show { display: block; }
+    .quiz-score-emoji { font-size: 4rem; display: block; margin-bottom: var(--space-4); }
+    .quiz-score-number { font-size: var(--text-2xl); font-weight: 900; color: var(--color-primary); }
+    .quiz-restart-btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      margin-top: var(--space-6);
+      background: var(--color-primary); color: white;
+      padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+      font-weight: 800; font-size: var(--text-base);
+      transition: all var(--transition-bounce);
+    }
+    .quiz-restart-btn:hover { transform: scale(1.05); }
+
+    /* ===== WORD MATCHING GAME ===== */
+    .matching-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+    }
+    @media (max-width: 500px) { .matching-grid { grid-template-columns: 1fr; } }
+    .matching-column { display: flex; flex-direction: column; gap: var(--space-2); }
+    .match-item {
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface); border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg); cursor: pointer;
+      font-weight: 600; font-size: var(--text-sm); color: var(--color-text);
+      transition: all var(--transition-ui); text-align: center;
+      box-shadow: var(--shadow-sm); min-height: 48px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .match-item:hover:not(.matched):not(.wrong-flash) { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-highlight); transform: translateY(-2px); }
+    .match-item.selected { border-color: var(--color-teal); color: var(--color-teal); background: var(--color-teal-highlight); transform: scale(1.03); box-shadow: var(--shadow-md); }
+    .match-item.matched { border-color: var(--color-success); background: var(--color-success-highlight); color: var(--color-success); cursor: default; }
+    .match-item.wrong-flash { border-color: var(--color-error); background: var(--color-error-highlight); color: var(--color-error); animation: shake 0.4s ease-in-out; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .match-score { font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); margin-top: var(--space-4); text-align: center; }
+    .match-congrats {
+      display: none; text-align: center; padding: var(--space-6);
+      background: var(--color-success-highlight); border-radius: var(--radius-xl);
+      margin-top: var(--space-4); border: 1.5px solid var(--color-success);
+    }
+    .match-congrats.show { display: block; }
+    .match-reset-btn {
+      margin-top: var(--space-4);
+      background: var(--color-teal); color: white;
+      padding: var(--space-2) var(--space-6); border-radius: var(--radius-full);
+      font-weight: 700; font-size: var(--text-sm);
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      transition: all var(--transition-bounce);
+    }
+    .match-reset-btn:hover { transform: scale(1.05); }
+
+    /* ===== FILL IN BLANKS ===== */
+    .fill-exercise { display: flex; flex-direction: column; gap: var(--space-4); }
+    .fill-item {
+      background: var(--color-surface); border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-xl); padding: var(--space-5);
+      box-shadow: var(--shadow-sm); transition: all var(--transition-ui);
+    }
+    .fill-item:hover { box-shadow: var(--shadow-md); }
+    .fill-sentence {
+      font-size: var(--text-base); font-weight: 600; line-height: 2;
+      display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1);
+    }
+    .fill-input {
+      display: inline-block; min-width: 100px; max-width: 200px;
+      border: none; border-bottom: 2.5px solid var(--color-teal);
+      background: transparent; color: var(--color-text);
+      font: inherit; font-weight: 800; font-size: var(--text-base);
+      padding: 2px var(--space-2); text-align: center;
+      outline: none; transition: border-color var(--transition-ui);
+    }
+    .fill-input:focus { border-color: var(--color-primary); }
+    .fill-input.correct { border-color: var(--color-success); color: var(--color-success); }
+    .fill-input.wrong { border-color: var(--color-error); color: var(--color-error); }
+    .fill-hint { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-2); }
+    .fill-check-btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-yellow); color: var(--color-text);
+      padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+      font-weight: 800; font-size: var(--text-sm);
+      transition: all var(--transition-bounce); margin-top: var(--space-6);
+      box-shadow: 0 4px 12px oklch(from var(--color-yellow) l c h / 0.35);
+    }
+    .fill-check-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-lg); }
+
+    /* ===== DIALOGUE SECTION ===== */
+    .dialogue-bubble {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      margin-bottom: var(--space-4); animation: slideIn 0.5s ease forwards;
+      opacity: 0;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dialogue-bubble.right { flex-direction: row-reverse; }
+    .bubble-avatar {
+      width: 40px; height: 40px; border-radius: var(--radius-full); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 800; font-family: var(--font-display);
+    }
+    .avatar-a { background: var(--color-primary); color: white; }
+    .avatar-b { background: var(--color-teal); color: white; }
+    .bubble-content {
+      max-width: 78%; padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-xl); font-size: var(--text-sm);
+      font-weight: 600; line-height: 1.6; box-shadow: var(--shadow-sm);
+    }
+    .bubble-left .bubble-content {
+      background: var(--color-surface); border: 1.5px solid var(--color-border);
+      border-top-left-radius: var(--radius-sm);
+    }
+    .bubble-right .bubble-content {
+      background: var(--color-primary); color: white;
+      border-top-right-radius: var(--radius-sm);
+    }
+    .dialogue-bubble.right .bubble-content {
+      background: var(--color-primary); color: white;
+      border-top-right-radius: var(--radius-sm); border-radius: var(--radius-xl);
+      border-top-right-radius: var(--radius-sm);
+    }
+    .bubble-who { font-size: var(--text-xs); color: var(--color-text-faint); margin-bottom: 4px; font-weight: 700; }
+
+    /* ===== WORD SCRAMBLE ===== */
+    .scramble-box {
+      background: var(--color-surface); border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-2xl); padding: var(--space-8);
+      text-align: center; box-shadow: var(--shadow-lg); max-width: 500px; margin: 0 auto;
+    }
+    .scramble-word-display {
+      display: flex; gap: var(--space-2); justify-content: center;
+      flex-wrap: wrap; margin-bottom: var(--space-6);
+    }
+    .scramble-letter {
+      width: 44px; height: 52px;
+      background: linear-gradient(135deg, var(--color-primary-highlight), var(--color-teal-highlight));
+      border: 2px solid var(--color-border); border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: var(--text-lg);
+      color: var(--color-text); cursor: pointer;
+      transition: all var(--transition-bounce);
+      user-select: none; box-shadow: var(--shadow-sm);
+    }
+    .scramble-letter:hover { transform: translateY(-4px) rotate(3deg); box-shadow: var(--shadow-md); border-color: var(--color-primary); }
+    .scramble-letter.selected { background: var(--color-primary); color: white; border-color: var(--color-primary); transform: translateY(-2px); }
+    .scramble-answer-area {
+      display: flex; gap: var(--space-2); justify-content: center;
+      min-height: 60px; flex-wrap: wrap; margin-bottom: var(--space-4);
+      padding: var(--space-3); background: var(--color-bg);
+      border: 2px dashed var(--color-divider); border-radius: var(--radius-lg);
+      transition: border-color var(--transition-ui);
+    }
+    .scramble-answer-area.has-items { border-color: var(--color-teal); }
+    .scramble-answer-letter {
+      width: 44px; height: 52px;
+      background: var(--color-teal); color: white;
+      border-radius: var(--radius-md); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: var(--text-lg);
+      transition: all var(--transition-bounce); box-shadow: var(--shadow-sm);
+    }
+    .scramble-answer-letter:hover { transform: translateY(-2px); opacity: 0.85; }
+    .scramble-hint { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-5); font-style: italic; }
+    .scramble-submit {
+      background: var(--color-primary); color: white;
+      padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+      font-weight: 800; font-size: var(--text-base);
+      transition: all var(--transition-bounce);
+      box-shadow: 0 4px 16px oklch(from var(--color-primary) l c h / 0.3);
+    }
+    .scramble-submit:hover { transform: translateY(-2px) scale(1.03); }
+    .scramble-feedback { margin-top: var(--space-4); font-weight: 700; font-size: var(--text-base); min-height: 1.5rem; }
+    .scramble-feedback.correct { color: var(--color-success); }
+    .scramble-feedback.wrong { color: var(--color-error); }
+
+    /* ===== REVIEW STARS ===== */
+    .review-section {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-4);
+    }
+    .review-card {
+      background: var(--color-surface); border-radius: var(--radius-xl);
+      padding: var(--space-5); border: 1.5px solid var(--color-border);
+      box-shadow: var(--shadow-sm); transition: all var(--transition-ui);
+    }
+    .review-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .review-card-icon { font-size: 2rem; margin-bottom: var(--space-3); }
+    .review-card-title {
+      font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg);
+      color: var(--color-text); margin-bottom: var(--space-2);
+    }
+    .review-card-body { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+    .review-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: var(--text-xs); font-weight: 700;
+      background: var(--color-primary-highlight); color: var(--color-primary);
+      padding: 2px 10px; border-radius: var(--radius-full); margin-top: var(--space-3);
+    }
+
+    /* ===== XP BADGE / FOOTER ===== */
+    .xp-banner {
+      background: linear-gradient(135deg in oklch, var(--color-primary), var(--color-teal));
+      color: white; text-align: center; padding: var(--space-12) var(--space-6);
+      position: relative; overflow: hidden;
+    }
+    .xp-banner::before {
+      content: '🌍 ✈️ 🗺️ 🏖️ 🌴 🏔️ 🗼 🎒 🌊 🏕️';
+      position: absolute; top: var(--space-4); left: 0; right: 0;
+      font-size: 1.4rem; letter-spacing: 1.5rem;
+      opacity: 0.2; white-space: nowrap; overflow: hidden;
+    }
+    .xp-content { position: relative; max-width: var(--content-narrow); margin: 0 auto; }
+    .xp-title {
+      font-family: var(--font-display); font-size: var(--text-xl);
+      font-weight: 900; margin-bottom: var(--space-3);
+    }
+    .xp-subtitle { font-size: var(--text-base); opacity: 0.9; max-width: 440px; margin: 0 auto var(--space-6); }
+    .xp-emoji-row { font-size: 2.5rem; display: flex; gap: var(--space-6); justify-content: center; flex-wrap: wrap; }
+
+    /* ===== CONFETTI ===== */
+    #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+    /* ===== TOOLTIPS ===== */
+    .tooltip-wrap { position: relative; display: inline-block; }
+    .tooltip-text {
+      visibility: hidden; opacity: 0; width: max-content; max-width: 200px;
+      background: var(--color-text); color: var(--color-surface);
+      font-size: var(--text-xs); font-weight: 600; padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-md); position: absolute; bottom: 130%; left: 50%;
+      transform: translateX(-50%); pointer-events: none;
+      transition: opacity var(--transition-ui); z-index: 10;
+    }
+    .tooltip-wrap:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+    /* ===== MISC UTILITIES ===== */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-primary); color: white;
+      padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+      font-weight: 800; font-size: var(--text-sm); cursor: pointer;
+      transition: all var(--transition-bounce); border: none;
+      box-shadow: 0 4px 16px oklch(from var(--color-primary) l c h / 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-lg); }
+    .star { color: var(--color-yellow); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; }
+    @supports (animation-timeline: scroll()) {
+      .reveal {
+        animation: reveal-fade linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 85%;
+      }
+    }
+    @keyframes reveal-fade { to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" aria-label="English with Juliane logo">
+      <circle cx="16" cy="16" r="14" fill="currentColor" opacity="0.12"/>
+      <path d="M8 16 Q16 6 24 16 Q16 26 8 16Z" fill="currentColor" opacity="0.7"/>
+      <circle cx="16" cy="16" r="3.5" fill="currentColor"/>
+      <path d="M16 4 V28 M4 16 H28" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+    </svg>
+    English with Juliane ✈️
+  </div>
+  <ul class="nav-links" role="list">
+    <li><a href="#vocab" class="active">🗣️ Vocab</a></li>
+    <li><a href="#phrases">💬 Phrases</a></li>
+    <li><a href="#activities">🎮 Activities</a></li>
+    <li><a href="#review">⭐ Review</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="progress-badge">
+      <span>⭐</span> <span id="xp-count">0</span> XP
+    </div>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark/light mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" role="banner">
+  <div class="hero-inner">
+    <div class="hero-greeting">
+      <span>👋</span> Hello, Juliane! Welcome to your lesson
+    </div>
+    <h1>Travel &amp; Adventure</h1>
+    <p class="hero-subtitle">Explore the world with English! Let's learn vocabulary, phrases, and grammar for your next big trip. 🌍</p>
+    <img
+      src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/ceb1a551-153e-47a7-a0e2-9e67f620e292.png"
+      alt="Adventurous traveler at a colorful crossroads with world destination signs"
+      class="hero-img"
+      width="580" height="380" loading="lazy"
+    >
+    <div class="hero-tags">
+      <span class="hero-tag coral">🌍 Pre-Intermediate</span>
+      <span class="hero-tag teal">✈️ Travel &amp; Adventure</span>
+      <span class="hero-tag yellow">🎯 Kinesthetic Learning</span>
+      <span class="hero-tag coral">🎮 Interactive Activities</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 1: VOCABULARY FLASHCARDS ===== -->
+<section id="vocab" class="bg-teal-subtle">
+  <hr class="section-divider divider-teal">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-teal">🃏</div>
+      <div>
+        <div class="section-label label-teal">Section 1 — Introduction</div>
+        <h2 class="section-title">Travel Vocabulary Flashcards</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Click on each card to see the <strong>translation and example sentence</strong>! 👆 Try to say the word out loud before flipping. Earn XP for every card you flip!
+    </p>
+    <div class="flashcard-grid" id="flashcard-grid">
+      <!-- cards injected by JS -->
+    </div>
+    <p style="margin-top:var(--space-6); font-size:var(--text-sm); color:var(--color-text-muted);">
+      💡 <strong>Tip:</strong> Click again to flip back. Try to remember the word before checking!
+    </p>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: AUDIO PHRASES ===== -->
+<section id="phrases">
+  <hr class="section-divider divider-coral">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-coral">💬</div>
+      <div>
+        <div class="section-label label-coral">Section 2 — Guided Practice</div>
+        <h2 class="section-title">Useful Travel Phrases</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Press 🔊 to <strong>hear the phrase</strong> (text-to-speech). Read it out loud and practice! These phrases are perfect for real travel situations.
+    </p>
+    <div class="phrase-list" id="phrase-list">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3A: DRAG AND DROP ===== -->
+<section id="activities" class="bg-yellow-subtle">
+  <hr class="section-divider divider-yellow">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-yellow">🎯</div>
+      <div>
+        <div class="section-label label-yellow">Section 3 — Interactive Activities</div>
+        <h2 class="section-title">Drag &amp; Drop: Complete the Sentences</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-4); font-weight:600;">
+      Drag the words from the box and drop them into the correct sentences! 🖱️
+    </p>
+    <div class="dnd-container" id="dnd-zone">
+      <div class="dnd-panel">
+        <div class="dnd-panel-title"><i data-lucide="package" style="width:16px;height:16px;"></i> Word Bank</div>
+        <div class="dnd-words" id="word-bank"></div>
+      </div>
+      <div class="dnd-panel">
+        <div class="dnd-panel-title"><i data-lucide="file-text" style="width:16px;height:16px;"></i> Sentences</div>
+        <div class="dnd-sentences" id="dnd-sentences"></div>
+      </div>
+    </div>
+    <div style="display:flex; gap:var(--space-3); flex-wrap:wrap; margin-top:var(--space-5);">
+      <button class="dnd-check-btn" id="dnd-check-btn">
+        <i data-lucide="check-circle" style="width:18px;height:18px;"></i> Check Answers
+      </button>
+      <button class="dnd-check-btn" id="dnd-reset-btn" style="background:var(--color-text-muted);">
+        <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i> Reset
+      </button>
+    </div>
+    <div id="dnd-result" style="margin-top:var(--space-4); font-weight:700; font-size:var(--text-base); min-height:1.5rem;"></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3B: DIALOGUE ===== -->
+<section>
+  <hr class="section-divider divider-teal">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-teal">🗣️</div>
+      <div>
+        <div class="section-label label-teal">Section 3B — Reading</div>
+        <h2 class="section-title">Real Dialogue: At the Airport</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Read this dialogue between a traveler (Anna) and an airport agent. Click the 🔊 button on any phrase to hear it!
+    </p>
+    <div id="dialogue-container">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3C: FILL IN THE BLANKS ===== -->
+<section class="bg-coral-subtle">
+  <hr class="section-divider divider-coral">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-coral">✏️</div>
+      <div>
+        <div class="section-label label-coral">Section 3C — Writing Practice</div>
+        <h2 class="section-title">Fill in the Blanks</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Type the correct word in each blank! Use the word in brackets as a hint. 🖊️
+    </p>
+    <div class="fill-exercise" id="fill-exercise"></div>
+    <button class="fill-check-btn" id="fill-check-btn">
+      <i data-lucide="star" style="width:16px;height:16px;"></i> Check My Answers!
+    </button>
+    <div id="fill-result" style="margin-top:var(--space-4); font-weight:700; font-size:var(--text-base);"></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3D: WORD SCRAMBLE ===== -->
+<section class="bg-purple-subtle">
+  <hr class="section-divider divider-purple">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-purple">🔤</div>
+      <div>
+        <div class="section-label label-purple">Section 3D — Word Game</div>
+        <h2 class="section-title">Word Scramble Challenge!</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      The letters are mixed up! Click letters in the top box to build the correct word. Unscramble all words to win! 🏆
+    </p>
+    <div class="scramble-box" id="scramble-box">
+      <p style="font-size:var(--text-xs); font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-3);">
+        Word <span id="scramble-num">1</span> of 6
+      </p>
+      <p class="scramble-hint" id="scramble-hint">Hint: a place where you sleep when you travel</p>
+      <div class="scramble-word-display" id="scramble-letters"></div>
+      <div class="scramble-answer-area" id="scramble-answer"></div>
+      <div style="display:flex; gap:var(--space-3); flex-wrap:wrap; justify-content:center; margin-top:var(--space-4);">
+        <button class="scramble-submit" id="scramble-submit">
+          ✅ Check Word
+        </button>
+        <button class="scramble-submit" id="scramble-clear" style="background:var(--color-text-muted);">
+          🔄 Clear
+        </button>
+      </div>
+      <div class="scramble-feedback" id="scramble-feedback"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3E: QUIZ ===== -->
+<section>
+  <hr class="section-divider divider-yellow">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-yellow">🏆</div>
+      <div>
+        <div class="section-label label-yellow">Section 3E — Quiz</div>
+        <h2 class="section-title">Travel English Quiz</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Test what you learned! Choose the best answer for each question. 10 questions — good luck! 🍀
+    </p>
+    <div class="quiz-card" id="quiz-card">
+      <div id="quiz-questions-view">
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div>
+        </div>
+        <div class="quiz-counter" id="quiz-counter">Question 1 of 10</div>
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="quiz-next-btn" id="quiz-next-btn">
+          Next <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+      <div class="quiz-score-card" id="quiz-score-card">
+        <span class="quiz-score-emoji" id="quiz-score-emoji">🎉</span>
+        <div class="quiz-score-number" id="quiz-score-display">0 / 10</div>
+        <p style="margin-top:var(--space-3); color:var(--color-text-muted); font-weight:600;" id="quiz-score-msg"></p>
+        <button class="quiz-restart-btn" id="quiz-restart-btn">
+          <i data-lucide="rotate-ccw" style="width:18px;height:18px;"></i> Try Again!
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3F: WORD MATCHING ===== -->
+<section class="bg-teal-subtle">
+  <hr class="section-divider divider-teal">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-teal">🔗</div>
+      <div>
+        <div class="section-label label-teal">Section 3F — Matching Game</div>
+        <h2 class="section-title">Match the Words!</h2>
+      </div>
+    </div>
+    <p class="reveal" style="color:var(--color-text-muted); max-width:62ch; margin-bottom:var(--space-6); font-weight:600;">
+      Click a word in English, then click its meaning in Portuguese to match them! Find all 8 pairs! 🎯
+    </p>
+    <div class="matching-grid" id="matching-grid"></div>
+    <div class="match-score" id="match-score">Matched: 0 / 8</div>
+    <div class="match-congrats" id="match-congrats">
+      <p style="font-size:2rem;">🎊</p>
+      <p style="font-weight:800; font-size:var(--text-lg); color:var(--color-success);">Perfect! You matched all the words!</p>
+      <button class="match-reset-btn" id="match-reset-btn">
+        <i data-lucide="shuffle" style="width:16px;height:16px;"></i> Play Again!
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: REVIEW ===== -->
+<section id="review">
+  <hr class="section-divider divider-yellow">
+  <div class="section-wrapper">
+    <div class="section-header reveal">
+      <div class="section-icon icon-yellow">⭐</div>
+      <div>
+        <div class="section-label label-yellow">Section 4 — Review</div>
+        <h2 class="section-title">What You Learned Today!</h2>
+      </div>
+    </div>
+    <div class="review-section">
+      <div class="review-card reveal">
+        <div class="review-card-icon">🗺️</div>
+        <div class="review-card-title">Travel Vocabulary</div>
+        <div class="review-card-body">You practiced 12 key travel words: passport, luggage, boarding pass, customs, itinerary, and more!</div>
+        <span class="review-tag">✅ 12 words</span>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-card-icon">💬</div>
+        <div class="review-card-title">Useful Phrases</div>
+        <div class="review-card-body">You learned real phrases for airports, hotels, and sightseeing. Practice speaking them out loud every day!</div>
+        <span class="review-tag">✅ 8 phrases</span>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-card-icon">✍️</div>
+        <div class="review-card-title">Grammar in Context</div>
+        <div class="review-card-body">You practiced using verbs like <em>book, check in, explore, pack</em> in sentences about travel situations.</div>
+        <span class="review-tag">✅ Grammar practice</span>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-card-icon">🎮</div>
+        <div class="review-card-title">Interactive Practice</div>
+        <div class="review-card-body">You completed drag &amp; drop, fill in the blanks, word scramble, quiz, and matching exercises! Great job, Juliane!</div>
+        <span class="review-tag">✅ 5 activities</span>
+      </div>
+    </div>
+
+    <!-- Grammar tip box -->
+    <div style="margin-top:var(--space-10); background:var(--color-surface); border:1.5px solid var(--color-border); border-radius:var(--radius-2xl); padding:var(--space-8); box-shadow:var(--shadow-md);">
+      <h3 style="font-family:var(--font-display); font-size:var(--text-lg); font-weight:800; margin-bottom:var(--space-4); display:flex; align-items:center; gap:var(--space-2);">
+        <span>📌</span> Quick Grammar Tip: <em>Going to</em> for Plans
+      </h3>
+      <p style="color:var(--color-text-muted); margin-bottom:var(--space-4); font-weight:600;">
+        Use <strong style="color:var(--color-primary);">"going to"</strong> to talk about travel plans you already decided!
+      </p>
+      <div style="display:flex; flex-direction:column; gap:var(--space-2);">
+        <div style="background:var(--color-teal-highlight); border-radius:var(--radius-lg); padding:var(--space-3) var(--space-4); border:1.5px solid var(--color-teal);">
+          <span style="color:var(--color-teal); font-weight:800;">✅ I am going to visit Paris next month.</span>
+        </div>
+        <div style="background:var(--color-primary-highlight); border-radius:var(--radius-lg); padding:var(--space-3) var(--space-4); border:1.5px solid var(--color-primary);">
+          <span style="color:var(--color-primary); font-weight:800;">✅ She is going to book a hotel room.</span>
+        </div>
+        <div style="background:var(--color-yellow-highlight); border-radius:var(--radius-lg); padding:var(--space-3) var(--space-4); border:1.5px solid var(--color-yellow);">
+          <span style="color:var(--color-yellow-hover); font-weight:800;">✅ We are going to pack our luggage tomorrow.</span>
+        </div>
+        <div style="background:var(--color-error-highlight); border-radius:var(--radius-lg); padding:var(--space-3) var(--space-4); border:1.5px solid var(--color-error);">
+          <span style="color:var(--color-error); font-weight:800;">❌ I going to travel. ← Missing "am"!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Homework box -->
+    <div style="margin-top:var(--space-8); background:linear-gradient(135deg in oklch, var(--color-primary-highlight), var(--color-yellow-highlight)); border:2px solid var(--color-primary); border-radius:var(--radius-2xl); padding:var(--space-8); box-shadow:var(--shadow-lg);">
+      <h3 style="font-family:var(--font-display); font-size:var(--text-lg); font-weight:800; margin-bottom:var(--space-4); color:var(--color-primary);">
+        📝 Homework for This Week!
+      </h3>
+      <ol style="display:flex; flex-direction:column; gap:var(--space-3); padding-left:var(--space-5); color:var(--color-text-muted); font-weight:600; font-size:var(--text-sm);">
+        <li>Write <strong>5 sentences</strong> about your dream trip using <em>"going to"</em>. Example: <em>"I am going to visit Japan."</em></li>
+        <li>Practice saying all <strong>8 phrases</strong> in Section 2 out loud — at least 3 times each!</li>
+        <li>Play the <strong>Quiz</strong> again tomorrow and try to get a higher score! 🏆</li>
+        <li>Search for <strong>3 new travel words</strong> in English and write them down with a picture!</li>
+        <li>Watch a short travel video on YouTube in English (try with subtitles first, then without).</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== XP BANNER ===== -->
+<div class="xp-banner">
+  <div class="xp-content">
+    <h2 class="xp-title">Amazing work, Juliane! 🌟</h2>
+    <p class="xp-subtitle">You completed today's lesson. The world is waiting for you — keep learning English and go explore it! ✈️</p>
+    <div class="xp-emoji-row">🗺️ ✈️ 🏖️ 🌴 🏔️ 🎒</div>
+    <div style="margin-top:var(--space-6); background:rgba(255,255,255,0.18); border-radius:var(--radius-2xl); padding:var(--space-4) var(--space-8); display:inline-block;">
+      <span style="font-size:var(--text-xl); font-weight:900; font-family:var(--font-display);">Total XP: <span id="xp-final">0</span> ⭐</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  const sunIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  if(t) {
+    t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+    t.addEventListener('click', () => {
+      d = d === 'dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', d);
+      t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+    });
+  }
+})();
+
+// ===== XP SYSTEM =====
+let xp = 0;
+function addXP(amount) {
+  xp += amount;
+  document.getElementById('xp-count').textContent = xp;
+  document.getElementById('xp-final').textContent = xp;
+  // animate XP counter
+  const el = document.getElementById('xp-count');
+  el.style.transform = 'scale(1.4)';
+  el.style.color = 'var(--color-yellow)';
+  setTimeout(() => { el.style.transform = ''; el.style.color = ''; }, 300);
+}
+
+// ===== CONFETTI =====
+function launchConfetti(count = 80) {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = Array.from({length: count}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -100,
+    r: Math.random() * 6 + 4,
+    color: ['#e05c2a','#0d7a72','#f2b825','#7c5cbf','#2e8b5a'][Math.floor(Math.random()*5)],
+    speed: Math.random() * 3 + 2,
+    angle: Math.random() * 360,
+    spin: (Math.random() - 0.5) * 6
+  }));
+  let frame;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle * Math.PI/180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+      ctx.restore();
+      p.y += p.speed;
+      p.angle += p.spin;
+      p.x += Math.sin(p.angle * 0.02) * 1.5;
+    });
+    if(particles.some(p => p.y < canvas.height)) {
+      frame = requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+  }
+  cancelAnimationFrame(frame);
+  draw();
+  setTimeout(() => { cancelAnimationFrame(frame); ctx.clearRect(0,0,canvas.width,canvas.height); }, 4000);
+}
+
+// ===== SPEECH SYNTHESIS =====
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.88;
+  u.pitch = 1.05;
+  window.speechSynthesis.speak(u);
+}
+
+// ===== FLASHCARD DATA =====
+const flashcards = [
+  { emoji:'✈️', word:'Flight', pt:'Voo', ex:'My flight leaves at 8 AM.' },
+  { emoji:'🛂', word:'Passport', pt:'Passaporte', ex:'Don\'t forget your passport!' },
+  { emoji:'🧳', word:'Luggage', pt:'Bagagem', ex:'I have two pieces of luggage.' },
+  { emoji:'🏨', word:'Hotel', pt:'Hotel', ex:'We stayed in a beautiful hotel.' },
+  { emoji:'🗺️', word:'Itinerary', pt:'Roteiro/Itinerário', ex:'Our itinerary includes 5 cities.' },
+  { emoji:'🛃', word:'Customs', pt:'Alfândega', ex:'You must pass through customs.' },
+  { emoji:'🎫', word:'Boarding pass', pt:'Cartão de embarque', ex:'Show your boarding pass at the gate.' },
+  { emoji:'🏖️', word:'Destination', pt:'Destino', ex:'Paris is my dream destination.' },
+  { emoji:'🗓️', word:'Reservation', pt:'Reserva', ex:'I made a reservation for two nights.' },
+  { emoji:'🛫', word:'Departure', pt:'Partida/Decolagem', ex:'The departure is at gate 12.' },
+  { emoji:'🛬', word:'Arrival', pt:'Chegada', ex:'What time is the arrival?' },
+  { emoji:'🗼', word:'Sightseeing', pt:'Turismo/Passeio', ex:'Let\'s go sightseeing tomorrow!' },
+];
+
+function buildFlashcards() {
+  const grid = document.getElementById('flashcard-grid');
+  let flipped = new Set();
+  flashcards.forEach((card, i) => {
+    const el = document.createElement('div');
+    el.className = 'flashcard';
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', `Flashcard: ${card.word}. Click to flip.`);
+    el.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-emoji">${card.emoji}</div>
+          <div class="flashcard-word">${card.word}</div>
+          <div class="flashcard-flip-hint"><i data-lucide="rotate-cw" style="width:12px;height:12px;"></i> Tap to flip</div>
+        </div>
+        <div class="flashcard-back">
+          <div class="flashcard-translation">${card.pt}</div>
+          <div class="flashcard-example">"${card.ex}"</div>
+        </div>
+      </div>
+    `;
+    function flip() {
+      el.classList.toggle('flipped');
+      if (!flipped.has(i)) { flipped.add(i); addXP(5); }
+      speak(card.word);
+    }
+    el.addEventListener('click', flip);
+    el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') flip(); });
+    grid.appendChild(el);
+  });
+}
+
+// ===== PHRASES DATA =====
+const phrases = [
+  { en:'Where is the check-in counter?', pt:'Onde é o balcão de check-in?', ctx:'🛫 At the airport' },
+  { en:'I would like a window seat, please.', pt:'Eu gostaria de um assento na janela, por favor.', ctx:'✈️ On the plane' },
+  { en:'How much does it cost per night?', pt:'Quanto custa por noite?', ctx:'🏨 At the hotel' },
+  { en:'Can you recommend a good restaurant?', pt:'Você pode recomendar um bom restaurante?', ctx:'🍽️ Sightseeing' },
+  { en:'I\'d like to book a room for two nights.', pt:'Eu gostaria de reservar um quarto por duas noites.', ctx:'🏨 At the hotel' },
+  { en:'Is there a map of the city?', pt:'Tem um mapa da cidade?', ctx:'🗺️ Exploring' },
+  { en:'What time does the museum open?', pt:'A que horas o museu abre?', ctx:'🏛️ Sightseeing' },
+  { en:'Excuse me, how do I get to the beach?', pt:'Com licença, como chego à praia?', ctx:'🏖️ Directions' },
+];
+
+function buildPhrases() {
+  const list = document.getElementById('phrase-list');
+  phrases.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'phrase-card reveal';
+    el.innerHTML = `
+      <button class="phrase-play-btn" aria-label="Listen to phrase: ${p.en}">
+        <i data-lucide="volume-2" style="width:20px;height:20px;"></i>
+      </button>
+      <div class="phrase-content">
+        <div class="phrase-en">${p.en}</div>
+        <div class="phrase-pt">${p.pt}</div>
+        <span class="phrase-context">${p.ctx}</span>
+      </div>
+    `;
+    const btn = el.querySelector('.phrase-play-btn');
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.phrase-play-btn.playing').forEach(b => b.classList.remove('playing'));
+      btn.classList.add('playing');
+      speak(p.en);
+      addXP(3);
+      setTimeout(() => btn.classList.remove('playing'), 3000);
+    });
+    list.appendChild(el);
+  });
+}
+
+// ===== DRAG AND DROP =====
+const dndData = [
+  { sentence: 'I need to _____ my luggage before the trip.', blank: 'pack', hint:'(pack / check / board)' },
+  { sentence: 'Please show your _____ at the gate.', blank: 'boarding pass', hint:'(ticket / boarding pass / visa)' },
+  { sentence: 'The flight was delayed, so we waited at the _____.', blank: 'airport', hint:'(hotel / airport / station)' },
+  { sentence: 'We made a _____ at the hotel online.', blank: 'reservation', hint:'(reservation / travel / passport)' },
+];
+const dndWords = ['pack', 'boarding pass', 'airport', 'reservation', 'visa', 'hotel'];
+let dndState = {};
+
+function buildDnD() {
+  const bank = document.getElementById('word-bank');
+  const sentencesEl = document.getElementById('dnd-sentences');
+  bank.innerHTML = ''; sentencesEl.innerHTML = '';
+  dndState = {};
+
+  // shuffle words
+  const allWords = [...dndWords].sort(() => Math.random() - 0.5);
+  allWords.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'dnd-word'; el.textContent = w;
+    el.setAttribute('draggable', 'true');
+    el.dataset.word = w;
+    el.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', w);
+      el.classList.add('dragging');
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+    // touch support
+    el.addEventListener('touchstart', handleTouchStart, {passive:true});
+    bank.appendChild(el);
+  });
+
+  dndData.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'dnd-sentence'; row.dataset.index = i;
+    const [before, after] = item.sentence.split('_____');
+    const blank = document.createElement('span');
+    blank.className = 'dnd-blank'; blank.id = `blank-${i}`;
+    blank.textContent = ''; blank.dataset.answer = item.blank;
+    dndState[i] = '';
+    row.innerHTML = '';
+    row.appendChild(document.createTextNode(before));
+    row.appendChild(blank);
+    row.appendChild(document.createTextNode(after));
+    row.appendChild(document.createTextNode(` ${item.hint}`));
+
+    row.addEventListener('dragover', e => { e.preventDefault(); row.classList.add('drag-over'); });
+    row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
+    row.addEventListener('drop', e => {
+      e.preventDefault(); row.classList.remove('drag-over');
+      const word = e.dataTransfer.getData('text/plain');
+      blank.textContent = word; blank.classList.add('filled');
+      dndState[i] = word;
+    });
+    sentencesEl.appendChild(row);
+  });
+}
+
+// simple touch drag
+let touchWord = null, touchEl = null;
+function handleTouchStart(e) {
+  touchWord = e.currentTarget.dataset.word;
+  touchEl = e.currentTarget;
+}
+document.addEventListener('touchend', e => {
+  if (!touchWord) return;
+  const touch = e.changedTouches[0];
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  const row = target?.closest('.dnd-sentence');
+  if (row) {
+    const i = row.dataset.index;
+    const blank = document.getElementById(`blank-${i}`);
+    blank.textContent = touchWord; blank.classList.add('filled');
+    dndState[i] = touchWord;
+  }
+  touchWord = null; touchEl = null;
+}, {passive:true});
+
+document.getElementById('dnd-check-btn').addEventListener('click', () => {
+  let correct = 0;
+  dndData.forEach((item, i) => {
+    const row = document.querySelectorAll('.dnd-sentence')[i];
+    if(dndState[i] === item.blank) { correct++; row.classList.add('correct'); row.classList.remove('wrong'); }
+    else { row.classList.add('wrong'); row.classList.remove('correct'); }
+  });
+  const result = document.getElementById('dnd-result');
+  if(correct === dndData.length) {
+    result.textContent = `🎉 Perfect! ${correct}/${dndData.length} correct!`;
+    result.style.color = 'var(--color-success)';
+    addXP(20); launchConfetti();
+  } else {
+    result.textContent = `You got ${correct}/${dndData.length} correct. Try again! 💪`;
+    result.style.color = 'var(--color-primary)';
+    addXP(correct * 5);
+  }
+});
+document.getElementById('dnd-reset-btn').addEventListener('click', () => {
+  buildDnD(); lucide.createIcons();
+  document.getElementById('dnd-result').textContent = '';
+});
+
+// ===== DIALOGUE =====
+const dialogue = [
+  { who: 'Anna (Traveler)', side:'left', avatar:'A', text:'Excuse me, where is the check-in counter for flight 204?' },
+  { who: 'Agent', side:'right', avatar:'B', text:'It\'s in Terminal B, counter 12. Do you have your passport and boarding pass?' },
+  { who: 'Anna', side:'left', avatar:'A', text:'Yes, I have my passport. But I need to print my boarding pass.' },
+  { who: 'Agent', side:'right', avatar:'B', text:'No problem! You can use the self-check-in machine over there. It\'s very easy.' },
+  { who: 'Anna', side:'left', avatar:'A', text:'Thank you so much! Is my luggage included in the ticket?' },
+  { who: 'Agent', side:'right', avatar:'B', text:'Yes, one bag is included. Have a great flight, Anna!' },
+  { who: 'Anna', side:'left', avatar:'A', text:'Thank you! Goodbye! 👋' },
+];
+function buildDialogue() {
+  const c = document.getElementById('dialogue-container');
+  dialogue.forEach((line, i) => {
+    const el = document.createElement('div');
+    el.className = `dialogue-bubble ${line.side === 'right' ? 'right' : ''}`;
+    el.style.animationDelay = `${i * 0.12}s`;
+    const avatarClass = line.side === 'left' ? 'avatar-a' : 'avatar-b';
+    const bubbleClass = line.side === 'left' ? 'bubble-left' : 'bubble-right';
+    el.innerHTML = `
+      <div class="bubble-avatar ${avatarClass}">${line.avatar}</div>
+      <div class="${bubbleClass}">
+        <div class="bubble-who">${line.who}</div>
+        <div class="bubble-content">
+          ${line.text}
+          <button style="background:none;border:none;cursor:pointer;margin-left:6px;opacity:0.7;" aria-label="Listen" onclick="speak('${line.text.replace(/'/g,"\\'")}');addXP(2);">🔊</button>
+        </div>
+      </div>
+    `;
+    c.appendChild(el);
+  });
+}
+
+// ===== FILL IN BLANKS =====
+const fillItems = [
+  { pre:'I always', blank:'pack', post:'my suitcase the night before the trip.', hint:'Hint: prepare your clothes and things (pack / travel / arrive)' },
+  { pre:'You must show your', blank:'passport', post:'at the immigration desk.', hint:'Hint: an official travel document (passport / ticket / phone)' },
+  { pre:'Our flight', blank:'departs', post:'at 9:30 AM from gate 7.', hint:'Hint: leaves / goes away (departs / arrives / lands)' },
+  { pre:'The hotel has a beautiful', blank:'view', post:'of the ocean.', hint:'Hint: what you can see from a window (view / room / pool)' },
+  { pre:'We are going to', blank:'explore', post:'the old city on foot.', hint:'Hint: discover a new place (explore / sleep / eat)' },
+];
+function buildFill() {
+  const container = document.getElementById('fill-exercise');
+  fillItems.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'fill-item';
+    el.innerHTML = `
+      <div class="fill-sentence">
+        <span>${item.pre}</span>
+        <input class="fill-input" type="text" id="fill-${i}" placeholder="?" autocomplete="off" aria-label="Fill in the blank">
+        <span>${item.post}</span>
+      </div>
+      <div class="fill-hint">${item.hint}</div>
+    `;
+    container.appendChild(el);
+  });
+}
+document.getElementById('fill-check-btn').addEventListener('click', () => {
+  let correct = 0;
+  fillItems.forEach((item, i) => {
+    const inp = document.getElementById(`fill-${i}`);
+    const val = inp.value.trim().toLowerCase();
+    if(val === item.blank.toLowerCase()) {
+      inp.classList.add('correct'); inp.classList.remove('wrong'); correct++;
+    } else {
+      inp.classList.add('wrong'); inp.classList.remove('correct');
+    }
+  });
+  const result = document.getElementById('fill-result');
+  if(correct === fillItems.length) {
+    result.textContent = `🌟 Excellent! All ${correct} correct!`;
+    result.style.color = 'var(--color-success)';
+    addXP(25); launchConfetti();
+  } else {
+    result.textContent = `✅ ${correct} of ${fillItems.length} correct! Try the wrong ones again.`;
+    result.style.color = 'var(--color-primary)';
+    addXP(correct * 5);
+  }
+  lucide.createIcons();
+});
+
+// ===== WORD SCRAMBLE =====
+const scrambleWords = [
+  { word:'HOTEL', hint:'A place where you sleep when you travel' },
+  { word:'AIRPORT', hint:'The place where planes take off and land' },
+  { word:'SUITCASE', hint:'A bag for your clothes and things — you pack it!' },
+  { word:'TOURIST', hint:'A person who visits a new place for fun' },
+  { word:'TICKET', hint:'You need this to get on a plane or bus' },
+  { word:'EXPLORE', hint:'To discover and walk around a new place' },
+];
+let scrambleIndex = 0;
+let scrambleLetters = [], scrambleAnswer = [];
+
+function loadScramble(i) {
+  scrambleIndex = i;
+  const item = scrambleWords[i];
+  document.getElementById('scramble-num').textContent = i + 1;
+  document.getElementById('scramble-hint').textContent = `Hint: ${item.hint}`;
+  document.getElementById('scramble-feedback').textContent = '';
+  document.getElementById('scramble-feedback').className = 'scramble-feedback';
+
+  // Shuffle
+  scrambleLetters = item.word.split('').sort(() => Math.random() - 0.5);
+  scrambleAnswer = [];
+  renderScramble();
+}
+
+function renderScramble() {
+  const lettersEl = document.getElementById('scramble-letters');
+  const answerEl = document.getElementById('scramble-answer');
+  lettersEl.innerHTML = '';
+  answerEl.innerHTML = '';
+  answerEl.className = 'scramble-answer-area' + (scrambleAnswer.length > 0 ? ' has-items' : '');
+
+  scrambleLetters.forEach((l, i) => {
+    const el = document.createElement('div');
+    el.className = 'scramble-letter';
+    el.textContent = l;
+    el.addEventListener('click', () => {
+      scrambleAnswer.push({letter: l, from: 'pool', idx: i});
+      scrambleLetters.splice(i, 1);
+      renderScramble();
+    });
+    lettersEl.appendChild(el);
+  });
+
+  scrambleAnswer.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'scramble-answer-letter';
+    el.textContent = item.letter;
+    el.addEventListener('click', () => {
+      scrambleLetters.push(item.letter);
+      scrambleAnswer.splice(i, 1);
+      renderScramble();
+    });
+    answerEl.appendChild(el);
+  });
+}
+
+document.getElementById('scramble-submit').addEventListener('click', () => {
+  const attempt = scrambleAnswer.map(a => a.letter).join('');
+  const correct = scrambleWords[scrambleIndex].word;
+  const fb = document.getElementById('scramble-feedback');
+  if(attempt === correct) {
+    fb.textContent = '🎉 Correct! ' + correct + ' ✅';
+    fb.className = 'scramble-feedback correct';
+    addXP(15);
+    setTimeout(() => {
+      if(scrambleIndex < scrambleWords.length - 1) {
+        loadScramble(scrambleIndex + 1);
+      } else {
+        fb.textContent = '🏆 You unscrambled all words! Amazing!';
+        launchConfetti();
+        addXP(30);
+      }
+    }, 1200);
+  } else {
+    fb.textContent = `❌ Not quite! You wrote: "${attempt}". Try again!`;
+    fb.className = 'scramble-feedback wrong';
+  }
+});
+document.getElementById('scramble-clear').addEventListener('click', () => {
+  scrambleLetters = [...scrambleLetters, ...scrambleAnswer.map(a => a.letter)];
+  scrambleAnswer = [];
+  document.getElementById('scramble-feedback').textContent = '';
+  renderScramble();
+});
+
+// ===== QUIZ DATA =====
+const quizQuestions = [
+  { q:'What do you need to travel internationally?', opts:['A driving license','A passport','A credit card','A school ID'], ans:1 },
+  { q:'Where do you check in for a flight?', opts:['At the train station','At the hotel reception','At the airport','At the bus terminal'], ans:2 },
+  { q:'What is "luggage"?', opts:['A travel document','Your bags and suitcases','A type of ticket','A hotel room'], ans:1 },
+  { q:'Choose the correct sentence:', opts:['I going to visit Spain.','I am go to visit Spain.','I am going to visit Spain.','I will going to visit Spain.'], ans:2 },
+  { q:'What does "departure" mean?', opts:['Arrival — chegada','Delay — atraso','Leaving — partida','Ticket — passagem'], ans:2 },
+  { q:'You are at the hotel. What do you say?', opts:['I want to check in please.','I want to take off, please.','I want to depart, please.','I want to board, please.'], ans:0 },
+  { q:'Which word means "destino" in English?', opts:['Departure','Reservation','Destination','Customs'], ans:2 },
+  { q:'"I would like a window _____, please."', opts:['flight','seat','ticket','gate'], ans:1 },
+  { q:'What is "sightseeing"?', opts:['Sleeping at the hotel','Visiting tourist attractions','Buying plane tickets','Packing your bags'], ans:1 },
+  { q:'You packed your bag. What is the next step?', opts:['You arrive at the destination','You check in at the airport','You explore the city','You make a reservation'], ans:1 },
+];
+let quizCurrent = 0, quizScore = 0, quizAnswered = false;
+
+function loadQuizQuestion() {
+  const q = quizQuestions[quizCurrent];
+  document.getElementById('quiz-progress').style.width = `${(quizCurrent / quizQuestions.length) * 100}%`;
+  document.getElementById('quiz-counter').textContent = `Question ${quizCurrent + 1} of ${quizQuestions.length}`;
+  document.getElementById('quiz-question').textContent = q.q;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    const letters = ['A','B','C','D'];
+    btn.innerHTML = `<span class="quiz-option-letter">${letters[i]}</span> ${opt}`;
+    btn.addEventListener('click', () => selectQuizAnswer(i, q.ans));
+    opts.appendChild(btn);
+  });
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-next-btn').className = 'quiz-next-btn';
+  quizAnswered = false;
+}
+
+function selectQuizAnswer(selected, correct) {
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const opts = document.querySelectorAll('.quiz-option');
+  opts.forEach((b, i) => {
+    b.disabled = true;
+    if(i === correct) b.classList.add('selected-correct');
+    else if(i === selected && selected !== correct) b.classList.add('selected-wrong');
+  });
+  const fb = document.getElementById('quiz-feedback');
+  if(selected === correct) {
+    quizScore++;
+    fb.className = 'quiz-feedback correct show';
+    fb.innerHTML = '<i data-lucide="check-circle" style="width:18px;height:18px;"></i> Correct! Great job! 🎉';
+    addXP(10);
+  } else {
+    fb.className = 'quiz-feedback wrong show';
+    fb.innerHTML = `<i data-lucide="x-circle" style="width:18px;height:18px;"></i> Not quite! The answer is: <strong>${quizQuestions[quizCurrent].opts[correct]}</strong>`;
+  }
+  document.getElementById('quiz-next-btn').className = 'quiz-next-btn show';
+  lucide.createIcons();
+}
+
+document.getElementById('quiz-next-btn').addEventListener('click', () => {
+  quizCurrent++;
+  if(quizCurrent < quizQuestions.length) {
+    loadQuizQuestion();
+  } else {
+    showQuizScore();
+  }
+  lucide.createIcons();
+});
+
+function showQuizScore() {
+  document.getElementById('quiz-questions-view').style.display = 'none';
+  const scoreCard = document.getElementById('quiz-score-card');
+  scoreCard.className = 'quiz-score-card show';
+  document.getElementById('quiz-score-display').textContent = `${quizScore} / ${quizQuestions.length}`;
+  const pct = quizScore / quizQuestions.length;
+  let emoji, msg;
+  if(pct === 1) { emoji='🏆'; msg='Perfect score! You are a travel English star!'; launchConfetti(); addXP(30); }
+  else if(pct >= 0.7) { emoji='🌟'; msg='Great job! You know your travel English really well!'; launchConfetti(40); addXP(20); }
+  else if(pct >= 0.5) { emoji='💪'; msg='Good effort! Review the vocabulary and try again!'; addXP(10); }
+  else { emoji='📚'; msg='Practice makes perfect! Go back and review the cards.'; }
+  document.getElementById('quiz-score-emoji').textContent = emoji;
+  document.getElementById('quiz-score-msg').textContent = msg;
+  document.getElementById('quiz-progress').style.width = '100%';
+  lucide.createIcons();
+}
+
+document.getElementById('quiz-restart-btn').addEventListener('click', () => {
+  quizCurrent = 0; quizScore = 0;
+  document.getElementById('quiz-questions-view').style.display = 'block';
+  document.getElementById('quiz-score-card').className = 'quiz-score-card';
+  loadQuizQuestion(); lucide.createIcons();
+});
+
+// ===== WORD MATCHING =====
+const matchPairs = [
+  { en:'Passport', pt:'Passaporte' },
+  { en:'Luggage', pt:'Bagagem' },
+  { en:'Hotel', pt:'Hotel' },
+  { en:'Departure', pt:'Partida' },
+  { en:'Arrival', pt:'Chegada' },
+  { en:'Destination', pt:'Destino' },
+  { en:'Boarding pass', pt:'Cartão de embarque' },
+  { en:'Sightseeing', pt:'Passeio turístico' },
+];
+let matchSelected = null, matchSelSide = null, matchScore = 0, matchMatched = new Set();
+
+function buildMatching() {
+  const grid = document.getElementById('matching-grid');
+  grid.innerHTML = ''; matchScore = 0; matchMatched = new Set();
+  matchSelected = null; matchSelSide = null;
+  document.getElementById('match-congrats').className = 'match-congrats';
+  document.getElementById('match-score').textContent = 'Matched: 0 / 8';
+
+  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+  const engWords = shuffle(matchPairs.map(p => p.en));
+  const ptWords = shuffle(matchPairs.map(p => p.pt));
+
+  const colEn = document.createElement('div'); colEn.className = 'matching-column';
+  const colPt = document.createElement('div'); colPt.className = 'matching-column';
+  engWords.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'match-item'; el.textContent = w;
+    el.dataset.word = w; el.dataset.side = 'en';
+    el.addEventListener('click', () => selectMatch(el, 'en', w));
+    colEn.appendChild(el);
+  });
+  ptWords.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'match-item'; el.textContent = w;
+    el.dataset.word = w; el.dataset.side = 'pt';
+    el.addEventListener('click', () => selectMatch(el, 'pt', w));
+    colPt.appendChild(el);
+  });
+  grid.appendChild(colEn); grid.appendChild(colPt);
+}
+
+function selectMatch(el, side, word) {
+  if(el.classList.contains('matched')) return;
+  if(matchSelected === null) {
+    matchSelected = word; matchSelSide = side;
+    el.classList.add('selected');
+  } else {
+    if(matchSelSide === side) {
+      document.querySelectorAll('.match-item.selected').forEach(e => e.classList.remove('selected'));
+      matchSelected = word; matchSelSide = side;
+      el.classList.add('selected');
+      return;
+    }
+    const pair = matchPairs.find(p => (side === 'pt' ? p.en === matchSelected && p.pt === word : p.pt === matchSelected && p.en === word));
+    if(pair) {
+      document.querySelectorAll('.match-item.selected').forEach(e => { e.classList.remove('selected'); e.classList.add('matched'); });
+      el.classList.add('matched');
+      matchScore++;
+      document.getElementById('match-score').textContent = `Matched: ${matchScore} / 8`;
+      addXP(8);
+      if(matchScore === 8) {
+        document.getElementById('match-congrats').className = 'match-congrats show';
+        launchConfetti(60); addXP(20);
+      }
+    } else {
+      document.querySelectorAll('.match-item.selected').forEach(e => {
+        e.classList.remove('selected'); e.classList.add('wrong-flash');
+        setTimeout(() => e.classList.remove('wrong-flash'), 600);
+      });
+      el.classList.add('wrong-flash');
+      setTimeout(() => el.classList.remove('wrong-flash'), 600);
+    }
+    matchSelected = null; matchSelSide = null;
+  }
+}
+document.getElementById('match-reset-btn').addEventListener('click', () => { buildMatching(); lucide.createIcons(); });
+
+// ===== INIT =====
+buildFlashcards();
+buildPhrases();
+buildDnD();
+buildDialogue();
+buildFill();
+loadScramble(0);
+loadQuizQuestion();
+buildMatching();
+lucide.createIcons();
+
+// Animate dialogs on scroll
+const dialogs = document.querySelectorAll('.dialogue-bubble');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.style.animationPlayState = 'running'; obs.unobserve(e.target); } });
+}, {threshold: 0.1});
+dialogs.forEach(d => { d.style.animationPlayState = 'paused'; obs.observe(d); });
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      navLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id); });
+    }
+  });
+}, {rootMargin:'-30% 0px -60% 0px'});
+sections.forEach(s => navObs.observe(s));
+</script>
+</body>
+</html>

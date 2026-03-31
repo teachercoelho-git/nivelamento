@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>English Study Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root,[data-theme="light"]{
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;--color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;--color-border:#d4d1ca;
+  --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;--color-success-hover:#2e5c10;--color-success-highlight:#d4dfcc;
+  --color-error:#a12c7b;--color-error-hover:#7d1e5e;--color-error-highlight:#e0ced7;
+  --color-gold:#d19900;--color-gold-highlight:#e9e0c6;
+  --color-orange:#da7101;--color-orange-highlight:#e7d7c4;
+  --color-blue:#006494;--color-blue-highlight:#c6d8e4;
+  --color-purple:#7a39bb;--color-purple-highlight:#dacfde;
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;--radius-xl:1rem;--radius-full:9999px;
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80/0.06);--shadow-md:0 4px 12px oklch(0.2 0.01 80/0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80/0.12);
+  --transition-interactive:180ms cubic-bezier(0.16,1,0.3,1);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+  --text-xs:clamp(0.75rem,.7rem+.25vw,.875rem);--text-sm:clamp(0.875rem,.8rem+.35vw,1rem);
+  --text-base:clamp(1rem,.95rem+.25vw,1.125rem);--text-lg:clamp(1.125rem,1rem+.75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem+1.25vw,2.25rem);--text-2xl:clamp(2rem,1.2rem+2.5vw,3.5rem);
+  --font-display:'Instrument Serif',Georgia,serif;--font-body:'DM Sans','Helvetica Neue',sans-serif;
+  --content-narrow:640px;--content-default:960px;--content-wide:1200px;
+}
+[data-theme="dark"]{
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#2d2c2a;
+  --color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;--color-success-highlight:#3a4435;
+  --color-error:#d163a7;--color-error-hover:#b9478f;--color-error-highlight:#4c3d46;
+  --color-gold:#e8af34;--color-gold-highlight:#4d4332;
+  --color-orange:#fdab43;--color-orange-highlight:#564b3e;
+  --color-blue:#5591c7;--color-blue-highlight:#3a4550;
+  --color-purple:#a86fdf;--color-purple-highlight:#4e4652;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.2);--shadow-md:0 4px 12px oklch(0 0 0/.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0/.4);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#2d2c2a;
+  --color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-highlight:#3a4435;
+  --color-error:#d163a7;--color-error-highlight:#4c3d46;
+  --color-gold:#e8af34;--color-gold-highlight:#4d4332;
+  --color-orange:#fdab43;--color-orange-highlight:#564b3e;
+  --color-blue:#5591c7;--color-blue-highlight:#3a4550;
+  --color-purple:#a86fdf;--color-purple-highlight:#4e4652;
+}}
+
+/* ===== BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:var(--space-16)}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);line-height:1.6}
+img,picture,video,canvas,svg{display:block;max-width:100%;height:auto}
+input,button,textarea,select{font:inherit;color:inherit}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.15}
+button{cursor:pointer;background:none;border:none}
+a,button,[role="button"],input,textarea,select{transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),box-shadow var(--transition-interactive)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ===== LAYOUT ===== */
+.site-header{position:sticky;top:0;z-index:100;background:color-mix(in oklab,var(--color-bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid oklch(from var(--color-text) l c h/.08);padding:var(--space-3) var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-text)}
+.logo-icon{width:36px;height:36px;flex-shrink:0}
+.logo-text{font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-text)}
+.header-actions{display:flex;align-items:center;gap:var(--space-2)}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);color:var(--color-text-muted);transition:color var(--transition-interactive),background var(--transition-interactive)}
+.icon-btn:hover{color:var(--color-text);background:var(--color-surface-offset)}
+.progress-bar-wrap{background:var(--color-surface-offset);border-radius:var(--radius-full);height:6px;overflow:hidden;min-width:120px}
+.progress-bar-fill{height:100%;background:var(--color-primary);border-radius:var(--radius-full);transition:width .6s cubic-bezier(0.16,1,0.3,1)}
+.progress-label{font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap}
+
+.main-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100dvh - 57px);max-width:var(--content-wide);margin:0 auto}
+@media(max-width:768px){.main-layout{grid-template-columns:1fr}}
+.sidebar{border-right:1px solid var(--color-divider);padding:var(--space-6) 0;position:sticky;top:57px;height:calc(100dvh - 57px);overflow-y:auto}
+@media(max-width:768px){.sidebar{display:none}}
+.sidebar-title{font-size:var(--text-xs);font-weight:600;color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;padding:0 var(--space-4) var(--space-2)}
+.nav-item{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);cursor:pointer;border-radius:0;border-left:2px solid transparent;transition:all var(--transition-interactive);width:100%;text-align:left}
+.nav-item:hover{color:var(--color-text);background:var(--color-surface-offset)}
+.nav-item.active{color:var(--color-primary);border-left-color:var(--color-primary);background:var(--color-primary-highlight);font-weight:500}
+.nav-item .day-badge{margin-left:auto;font-size:var(--text-xs);padding:2px 8px;border-radius:var(--radius-full);background:var(--color-surface-dynamic);color:var(--color-text-muted)}
+.nav-item.completed .day-badge{background:var(--color-success-highlight);color:var(--color-success)}
+.nav-item.active .day-badge{background:var(--color-primary-highlight);color:var(--color-primary)}
+.nav-divider{height:1px;background:var(--color-divider);margin:var(--space-4) var(--space-4)}
+
+.content-area{padding:var(--space-8) clamp(var(--space-4),4vw,var(--space-12))}
+
+/* ===== VIEWS ===== */
+.view{display:none;animation:fadeIn .3s cubic-bezier(0.16,1,0.3,1)}
+.view.active{display:block}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ===== DASHBOARD ===== */
+.welcome-hero{margin-bottom:var(--space-8)}
+.welcome-hero h1{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);margin-bottom:var(--space-2)}
+.welcome-hero p{color:var(--color-text-muted);max-width:60ch}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--space-4);margin-bottom:var(--space-8)}
+.kpi-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/.08);border-radius:var(--radius-xl);padding:var(--space-5);box-shadow:var(--shadow-sm)}
+.kpi-label{font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--space-2)}
+.kpi-value{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);font-weight:600}
+.kpi-sub{font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-1)}
+.kpi-card.accent{background:var(--color-primary);border-color:var(--color-primary)}
+.kpi-card.accent .kpi-label,.kpi-card.accent .kpi-value,.kpi-card.accent .kpi-sub{color:var(--color-text-inverse)}
+
+.week-plan-section h2{font-size:var(--text-lg);font-family:var(--font-display);margin-bottom:var(--space-4)}
+.week-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-4)}
+.week-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/.08);border-radius:var(--radius-xl);padding:var(--space-5);cursor:pointer;box-shadow:var(--shadow-sm);transition:transform var(--transition-interactive),box-shadow var(--transition-interactive);text-align:left;width:100%}
+.week-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.week-card:active{transform:translateY(0)}
+.wc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--space-3)}
+.wc-day{font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.06em}
+.wc-status{width:24px;height:24px;border-radius:var(--radius-full);background:var(--color-surface-dynamic);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wc-status.done{background:var(--color-success-highlight);color:var(--color-success)}
+.wc-title{font-family:var(--font-display);font-size:var(--text-base);color:var(--color-text);margin-bottom:var(--space-2);line-height:1.3}
+.wc-tags{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.tag{font-size:var(--text-xs);padding:2px 10px;border-radius:var(--radius-full);background:var(--color-surface-offset);color:var(--color-text-muted);font-weight:500}
+.tag.primary{background:var(--color-primary-highlight);color:var(--color-primary)}
+.tag.gold{background:var(--color-gold-highlight);color:var(--color-gold)}
+.tag.orange{background:var(--color-orange-highlight);color:var(--color-orange)}
+.tag.blue{background:var(--color-blue-highlight);color:var(--color-blue)}
+.tag.purple{background:var(--color-purple-highlight);color:var(--color-purple)}
+
+/* ===== LESSON VIEW ===== */
+.lesson-header{margin-bottom:var(--space-8)}
+.lesson-day-label{font-size:var(--text-xs);color:var(--color-primary);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--space-2)}
+.lesson-title{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);margin-bottom:var(--space-3)}
+.lesson-desc{color:var(--color-text-muted);max-width:60ch;line-height:1.7}
+.lesson-sections{display:flex;flex-direction:column;gap:var(--space-8)}
+
+/* ===== THEORY CARD ===== */
+.theory-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/.08);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm)}
+.theory-card-header{padding:var(--space-4) var(--space-6);background:var(--color-surface-2);border-bottom:1px solid var(--color-divider);display:flex;align-items:center;gap:var(--space-3)}
+.theory-icon{width:36px;height:36px;border-radius:var(--radius-md);background:var(--color-primary-highlight);color:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.theory-card-title{font-size:var(--text-base);font-weight:600;color:var(--color-text)}
+.theory-body{padding:var(--space-6)}
+.theory-body p{color:var(--color-text-muted);line-height:1.8;margin-bottom:var(--space-4)}
+.theory-body p:last-child{margin-bottom:0}
+.grammar-table{width:100%;border-collapse:collapse;font-size:var(--text-sm);margin-top:var(--space-4)}
+.grammar-table th{background:var(--color-surface-offset);padding:var(--space-2) var(--space-4);text-align:left;font-weight:600;color:var(--color-text);border-bottom:1px solid var(--color-divider);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.04em}
+.grammar-table td{padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--color-divider);color:var(--color-text-muted);vertical-align:top}
+.grammar-table tr:last-child td{border-bottom:none}
+.grammar-table .example{font-style:italic;color:var(--color-primary);display:block;margin-top:2px;font-size:var(--text-xs)}
+.highlight-box{background:var(--color-primary-highlight);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);margin-top:var(--space-4)}
+.highlight-box p{color:var(--color-primary-active)!important;margin:0}
+.highlight-box strong{color:var(--color-primary-active)}
+.formula-box{background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);font-family:monospace;font-size:var(--text-sm);color:var(--color-text);margin-top:var(--space-4);line-height:2}
+.formula-box .formula-line{display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap}
+.formula-label{font-family:var(--font-body);font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.05em;min-width:80px}
+.formula-content{color:var(--color-text)}
+.formula-eg{color:var(--color-primary);font-style:italic}
+
+/* ===== EXERCISES ===== */
+.exercise-block{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/.08);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.exercise-block h3{font-size:var(--text-base);font-weight:600;color:var(--color-text);margin-bottom:var(--space-1)}
+.exercise-block .ex-desc{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-5)}
+.questions-list{display:flex;flex-direction:column;gap:var(--space-4)}
+.question-item{display:flex;flex-direction:column;gap:var(--space-3)}
+.question-text{font-size:var(--text-sm);color:var(--color-text);line-height:1.6}
+.question-text .blank{display:inline-block;min-width:60px;border-bottom:2px solid var(--color-border);margin:0 4px;text-align:center;color:var(--color-primary-active)}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+@media(max-width:480px){.options-grid{grid-template-columns:1fr}}
+.option-btn{padding:var(--space-2) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text);background:var(--color-surface-2);text-align:left;cursor:pointer;transition:all var(--transition-interactive);display:flex;align-items:center;gap:var(--space-2)}
+.option-btn:hover:not(:disabled){background:var(--color-primary-highlight);border-color:var(--color-primary);color:var(--color-primary)}
+.option-btn.correct{background:var(--color-success-highlight);border-color:var(--color-success);color:var(--color-success);font-weight:500}
+.option-btn.wrong{background:var(--color-error-highlight);border-color:var(--color-error);color:var(--color-error)}
+.option-btn.reveal-correct{background:var(--color-success-highlight);border-color:var(--color-success);color:var(--color-success);opacity:.7}
+.option-btn:disabled{cursor:default}
+.feedback-msg{padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);font-size:var(--text-sm);animation:slideIn .3s cubic-bezier(0.16,1,0.3,1)}
+.feedback-msg.correct{background:var(--color-success-highlight);color:var(--color-success)}
+.feedback-msg.wrong{background:var(--color-error-highlight);color:var(--color-error)}
+@keyframes slideIn{from{opacity:0;clip-path:inset(100% 0 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+
+/* Fill-in exercise */
+.fill-in-input{border:1.5px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4);font-size:var(--text-sm);background:var(--color-surface-2);color:var(--color-text);width:160px;transition:border-color var(--transition-interactive),box-shadow var(--transition-interactive)}
+.fill-in-input:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px oklch(from var(--color-primary) l c h/.15)}
+.fill-in-input.correct{border-color:var(--color-success);background:var(--color-success-highlight);color:var(--color-success)}
+.fill-in-input.wrong{border-color:var(--color-error);background:var(--color-error-highlight);color:var(--color-error)}
+.check-answer-btn{padding:var(--space-2) var(--space-5);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:background var(--transition-interactive),transform var(--transition-interactive),box-shadow var(--transition-interactive)}
+.check-answer-btn:hover{background:var(--color-primary-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.check-answer-btn:active{transform:translateY(0);box-shadow:var(--shadow-sm)}
+.check-answer-btn:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+
+/* Sentence reorder */
+.reorder-container{display:flex;flex-wrap:wrap;gap:var(--space-2);min-height:48px;border:1.5px dashed var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);background:var(--color-surface-2);transition:border-color var(--transition-interactive)}
+.reorder-container.correct{border-color:var(--color-success);border-style:solid;background:var(--color-success-highlight)}
+.reorder-container.wrong{border-color:var(--color-error);border-style:solid;background:var(--color-error-highlight)}
+.word-chip{padding:var(--space-1) var(--space-3);background:var(--color-surface);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text);cursor:grab;user-select:none;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive),border-color var(--transition-interactive)}
+.word-chip:hover{border-color:var(--color-primary);color:var(--color-primary);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.word-chip:active{cursor:grabbing;transform:scale(1.05);box-shadow:var(--shadow-md)}
+.word-bank{display:flex;flex-wrap:wrap;gap:var(--space-2);min-height:44px;padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);border:1px solid var(--color-border)}
+
+/* ===== FLASHCARD ===== */
+.flashcard-section{}
+.flashcard-wrap{perspective:1200px;width:100%;max-width:480px;height:220px;cursor:pointer;margin:0 auto var(--space-4)}
+.flashcard-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(0.16,1,0.3,1)}
+.flashcard-wrap.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flashcard-face{position:absolute;inset:0;border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-6);backface-visibility:hidden;box-shadow:var(--shadow-md)}
+.flashcard-front{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/.08);color:var(--color-text)}
+.flashcard-back{background:var(--color-primary);color:var(--color-text-inverse);transform:rotateY(180deg)}
+.flashcard-hint{font-size:var(--text-xs);color:var(--color-text-faint);margin-bottom:var(--space-3);text-transform:uppercase;letter-spacing:.06em}
+.flashcard-content{font-family:var(--font-display);font-size:var(--text-lg);text-align:center;line-height:1.4}
+.flashcard-back .flashcard-hint{color:oklch(from var(--color-text-inverse) l c h/.7)}
+.flashcard-back .flashcard-content{color:var(--color-text-inverse)}
+.flashcard-back .flashcard-example{font-size:var(--text-sm);color:oklch(from var(--color-text-inverse) l c h/.8);font-style:italic;margin-top:var(--space-3);text-align:center}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:var(--space-4);margin-top:var(--space-4)}
+.fc-btn{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);transition:all var(--transition-interactive)}
+.fc-btn:hover{background:var(--color-surface-offset);border-color:var(--color-text-muted);color:var(--color-text)}
+.fc-counter{font-size:var(--text-sm);color:var(--color-text-muted)}
+
+/* ===== QUIZ ===== */
+.quiz-wrap{max-width:var(--content-narrow);margin:0 auto}
+.quiz-progress-bar{background:var(--color-surface-offset);border-radius:var(--radius-full);height:6px;overflow:hidden;margin-bottom:var(--space-6)}
+.quiz-progress-fill{height:100%;background:var(--color-primary);border-radius:var(--radius-full);transition:width .4s cubic-bezier(0.16,1,0.3,1)}
+.quiz-q-number{font-size:var(--text-xs);color:var(--color-text-faint);margin-bottom:var(--space-3);text-transform:uppercase;letter-spacing:.06em}
+.quiz-question{font-size:var(--text-base);font-weight:500;color:var(--color-text);margin-bottom:var(--space-5);line-height:1.6}
+.quiz-options{display:flex;flex-direction:column;gap:var(--space-3)}
+.quiz-option{padding:var(--space-3) var(--space-5);border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-sm);color:var(--color-text);background:var(--color-surface);text-align:left;cursor:pointer;transition:all var(--transition-interactive);display:flex;align-items:center;gap:var(--space-3)}
+.quiz-option .opt-letter{width:28px;height:28px;border-radius:var(--radius-full);background:var(--color-surface-offset);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--text-xs);flex-shrink:0;transition:all var(--transition-interactive)}
+.quiz-option:hover:not(:disabled){background:var(--color-primary-highlight);border-color:var(--color-primary);color:var(--color-primary)}
+.quiz-option:hover:not(:disabled) .opt-letter{background:var(--color-primary);color:var(--color-text-inverse)}
+.quiz-option.selected-correct{background:var(--color-success-highlight);border-color:var(--color-success);color:var(--color-success)}
+.quiz-option.selected-correct .opt-letter{background:var(--color-success);color:var(--color-text-inverse)}
+.quiz-option.selected-wrong{background:var(--color-error-highlight);border-color:var(--color-error);color:var(--color-error)}
+.quiz-option.selected-wrong .opt-letter{background:var(--color-error);color:var(--color-text-inverse)}
+.quiz-option.show-correct{background:var(--color-success-highlight);border-color:var(--color-success);color:var(--color-success);opacity:.7}
+.quiz-option.show-correct .opt-letter{background:var(--color-success);color:var(--color-text-inverse)}
+.quiz-option:disabled{cursor:default}
+.quiz-explanation{margin-top:var(--space-4);padding:var(--space-4) var(--space-5);border-radius:var(--radius-lg);font-size:var(--text-sm);line-height:1.7;animation:slideIn .3s cubic-bezier(0.16,1,0.3,1)}
+.quiz-explanation.correct-exp{background:var(--color-success-highlight);color:var(--color-success-hover)}
+.quiz-explanation.wrong-exp{background:var(--color-error-highlight);color:var(--color-error-hover)}
+.quiz-next-btn{margin-top:var(--space-6);padding:var(--space-3) var(--space-8);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:all var(--transition-interactive);display:flex;align-items:center;gap:var(--space-2)}
+.quiz-next-btn:hover{background:var(--color-primary-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.quiz-result{text-align:center;padding:var(--space-12) var(--space-6)}
+.quiz-result .score-ring{width:120px;height:120px;margin:0 auto var(--space-6)}
+.quiz-result h2{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text);margin-bottom:var(--space-3)}
+.quiz-result p{color:var(--color-text-muted);max-width:40ch;margin:0 auto var(--space-6)}
+.quiz-result-actions{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap}
+.btn-outline{padding:var(--space-2) var(--space-6);border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);cursor:pointer;transition:all var(--transition-interactive)}
+.btn-outline:hover{border-color:var(--color-text-muted);color:var(--color-text);background:var(--color-surface-offset)}
+
+/* ===== WRITING PRACTICE ===== */
+.writing-wrap{display:flex;flex-direction:column;gap:var(--space-5)}
+.writing-prompt{background:var(--color-primary-highlight);border-radius:var(--radius-lg);padding:var(--space-5)}
+.writing-prompt h4{font-weight:600;color:var(--color-primary-active);margin-bottom:var(--space-2);font-size:var(--text-sm)}
+.writing-prompt p{color:var(--color-primary-active);font-size:var(--text-sm);line-height:1.7;margin:0}
+.writing-prompt ul{list-style:none;margin-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-1)}
+.writing-prompt ul li{font-size:var(--text-sm);color:var(--color-primary-active);display:flex;gap:var(--space-2)}
+.writing-prompt ul li::before{content:"→";flex-shrink:0}
+textarea.writing-input{width:100%;min-height:160px;padding:var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--text-sm);color:var(--color-text);background:var(--color-surface-2);resize:vertical;line-height:1.8;transition:border-color var(--transition-interactive),box-shadow var(--transition-interactive)}
+textarea.writing-input:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px oklch(from var(--color-primary) l c h/.12)}
+.writing-counter{font-size:var(--text-xs);color:var(--color-text-faint);text-align:right}
+.writing-check-btn{align-self:flex-start;padding:var(--space-3) var(--space-6);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:all var(--transition-interactive);display:flex;align-items:center;gap:var(--space-2)}
+.writing-check-btn:hover{background:var(--color-primary-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.writing-feedback{background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5);animation:slideIn .3s cubic-bezier(0.16,1,0.3,1)}
+.writing-feedback h4{font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3);color:var(--color-text)}
+.feedback-chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4)}
+.feedback-chip{font-size:var(--text-xs);padding:3px 10px;border-radius:var(--radius-full);font-weight:500}
+.feedback-chip.good{background:var(--color-success-highlight);color:var(--color-success)}
+.feedback-chip.improve{background:var(--color-gold-highlight);color:var(--color-gold)}
+.writing-feedback p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;margin-bottom:var(--space-3)}
+.writing-feedback p:last-child{margin-bottom:0}
+.model-answer{background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)}
+.model-answer h5{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-faint);margin-bottom:var(--space-2)}
+.model-answer p{font-style:italic;color:var(--color-text);font-size:var(--text-sm);line-height:1.8;margin:0}
+
+/* ===== COMPLETE BTN ===== */
+.day-complete-btn{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-4) var(--space-8);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-xl);font-size:var(--text-base);font-weight:600;cursor:pointer;transition:all var(--transition-interactive);margin-top:var(--space-8);box-shadow:var(--shadow-md)}
+.day-complete-btn:hover{background:var(--color-primary-hover);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.day-complete-btn:active{transform:translateY(0);box-shadow:var(--shadow-sm)}
+.day-complete-btn.done{background:var(--color-success);cursor:default;transform:none}
+.day-complete-btn.done:hover{background:var(--color-success)}
+
+/* ===== CELEBRATION ===== */
+#celebration{position:fixed;inset:0;z-index:999;pointer-events:none;display:none}
+.confetti-piece{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall 2s ease-in forwards}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* ===== TOOLTIP ===== */
+.has-tooltip{position:relative}
+.tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--color-text);color:var(--color-bg);font-size:var(--text-xs);padding:4px 10px;border-radius:var(--radius-md);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--transition-interactive)}
+.has-tooltip:hover .tooltip{opacity:1}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--color-border);border-radius:var(--radius-full)}
+::-webkit-scrollbar-thumb:hover{background:var(--color-text-faint)}
+
+/* ===== MOBILE NAV ===== */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--color-surface);border-top:1px solid var(--color-divider);z-index:99;padding:var(--space-2) var(--space-4)}
+@media(max-width:768px){.mobile-nav{display:flex;justify-content:space-around;gap:var(--space-1)}}
+.mobile-nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:var(--space-2);border-radius:var(--radius-md);min-width:56px;font-size:10px;color:var(--color-text-muted);cursor:pointer;transition:all var(--transition-interactive)}
+.mobile-nav-btn:hover,.mobile-nav-btn.active{color:var(--color-primary)}
+@media(max-width:768px){.content-area{padding-bottom:calc(var(--space-12)+var(--space-4))}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a class="logo" href="#" onclick="showView('dashboard');return false">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" aria-label="English Study Week logo">
+      <rect width="36" height="36" rx="8" fill="var(--color-primary)"/>
+      <path d="M8 11h14M8 18h10M8 25h14" stroke="var(--color-text-inverse)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="27" cy="24" r="6" fill="var(--color-text-inverse)" opacity=".2"/>
+      <path d="M24 24l2 2 4-4" stroke="var(--color-text-inverse)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="logo-text">English Study Week</span>
+  </a>
+  <div class="header-actions">
+    <div class="progress-bar-wrap has-tooltip" style="width:140px">
+      <div class="progress-bar-fill" id="globalProgress" style="width:0%"></div>
+      <div class="tooltip" id="progressTooltip">0 de 7 dias completos</div>
+    </div>
+    <span class="progress-label" id="progressLabel">0/7</span>
+    <button class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- CELEBRATION -->
+<div id="celebration"></div>
+
+<div class="main-layout" id="mainLayout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <p class="sidebar-title">Plano Semanal</p>
+    <button class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
+      <i data-lucide="layout-dashboard" width="16" height="16"></i>
+      Visão Geral
+    </button>
+    <div class="nav-divider"></div>
+    <p class="sidebar-title" style="margin-top:var(--space-2)">Dias de Estudo</p>
+    <button class="nav-item" onclick="showView('day1')" id="nav-day1"><i data-lucide="book-open" width="16" height="16"></i>Dia 1 — Present Simple<span class="day-badge">Dia 1</span></button>
+    <button class="nav-item" onclick="showView('day2')" id="nav-day2"><i data-lucide="book-open" width="16" height="16"></i>Dia 2 — Present Perfect<span class="day-badge">Dia 2</span></button>
+    <button class="nav-item" onclick="showView('day3')" id="nav-day3"><i data-lucide="book-open" width="16" height="16"></i>Dia 3 — Future Forms<span class="day-badge">Dia 3</span></button>
+    <button class="nav-item" onclick="showView('day4')" id="nav-day4"><i data-lucide="book-open" width="16" height="16"></i>Dia 4 — Conditionals<span class="day-badge">Dia 4</span></button>
+    <button class="nav-item" onclick="showView('day5')" id="nav-day5"><i data-lucide="book-open" width="16" height="16"></i>Dia 5 — Modals & Voice<span class="day-badge">Dia 5</span></button>
+    <button class="nav-item" onclick="showView('day6')" id="nav-day6"><i data-lucide="book-open" width="16" height="16"></i>Dia 6 — Expressions<span class="day-badge">Dia 6</span></button>
+    <button class="nav-item" onclick="showView('day7')" id="nav-day7"><i data-lucide="pencil" width="16" height="16"></i>Dia 7 — Writing & Review<span class="day-badge">Dia 7</span></button>
+    <div class="nav-divider"></div>
+    <button class="nav-item" onclick="showView('quiz')" id="nav-quiz">
+      <i data-lucide="zap" width="16" height="16"></i>Quiz Final
+      <span class="day-badge">Bônus</span>
+    </button>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content-area">
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="view-dashboard" class="view active">
+      <div class="welcome-hero">
+        <h1>Olá! Vamos estudar English 🇬🇧</h1>
+        <p>Este material foi criado especialmente para você com base no seu teste de nivelamento. Foco nos seus pontos de desenvolvimento!</p>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card accent">
+          <p class="kpi-label">Sua nota</p>
+          <p class="kpi-value">9/20</p>
+          <p class="kpi-sub">Nível A2 → B1</p>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Dias completos</p>
+          <p class="kpi-value" id="kpiDone">0/7</p>
+          <p class="kpi-sub">Continue assim! 💪</p>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Pontos fortes</p>
+          <p class="kpi-value" style="font-size:var(--text-lg)">Past Simple</p>
+          <p class="kpi-sub">+ modals, passive voice</p>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Foco desta semana</p>
+          <p class="kpi-value" style="font-size:var(--text-lg)">7 tópicos</p>
+          <p class="kpi-sub">teoria + exercícios + quiz</p>
+        </div>
+      </div>
+      <div class="week-plan-section">
+        <h2>Plano da semana</h2>
+        <div class="week-cards">
+          <button class="week-card" onclick="showView('day1')">
+            <div class="wc-top"><span class="wc-day">Dia 1</span><span class="wc-status" id="ws1"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Present Simple & 3ª Pessoa</p>
+            <div class="wc-tags"><span class="tag primary">Gramática</span><span class="tag">Regra -s/-es</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day2')">
+            <div class="wc-top"><span class="wc-day">Dia 2</span><span class="wc-status" id="ws2"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Present Perfect vs Past Simple</p>
+            <div class="wc-tags"><span class="tag gold">Tempos Verbais</span><span class="tag">for/since/ever</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day3')">
+            <div class="wc-top"><span class="wc-day">Dia 3</span><span class="wc-status" id="ws3"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Futuro: will vs going to vs present continuous</p>
+            <div class="wc-tags"><span class="tag orange">Futuro</span><span class="tag">Decisão / Plano</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day4')">
+            <div class="wc-top"><span class="wc-day">Dia 4</span><span class="wc-status" id="ws4"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">2º Condicional</p>
+            <div class="wc-tags"><span class="tag blue">Condicional</span><span class="tag">If + would</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day5')">
+            <div class="wc-top"><span class="wc-day">Dia 5</span><span class="wc-status" id="ws5"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Modais de Certeza & Voz Passiva</p>
+            <div class="wc-tags"><span class="tag purple">Modals</span><span class="tag">Passive</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day6')">
+            <div class="wc-top"><span class="wc-day">Dia 6</span><span class="wc-status" id="ws6"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Expressões & Preposições Fixas</p>
+            <div class="wc-tags"><span class="tag primary">Vocabulário</span><span class="tag">Collocations</span></div>
+          </button>
+          <button class="week-card" onclick="showView('day7')">
+            <div class="wc-top"><span class="wc-day">Dia 7</span><span class="wc-status" id="ws7"><i data-lucide="circle" width="14" height="14"></i></span></div>
+            <p class="wc-title">Writing Practice & Revisão Geral</p>
+            <div class="wc-tags"><span class="tag gold">Escrita</span><span class="tag">Revisão</span></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DAY 1: PRESENT SIMPLE ===== -->
+    <div id="view-day1" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 1</p>
+        <h1 class="lesson-title">Present Simple & 3ª Pessoa Singular</h1>
+        <p class="lesson-desc">A 3ª pessoa (he/she/it) tem regras especiais no Present Simple. Esse foi um dos seus erros — vamos corrigir isso hoje!</p>
+      </div>
+      <div class="lesson-sections">
+        <!-- THEORY -->
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Teoria — Regras da 3ª Pessoa</span>
+          </div>
+          <div class="theory-body">
+            <p>No Present Simple, usamos o verbo na forma base para I/you/we/they. Mas para <strong>he, she, it</strong>, adicionamos <strong>-s</strong> ou <strong>-es</strong>.</p>
+            <table class="grammar-table">
+              <tr><th>Sujeito</th><th>Regra</th><th>Exemplo</th></tr>
+              <tr><td>I / You / We / They</td><td>verbo base</td><td><em class="example">I study English.</em></td></tr>
+              <tr><td>He / She / It</td><td>+ <strong>-s</strong> (geral)</td><td><em class="example">She studies English.</em></td></tr>
+              <tr><td>He / She / It</td><td>verbos em -ch/-sh/-x/-ss + <strong>-es</strong></td><td><em class="example">He watches TV. She washes dishes.</em></td></tr>
+              <tr><td>He / She / It</td><td>vogal + -y → + <strong>-s</strong></td><td><em class="example">She plays guitar.</em></td></tr>
+              <tr><td>He / She / It</td><td>consoante + -y → <strong>-ies</strong></td><td><em class="example">She studies / He tries.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ <strong>Atenção:</strong> No seu teste, você marcou "study" para "She _____ English every day." A resposta correta é <strong>"studies"</strong> — consoante + y → -ies.</p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-line"><span class="formula-label">Afirmativa:</span><span class="formula-content">She <span class="formula-eg">works</span> every day.</span></div>
+              <div class="formula-line"><span class="formula-label">Negativa:</span><span class="formula-content">She <span class="formula-eg">doesn't</span> work on Sundays.</span></div>
+              <div class="formula-line"><span class="formula-label">Pergunta:</span><span class="formula-content"><span class="formula-eg">Does</span> she work here?</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- FLASHCARDS -->
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="layers" width="18" height="18"></i></div>
+            <span class="theory-card-title">Flashcards — Forme a 3ª Pessoa</span>
+          </div>
+          <div class="theory-body">
+            <p style="margin-bottom:var(--space-4)">Clique no cartão para ver a resposta:</p>
+            <div class="flashcard-wrap" id="fc1" onclick="flipCard('fc1')">
+              <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="flashcard-hint">Forma Infinitivo → 3ª Pessoa (He/She)</span>
+                  <span class="flashcard-content" id="fc1-front">study</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="flashcard-hint">Resposta</span>
+                  <span class="flashcard-content" id="fc1-back">studies</span>
+                  <span class="flashcard-example" id="fc1-eg">She studies English every day.</span>
+                </div>
+              </div>
+            </div>
+            <div class="fc-nav">
+              <button class="fc-btn" onclick="prevCard('fc1',fcData1)"><i data-lucide="chevron-left" width="16" height="16"></i>Anterior</button>
+              <span class="fc-counter" id="fc1-counter">1 / 6</span>
+              <button class="fc-btn" onclick="nextCard('fc1',fcData1)">Próximo<i data-lucide="chevron-right" width="16" height="16"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- EXERCISES -->
+        <div class="exercise-block">
+          <h3>Exercício — Complete com a forma correta</h3>
+          <p class="ex-desc">Escolha a opção correta para cada frase:</p>
+          <div class="questions-list" id="d1-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day1" onclick="completeDay(1)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 1 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 2: PRESENT PERFECT ===== -->
+    <div id="view-day2" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 2</p>
+        <h1 class="lesson-title">Present Perfect vs Past Simple</h1>
+        <p class="lesson-desc">Você errou as questões 8 e 9 no teste — ambas envolvem Present Perfect. Hoje você vai entender a diferença!</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Teoria — Present Perfect vs Past Simple</span>
+          </div>
+          <div class="theory-body">
+            <p>O <strong>Past Simple</strong> fala de ações <em>com tempo definido no passado</em>. O <strong>Present Perfect</strong> conecta o passado com o presente — quando o tempo NÃO importa ou quando a ação ainda tem efeito agora.</p>
+            <table class="grammar-table">
+              <tr><th>Tempo</th><th>Quando usar</th><th>Palavras-chave</th><th>Exemplo</th></tr>
+              <tr><td><strong>Past Simple</strong></td><td>Ação com tempo definido</td><td>yesterday, last week, in 2020, ago</td><td><em class="example">I went to Paris last year.</em></td></tr>
+              <tr><td><strong>Present Perfect</strong></td><td>Experiência de vida (sem tempo fixo)</td><td>ever, never, before, three times</td><td><em class="example">I have been to Paris three times.</em></td></tr>
+              <tr><td><strong>Present Perfect</strong></td><td>Ação que continua até hoje</td><td>since (ponto), for (período)</td><td><em class="example">He has lived here since 2020.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ <strong>Seus erros no teste:</strong><br/>
+              Q8: "I _____ to Paris three times" → correto: <strong>have been</strong> (experiência)<br/>
+              Q9: "He _____ here since 2020" → correto: <strong>has lived</strong> (ação que continua)</p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-line"><span class="formula-label">Forma:</span><span class="formula-content"><span class="formula-eg">have/has</span> + particípio passado</span></div>
+              <div class="formula-line"><span class="formula-label">I/You/We:</span><span class="formula-content"><span class="formula-eg">have</span> been / seen / done</span></div>
+              <div class="formula-line"><span class="formula-label">He/She/It:</span><span class="formula-content"><span class="formula-eg">has</span> been / seen / done</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="layers" width="18" height="18"></i></div>
+            <span class="theory-card-title">Flashcards — Past Simple ou Present Perfect?</span>
+          </div>
+          <div class="theory-body">
+            <div class="flashcard-wrap" id="fc2" onclick="flipCard('fc2')">
+              <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="flashcard-hint">Qual tempo verbal?</span>
+                  <span class="flashcard-content" id="fc2-front">"I _____ to Spain three times."</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="flashcard-hint">Resposta</span>
+                  <span class="flashcard-content" id="fc2-back">have been</span>
+                  <span class="flashcard-example" id="fc2-eg">I have been to Spain three times. (experiência)</span>
+                </div>
+              </div>
+            </div>
+            <div class="fc-nav">
+              <button class="fc-btn" onclick="prevCard('fc2',fcData2)"><i data-lucide="chevron-left" width="16" height="16"></i>Anterior</button>
+              <span class="fc-counter" id="fc2-counter">1 / 5</span>
+              <button class="fc-btn" onclick="nextCard('fc2',fcData2)">Próximo<i data-lucide="chevron-right" width="16" height="16"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>Exercício — Past Simple or Present Perfect?</h3>
+          <p class="ex-desc">Escolha a alternativa correta:</p>
+          <div class="questions-list" id="d2-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day2" onclick="completeDay(2)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 2 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 3: FUTURE ===== -->
+    <div id="view-day3" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 3</p>
+        <h1 class="lesson-title">Formas do Futuro: will × going to × Present Continuous</h1>
+        <p class="lesson-desc">Você errou Q10 e Q12. A diferença entre as formas do futuro é sutil — vamos dominar isso!</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Teoria — Três formas de falar sobre o futuro</span>
+          </div>
+          <div class="theory-body">
+            <table class="grammar-table">
+              <tr><th>Forma</th><th>Quando usar</th><th>Exemplo</th></tr>
+              <tr><td><strong>will + infinitivo</strong></td><td>Decisão na hora / previsão / opinião (I think…)</td><td><em class="example">I think it will rain tomorrow.<br/>Hold on, I'll help you!</em></td></tr>
+              <tr><td><strong>be going to + infinitivo</strong></td><td>Plano já decidido antes / evidência visual</td><td><em class="example">We're going to buy a car. (já decidido)<br/>Look at those clouds! It's going to rain!</em></td></tr>
+              <tr><td><strong>Present Continuous</strong></td><td>Compromisso/plano já organizado (data/hora marcada)</td><td><em class="example">I'm going to the gym tomorrow at 7am.<br/>She's flying to Paris next week.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ <strong>Seus erros no teste:</strong><br/>
+              Q10: "Tomorrow I _____ to the gym at 7am" → correto: <strong>am going</strong> (plano organizado — horário marcado)<br/>
+              Q12: "We _____ buy a car. We already decided." → correto: <strong>are going to</strong> (decisão já tomada)</p>
+            </div>
+          </div>
+        </div>
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="layers" width="18" height="18"></i></div>
+            <span class="theory-card-title">Flashcards — Qual forma de futuro?</span>
+          </div>
+          <div class="theory-body">
+            <div class="flashcard-wrap" id="fc3" onclick="flipCard('fc3')">
+              <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="flashcard-hint">Qual forma usar?</span>
+                  <span class="flashcard-content" id="fc3-front">"I think it _____ rain tomorrow."</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="flashcard-hint">Resposta</span>
+                  <span class="flashcard-content" id="fc3-back">will</span>
+                  <span class="flashcard-example" id="fc3-eg">I think it will rain. → opinião/previsão = will</span>
+                </div>
+              </div>
+            </div>
+            <div class="fc-nav">
+              <button class="fc-btn" onclick="prevCard('fc3',fcData3)"><i data-lucide="chevron-left" width="16" height="16"></i>Anterior</button>
+              <span class="fc-counter" id="fc3-counter">1 / 5</span>
+              <button class="fc-btn" onclick="nextCard('fc3',fcData3)">Próximo<i data-lucide="chevron-right" width="16" height="16"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>Exercício — will, going to ou Present Continuous?</h3>
+          <p class="ex-desc">Escolha a forma correta do futuro:</p>
+          <div class="questions-list" id="d3-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day3" onclick="completeDay(3)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 3 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 4: CONDITIONALS ===== -->
+    <div id="view-day4" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 4</p>
+        <h1 class="lesson-title">2º Condicional — If I had…, I would…</h1>
+        <p class="lesson-desc">Você errou Q14 marcando "would have" em vez de "had". Hoje vamos dominar a estrutura do 2º condicional!</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Teoria — Os Condicionais</span>
+          </div>
+          <div class="theory-body">
+            <table class="grammar-table">
+              <tr><th>Tipo</th><th>Estrutura</th><th>Uso</th><th>Exemplo</th></tr>
+              <tr><td><strong>1º Condicional</strong></td><td>If + present simple, will + inf.</td><td>Situação real/possível no futuro</td><td><em class="example">If it rains, I will stay home.</em></td></tr>
+              <tr><td><strong>2º Condicional</strong></td><td>If + past simple, would + inf.</td><td>Situação hipotética/imaginária</td><td><em class="example">If I had money, I would travel.</em></td></tr>
+              <tr><td><strong>3º Condicional</strong></td><td>If + past perfect, would have + pp.</td><td>Situação que não aconteceu no passado</td><td><em class="example">If I had studied, I would have passed.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ <strong>Atenção — 2º Condicional:</strong><br/>
+              "If I <strong>had</strong> enough money, I <strong>would</strong> travel around the world."<br/>
+              → A parte do "If" usa <strong>past simple (had)</strong>, não "would have"!</p>
+            </div>
+            <div class="formula-box">
+              <div class="formula-line"><span class="formula-label">Fórmula:</span><span class="formula-content">If + <span class="formula-eg">past simple</span>, subject + <span class="formula-eg">would</span> + infinitivo</span></div>
+              <div class="formula-line"><span class="formula-label">Exemplo:</span><span class="formula-content">If I <span class="formula-eg">lived</span> in London, I <span class="formula-eg">would learn</span> English faster.</span></div>
+              <div class="formula-line"><span class="formula-label">Com "be":</span><span class="formula-content">If I <span class="formula-eg">were</span> rich, I <span class="formula-eg">would</span> buy a yacht. (were, não was!)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="layers" width="18" height="18"></i></div>
+            <span class="theory-card-title">Flashcards — Complete o 2º Condicional</span>
+          </div>
+          <div class="theory-body">
+            <div class="flashcard-wrap" id="fc4" onclick="flipCard('fc4')">
+              <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="flashcard-hint">Complete a frase hipotética</span>
+                  <span class="flashcard-content" id="fc4-front">"If I _____ a car, I would drive to the beach."</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="flashcard-hint">Resposta</span>
+                  <span class="flashcard-content" id="fc4-back">had</span>
+                  <span class="flashcard-example" id="fc4-eg">If I had a car… → past simple na cláusula "if"</span>
+                </div>
+              </div>
+            </div>
+            <div class="fc-nav">
+              <button class="fc-btn" onclick="prevCard('fc4',fcData4)"><i data-lucide="chevron-left" width="16" height="16"></i>Anterior</button>
+              <span class="fc-counter" id="fc4-counter">1 / 5</span>
+              <button class="fc-btn" onclick="nextCard('fc4',fcData4)">Próximo<i data-lucide="chevron-right" width="16" height="16"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>Exercício — Condicionais na prática</h3>
+          <p class="ex-desc">Escolha a alternativa correta:</p>
+          <div class="questions-list" id="d4-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day4" onclick="completeDay(4)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 4 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 5: MODALS & PASSIVE ===== -->
+    <div id="view-day5" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 5</p>
+        <h1 class="lesson-title">Modais de Certeza & Voz Passiva</h1>
+        <p class="lesson-desc">Você errou Q15 (must/should/can) e Q17-18 (passive voice/reported speech). Vamos clarear tudo hoje!</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Modais — Graus de certeza</span>
+          </div>
+          <div class="theory-body">
+            <table class="grammar-table">
+              <tr><th>Modal</th><th>Grau de certeza</th><th>Exemplo</th></tr>
+              <tr><td><strong>must</strong></td><td>Forte certeza (quase 100%)</td><td><em class="example">She must be at home. Her car is there!</em></td></tr>
+              <tr><td><strong>should</strong></td><td>Expectativa / conselho (~70%)</td><td><em class="example">She should be home by now. (esperado)</em></td></tr>
+              <tr><td><strong>could / might</strong></td><td>Possibilidade (~50%)</td><td><em class="example">She might be at home. I'm not sure.</em></td></tr>
+              <tr><td><strong>can't</strong></td><td>Impossibilidade (quase 0%)</td><td><em class="example">She can't be home — I just saw her!</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ Q15: "Her car is in the garage" → prova forte de que ela está em casa → <strong>must</strong> (não should)</p>
+            </div>
+          </div>
+        </div>
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Voz Passiva & Discurso Indireto</span>
+          </div>
+          <div class="theory-body">
+            <p><strong>Voz Passiva:</strong> sujeito recebe a ação. Forma: <em>be + particípio passado</em>.</p>
+            <table class="grammar-table">
+              <tr><th>Tempo</th><th>Forma Passiva</th><th>Exemplo</th></tr>
+              <tr><td>Present Simple</td><td>is/are + pp</td><td><em class="example">The book is read by millions.</em></td></tr>
+              <tr><td>Past Simple</td><td>was/were + pp</td><td><em class="example">The house was built in 1920.</em></td></tr>
+              <tr><td>Present Perfect</td><td>has/have been + pp</td><td><em class="example">It has been built recently.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ Q18: "The house _____ in 1920" → Past Simple Passive → <strong>was built</strong> (não "has built")</p>
+            </div>
+            <p style="margin-top:var(--space-4)"><strong>Discurso Indireto (Reported Speech):</strong> O verbo recua um tempo verbal.</p>
+            <div class="formula-box">
+              <div class="formula-line"><span class="formula-label">Direto:</span><span class="formula-content">"I <span class="formula-eg">am</span> tired." → Indireto: She said she <span class="formula-eg">was</span> tired.</span></div>
+              <div class="formula-line"><span class="formula-label">Direto:</span><span class="formula-content">"I <span class="formula-eg">will</span> help." → Indireto: He said he <span class="formula-eg">would</span> help.</span></div>
+              <div class="formula-line"><span class="formula-label">Direto:</span><span class="formula-content">"I <span class="formula-eg">went</span> there." → Indireto: He said he <span class="formula-eg">had gone</span> there.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>Exercício — Modais, Passiva e Reported Speech</h3>
+          <p class="ex-desc">Escolha a alternativa correta:</p>
+          <div class="questions-list" id="d5-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day5" onclick="completeDay(5)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 5 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 6: EXPRESSIONS ===== -->
+    <div id="view-day6" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 6</p>
+        <h1 class="lesson-title">Expressões Fixas & Preposições</h1>
+        <p class="lesson-desc">Você errou Q19 (looking forward to + -ing) e Q20 (good at). Expressões fixas se memorizam com prática!</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="book" width="18" height="18"></i></div>
+            <span class="theory-card-title">Expressões com preposição fixa</span>
+          </div>
+          <div class="theory-body">
+            <p>Algumas expressões em inglês sempre exigem uma preposição específica. Não há lógica — é memorização!</p>
+            <table class="grammar-table">
+              <tr><th>Expressão</th><th>Preposição</th><th>Exemplo</th></tr>
+              <tr><td>good / bad / excellent</td><td><strong>at</strong></td><td><em class="example">She's good at swimming.</em></td></tr>
+              <tr><td>interested</td><td><strong>in</strong></td><td><em class="example">He's interested in art.</em></td></tr>
+              <tr><td>looking forward to</td><td><strong>to + -ing</strong></td><td><em class="example">I'm looking forward to seeing you.</em></td></tr>
+              <tr><td>afraid / scared / tired</td><td><strong>of</strong></td><td><em class="example">She's afraid of spiders.</em></td></tr>
+              <tr><td>responsible / famous / known</td><td><strong>for</strong></td><td><em class="example">He's famous for his cooking.</em></td></tr>
+              <tr><td>dependent / keen</td><td><strong>on</strong></td><td><em class="example">She's keen on dancing.</em></td></tr>
+              <tr><td>married / compared</td><td><strong>to</strong></td><td><em class="example">She's married to a doctor.</em></td></tr>
+              <tr><td>different</td><td><strong>from</strong></td><td><em class="example">This is different from that.</em></td></tr>
+            </table>
+            <div class="highlight-box">
+              <p>⚠️ <strong>Looking forward to + gerúndio (-ing):</strong><br/>
+              "to" aqui é preposição, não parte do infinitivo. Então: "I'm looking forward to <strong>seeing</strong> you" ✅<br/>
+              "I'm looking forward to <strong>see</strong> you" ❌</p>
+            </div>
+          </div>
+        </div>
+        <div class="theory-card">
+          <div class="theory-card-header">
+            <div class="theory-icon"><i data-lucide="layers" width="18" height="18"></i></div>
+            <span class="theory-card-title">Flashcards — Complete a expressão</span>
+          </div>
+          <div class="theory-body">
+            <div class="flashcard-wrap" id="fc6" onclick="flipCard('fc6')">
+              <div class="flashcard-inner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="flashcard-hint">Qual preposição?</span>
+                  <span class="flashcard-content" id="fc6-front">"She is good _____ playing piano."</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="flashcard-hint">Resposta</span>
+                  <span class="flashcard-content" id="fc6-back">at</span>
+                  <span class="flashcard-example" id="fc6-eg">good at → sempre! good at sports, good at math…</span>
+                </div>
+              </div>
+            </div>
+            <div class="fc-nav">
+              <button class="fc-btn" onclick="prevCard('fc6',fcData6)"><i data-lucide="chevron-left" width="16" height="16"></i>Anterior</button>
+              <span class="fc-counter" id="fc6-counter">1 / 6</span>
+              <button class="fc-btn" onclick="nextCard('fc6',fcData6)">Próximo<i data-lucide="chevron-right" width="16" height="16"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>Exercício — Preposições e Expressões</h3>
+          <p class="ex-desc">Escolha a preposição/expressão correta:</p>
+          <div class="questions-list" id="d6-exercises"></div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day6" onclick="completeDay(6)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 6 como concluído
+      </button>
+    </div>
+
+    <!-- ===== DAY 7: WRITING ===== -->
+    <div id="view-day7" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">📅 Dia 7</p>
+        <h1 class="lesson-title">Writing Practice & Revisão Geral</h1>
+        <p class="lesson-desc">No teste, você não fez a parte de escrita. Hoje é o dia! Vamos praticar com feedback imediato.</p>
+      </div>
+      <div class="lesson-sections">
+        <div class="exercise-block">
+          <h3>✍️ Exercício 1 — My Daily Routine</h3>
+          <p class="ex-desc">Escreva 3-5 frases sobre sua rotina diária. Use Present Simple. Dica: use words like "always, usually, often, sometimes, never".</p>
+          <div class="writing-wrap">
+            <div class="writing-prompt">
+              <h4>💡 Estruturas para usar:</h4>
+              <ul>
+                <li>I wake up at ___ every day.</li>
+                <li>I usually/always/never ___.</li>
+                <li>In the morning/evening, I ___.</li>
+                <li>After work/school, I ___.</li>
+              </ul>
+            </div>
+            <textarea class="writing-input" id="writing1" placeholder="Write your text here… (e.g. I wake up at 7am every day. I usually have coffee for breakfast...)" oninput="updateCounter('writing1','counter1')"></textarea>
+            <span class="writing-counter" id="counter1">0 palavras</span>
+            <button class="writing-check-btn" onclick="checkWriting('writing1','wfeedback1',1)">
+              <i data-lucide="sparkles" width="16" height="16"></i>
+              Ver Feedback
+            </button>
+            <div id="wfeedback1" style="display:none"></div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>✍️ Exercício 2 — My Last Vacation</h3>
+          <p class="ex-desc">Escreva 3-5 frases sobre suas últimas férias. Use Past Simple!</p>
+          <div class="writing-wrap">
+            <div class="writing-prompt">
+              <h4>💡 Estruturas para usar:</h4>
+              <ul>
+                <li>Last year/month, I went to ___.</li>
+                <li>I stayed at ___ for ___ days.</li>
+                <li>I visited / ate / met / saw ___.</li>
+                <li>It was (amazing/relaxing/fun)!</li>
+              </ul>
+            </div>
+            <textarea class="writing-input" id="writing2" placeholder="Write your text here… (e.g. Last year I went to the beach. I stayed there for 5 days...)" oninput="updateCounter('writing2','counter2')"></textarea>
+            <span class="writing-counter" id="counter2">0 palavras</span>
+            <button class="writing-check-btn" onclick="checkWriting('writing2','wfeedback2',2)">
+              <i data-lucide="sparkles" width="16" height="16"></i>
+              Ver Feedback
+            </button>
+            <div id="wfeedback2" style="display:none"></div>
+          </div>
+        </div>
+        <div class="exercise-block">
+          <h3>✍️ Exercício 3 — My Future Plans</h3>
+          <p class="ex-desc">Escreva 3-5 frases sobre seus planos futuros. Use will, going to e Present Continuous!</p>
+          <div class="writing-wrap">
+            <div class="writing-prompt">
+              <h4>💡 Estruturas para usar:</h4>
+              <ul>
+                <li>I'm going to ___ next year. (plano decidido)</li>
+                <li>I think I will ___. (opinião/previsão)</li>
+                <li>I'm flying to ___ next month. (compromisso)</li>
+                <li>I hope to ___ in the future.</li>
+              </ul>
+            </div>
+            <textarea class="writing-input" id="writing3" placeholder="Write your text here… (e.g. I'm going to travel to Europe next year. I think I will study English harder...)" oninput="updateCounter('writing3','counter3')"></textarea>
+            <span class="writing-counter" id="counter3">0 palavras</span>
+            <button class="writing-check-btn" onclick="checkWriting('writing3','wfeedback3',3)">
+              <i data-lucide="sparkles" width="16" height="16"></i>
+              Ver Feedback
+            </button>
+            <div id="wfeedback3" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+      <button class="day-complete-btn" id="btn-day7" onclick="completeDay(7)">
+        <i data-lucide="check-circle" width="20" height="20"></i>
+        Marcar Dia 7 como concluído
+      </button>
+    </div>
+
+    <!-- ===== QUIZ ===== -->
+    <div id="view-quiz" class="view">
+      <div class="lesson-header">
+        <p class="lesson-day-label">⚡ Quiz Final</p>
+        <h1 class="lesson-title">Quiz de Revisão</h1>
+        <p class="lesson-desc">20 questões cobrindo tudo que você estudou esta semana. Com feedback instantâneo!</p>
+      </div>
+      <div class="quiz-wrap" id="quizContainer">
+        <div id="quizStart" style="text-align:center;padding:var(--space-12) var(--space-6)">
+          <div style="font-size:48px;margin-bottom:var(--space-4)">⚡</div>
+          <h2 style="font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-3)">Pronto para o quiz?</h2>
+          <p style="color:var(--color-text-muted);max-width:40ch;margin:0 auto var(--space-8)">20 questões sobre Present Simple, Present Perfect, Futuro, Condicionais, Modais e Expressões.</p>
+          <button class="day-complete-btn" style="margin:0 auto" onclick="startQuiz()">
+            <i data-lucide="zap" width="20" height="20"></i>
+            Iniciar Quiz
+          </button>
+        </div>
+        <div id="quizContent" style="display:none"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <button class="mobile-nav-btn active" onclick="showView('dashboard')" id="mnav-home">
+    <i data-lucide="layout-dashboard" width="20" height="20"></i>Início
+  </button>
+  <button class="mobile-nav-btn" onclick="showView('day1')" id="mnav-d1">
+    <i data-lucide="book-open" width="20" height="20"></i>Dia 1
+  </button>
+  <button class="mobile-nav-btn" onclick="showView('day2')" id="mnav-d2">
+    <i data-lucide="book-open" width="20" height="20"></i>Dia 2
+  </button>
+  <button class="mobile-nav-btn" onclick="showView('quiz')" id="mnav-quiz">
+    <i data-lucide="zap" width="20" height="20"></i>Quiz
+  </button>
+</nav>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  t&&t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';
+    r.setAttribute('data-theme',d);
+    t.innerHTML=d==='dark'?
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>':
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+
+// ===== STATE =====
+let completedDays = [];
+const totalDays = 7;
+
+// ===== VIEW NAVIGATION =====
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav-btn').forEach(n=>n.classList.remove('active'));
+  const v = document.getElementById('view-'+id);
+  if(v) v.classList.add('active');
+  const n = document.getElementById('nav-'+id);
+  if(n) n.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ===== FLASHCARD DATA =====
+const fcData1 = [
+  {front:'study',back:'studies',eg:'She studies English every day.'},
+  {front:'go',back:'goes',eg:'He goes to school at 8am.'},
+  {front:'watch',back:'watches',eg:'She watches TV every night.'},
+  {front:'have',back:'has',eg:'She has breakfast at 7am.'},
+  {front:'play',back:'plays',eg:'He plays football on weekends.'},
+  {front:'do',back:'does',eg:'She does her homework after school.'},
+];
+const fcData2 = [
+  {front:'"I _____ to Spain three times."',back:'have been',eg:'I have been to Spain three times. (experiência de vida)'},
+  {front:'"She _____ here since 2020."',back:'has lived',eg:'She has lived here since 2020. (ação que continua)'},
+  {front:'"_____ you ever _____ sushi?"',back:'Have / eaten',eg:'Have you ever eaten sushi? (experiência)'},
+  {front:'"I _____ my keys yesterday."',back:'lost',eg:'I lost my keys yesterday. (past simple — tempo definido: yesterday)'},
+  {front:'"He _____ his homework yet."',back:"hasn't done",eg:"He hasn't done his homework yet. (ainda não concluído)"},
+];
+const fcData3 = [
+  {front:'"I think it _____ rain tomorrow."',back:'will',eg:"I think it will rain. → opinião/previsão = will"},
+  {front:'"We _____ buy a car. We already decided."',back:'are going to',eg:"are going to → plano já decidido antes"},
+  {front:'"I _____ meeting at 3pm tomorrow."',back:"'m having a",eg:"I'm having a meeting at 3pm. → horário marcado = Present Continuous"},
+  {front:'"Look at those clouds! It _____ rain!"',back:'is going to',eg:"is going to rain → evidência visual do futuro próximo"},
+  {front:'"Hold on, I _____ help you!"',back:"'ll",eg:"I'll help you! → decisão na hora = will"},
+];
+const fcData4 = [
+  {front:'"If I _____ a car, I would drive to the beach."',back:'had',eg:"If I had → past simple na cláusula 'if'"},
+  {front:'"If she _____ harder, she would pass."',back:'studied',eg:"If she studied → past simple (2º condicional)"},
+  {front:'"If I _____ you, I would apologize."',back:'were',eg:"If I were → 'were' com todos os sujeitos no 2º condicional"},
+  {front:'"What _____ you do if you won the lottery?"',back:'would',eg:"What would you do? → resultado hipotético = would"},
+  {front:'"If we had more time, we _____ visit more cities."',back:'would',eg:"…we would visit → resultado hipotético = would + infinitive"},
+];
+const fcData6 = [
+  {front:'"She is good _____ playing piano."',back:'at',eg:"good at → sempre! good at sports, good at math…"},
+  {front:'"I\'m looking forward _____ seeing you."',back:'to',eg:"looking forward to → 'to' é preposição, use -ing depois"},
+  {front:'"He is interested _____ history."',back:'in',eg:"interested in → fixo! interested in art, in science…"},
+  {front:'"She is afraid _____ spiders."',back:'of',eg:"afraid of → afraid of dogs, afraid of heights…"},
+  {front:'"He is responsible _____ the team."',back:'for',eg:"responsible for → responsible for his actions…"},
+  {front:'"She is different _____ her sister."',back:'from',eg:"different from → different from what I expected…"},
+];
+
+let fcIdx = {fc1:0,fc2:0,fc3:0,fc4:0,fc6:0};
+
+function flipCard(id){
+  const el = document.getElementById(id);
+  el.classList.toggle('flipped');
+}
+function updateCard(id, data){
+  const i = fcIdx[id];
+  const d = data[i];
+  const el = document.getElementById(id);
+  el.classList.remove('flipped');
+  setTimeout(()=>{
+    document.getElementById(id+'-front').textContent = d.front;
+    document.getElementById(id+'-back').textContent = d.back;
+    document.getElementById(id+'-eg').textContent = d.eg;
+    document.getElementById(id+'-counter').textContent = (i+1)+' / '+data.length;
+  }, el.classList.contains('flipped') ? 0 : 50);
+}
+function nextCard(id,data){
+  fcIdx[id]=(fcIdx[id]+1)%data.length;
+  updateCard(id,data);
+}
+function prevCard(id,data){
+  fcIdx[id]=(fcIdx[id]-1+data.length)%data.length;
+  updateCard(id,data);
+}
+
+// ===== EXERCISE DATA =====
+const exercises = {
+  d1: [
+    {q:'She _____ English every day.',opts:['study','studies','studying','is study'],ans:1,exp:'3ª pessoa (she) → study → studies (consoante + y = -ies)'},
+    {q:'He _____ to school by bus.',opts:['go','goes','going','is go'],ans:1,exp:'3ª pessoa (he) → go → goes'},
+    {q:'She _____ a book every night.',opts:['read','reads','reading','is read'],ans:1,exp:'3ª pessoa (she) → read → reads'},
+    {q:'Does she _____ coffee in the morning?',opts:['drink','drinks','drinking','drank'],ans:0,exp:'Em perguntas com "does", o verbo fica na forma base (infinitivo sem -s)'},
+    {q:'My sister _____ in São Paulo.',opts:['live','lives','living','lived'],ans:1,exp:'3ª pessoa (my sister = she) → live → lives'},
+  ],
+  d2: [
+    {q:'I _____ to Paris three times. (experience)',opts:['went','go','have been','was'],ans:2,exp:'Experiência de vida sem tempo definido → Present Perfect: have been'},
+    {q:'He _____ here since 2020.',opts:['lives','lived','has lived','is living'],ans:2,exp:'Ação que continua desde o passado até hoje com "since" → Present Perfect: has lived'},
+    {q:'She _____ her homework yesterday.',opts:["didn't finish",'hasn\'t finished','didn\'t finished','don\'t finish'],ans:0,exp:'Tempo definido (yesterday) → Past Simple negativo: didn\'t + infinitivo'},
+    {q:'_____ you ever _____ sushi?',opts:['Did / eat','Have / eaten','Do / eat','Were / eating'],ans:1,exp:'Experiência de vida com "ever" → Present Perfect: Have you ever eaten?'},
+    {q:'They _____ the new movie last weekend.',opts:['have seen','saw','see','had seen'],ans:1,exp:'Tempo definido (last weekend) → Past Simple: saw'},
+  ],
+  d3: [
+    {q:'Tomorrow I _____ to the gym at 7am.',opts:['go','am going','went','will going'],ans:1,exp:'Plano com horário marcado → Present Continuous (am going)'},
+    {q:'We _____ buy a new car. We already decided.',opts:['will','are going to','might','are'],ans:1,exp:'Decisão já tomada antes do momento da fala → be going to'},
+    {q:'I think it _____ rain tomorrow.',opts:['is','will','going to','is going'],ans:1,exp:'Opinião/previsão com "I think" → will'},
+    {q:'Look at those clouds! It _____ rain!',opts:['will','is going to','is','might'],ans:1,exp:'Evidência visual do futuro próximo → be going to'},
+    {q:'"I don\'t have money for a taxi." — "Don\'t worry, I _____ pay for it!"',opts:['am going to','will','am paying','going to'],ans:1,exp:'Decisão na hora da fala → will'},
+  ],
+  d4: [
+    {q:'If I _____ enough money, I would travel the world.',opts:['have','had','will have','would have'],ans:1,exp:'2º Condicional: If + past simple → If I had...'},
+    {q:'If she _____ harder, she would pass the exam.',opts:['studies','studied','will study','would study'],ans:1,exp:'2º Condicional: cláusula "if" usa past simple → studied'},
+    {q:'What would you do if you _____ the lottery?',opts:['win','won','will win','would win'],ans:1,exp:'2º Condicional: If + past simple → if you won'},
+    {q:'If I were you, I _____ apologize.',opts:['will','would','am going to','had'],ans:1,exp:"2º Condicional: resultado usa 'would' + infinitivo → I would apologize"},
+    {q:'If it _____ tomorrow, we will cancel the trip.',opts:['rains','rained','will rain','would rain'],ans:0,exp:"1º Condicional (situação real/possível): If + present simple, will → If it rains..."},
+  ],
+  d5: [
+    {q:'She _____ be at home. Her car is in the garage.',opts:['can','should','must','would'],ans:2,exp:'Forte evidência → must (quase 100% de certeza)'},
+    {q:'She said that she _____ tired.',opts:['is','was','has been','will be'],ans:1,exp:'Reported speech: tempo verbal recua → is → was'},
+    {q:'The house _____ in 1920.',opts:['built','was built','has built','is built'],ans:1,exp:'Past Simple Passive: was + particípio passado → was built'},
+    {q:'The book _____ by millions every year.',opts:['reads','is read','was read','has read'],ans:1,exp:'Present Simple Passive: is/are + particípio passado → is read'},
+    {q:'He _____ be the thief. He was in another country!',opts:["can't",'mustn\'t','shouldn\'t','won\'t'],ans:0,exp:"Impossibilidade (evidência contrária) → can't be"},
+  ],
+  d6: [
+    {q:"I'm looking forward _____ you next week.",opts:['to see','to seeing','see','seeing'],ans:1,exp:"looking forward to → 'to' é preposição, use -ing depois: to seeing"},
+    {q:'He\'s good _____ playing the piano.',opts:['in','at','on','for'],ans:1,exp:'good at → sempre! good at playing, good at English, good at sports'},
+    {q:'She\'s interested _____ learning new languages.',opts:['on','at','in','for'],ans:2,exp:'interested in → fixo'},
+    {q:'I\'m afraid _____ flying.',opts:['of','from','for','about'],ans:0,exp:'afraid of → afraid of spiders, afraid of the dark'},
+    {q:'He\'s responsible _____ the whole project.',opts:['of','at','for','about'],ans:2,exp:'responsible for → responsible for his actions, for the team'},
+  ],
+};
+
+// ===== RENDER EXERCISES =====
+function renderExercises(dayId, containerId) {
+  const ex = exercises[dayId];
+  const container = document.getElementById(containerId);
+  if(!container || container.innerHTML.trim()!=='') return;
+  ex.forEach((item,idx)=>{
+    const div = document.createElement('div');
+    div.className='question-item';
+    div.innerHTML=`
+      <p class="question-text"><strong>${idx+1}.</strong> ${item.q.replace('_____','<span class="blank">_____</span>')}</p>
+      <div class="options-grid">
+        ${item.opts.map((o,i)=>`<button class="option-btn" data-day="${dayId}" data-q="${idx}" data-opt="${i}" onclick="checkOpt(this,${item.ans},'${dayId}',${idx},'${item.exp.replace(/'/g,"\\'")}')">
+          <span>${String.fromCharCode(65+i)})</span> ${o}
+        </button>`).join('')}
+      </div>
+      <div id="fb-${dayId}-${idx}"></div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function checkOpt(btn, correctIdx, dayId, qIdx, explanation) {
+  const allBtns = document.querySelectorAll(`[data-day="${dayId}"][data-q="${qIdx}"]`);
+  const chosen = parseInt(btn.dataset.opt);
+  allBtns.forEach(b=>{b.disabled=true;});
+  const fbEl = document.getElementById(`fb-${dayId}-${qIdx}`);
+  if(chosen===correctIdx){
+    btn.classList.add('correct');
+    fbEl.innerHTML=`<div class="feedback-msg correct">✅ Correto! ${explanation}</div>`;
+  } else {
+    btn.classList.add('wrong');
+    allBtns[correctIdx].classList.add('reveal-correct');
+    fbEl.innerHTML=`<div class="feedback-msg wrong">❌ Incorreto. A resposta certa é <strong>${String.fromCharCode(65+correctIdx)})</strong>. ${explanation}</div>`;
+  }
+}
+
+// Init exercises
+['d1','d2','d3','d4','d5','d6'].forEach(d=>{
+  renderExercises(d,`${d}-exercises`);
+});
+
+// ===== WRITING FEEDBACK =====
+function updateCounter(tid,cid){
+  const words = document.getElementById(tid).value.trim().split(/\s+/).filter(w=>w.length>0);
+  document.getElementById(cid).textContent = words.length+' palavra'+(words.length!==1?'s':'');
+}
+
+const writingFeedback = [
+  {
+    checks:[
+      {pattern:/\b(wake|woke|get up|go to bed|have breakfast|have lunch|have dinner|work|study|go to school|go to work)\b/i,label:'Bom vocabulário de rotina',good:true},
+      {pattern:/\b(always|usually|often|sometimes|never|every day|in the morning|at night)\b/i,label:'Usou advérbios de frequência',good:true},
+      {pattern:/\b(s|es)\b/,label:'',good:false,special:'third'},
+    ],
+    modelAns:"I wake up at 7am every day. I usually have coffee and toast for breakfast. In the morning, I go to work by bus. I always come home at 6pm. At night, I sometimes watch TV or read a book.",
+    tips:"Verifique se usou -s/-es na 3ª pessoa (she, he, it). Tente incluir advérbios de frequência (always, usually, often, sometimes, never). Use conectores como 'after that', 'then', 'in the morning/evening'.",
+  },
+  {
+    checks:[
+      {pattern:/\b(went|visited|stayed|ate|saw|met|had|did|was|were|traveled|spent)\b/i,label:'Usou Past Simple corretamente',good:true},
+      {pattern:/\b(last|ago|yesterday|in \d{4})\b/i,label:'Incluiu marcador de tempo',good:true},
+    ],
+    modelAns:"Last year I went to the beach with my family. We stayed there for five days. I visited beautiful places and ate amazing seafood. The weather was perfect and we had a great time!",
+    tips:"Lembre-se: Past Simple para ações com tempo definido no passado. Evite usar 'have + particípio' aqui. Acrescente detalhes: onde foi, com quem, o que fez.",
+  },
+  {
+    checks:[
+      {pattern:/\b(will|going to|am going|is going|are going|'ll)\b/i,label:'Usou formas do futuro',good:true},
+      {pattern:/\b(next year|next month|tomorrow|in the future|soon)\b/i,label:'Incluiu marcador de tempo futuro',good:true},
+    ],
+    modelAns:"I'm going to travel to Europe next year. I think I will visit Portugal and Spain. I'm also taking an English course starting next month. In the future, I hope to speak English fluently.",
+    tips:"Tente usar as três formas: will (previsão/opinião), going to (plano decidido) e Present Continuous (compromisso marcado). Misture-as para mostrar variedade!",
+  },
+];
+
+function checkWriting(tid,fid,num){
+  const text = document.getElementById(tid).value.trim();
+  if(text.length < 10){
+    alert('Por favor, escreva pelo menos algumas frases antes de ver o feedback!');
+    return;
+  }
+  const fd = writingFeedback[num-1];
+  const words = text.split(/\s+/).filter(w=>w.length>0);
+  let chips = [];
+  fd.checks.forEach(c=>{
+    if(c.good && c.pattern.test(text)) chips.push({label:c.label,good:true});
+  });
+  if(words.length>=3) chips.push({label:'Tamanho adequado ('+words.length+' palavras)',good:true});
+  if(words.length<3) chips.push({label:'Escreva mais frases!',good:false});
+  const chipsHtml = chips.map(c=>`<span class="feedback-chip ${c.good?'good':'improve'}">${c.label}</span>`).join('');
+  const fbEl = document.getElementById(fid);
+  fbEl.style.display='block';
+  fbEl.innerHTML=`
+    <div class="writing-feedback">
+      <h4>📝 Feedback do exercício:</h4>
+      <div class="feedback-chips">${chipsHtml}</div>
+      <p>${fd.tips}</p>
+      <div class="model-answer">
+        <h5>Exemplo de resposta modelo:</h5>
+        <p>${fd.modelAns}</p>
+      </div>
+    </div>
+  `;
+  fbEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ===== COMPLETE DAY =====
+function completeDay(n){
+  if(completedDays.includes(n)) return;
+  completedDays.push(n);
+  const btn = document.getElementById('btn-day'+n);
+  if(btn){
+    btn.classList.add('done');
+    btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Dia '+n+' concluído!';
+    btn.disabled=true;
+  }
+  const navBtn = document.getElementById('nav-day'+n);
+  if(navBtn){
+    navBtn.classList.add('completed');
+    const badge = navBtn.querySelector('.day-badge');
+    if(badge){badge.innerHTML='✓';}
+  }
+  const ws = document.getElementById('ws'+n);
+  if(ws){
+    ws.classList.add('done');
+    ws.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+  }
+  const kpiDone=document.getElementById('kpiDone');
+  if(kpiDone) kpiDone.textContent=completedDays.length+'/7';
+  const prog=Math.round((completedDays.length/totalDays)*100);
+  const bar=document.getElementById('globalProgress');
+  if(bar) bar.style.width=prog+'%';
+  const lbl=document.getElementById('progressLabel');
+  if(lbl) lbl.textContent=completedDays.length+'/7';
+  const tt=document.getElementById('progressTooltip');
+  if(tt) tt.textContent=completedDays.length+' de 7 dias completos';
+  celebrate();
+}
+
+function celebrate(){
+  const el=document.getElementById('celebration');
+  el.style.display='block';
+  el.innerHTML='';
+  const colors=['#01696f','#437a22','#d19900','#da7101','#006494','#7a39bb'];
+  for(let i=0;i<50;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.cssText=`
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay:${Math.random()*0.5}s;
+      animation-duration:${1.5+Math.random()}s;
+      width:${6+Math.random()*8}px;
+      height:${6+Math.random()*8}px;
+    `;
+    el.appendChild(p);
+  }
+  setTimeout(()=>{el.style.display='none';el.innerHTML='';},3000);
+}
+
+// ===== QUIZ DATA =====
+const quizData = [
+  {q:'She _____ to school every day by bus.',opts:['go','goes','going','is go'],ans:1,exp:'3ª pessoa (she) → go → goes'},
+  {q:'I _____ to Paris three times in my life.',opts:['went','go','have been','was'],ans:2,exp:'Experiência de vida → Present Perfect: have been'},
+  {q:'He _____ here since 2018.',opts:['lives','lived','has lived','is living'],ans:2,exp:'Ação contínua desde o passado (since) → Present Perfect: has lived'},
+  {q:'Tomorrow I _____ to the dentist at 10am.',opts:['go','am going','went','will going'],ans:1,exp:'Compromisso com horário marcado → Present Continuous'},
+  {q:'We _____ move to a new house next month. We already signed the contract!',opts:['will','are going to','might','are'],ans:1,exp:'Decisão já tomada → are going to'},
+  {q:'I think it _____ be a sunny day tomorrow.',opts:['is','will','going to','is going'],ans:1,exp:'Opinião/previsão com "I think" → will'},
+  {q:'If I _____ more money, I would buy a new car.',opts:['have','had','will have','would have'],ans:1,exp:'2º Condicional: If + past simple → If I had'},
+  {q:'If she _____ earlier, she would catch the bus.',opts:['leaves','left','will leave','would leave'],ans:1,exp:'2º Condicional: If + past simple → if she left'},
+  {q:'She _____ be at home. Her lights are on.',opts:['can','should','must','would'],ans:2,exp:'Forte evidência → must (certeza quase total)'},
+  {q:'He said that he _____ very tired.',opts:['is','was','has been','will be'],ans:1,exp:'Reported speech: is → was (recuo de tempo)'},
+  {q:'The bridge _____ in 1890.',opts:['built','was built','has built','is built'],ans:1,exp:'Past Simple Passive: was + particípio passado'},
+  {q:'The song _____ by millions every year.',opts:['hears','is heard','was heard','has heard'],ans:1,exp:'Present Simple Passive: is heard'},
+  {q:"I'm looking forward _____ the concert tonight.",opts:['to see','to seeing','see','seeing'],ans:1,exp:"looking forward to + -ing ('to' é preposição)"},
+  {q:"She's excellent _____ cooking.",opts:['in','at','on','for'],ans:1,exp:'excellent at → sempre at para habilidades'},
+  {q:'_____ you ever _____ Thai food?',opts:['Did / eat','Have / eaten','Do / eat','Were / eating'],ans:1,exp:'Experiência com "ever" → Present Perfect: Have you ever eaten?'},
+  {q:'They _____ the project yesterday morning.',opts:["didn't finish",'haven\'t finished','didn\'t finished','don\'t finish'],ans:0,exp:'Tempo definido (yesterday) → Past Simple: didn\'t finish'},
+  {q:'Look at those clouds! It _____ snow!',opts:['will','is going to','is','might'],ans:1,exp:'Evidência visual do futuro próximo → be going to'},
+  {q:'She _____ coffee since she was a teenager.',opts:["has drunk",'drank','drinks','had drunk'],ans:0,exp:'Hábito contínuo desde o passado (since) → Present Perfect: has drunk'},
+  {q:'You _____ smoke here. It is strictly forbidden.',opts:['can','must','mustn\'t','should'],ans:2,exp:'Proibição absoluta → mustn\'t'},
+  {q:'He is interested _____ learning new languages.',opts:['on','at','in','for'],ans:2,exp:'interested in → fixo!'},
+];
+
+let quizIdx=0, quizScore=0, quizAnswered=false;
+
+function startQuiz(){
+  quizIdx=0;quizScore=0;
+  document.getElementById('quizStart').style.display='none';
+  document.getElementById('quizContent').style.display='block';
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const q=quizData[quizIdx];
+  const pct=Math.round((quizIdx/quizData.length)*100);
+  document.getElementById('quizContent').innerHTML=`
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div>
+    <p class="quiz-q-number">Questão ${quizIdx+1} de ${quizData.length}</p>
+    <p class="quiz-question">${q.q.replace('_____','<strong>_____</strong>')}</p>
+    <div class="quiz-options">
+      ${q.opts.map((o,i)=>`
+        <button class="quiz-option" onclick="answerQuiz(${i})" id="qopt-${i}">
+          <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+          ${o}
+        </button>
+      `).join('')}
+    </div>
+    <div id="quiz-exp"></div>
+    <div id="quiz-next-wrap"></div>
+  `;
+}
+
+function answerQuiz(chosen){
+  if(quizAnswered) return;
+  quizAnswered=true;
+  const q=quizData[quizIdx];
+  const opts=document.querySelectorAll('.quiz-option');
+  opts.forEach(o=>o.disabled=true);
+  const expEl=document.getElementById('quiz-exp');
+  if(chosen===q.ans){
+    opts[chosen].classList.add('selected-correct');
+    quizScore++;
+    expEl.innerHTML=`<div class="quiz-explanation correct-exp">✅ Correto! ${q.exp}</div>`;
+  } else {
+    opts[chosen].classList.add('selected-wrong');
+    opts[q.ans].classList.add('show-correct');
+    expEl.innerHTML=`<div class="quiz-explanation wrong-exp">❌ Incorreto. Resposta correta: <strong>${String.fromCharCode(65+q.ans)}) ${q.opts[q.ans]}</strong>. ${q.exp}</div>`;
+  }
+  const nextWrap=document.getElementById('quiz-next-wrap');
+  if(quizIdx<quizData.length-1){
+    nextWrap.innerHTML=`<button class="quiz-next-btn" onclick="nextQuizQ()">Próxima questão <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+  } else {
+    nextWrap.innerHTML=`<button class="quiz-next-btn" onclick="showQuizResult()">Ver resultado <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+  }
+}
+
+function nextQuizQ(){
+  quizIdx++;
+  quizAnswered=false;
+  renderQuizQuestion();
+}
+
+function showQuizResult(){
+  const pct=Math.round((quizScore/quizData.length)*100);
+  let grade='',emoji='';
+  if(pct>=90){grade='Excelente! 🏆';emoji='🏆';}
+  else if(pct>=70){grade='Muito bom! 🌟';emoji='🌟';}
+  else if(pct>=50){grade='Bom progresso! 💪';emoji='💪';}
+  else{grade='Continue praticando! 📚';emoji='📚';}
+  const r=quizScore/quizData.length;
+  const circleR=45;
+  const circumference=2*Math.PI*circleR;
+  const offset=circumference*(1-r);
+  document.getElementById('quizContent').innerHTML=`
+    <div class="quiz-result">
+      <div class="score-ring">
+        <svg viewBox="0 0 110 110" fill="none">
+          <circle cx="55" cy="55" r="${circleR}" stroke="var(--color-surface-offset)" stroke-width="10"/>
+          <circle cx="55" cy="55" r="${circleR}" stroke="var(--color-primary)" stroke-width="10"
+            stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+            stroke-linecap="round" transform="rotate(-90 55 55)"
+            style="transition:stroke-dashoffset 1s cubic-bezier(0.16,1,0.3,1)"/>
+          <text x="55" y="55" text-anchor="middle" dominant-baseline="middle"
+            font-family="var(--font-display)" font-size="20" fill="var(--color-text)">${quizScore}/${quizData.length}</text>
+        </svg>
+      </div>
+      <h2>${grade}</h2>
+      <p>Você acertou <strong>${quizScore} de ${quizData.length}</strong> questões (${pct}%). ${pct>=70?'Você está avançando muito bem!':'Revise os dias com mais dificuldade e tente novamente!'}</p>
+      <div class="quiz-result-actions">
+        <button class="check-answer-btn" onclick="startQuiz()">
+          <i data-lucide="refresh-cw" width="16" height="16"></i> Refazer Quiz
+        </button>
+        <button class="btn-outline" onclick="showView('dashboard')">
+          Voltar ao início
+        </button>
+      </div>
+    </div>
+  `;
+  if(pct>=70) celebrate();
+  lucide.createIcons();
+}
+
+// Init Lucide icons
+lucide.createIcons();
+</script>
+</body>
+</html>

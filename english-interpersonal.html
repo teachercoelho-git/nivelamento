@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English – Interpersonal Skills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root, [data-theme="light"] {
+  --color-bg: #f4f2ee;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #ffffff;
+  --color-surface-offset: #eeebe5;
+  --color-surface-dynamic: #e5e2db;
+  --color-border: oklch(0.4 0.01 80 / 0.14);
+  --color-divider: #dbd8d2;
+  --color-text: #1e1c18;
+  --color-text-muted: #6b6963;
+  --color-text-faint: #a8a69f;
+  --color-text-inverse: #f9f8f4;
+  --color-primary: #016b6e;
+  --color-primary-hover: #0a5055;
+  --color-primary-active: #0c3a3d;
+  --color-primary-highlight: #c6dedd;
+  --color-success: #3a7a1c;
+  --color-success-highlight: #d0e0c8;
+  --color-error: #b53a2e;
+  --color-error-highlight: #f5d8d5;
+  --color-warning: #9a4a10;
+  --color-warning-highlight: #f0ddd0;
+  --color-gold: #c49000;
+  --color-gold-highlight: #f0e4c0;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem;
+  --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px oklch(0.2 0.01 80 / 0.08);
+  --shadow-md: 0 4px 16px oklch(0.2 0.01 80 / 0.10);
+  --shadow-lg: 0 12px 40px oklch(0.2 0.01 80 / 0.14);
+  --transition: 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --content-default: 860px;
+}
+[data-theme="dark"] {
+  --color-bg: #141310;
+  --color-surface: #1a1917;
+  --color-surface-2: #1f1e1c;
+  --color-surface-offset: #242220;
+  --color-surface-dynamic: #2a2825;
+  --color-border: oklch(0.9 0 0 / 0.10);
+  --color-divider: #2c2a27;
+  --color-text: #d2d0cc;
+  --color-text-muted: #7a7875;
+  --color-text-faint: #52504d;
+  --color-text-inverse: #1a1917;
+  --color-primary: #48969f;
+  --color-primary-hover: #24808b;
+  --color-primary-active: #176672;
+  --color-primary-highlight: #243840;
+  --color-success: #60a838;
+  --color-success-highlight: #263a1e;
+  --color-error: #d95b4e;
+  --color-error-highlight: #3a1e1c;
+  --color-warning: #d07a3a;
+  --color-warning-highlight: #3a2414;
+  --color-gold: #e0ac28;
+  --color-gold-highlight: #3c3010;
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.24);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.36);
+  --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.5);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) { --color-bg:#141310; --color-surface:#1a1917; --color-surface-2:#1f1e1c; --color-surface-offset:#242220; --color-surface-dynamic:#2a2825; --color-border:oklch(0.9 0 0/0.10); --color-divider:#2c2a27; --color-text:#d2d0cc; --color-text-muted:#7a7875; --color-text-faint:#52504d; --color-text-inverse:#1a1917; --color-primary:#48969f; --color-primary-hover:#24808b; --color-primary-active:#176672; --color-primary-highlight:#243840; --color-success:#60a838; --color-success-highlight:#263a1e; --color-error:#d95b4e; --color-error-highlight:#3a1e1c; --color-warning:#d07a3a; --color-warning-highlight:#3a2414; --color-gold:#e0ac28; --color-gold-highlight:#3c3010; } }
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); min-height: 100dvh; line-height: 1.65; }
+img, svg { display: block; max-width: 100%; }
+button { cursor: pointer; font: inherit; border: none; background: none; }
+input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+
+/* ── LAYOUT ── */
+.app { display: flex; flex-direction: column; min-height: 100dvh; }
+.topbar { position: sticky; top: 0; z-index: 100; background: var(--color-surface); border-bottom: 1px solid var(--color-divider); padding: var(--space-3) var(--space-6); display: flex; align-items: center; gap: var(--space-4); box-shadow: var(--shadow-sm); }
+.topbar-logo { display: flex; align-items: center; gap: var(--space-2); font-weight: 600; font-size: var(--text-sm); color: var(--color-primary); text-decoration: none; }
+.topbar-logo svg { color: var(--color-primary); }
+.topbar-center { flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--space-2); }
+.progress-steps { display: flex; gap: var(--space-1); align-items: center; }
+.step-dot { width: 28px; height: 6px; border-radius: var(--radius-full); background: var(--color-surface-dynamic); transition: background var(--transition), width var(--transition); cursor: pointer; }
+.step-dot.active { background: var(--color-primary); width: 40px; }
+.step-dot.done { background: var(--color-success); }
+.timer-badge { display: flex; align-items: center; gap: var(--space-1); font-size: var(--text-sm); font-weight: 600; color: var(--color-text-muted); background: var(--color-surface-offset); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+.timer-badge.warning { color: var(--color-warning); background: var(--color-warning-highlight); }
+.timer-badge.danger { color: var(--color-error); background: var(--color-error-highlight); }
+.topbar-actions { display: flex; align-items: center; gap: var(--space-2); }
+.icon-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--radius-md); color: var(--color-text-muted); transition: background var(--transition), color var(--transition); }
+.icon-btn:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+/* ── MAIN CONTENT ── */
+main { flex: 1; max-width: var(--content-default); margin: 0 auto; width: 100%; padding: var(--space-8) var(--space-6); }
+.section-panel { display: none; animation: fadeUp 0.35s ease both; }
+.section-panel.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.section-header { margin-bottom: var(--space-8); }
+.section-tag { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary); background: var(--color-primary-highlight); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); margin-bottom: var(--space-4); }
+.section-title { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.2; margin-bottom: var(--space-3); color: var(--color-text); }
+.section-desc { color: var(--color-text-muted); font-size: var(--text-base); max-width: 64ch; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 500; transition: background var(--transition), color var(--transition), box-shadow var(--transition); line-height: 1; white-space: nowrap; }
+.btn-primary { background: var(--color-primary); color: var(--color-text-inverse); }
+.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-primary:active { background: var(--color-primary-active); }
+.btn-secondary { background: var(--color-surface-2); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.btn-secondary:hover { background: var(--color-surface-offset); }
+.btn-ghost { color: var(--color-text-muted); }
+.btn-ghost:hover { background: var(--color-surface-offset); color: var(--color-text); }
+.btn-sm { padding: var(--space-2) var(--space-3); font-size: var(--text-xs); border-radius: var(--radius-sm); }
+.btn-audio { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; background: var(--color-primary-highlight); color: var(--color-primary); border: 1px solid oklch(from var(--color-primary) l c h / 0.25); transition: all var(--transition); letter-spacing: 0.03em; }
+.btn-audio:hover { background: var(--color-primary); color: var(--color-text-inverse); }
+.btn-audio.playing { background: var(--color-primary); color: var(--color-text-inverse); animation: pulse-audio 1s ease infinite; }
+@keyframes pulse-audio { 0%,100%{box-shadow:0 0 0 0 oklch(from var(--color-primary) l c h/0.4)} 50%{box-shadow:0 0 0 6px oklch(from var(--color-primary) l c h/0)} }
+.btn-audio-slow { background: var(--color-gold-highlight); color: var(--color-gold); border-color: oklch(from var(--color-gold) l c h / 0.25); }
+.btn-audio-slow:hover { background: var(--color-gold); color: var(--color-text-inverse); }
+
+/* ── PHRASE CARD (WARMUP) ── */
+.phrase-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.phrase-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); transition: box-shadow var(--transition), transform var(--transition); position: relative; overflow: hidden; }
+.phrase-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.phrase-card.mastered { border-color: oklch(from var(--color-success) l c h / 0.4); background: color-mix(in oklch, var(--color-success) 4%, var(--color-surface)); }
+.phrase-card.mastered::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-style: solid; border-width: 0 28px 28px 0; border-color: transparent var(--color-success) transparent transparent; }
+.phrase-level { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-faint); margin-bottom: var(--space-2); }
+.phrase-en { font-size: var(--text-lg); font-weight: 600; color: var(--color-text); margin-bottom: var(--space-1); }
+.phrase-ipa { font-size: var(--text-sm); color: var(--color-text-muted); font-style: italic; margin-bottom: var(--space-2); }
+.phrase-context { font-size: var(--text-sm); color: var(--color-text-muted); background: var(--color-surface-offset); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); margin-bottom: var(--space-4); line-height: 1.5; }
+.phrase-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.phrase-mastered-badge { display: none; align-items: center; gap: var(--space-1); font-size: var(--text-xs); font-weight: 600; color: var(--color-success); }
+.phrase-card.mastered .phrase-mastered-badge { display: flex; }
+.phrase-card.mastered .phrase-mastered-btn { display: none; }
+
+/* ── SHADOWING GUIDE ── */
+.shadowing-box { background: var(--color-primary-highlight); border: 1px solid oklch(from var(--color-primary) l c h / 0.2); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-6); }
+.shadowing-title { font-size: var(--text-sm); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
+.shadowing-steps { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.shadowing-step { flex: 1; min-width: 120px; display: flex; align-items: flex-start; gap: var(--space-3); }
+.step-num { width: 24px; height: 24px; border-radius: var(--radius-full); background: var(--color-primary); color: var(--color-text-inverse); font-size: var(--text-xs); font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-text { font-size: var(--text-sm); color: var(--color-primary-active); line-height: 1.5; }
+[data-theme="dark"] .step-text { color: var(--color-text); }
+
+/* ── MINI QUIZ ── */
+.quiz-block { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); margin-top: var(--space-8); }
+.quiz-title { font-weight: 700; margin-bottom: var(--space-5); font-size: var(--text-base); }
+.quiz-question { margin-bottom: var(--space-6); }
+.quiz-q-text { font-size: var(--text-base); font-weight: 500; margin-bottom: var(--space-3); color: var(--color-text); }
+.quiz-q-sub { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+.quiz-options { display: flex; flex-direction: column; gap: var(--space-2); }
+.quiz-option { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition); font-size: var(--text-sm); color: var(--color-text); background: var(--color-surface-2); }
+.quiz-option:hover { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+.quiz-option.selected { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+.quiz-option.correct { border-color: var(--color-success); background: var(--color-success-highlight); color: var(--color-success); font-weight: 600; }
+.quiz-option.wrong { border-color: var(--color-error); background: var(--color-error-highlight); color: var(--color-error); }
+.quiz-option-letter { width: 24px; height: 24px; border-radius: var(--radius-full); background: var(--color-surface-offset); font-weight: 700; font-size: var(--text-xs); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.quiz-feedback { margin-top: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); display: none; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--color-success-highlight); color: var(--color-success); border: 1px solid oklch(from var(--color-success) l c h / 0.3); }
+.quiz-feedback.wrong { background: var(--color-error-highlight); color: var(--color-error); border: 1px solid oklch(from var(--color-error) l c h / 0.3); }
+.quiz-score { text-align: center; padding: var(--space-5); border-radius: var(--radius-lg); display: none; }
+.quiz-score.show { display: block; }
+.quiz-score-num { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary); }
+
+/* ── FLASHCARDS ── */
+.flashcard-area { perspective: 1200px; width: 100%; max-width: 560px; margin: 0 auto; }
+.flashcard-scene { width: 100%; aspect-ratio: 16/9; position: relative; }
+.flashcard-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1); position: relative; cursor: pointer; }
+.flashcard-inner.flipped { transform: rotateY(180deg); }
+.flashcard-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius-xl); padding: var(--space-8); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow-md); }
+.flashcard-front { background: var(--color-surface-2); border: 1px solid var(--color-border); }
+.flashcard-back { background: var(--color-primary); transform: rotateY(180deg); }
+.fc-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-4); opacity: 0.6; }
+.flashcard-front .fc-label { color: var(--color-text-muted); }
+.flashcard-back .fc-label { color: var(--color-text-inverse); }
+.fc-phrase { font-size: var(--text-xl); font-weight: 600; line-height: 1.3; margin-bottom: var(--space-4); }
+.flashcard-front .fc-phrase { color: var(--color-text); }
+.flashcard-back .fc-phrase { color: var(--color-text-inverse); }
+.fc-translation { font-size: var(--text-base); opacity: 0.85; margin-bottom: var(--space-2); }
+.flashcard-front .fc-translation { color: var(--color-text-muted); }
+.flashcard-back .fc-translation { color: var(--color-text-inverse); }
+.fc-example { font-size: var(--text-sm); font-style: italic; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-2); opacity: 0.8; max-width: 42ch; }
+.flashcard-back .fc-example { background: oklch(from var(--color-text-inverse) l c h / 0.15); color: var(--color-text-inverse); }
+.fc-hint { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-4); }
+.flashcard-front .fc-hint { color: var(--color-text-faint); }
+.flashcard-controls { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-5); }
+.fc-counter { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-muted); }
+.fc-dots { display: flex; gap: var(--space-1); flex-wrap: wrap; justify-content: center; margin-top: var(--space-4); }
+.fc-dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--color-surface-dynamic); transition: background var(--transition); }
+.fc-dot.current { background: var(--color-primary); }
+.fc-dot.seen { background: var(--color-text-faint); }
+.fc-audio-row { display: flex; gap: var(--space-2); justify-content: center; margin-top: var(--space-4); }
+
+/* ── DIALOGUE ── */
+.dialogue-scenario-tabs { display: flex; gap: var(--space-2); margin-bottom: var(--space-6); flex-wrap: wrap; }
+.scenario-tab { padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 500; border: 1.5px solid var(--color-border); background: var(--color-surface); color: var(--color-text-muted); transition: all var(--transition); }
+.scenario-tab:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.scenario-tab.active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
+.dialogue-box { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); min-height: 380px; display: flex; flex-direction: column; }
+.chat-messages { flex: 1; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-5); min-height: 200px; overflow-y: auto; max-height: 340px; padding-right: var(--space-2); }
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--color-divider); border-radius: 2px; }
+.chat-msg { display: flex; gap: var(--space-3); align-items: flex-start; animation: msgIn 0.25s ease both; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.chat-msg.user-msg { flex-direction: row-reverse; }
+.chat-avatar { width: 36px; height: 36px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: var(--text-sm); font-weight: 700; flex-shrink: 0; }
+.chat-avatar.ai-avatar { background: var(--color-primary); color: var(--color-text-inverse); }
+.chat-avatar.user-avatar { background: var(--color-gold-highlight); color: var(--color-gold); border: 1px solid oklch(from var(--color-gold) l c h / 0.3); }
+.bubble { max-width: 78%; padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg); font-size: var(--text-sm); line-height: 1.6; }
+.ai-bubble { background: var(--color-surface-offset); color: var(--color-text); border-bottom-left-radius: var(--radius-sm); }
+.user-bubble { background: var(--color-primary); color: var(--color-text-inverse); border-bottom-right-radius: var(--radius-sm); }
+.bubble-meta { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-1); }
+.bubble-audio { margin-top: var(--space-2); }
+.dialogue-choices { display: flex; flex-direction: column; gap: var(--space-2); }
+.choice-btn { text-align: left; padding: var(--space-3) var(--space-4); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--color-text); background: var(--color-surface-2); transition: all var(--transition); line-height: 1.5; }
+.choice-btn:hover { border-color: var(--color-primary); background: var(--color-primary-highlight); color: var(--color-primary); }
+.choice-btn.chosen-correct { border-color: var(--color-success); background: var(--color-success-highlight); color: var(--color-success); font-weight: 500; pointer-events: none; }
+.choice-btn.chosen-wrong { border-color: var(--color-error); background: var(--color-error-highlight); color: var(--color-error); pointer-events: none; }
+.choice-btn.dimmed { opacity: 0.45; pointer-events: none; }
+.choice-feedback { margin-top: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); display: none; border: 1px solid transparent; }
+.choice-feedback.show { display: block; }
+.choice-feedback.good { background: var(--color-success-highlight); color: var(--color-success); border-color: oklch(from var(--color-success) l c h / 0.3); }
+.choice-feedback.better { background: var(--color-warning-highlight); color: var(--color-warning); border-color: oklch(from var(--color-warning) l c h / 0.3); }
+.dialogue-progress { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+.dialogue-progress-bar { flex: 1; height: 4px; background: var(--color-surface-dynamic); border-radius: var(--radius-full); overflow: hidden; }
+.dialogue-progress-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 0.4s ease; }
+.dialogue-progress-label { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); min-width: 48px; text-align: right; }
+.next-btn-row { margin-top: var(--space-4); display: flex; justify-content: flex-end; }
+
+/* ── ROLE-PLAY ── */
+.roleplay-scenario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-8); }
+.rp-scenario-card { background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-5); cursor: pointer; transition: all var(--transition); }
+.rp-scenario-card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+.rp-scenario-card.selected { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+.rp-scenario-icon { font-size: 1.5rem; margin-bottom: var(--space-3); }
+.rp-scenario-title { font-weight: 600; font-size: var(--text-sm); margin-bottom: var(--space-1); }
+.rp-scenario-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
+.rp-chat { display: flex; flex-direction: column; gap: var(--space-4); display: none; }
+.rp-chat.active { display: flex; }
+.rp-turn { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); }
+.rp-prompt-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: var(--space-2); display: flex; align-items: center; gap: var(--space-2); }
+.rp-prompt-text { font-size: var(--text-base); font-weight: 500; color: var(--color-text); margin-bottom: var(--space-4); line-height: 1.6; }
+.rp-prompt-audio { margin-bottom: var(--space-4); }
+.rp-input-area { display: flex; flex-direction: column; gap: var(--space-3); }
+.rp-input-label { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.rp-textarea { width: 100%; min-height: 80px; padding: var(--space-3) var(--space-4); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface-2); font-size: var(--text-base); resize: vertical; transition: border-color var(--transition); line-height: 1.6; }
+.rp-textarea:focus { outline: none; border-color: var(--color-primary); }
+.rp-textarea::placeholder { color: var(--color-text-faint); }
+.rp-actions { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.hint-toggle { font-size: var(--text-xs); font-weight: 600; color: var(--color-primary); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: var(--space-1); padding: var(--space-2) 0; }
+.hint-box { display: none; background: var(--color-gold-highlight); border: 1px solid oklch(from var(--color-gold) l c h / 0.3); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-top: var(--space-3); }
+.hint-box.show { display: block; }
+.hint-box-title { font-size: var(--text-xs); font-weight: 700; color: var(--color-gold); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.08em; }
+.hint-phrases { display: flex; flex-direction: column; gap: var(--space-2); }
+.hint-phrase { font-size: var(--text-sm); color: var(--color-text); display: flex; align-items: center; gap: var(--space-2); }
+.hint-phrase::before { content: '→'; color: var(--color-gold); font-size: var(--text-xs); }
+.rp-feedback-box { display: none; border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); margin-top: var(--space-4); border: 1px solid var(--color-border); background: var(--color-surface-offset); }
+.rp-feedback-box.show { display: block; animation: fadeUp 0.3s ease both; }
+.rp-stars { display: flex; gap: var(--space-1); margin-bottom: var(--space-3); }
+.rp-star { font-size: 1.25rem; }
+.rp-feedback-criteria { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-3); margin-bottom: var(--space-4); }
+.rp-criterion { background: var(--color-surface-2); border-radius: var(--radius-md); padding: var(--space-3); border: 1px solid var(--color-border); }
+.criterion-label { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-1); }
+.criterion-bar { height: 4px; border-radius: var(--radius-full); background: var(--color-surface-dynamic); overflow: hidden; margin-bottom: var(--space-1); }
+.criterion-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.6s ease; }
+.criterion-fill.good { background: var(--color-success); }
+.criterion-fill.ok { background: var(--color-gold); }
+.criterion-fill.low { background: var(--color-error); }
+.criterion-score { font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); }
+.rp-suggestion { font-size: var(--text-sm); color: var(--color-text); background: var(--color-primary-highlight); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-top: var(--space-3); border: 1px solid oklch(from var(--color-primary) l c h / 0.2); }
+.rp-suggestion strong { color: var(--color-primary); }
+.mic-btn { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; background: var(--color-surface-offset); color: var(--color-text-muted); border: 1.5px solid var(--color-border); transition: all var(--transition); }
+.mic-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.mic-btn.recording { background: var(--color-error-highlight); color: var(--color-error); border-color: var(--color-error); animation: pulse-mic 1s ease infinite; }
+@keyframes pulse-mic { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+/* ── NAV FOOTER ── */
+.nav-footer { position: sticky; bottom: 0; background: var(--color-surface); border-top: 1px solid var(--color-divider); padding: var(--space-4) var(--space-6); display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); box-shadow: 0 -4px 20px oklch(0.2 0.01 80 / 0.06); }
+.section-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+.section-name { font-size: var(--text-sm); font-weight: 500; color: var(--color-text); }
+.completion-badge { display: none; align-items: center; gap: var(--space-1); font-size: var(--text-xs); font-weight: 700; color: var(--color-success); background: var(--color-success-highlight); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+.completion-badge.show { display: flex; }
+
+/* ── SCORE CARD ── */
+.score-card { text-align: center; padding: var(--space-10) var(--space-8); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); max-width: 480px; margin: 0 auto; display: none; }
+.score-card.show { display: block; animation: fadeUp 0.4s ease both; }
+.score-trophy { font-size: 3.5rem; margin-bottom: var(--space-4); }
+.score-title { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-3); }
+.score-breakdown { display: flex; justify-content: center; gap: var(--space-8); margin: var(--space-6) 0; }
+.score-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
+.score-item-num { font-size: var(--text-xl); font-weight: 700; color: var(--color-primary); }
+.score-item-label { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── RESPONSIVE ── */
+@media (min-width: 640px) { .phrase-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .topbar { padding: var(--space-2) var(--space-4); } main { padding: var(--space-6) var(--space-4); } .shadowing-steps { flex-direction: column; } .score-breakdown { gap: var(--space-6); } }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- TOP BAR -->
+<header class="topbar" role="banner">
+  <a href="#" class="topbar-logo" aria-label="English Lesson Home">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+    </svg>
+    SpeakUp
+  </a>
+
+  <div class="topbar-center">
+    <nav class="progress-steps" aria-label="Lesson sections">
+      <button class="step-dot active" data-step="0" aria-label="Warm-up" title="Warm-up"></button>
+      <button class="step-dot" data-step="1" aria-label="Vocabulary" title="Vocabulary"></button>
+      <button class="step-dot" data-step="2" aria-label="Guided Dialogue" title="Guided Dialogue"></button>
+      <button class="step-dot" data-step="3" aria-label="Role-play" title="Role-play"></button>
+    </nav>
+    <div class="timer-badge" id="timerBadge" role="timer" aria-live="polite" aria-label="Time remaining">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span id="timerDisplay">60:00</span>
+    </div>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- ════════════════════════════════════
+       SECTION 0 — WARM-UP (10 min)
+  ════════════════════════════════════ -->
+  <section class="section-panel active" id="section-warmup" aria-labelledby="warmup-title">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        Warm-up · 10 min
+      </div>
+      <h1 class="section-title" id="warmup-title">Shadowing: Natural Greetings & Small Talk</h1>
+      <p class="section-desc">Listen carefully to each phrase, then say it out loud — matching the rhythm, stress, and intonation. Click <strong>Slow</strong> if you need more time.</p>
+    </div>
+
+    <div class="shadowing-box" role="note" aria-label="Shadowing technique guide">
+      <div class="shadowing-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Shadowing Technique — 3 Steps
+      </div>
+      <div class="shadowing-steps">
+        <div class="shadowing-step"><div class="step-num">1</div><div class="step-text"><strong>Listen</strong> — Focus on stress & intonation</div></div>
+        <div class="shadowing-step"><div class="step-num">2</div><div class="step-text"><strong>Shadow</strong> — Speak along with the audio</div></div>
+        <div class="shadowing-step"><div class="step-num">3</div><div class="step-text"><strong>Repeat</strong> — Say it alone from memory</div></div>
+      </div>
+    </div>
+
+    <div class="phrase-grid" id="phraseGrid" role="list">
+      <!-- Phrases injected by JS -->
+    </div>
+
+    <!-- Warm-up Mini-Quiz -->
+    <div class="quiz-block" id="warmupQuiz">
+      <h2 class="quiz-title">Quick Check — Choose the Best Response</h2>
+      <div id="warmupQuizQuestions"></div>
+      <div class="quiz-score" id="warmupScore">
+        <div class="quiz-score-num" id="warmupScoreNum"></div>
+        <p style="color:var(--color-text-muted); margin-top:var(--space-2);">Ready for Vocabulary!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 1 — VOCABULARY (15 min)
+  ════════════════════════════════════ -->
+  <section class="section-panel" id="section-vocab" aria-labelledby="vocab-title">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Vocabulary · 15 min
+      </div>
+      <h1 class="section-title" id="vocab-title">Flashcards: Key Phrases for Meeting People</h1>
+      <p class="section-desc">Click a card to reveal its meaning. Use the audio buttons to hear natural pronunciation — front and back.</p>
+    </div>
+
+    <div class="flashcard-area">
+      <div class="flashcard-scene" id="flashcardScene">
+        <div class="flashcard-inner" id="flashcardInner" tabindex="0" role="button" aria-label="Flip flashcard">
+          <div class="flashcard-face flashcard-front">
+            <div class="fc-label">English phrase</div>
+            <div class="fc-phrase" id="fcPhrase"></div>
+            <div class="fc-translation" id="fcTranslation"></div>
+            <div class="fc-hint">Click or press Space to flip</div>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <div class="fc-label">Usage &amp; Example</div>
+            <div class="fc-phrase" id="fcPhraseBack"></div>
+            <div class="fc-example" id="fcExample"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-audio-row">
+        <button class="btn-audio" id="fcAudioNormal" aria-label="Hear phrase at normal speed">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          Normal
+        </button>
+        <button class="btn-audio btn-audio-slow" id="fcAudioSlow" aria-label="Hear phrase at slow speed">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          Slow
+        </button>
+      </div>
+      <div class="flashcard-controls">
+        <button class="btn btn-secondary btn-sm" id="fcPrev" aria-label="Previous card">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Prev
+        </button>
+        <div class="fc-counter" id="fcCounter" aria-live="polite">1 / 10</div>
+        <button class="btn btn-primary btn-sm" id="fcNext" aria-label="Next card">
+          Next
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="fc-dots" id="fcDots" role="list" aria-label="Flashcard progress"></div>
+    </div>
+
+    <!-- Vocab Quiz -->
+    <div class="quiz-block" style="margin-top:var(--space-8)">
+      <h2 class="quiz-title">Vocabulary Match — Pick the Right Phrase</h2>
+      <div id="vocabQuizQuestions"></div>
+      <div class="quiz-score" id="vocabScore">
+        <div class="quiz-score-num" id="vocabScoreNum"></div>
+        <p style="color:var(--color-text-muted); margin-top:var(--space-2);">Great! Let's practise real conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 2 — GUIDED DIALOGUE (20 min)
+  ════════════════════════════════════ -->
+  <section class="section-panel" id="section-dialogue" aria-labelledby="dialogue-title">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Guided Dialogue · 20 min
+      </div>
+      <h1 class="section-title" id="dialogue-title">Real Conversations — Choose Your Response</h1>
+      <p class="section-desc">You'll be placed in realistic social situations. Choose the most natural reply — then analyse <em>why</em> it works better than the alternatives.</p>
+    </div>
+
+    <div class="dialogue-scenario-tabs" role="tablist" aria-label="Dialogue scenarios">
+      <button class="scenario-tab active" role="tab" aria-selected="true" data-dlg="0">🏢 Conference</button>
+      <button class="scenario-tab" role="tab" aria-selected="false" data-dlg="1">✈️ Flight</button>
+      <button class="scenario-tab" role="tab" aria-selected="false" data-dlg="2">💼 First Day</button>
+    </div>
+
+    <div class="dialogue-progress" aria-label="Dialogue progress">
+      <div class="dialogue-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="dialogue-progress-fill" id="dlgProgressFill" style="width:0%"></div>
+      </div>
+      <div class="dialogue-progress-label" id="dlgProgressLabel">0 / 5</div>
+    </div>
+
+    <div class="dialogue-box" id="dialogueBox">
+      <div class="chat-messages" id="chatMessages" aria-live="polite" aria-label="Conversation">
+        <!-- Messages injected by JS -->
+      </div>
+      <div class="dialogue-choices" id="dialogueChoices" role="group" aria-label="Your response options">
+        <!-- Choices injected by JS -->
+      </div>
+      <div class="choice-feedback" id="choiceFeedback" aria-live="polite"></div>
+      <div class="next-btn-row" id="nextBtnRow" style="display:none">
+        <button class="btn btn-primary" id="dlgNextBtn">Continue →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION 3 — ROLE-PLAY (15 min)
+  ════════════════════════════════════ -->
+  <section class="section-panel" id="section-roleplay" aria-labelledby="roleplay-title">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Role-play · 15 min
+      </div>
+      <h1 class="section-title" id="roleplay-title">Speak Freely — Full Sentences Only</h1>
+      <p class="section-desc">Type (or speak) your own complete sentences. You'll get instant feedback on fluency, naturalness, and question use.</p>
+    </div>
+
+    <div class="roleplay-scenario-grid" id="rpScenarioGrid" role="list" aria-label="Choose a scenario">
+      <!-- Scenario cards injected by JS -->
+    </div>
+
+    <div class="rp-chat" id="rpChat" aria-live="polite">
+      <!-- Turns injected by JS -->
+    </div>
+
+    <div class="score-card" id="finalScoreCard">
+      <div class="score-trophy" aria-hidden="true">🏆</div>
+      <h2 class="score-title">Lesson Complete!</h2>
+      <p id="finalScoreMsg" style="color:var(--color-text-muted);margin-bottom:var(--space-6);"></p>
+      <div class="score-breakdown">
+        <div class="score-item"><div class="score-item-num" id="finalWarmup">—</div><div class="score-item-label">Warm-up</div></div>
+        <div class="score-item"><div class="score-item-num" id="finalVocab">—</div><div class="score-item-label">Vocab</div></div>
+        <div class="score-item"><div class="score-item-num" id="finalDialogue">—</div><div class="score-item-label">Dialogue</div></div>
+        <div class="score-item"><div class="score-item-num" id="finalRP">—</div><div class="score-item-label">Role-play</div></div>
+      </div>
+      <button class="btn btn-primary" onclick="location.reload()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5.24"/></svg>
+        Restart Lesson
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- NAV FOOTER -->
+<footer class="nav-footer" role="navigation" aria-label="Section navigation">
+  <div>
+    <div class="section-label">Current section</div>
+    <div class="section-name" id="currentSectionName">Warm-up</div>
+  </div>
+  <div style="display:flex;gap:var(--space-2);align-items:center;">
+    <div class="completion-badge" id="completionBadge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      Section done
+    </div>
+    <button class="btn btn-ghost btn-sm" id="prevSectionBtn" onclick="changeSection(-1)" aria-label="Previous section">← Back</button>
+    <button class="btn btn-primary" id="nextSectionBtn" onclick="changeSection(1)" aria-label="Next section">Next section →</button>
+  </div>
+</footer>
+
+</div><!-- /.app -->
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  THEME TOGGLE
+// ══════════════════════════════════════════════════════════
+(function(){
+  const btn = document.querySelector('[data-theme-toggle]');
+  const html = document.documentElement;
+  let theme = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  html.setAttribute('data-theme', theme);
+  function setIcon(t){
+    btn.innerHTML = t==='dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  setIcon(theme);
+  btn.addEventListener('click', ()=>{
+    theme = theme==='dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    setIcon(theme);
+  });
+})();
+
+// ══════════════════════════════════════════════════════════
+//  TIMER
+// ══════════════════════════════════════════════════════════
+let totalSeconds = 3600;
+const timerDisplay = document.getElementById('timerDisplay');
+const timerBadge = document.getElementById('timerBadge');
+const timerInterval = setInterval(()=>{
+  if(totalSeconds <= 0){ clearInterval(timerInterval); return; }
+  totalSeconds--;
+  const m = Math.floor(totalSeconds/60).toString().padStart(2,'0');
+  const s = (totalSeconds%60).toString().padStart(2,'0');
+  timerDisplay.textContent = `${m}:${s}`;
+  if(totalSeconds < 600){ timerBadge.className='timer-badge warning'; }
+  if(totalSeconds < 300){ timerBadge.className='timer-badge danger'; }
+}, 1000);
+
+// ══════════════════════════════════════════════════════════
+//  TTS ENGINE — works in all modern browsers
+// ══════════════════════════════════════════════════════════
+function speak(text, rate=1.0, onEnd=null){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = rate;
+  u.pitch = 1.0;
+  // prefer a native English voice
+  const voices = window.speechSynthesis.getVoices();
+  const enVoice = voices.find(v=>v.lang.startsWith('en-') && !v.localService===false) ||
+                  voices.find(v=>v.lang.startsWith('en-'));
+  if(enVoice) u.voice = enVoice;
+  if(onEnd) u.onend = onEnd;
+  window.speechSynthesis.speak(u);
+}
+// ensure voices load (Chrome defers voice list)
+if(window.speechSynthesis){ window.speechSynthesis.onvoiceschanged = ()=>{}; }
+
+function makeAudioBtn(text, btn, slow=false){
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(btn.classList.contains('playing')){ window.speechSynthesis.cancel(); btn.classList.remove('playing'); return; }
+    document.querySelectorAll('.btn-audio.playing').forEach(b=>b.classList.remove('playing'));
+    btn.classList.add('playing');
+    speak(text, slow ? 0.6 : 1.0, ()=>btn.classList.remove('playing'));
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION NAVIGATION
+// ══════════════════════════════════════════════════════════
+const SECTIONS = ['section-warmup','section-vocab','section-dialogue','section-roleplay'];
+const SECTION_NAMES = ['Warm-up','Vocabulary','Guided Dialogue','Role-play'];
+let currentSection = 0;
+const completedSections = new Set();
+
+function changeSection(dir){
+  const next = currentSection + dir;
+  if(next < 0 || next >= SECTIONS.length) return;
+  document.getElementById(SECTIONS[currentSection]).classList.remove('active');
+  document.querySelectorAll('.step-dot')[currentSection].classList.remove('active');
+  if(completedSections.has(currentSection)){
+    document.querySelectorAll('.step-dot')[currentSection].classList.add('done');
+  }
+  currentSection = next;
+  document.getElementById(SECTIONS[currentSection]).classList.add('active');
+  document.querySelectorAll('.step-dot')[currentSection].classList.add('active');
+  document.querySelectorAll('.step-dot')[currentSection].classList.remove('done');
+  document.getElementById('currentSectionName').textContent = SECTION_NAMES[currentSection];
+  document.getElementById('prevSectionBtn').style.display = currentSection===0?'none':'';
+  document.getElementById('nextSectionBtn').style.display = currentSection===SECTIONS.length-1?'none':'';
+  document.getElementById('completionBadge').classList.toggle('show', completedSections.has(currentSection));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.querySelectorAll('.step-dot').forEach((dot,i)=>{
+  dot.addEventListener('click',()=>{ currentSection=i-1; changeSection(1); });
+});
+document.getElementById('prevSectionBtn').style.display='none';
+changeSection(1); changeSection(-1); // init
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 0 — WARM-UP PHRASES
+// ══════════════════════════════════════════════════════════
+const PHRASES = [
+  { level:'Opener', en:'Hey! I don\'t think we\'ve met — I\'m [name].', ipa:'/heɪ aɪ doʊnt θɪŋk wiːv mɛt/', context:'More natural than "Hello, my name is…" — the phrase "I don\'t think we\'ve met" signals you\'re initiating a new connection politely.' },
+  { level:'Follow-up', en:'What brings you here today?', ipa:'/wʌt brɪŋz juː hɪər təˈdeɪ/', context:'Open-ended opener that works at events, offices, or social gatherings. Avoid "Why are you here?" — sounds interrogative.' },
+  { level:'Interest Builder', en:'That\'s really interesting — tell me more about that.', ipa:'/ðæts ˈriːli ˈɪntrɪstɪŋ — tɛl miː mɔːr əˈbaʊt ðæt/', context:'Shows genuine curiosity. The phrase "tell me more" signals active listening and keeps the conversation flowing.' },
+  { level:'Transition', en:'So, how do you know [the host / anyone here]?', ipa:'/soʊ haʊ duː juː noʊ ðə hoʊst/', context:'Classic icebreaker at social events. Establishes common ground without being intrusive.' },
+  { level:'Closing', en:'It was great talking to you — let\'s stay in touch!', ipa:'/ɪt wʌz ɡreɪt ˈtɔːkɪŋ tə juː/', context:'"Stay in touch" is warmer than "nice to meet you" — it implies a future connection without over-committing.' },
+  { level:'Professional', en:'I\'d love to hear more about what you\'re working on.', ipa:'/aɪd lʌv tə hɪər mɔːr əˈbaʊt wʌt jʊər ˈwɜːrkɪŋ ɒn/', context:'Professional networking phrase. Shows interest in the other person\'s work — people love talking about their projects.' },
+];
+
+const phraseGrid = document.getElementById('phraseGrid');
+PHRASES.forEach((p,i)=>{
+  const card = document.createElement('article');
+  card.className = 'phrase-card';
+  card.setAttribute('role','listitem');
+  card.innerHTML = `
+    <div class="phrase-level">${p.level}</div>
+    <div class="phrase-en">"${p.en}"</div>
+    <div class="phrase-ipa">${p.ipa}</div>
+    <div class="phrase-context">${p.context}</div>
+    <div class="phrase-actions">
+      <button class="btn-audio" data-text="${p.en}" aria-label="Hear at normal speed">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Normal
+      </button>
+      <button class="btn-audio btn-audio-slow" data-text="${p.en}" aria-label="Hear at slow speed">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Slow
+      </button>
+      <button class="btn btn-sm btn-secondary phrase-mastered-btn" data-idx="${i}" aria-label="Mark as mastered">✓ Got it</button>
+      <div class="phrase-mastered-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        Mastered
+      </div>
+    </div>
+  `;
+  phraseGrid.appendChild(card);
+  const [normalBtn, slowBtn] = card.querySelectorAll('.btn-audio');
+  makeAudioBtn(p.en, normalBtn, false);
+  makeAudioBtn(p.en, slowBtn, true);
+  card.querySelector('.phrase-mastered-btn').addEventListener('click',()=>{
+    card.classList.add('mastered');
+    checkWarmupCompletion();
+  });
+});
+
+// ── Warm-up Quiz ──
+const WARMUP_QUIZ = [
+  { q:'Someone at a conference says: "Hi, I\'m Alex — what do you do?" What\'s the MOST natural reply?',
+    sub:'Choose the response that sounds fluent and invites further conversation.',
+    opts:["I am a software engineer.","Oh nice! I work in software development — mostly AI tools. What about you?","My job is software engineering.","I do software."],
+    correct:1, exp: '"Oh nice! I work in…" uses a natural filler ("Oh nice!"), gives information, and immediately bounces the question back — this is how fluent speakers keep conversations alive.' },
+  { q:'You want to end a conversation naturally. Which phrase is most appropriate?',
+    sub:'',
+    opts:["I need to go now.","Goodbye.","It was great chatting — I\'ll let you go, but let\'s swap details!","I must leave."],
+    correct:2, exp:'"I\'ll let you go" frames the ending as a favour to the other person, not a departure — this is a sophisticated, polite closing move native speakers use constantly.' },
+  { q:'Someone says "Where are you from?" You answer and want to keep the conversation going. What do you say next?',
+    sub:'',
+    opts:["I\'m from Brazil.","I\'m from Brazil. [silence]","I\'m from São Paulo, Brazil — it\'s a massive city, you should visit! Have you ever been to South America?","Brazil is my country."],
+    correct:2, exp:'The key is to give a detail that creates a "hook" for conversation ("you should visit"), then ask a question. This is how natural conversations sustain themselves.' },
+];
+
+let warmupAnswers = {};
+const warmupContainer = document.getElementById('warmupQuizQuestions');
+
+function renderQuizQuestion(qObj, idx, container, onComplete){
+  const block = document.createElement('div');
+  block.className = 'quiz-question';
+  block.innerHTML = `
+    <div class="quiz-q-text">${idx+1}. ${qObj.q}</div>
+    ${qObj.sub?`<div class="quiz-q-sub">${qObj.sub}</div>`:''}
+    <div class="quiz-options" role="group" aria-label="Answer options">
+      ${qObj.opts.map((o,i)=>`
+        <button class="quiz-option" data-q="${idx}" data-o="${i}" role="radio" aria-checked="false">
+          <span class="quiz-option-letter">${'ABCD'[i]}</span> ${o}
+        </button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="qfb-${idx}" role="alert"></div>
+  `;
+  container.appendChild(block);
+  block.querySelectorAll('.quiz-option').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(warmupAnswers[idx]!==undefined) return;
+      const chosen = parseInt(btn.dataset.o);
+      warmupAnswers[idx] = chosen;
+      block.querySelectorAll('.quiz-option').forEach(b=>{
+        const o = parseInt(b.dataset.o);
+        if(o===qObj.correct) b.classList.add('correct');
+        else if(o===chosen && chosen!==qObj.correct) b.classList.add('wrong');
+        else b.classList.add('dimmed');
+      });
+      const fb = document.getElementById(`qfb-${idx}`);
+      fb.textContent = (chosen===qObj.correct?'✓ Correct! ':'✗ Not quite. ') + qObj.exp;
+      fb.className = `quiz-feedback show ${chosen===qObj.correct?'correct':'wrong'}`;
+      if(onComplete) onComplete();
+    });
+  });
+}
+
+WARMUP_QUIZ.forEach((q,i)=>renderQuizQuestion(q,i,warmupContainer,checkWarmupCompletion));
+
+function checkWarmupCompletion(){
+  if(Object.keys(warmupAnswers).length === WARMUP_QUIZ.length){
+    const correct = WARMUP_QUIZ.filter((_,i)=>warmupAnswers[i]===WARMUP_QUIZ[i].correct).length;
+    const scoreEl = document.getElementById('warmupScore');
+    document.getElementById('warmupScoreNum').textContent = `${correct} / ${WARMUP_QUIZ.length}`;
+    scoreEl.className = 'quiz-score show';
+    completedSections.add(0);
+    document.getElementById('completionBadge').classList.add('show');
+    window.warmupScore = correct;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 1 — FLASHCARDS
+// ══════════════════════════════════════════════════════════
+const FLASHCARDS = [
+  { phrase:"What do you do for a living?", trans:"O que você faz profissionalmente?", example:'"What do you do for a living?" — "I\'m a UX designer at a fintech startup."', usage:'Work/professional context' },
+  { phrase:"I couldn't help but overhear — are you in [industry]?", trans:"Não pude deixar de ouvir — você trabalha em [área]?", example:'"I couldn\'t help but overhear you mention AI — are you in tech?" Great icebreaker!', usage:'Event / casual' },
+  { phrase:"We actually have a lot in common.", trans:"Nós realmente temos muito em comum.", example:'"Oh wow, we actually have a lot in common — I\'m also into triathlon!"', usage:'After discovering shared interests' },
+  { phrase:"I've heard great things about your work.", trans:"Ouvi ótimas coisas sobre o seu trabalho.", example:'"Hi! I\'ve heard great things about your work on the carbon project." Perfect for networking.', usage:'Professional networking' },
+  { phrase:"What's your take on [topic]?", trans:"O que você acha de [assunto]?", example:'"What\'s your take on remote work becoming permanent?" — invites opinion.', usage:'Deepening conversation' },
+  { phrase:"That reminds me of something similar I experienced.", trans:"Isso me lembra algo parecido que eu já vivi.", example:'Transition phrase to share your story after listening to theirs.', usage:'Storytelling / building rapport' },
+  { phrase:"How did you end up getting into [field/role]?", trans:"Como você foi parar em [área/função]?", example:'"How did you end up getting into marine biology? That sounds fascinating."', usage:'Career conversations' },
+  { phrase:"I'd love to follow up on this — can I get your contact?", trans:"Adoraria continuar essa conversa — posso te pedir o contato?", example:'Natural closing for networking — shows interest without being pushy.', usage:'Closing / follow-up' },
+  { phrase:"Don't hesitate to reach out if you ever need anything.", trans:"Não hesite em entrar em contato se precisar de algo.", example:'Professional sign-off that leaves a positive impression.', usage:'Farewell' },
+  { phrase:"I completely lost track of time talking to you!", trans:"Perdi a noção do tempo conversando contigo!", example:'Flattering way to signal you genuinely enjoyed the conversation.', usage:'Warm closing' },
+];
+
+let fcIdx = 0;
+let fcSeen = new Set();
+
+function renderFlashcard(){
+  const fc = FLASHCARDS[fcIdx];
+  document.getElementById('fcPhrase').textContent = `"${fc.phrase}"`;
+  document.getElementById('fcTranslation').textContent = fc.trans;
+  document.getElementById('fcPhraseBack').textContent = `${fc.usage}`;
+  document.getElementById('fcExample').textContent = fc.example;
+  document.getElementById('fcCounter').textContent = `${fcIdx+1} / ${FLASHCARDS.length}`;
+  document.getElementById('flashcardInner').classList.remove('flipped');
+  fcSeen.add(fcIdx);
+  renderFcDots();
+  // rebind audio
+  const normalBtn = document.getElementById('fcAudioNormal');
+  const slowBtn = document.getElementById('fcAudioSlow');
+  normalBtn.onclick = null; slowBtn.onclick = null;
+  normalBtn.addEventListener('click', e=>{ e.stopPropagation(); speak(fc.phrase, 1.0); });
+  slowBtn.addEventListener('click', e=>{ e.stopPropagation(); speak(fc.phrase, 0.6); });
+}
+
+function renderFcDots(){
+  const dots = document.getElementById('fcDots');
+  dots.innerHTML = '';
+  FLASHCARDS.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'fc-dot' + (i===fcIdx?' current':(fcSeen.has(i)?' seen':''));
+    d.setAttribute('role','listitem');
+    d.setAttribute('aria-label', `Card ${i+1}${i===fcIdx?' (current)':''}${fcSeen.has(i)?' (seen)':''}`);
+    dots.appendChild(d);
+  });
+}
+
+document.getElementById('flashcardInner').addEventListener('click',()=>{
+  document.getElementById('flashcardInner').classList.toggle('flipped');
+});
+document.getElementById('flashcardInner').addEventListener('keydown',e=>{
+  if(e.key===' '||e.key==='Enter'){ e.preventDefault(); document.getElementById('flashcardInner').classList.toggle('flipped'); }
+  if(e.key==='ArrowRight'){ fcIdx=Math.min(fcIdx+1,FLASHCARDS.length-1); renderFlashcard(); }
+  if(e.key==='ArrowLeft'){ fcIdx=Math.max(fcIdx-1,0); renderFlashcard(); }
+});
+document.getElementById('fcNext').addEventListener('click',()=>{ fcIdx=Math.min(fcIdx+1,FLASHCARDS.length-1); renderFlashcard(); });
+document.getElementById('fcPrev').addEventListener('click',()=>{ fcIdx=Math.max(fcIdx-1,0); renderFlashcard(); });
+renderFlashcard();
+
+// ── Vocab Quiz ──
+const VOCAB_QUIZ = [
+  { q:'Someone you just met shares a fascinating career path. You want to learn more. What\'s the most natural phrase?',
+    sub:'',
+    opts:["Tell me your story.","How did you end up getting into that field?","Why did you choose this career?","What is your job history?"],
+    correct:1, exp:'"How did you end up…" sounds genuinely curious and conversational — far more natural than "Why did you choose?" which can feel like an interview.' },
+  { q:'The conversation is going really well and you don\'t want it to end. You say:',
+    sub:'',
+    opts:["This is a nice conversation.","Time flies when you\'re having fun!","I completely lost track of time talking to you!","We have been talking for long."],
+    correct:2, exp:'"I completely lost track of time talking to you!" is a genuine compliment that signals the conversation was valuable — and it\'s a natural, idiomatic expression.' },
+  { q:'You\'re at a networking event and want to ask someone\'s opinion. Which phrase is best?',
+    sub:'',
+    opts:["Do you have opinions about AI?","What do you think about AI taking jobs?","What\'s your take on how AI is reshaping the industry?","Is AI good or bad for workers?"],
+    correct:2, exp:'"What\'s your take on…" is the go-to phrase for inviting opinion in professional settings. It\'s open, sophisticated, and non-confrontational.' },
+];
+
+let vocabAnswers = {};
+const vocabContainer = document.getElementById('vocabQuizQuestions');
+
+VOCAB_QUIZ.forEach((q,i)=>renderVocabQuestion(q,i,vocabContainer,checkVocabCompletion));
+
+function renderVocabQuestion(qObj,idx,container,onComplete){
+  const block = document.createElement('div');
+  block.className = 'quiz-question';
+  block.innerHTML = `
+    <div class="quiz-q-text">${idx+1}. ${qObj.q}</div>
+    ${qObj.sub?`<div class="quiz-q-sub">${qObj.sub}</div>`:''}
+    <div class="quiz-options" role="group">
+      ${qObj.opts.map((o,i)=>`
+        <button class="quiz-option" data-q="${idx}" data-o="${i}" role="radio" aria-checked="false">
+          <span class="quiz-option-letter">${'ABCD'[i]}</span> ${o}
+        </button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="vqfb-${idx}" role="alert"></div>
+  `;
+  container.appendChild(block);
+  block.querySelectorAll('.quiz-option').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(vocabAnswers[idx]!==undefined) return;
+      const chosen = parseInt(btn.dataset.o);
+      vocabAnswers[idx] = chosen;
+      block.querySelectorAll('.quiz-option').forEach(b=>{
+        const o=parseInt(b.dataset.o);
+        if(o===qObj.correct) b.classList.add('correct');
+        else if(o===chosen&&chosen!==qObj.correct) b.classList.add('wrong');
+        else b.classList.add('dimmed');
+      });
+      const fb=document.getElementById(`vqfb-${idx}`);
+      fb.textContent=(chosen===qObj.correct?'✓ Correct! ':'✗ Not quite. ')+qObj.exp;
+      fb.className=`quiz-feedback show ${chosen===qObj.correct?'correct':'wrong'}`;
+      if(onComplete) onComplete();
+    });
+  });
+}
+
+function checkVocabCompletion(){
+  if(Object.keys(vocabAnswers).length===VOCAB_QUIZ.length){
+    const correct=VOCAB_QUIZ.filter((_,i)=>vocabAnswers[i]===VOCAB_QUIZ[i].correct).length;
+    document.getElementById('vocabScoreNum').textContent=`${correct} / ${VOCAB_QUIZ.length}`;
+    document.getElementById('vocabScore').className='quiz-score show';
+    completedSections.add(1);
+    document.getElementById('completionBadge').classList.toggle('show',currentSection===1);
+    window.vocabScore=correct;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 2 — GUIDED DIALOGUE
+// ══════════════════════════════════════════════════════════
+const DIALOGUES = [
+  // 0: Conference
+  [
+    { speaker:'Alex', text:"Hi there! I noticed your badge says you\'re from Brazil — I\'ve always wanted to visit São Paulo. Are you here for the keynote?", audio:"Hi there! I noticed your badge says you\'re from Brazil. I\'ve always wanted to visit São Paulo. Are you here for the keynote?" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"Yeah, I\'m here for the keynote. Brazil is nice.", quality:'ok', label:'Neutral', why:'Grammatically fine but flat — it doesn\'t add information or invite Alex to share.' },
+        { text:"Yes, I wouldn\'t miss it! I\'m actually speaking on a panel right after. What brings you to the conference this year?", quality:'best', label:'Natural & engaging', why:'You share something interesting (speaking on a panel), then immediately bounce with a question. This is how native speakers maintain conversational momentum.' },
+        { text:"Yes. And you?", quality:'ok', label:'Too short', why:'Technically correct, but this response is so brief it puts the entire burden back on Alex with no reciprocal information.' },
+        { text:"I am here for the keynote because I am interested in the topics.", quality:'poor', label:'Formal / stiff', why:'This sounds like a written response, not natural speech. Avoid "because I am interested in" — say "I\'m really into this stuff!" instead.' },
+      ], correct:1 },
+    { speaker:'Alex', text:"That\'s awesome — a panel speaker! What\'s your talk about, if you don\'t mind me asking?", audio:"That\'s awesome — a panel speaker! What\'s your talk about, if you don\'t mind me asking?" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"It\'s about AI. It\'s a big topic.", quality:'ok', label:'Vague', why:'Vague answer with no hook. It doesn\'t invite follow-up questions or spark curiosity.' },
+        { text:"I\'m presenting research on how generative AI is changing junior developer roles — really divisive topic! Have you seen any of that in your company?", quality:'best', label:'Rich & conversational', why:'You give a clear topic with a charged word ("divisive"), signal you know the landscape, then flip the question. This is expert-level small talk.' },
+        { text:"My presentation topic is generative AI and developer roles.", quality:'ok', label:'Accurate but dry', why:'Technically good but reads like a PowerPoint title — add opinion, energy, and a question.' },
+        { text:"I prefer not to talk about work right now.", quality:'poor', label:'Off-putting', why:'At a professional conference, deflecting your own talk sounds odd. Save this for personal questions.' },
+      ], correct:1 },
+    { speaker:'Alex', text:"Wow, incredibly relevant. I\'ve been on both sides of that debate! Let me introduce you to our CTO — she\'d love to connect.", audio:"Wow, incredibly relevant. I\'ve been on both sides of that debate! Let me introduce you to our CTO — she\'d love to connect." },
+    { isChoice:true, prompt:"Your closing response…",
+      options:[
+        { text:"OK.", quality:'poor', label:'Too minimal', why:'A single-word response to a generous offer is dismissive and socially awkward.' },
+        { text:"That would be fantastic — I\'d love that! It\'s been such a pleasure talking to you, Alex.", quality:'best', label:'Warm & professional', why:'"That would be fantastic" shows enthusiasm; "such a pleasure talking to you" closes the micro-interaction warmly before the introduction.' },
+        { text:"Yes, OK, I would like to meet her.", quality:'ok', label:'Correct but flat', why:'Grammatically fine, but lacks warmth and social energy.' },
+        { text:"Maybe later, I\'m a bit tired.", quality:'poor', label:'Missed opportunity', why:'Declining a warm networking offer at a conference is almost always the wrong move.' },
+      ], correct:1 },
+  ],
+  // 1: Flight
+  [
+    { speaker:'Passenger', text:"Excuse me — is that seat taken? Long flight ahead to London!", audio:"Excuse me — is that seat taken? Long flight ahead to London!" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"No, it\'s free.", quality:'ok', label:'Minimal', why:'True but says nothing — a small additional comment opens the door for conversation.' },
+        { text:"All yours! London — are you heading there for business or pleasure?", quality:'best', label:'Warm & curious', why:'"All yours!" is friendly; the follow-up question immediately signals you\'re open to conversation without being pushy.' },
+        { text:"Yes, please sit down.", quality:'ok', label:'Awkward phrasing', why:'"Please sit down" sounds like you\'re giving permission rather than welcoming them.' },
+        { text:"The seat is available.", quality:'poor', label:'Too formal', why:'Very stiff — sounds like a flight attendant, not a fellow passenger.' },
+      ], correct:1 },
+    { speaker:'Passenger', text:"Business, unfortunately! Budget reviews never stop. What about you?", audio:"Business, unfortunately! Budget reviews never stop. What about you?" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"Tourism. I like London.", quality:'ok', label:'Vague', why:'True but undeveloped — this shuts the conversation down rather than building it.' },
+        { text:"Ha, I feel you! I\'m going for a design conference — my first time presenting internationally, actually. Bit nerve-wracking!", quality:'best', label:'Relatable & personal', why:'Showing vulnerability ("bit nerve-wracking") is powerful — it creates an emotional connection and gives them something relatable to respond to.' },
+        { text:"I am going to London for a conference.", quality:'ok', label:'Informative but dry', why:'Correct, but missing the personal touch that turns a transaction into a real conversation.' },
+        { text:"I travel a lot for work too.", quality:'poor', label:'Off-topic', why:'This sounds like a correction or one-upmanship rather than reciprocal sharing.' },
+      ], correct:1 },
+    { speaker:'Passenger', text:"First international presentation — that\'s a big deal! What\'s your field?", audio:"First international presentation — that\'s a big deal! What\'s your field?" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"I work in design.", quality:'ok', label:'Too brief', why:'No follow-up, no hook — the conversation will likely stall.' },
+        { text:"UX and product design — specifically how we can make healthcare apps more accessible for elderly users. Kind of a niche passion of mine! Do you work with product teams at all?", quality:'best', label:'Specific & inviting', why:'Specificity creates interest. "Kind of a niche passion" is self-aware and charming. Ending with a question keeps the flow going.' },
+        { text:"Product design. It\'s a growing field.", quality:'ok', label:'Generic', why:'True but impersonal — nothing here creates a real connection.' },
+        { text:"I am a designer of user experiences for mobile.", quality:'poor', label:'Too formal/stilted', why:'This phrasing is grammatically awkward and overly structured for a casual conversation.' },
+      ], correct:1 },
+  ],
+  // 2: First day at work
+  [
+    { speaker:'Colleague', text:"Oh hi! You must be the new hire — welcome to the chaos! I\'m Jordan, I run the data team.", audio:"Oh hi! You must be the new hire — welcome to the chaos! I\'m Jordan, I run the data team." },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"Hello, I am the new employee. My name is [name].", quality:'poor', label:'Too stiff', why:'This sounds like a formal introduction speech rather than natural conversation between colleagues.' },
+        { text:"Ha! \'Welcome to the chaos\' — that\'s reassuring! I\'m [name], just joined the product team. How long have you been here, Jordan?", quality:'best', label:'Playful & warm', why:'Echoing their humour ("welcome to the chaos") shows social awareness. Asking how long they\'ve been there is a natural, low-stakes question.' },
+        { text:"Yes, I\'m new. Nice to meet you.", quality:'ok', label:'Polite but flat', why:'Correct but doesn\'t build on their friendly opener or return a question.' },
+        { text:"I already know about the chaos from my interviews!", quality:'ok', label:'Funny but risky', why:'Shows personality, but could read negatively without more context.' },
+      ], correct:1 },
+    { speaker:'Jordan', text:"Three years — basically ancient history in startup time! Where were you before this?", audio:"Three years — basically ancient history in startup time! Where were you before this?" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"I was at a previous company.", quality:'poor', label:'Vague', why:'Tells them nothing and suggests you\'re either evasive or haven\'t thought about it.' },
+        { text:"Ha, startup years really are dog years! I was at [previous company] — we built data pipelines for e-commerce. Totally different scale from here, so I\'m excited to learn. What\'s the culture like day-to-day?", quality:'best', label:'Engaging & curious', why:'You share specific context, show self-awareness (different scale), express genuine excitement, and ask a question that puts Jordan in the expert role — people love that.' },
+        { text:"I worked at a tech company in data engineering.", quality:'ok', label:'Correct but generic', why:'This is fine but doesn\'t leverage the opportunity to show personality or curiosity.' },
+        { text:"I prefer not to talk about my past jobs.", quality:'poor', label:'Off-putting', why:'This is a completely normal workplace question — deflecting it on your first day signals awkwardness.' },
+      ], correct:1 },
+    { speaker:'Jordan', text:"Culture is honestly the best part — very collaborative, no silos. You\'ll fit right in. Lunch is at 12:30, you should join us!", audio:"Culture is honestly the best part — very collaborative, no silos. You\'ll fit right in. Lunch is at 12:30, you should join us!" },
+    { isChoice:true, prompt:"You respond…",
+      options:[
+        { text:"Thank you.", quality:'ok', label:'Polite but minimal', why:'Technically acceptable but misses the chance to reinforce the connection.' },
+        { text:"That sounds amazing — I was honestly a bit nervous about fitting in, so it\'s great to hear that. I\'ll absolutely be there! See you at 12:30, Jordan.", quality:'best', label:'Honest & warm', why:'Showing mild vulnerability on your first day is authentic and likeable. Confirming the plan and using their name ends the interaction on a strong personal note.' },
+        { text:"OK I will come to lunch.", quality:'ok', label:'Fine but flat', why:'Correct, but you\'ve missed a chance to show warmth and start the relationship on a strong note.' },
+        { text:"I already have lunch plans, sorry.", quality:'poor', label:'Missed opportunity', why:'Declining a first-day lunch invitation is almost always a mistake for workplace relationships.' },
+      ], correct:1 },
+  ],
+];
+
+const DLG_TITLES = ['Conference', 'Flight', 'First Day'];
+let dlgIdx = 0;
+let dlgStep = 0;
+let dlgScore = 0;
+let dlgAnswered = false;
+let dlgDone = false;
+
+function loadDialogue(idx){
+  dlgIdx = idx;
+  dlgStep = 0;
+  dlgScore = 0;
+  dlgAnswered = false;
+  dlgDone = false;
+  document.getElementById('chatMessages').innerHTML='';
+  document.getElementById('dlgProgressFill').style.width='0%';
+  document.getElementById('dlgProgressLabel').textContent='0 / '+getTurnCount(idx);
+  document.querySelectorAll('.scenario-tab').forEach((t,i)=>{
+    t.classList.toggle('active',i===idx);
+    t.setAttribute('aria-selected', i===idx?'true':'false');
+  });
+  advanceDlg();
+}
+
+function getTurnCount(idx){
+  return DIALOGUES[idx].filter(t=>t.isChoice).length;
+}
+
+function advanceDlg(){
+  const turns = DIALOGUES[dlgIdx];
+  if(dlgStep >= turns.length){ endDialogue(); return; }
+  const turn = turns[dlgStep];
+  if(!turn.isChoice){
+    addAIMessage(turn.speaker, turn.text, turn.audio || turn.text);
+    dlgStep++;
+    document.getElementById('dialogueChoices').innerHTML='';
+    document.getElementById('choiceFeedback').className='choice-feedback';
+    document.getElementById('nextBtnRow').style.display='none';
+    dlgAnswered = false;
+    setTimeout(advanceDlg, 600);
+  } else {
+    renderChoices(turn);
+  }
+}
+
+function addAIMessage(speaker, text, audioText){
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg';
+  div.innerHTML=`
+    <div class="chat-avatar ai-avatar" aria-hidden="true">${speaker[0]}</div>
+    <div>
+      <div class="bubble ai-bubble">${text}</div>
+      <div class="bubble-audio">
+        <button class="btn-audio" aria-label="Hear ${speaker}'s message">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          ${speaker}
+        </button>
+      </div>
+    </div>`;
+  msgs.appendChild(div);
+  makeAudioBtn(audioText, div.querySelector('.btn-audio'), false);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMessage(text){
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg user-msg';
+  div.innerHTML=`
+    <div class="chat-avatar user-avatar" aria-hidden="true">You</div>
+    <div class="bubble user-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function renderChoices(turn){
+  const container = document.getElementById('dialogueChoices');
+  container.innerHTML = `<p style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-3);">${turn.prompt}</p>`;
+  turn.options.forEach((opt,i)=>{
+    const btn = document.createElement('button');
+    btn.className='choice-btn';
+    btn.innerHTML=`<strong style="font-size:var(--text-xs);opacity:0.6;margin-right:var(--space-2)">${'ABCD'[i]}.</strong> ${opt.text}`;
+    btn.setAttribute('aria-label',`Option ${i+1}: ${opt.text}`);
+    btn.addEventListener('click',()=>{
+      if(dlgAnswered) return;
+      dlgAnswered = true;
+      const isCorrect = i===turn.correct;
+      if(isCorrect) dlgScore++;
+      container.querySelectorAll('.choice-btn').forEach((b,j)=>{
+        if(j===turn.correct) b.classList.add('chosen-correct');
+        else if(j===i&&!isCorrect) b.classList.add('chosen-wrong');
+        else b.classList.add('dimmed');
+      });
+      addUserMessage(opt.text);
+      const fb = document.getElementById('choiceFeedback');
+      fb.innerHTML=`<strong>${opt.label}:</strong> ${opt.why}`;
+      fb.className=`choice-feedback show ${isCorrect?'good':'better'}`;
+      const choiceCount = getTurnCount(dlgIdx);
+      const answered = DIALOGUES[dlgIdx].slice(0,dlgStep+1).filter(t=>t.isChoice).length;
+      document.getElementById('dlgProgressFill').style.width=`${(answered/choiceCount)*100}%`;
+      document.getElementById('dlgProgressLabel').textContent=`${answered} / ${choiceCount}`;
+      document.getElementById('nextBtnRow').style.display='flex';
+      dlgStep++;
+    });
+    container.appendChild(btn);
+  });
+}
+
+document.getElementById('dlgNextBtn').addEventListener('click',()=>{
+  document.getElementById('choiceFeedback').className='choice-feedback';
+  document.getElementById('nextBtnRow').style.display='none';
+  dlgAnswered=false;
+  advanceDlg();
+});
+
+function endDialogue(){
+  const container = document.getElementById('dialogueChoices');
+  const total = getTurnCount(dlgIdx);
+  container.innerHTML=`
+    <div style="text-align:center;padding:var(--space-6);background:var(--color-primary-highlight);border-radius:var(--radius-lg);border:1px solid oklch(from var(--color-primary) l c h/0.2);">
+      <div style="font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-primary);margin-bottom:var(--space-2)">${dlgScore} / ${total}</div>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);">Nice work on the ${DLG_TITLES[dlgIdx]} scenario!</p>
+      <button class="btn btn-primary" onclick="loadDialogue(${(dlgIdx+1)%3})">Try "${DLG_TITLES[(dlgIdx+1)%3]}" scenario →</button>
+    </div>`;
+  document.getElementById('nextBtnRow').style.display='none';
+  completedSections.add(2);
+  window.dialogueScore = dlgScore;
+  document.getElementById('completionBadge').classList.toggle('show',currentSection===2);
+}
+
+document.querySelectorAll('.scenario-tab').forEach((tab,i)=>{
+  tab.addEventListener('click',()=>loadDialogue(i));
+});
+loadDialogue(0);
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 3 — ROLE-PLAY
+// ══════════════════════════════════════════════════════════
+const RP_SCENARIOS = [
+  { icon:'🏢', title:'Tech Networking Event', desc:'You\'re at a startup mixer. An investor notices your badge and approaches.', turns:[
+    { speaker:'Investor', prompt:'Hi! I love your company\'s name tag — what does [your company] do exactly?', hint:['We build / develop / focus on…','It\'s essentially a platform that…','In a nutshell, we help [audience] to…','Think of it as [analogy]…'] },
+    { speaker:'Investor', prompt:'Interesting! What\'s the biggest challenge you\'re facing right now?', hint:['Our main challenge is…','We\'re currently working through…','Honestly, the toughest part is…','One thing we\'re grappling with is…'] },
+    { speaker:'Investor', prompt:'How do you differentiate from [competitor]?', hint:['What sets us apart is…','Unlike [competitor], we…','Our unique advantage is…','The key difference is that we…'] },
+  ]},
+  { icon:'✈️', title:'International Trip', desc:'You\'re on a long-haul flight. Your neighbour is a professor from the UK.', turns:[
+    { speaker:'Professor', prompt:'First time visiting [destination]? What are you hoping to experience?', hint:['I\'ve always wanted to…','I\'m particularly excited about…','Beyond the obvious tourist spots, I want to…','I\'m travelling for [reason] but also hoping to…'] },
+    { speaker:'Professor', prompt:'I research urban design — what\'s the most fascinating city you\'ve ever been to?', hint:['Without a doubt, it has to be…','That\'s a tough one! I\'d say…','I was completely blown away by…','What struck me most about [city] was…'] },
+    { speaker:'Professor', prompt:'If you could live anywhere in the world for a year, where would it be and why?', hint:['I\'d probably choose…','I\'ve always been drawn to…','Honestly, it would be… because…','I think I\'d go with… — the [culture/pace/people] appeals to me.'] },
+  ]},
+  { icon:'🎓', title:'University Orientation', desc:'You\'re a grad student at an orientation event. You meet a classmate.', turns:[
+    { speaker:'Classmate', prompt:'Are you enjoying the programme so far? What made you choose this university?', hint:['What really drew me here was…','I chose this programme because…','I was mainly attracted by…','The research opportunities in [area] were the deciding factor.'] },
+    { speaker:'Classmate', prompt:'What are you hoping to do after you graduate?', hint:['Ideally, I\'d love to…','My goal is to…','I\'m keeping my options open, but…','I\'m seriously considering…'] },
+    { speaker:'Classmate', prompt:'Do you have any tips for balancing social life and studying here?', hint:['From what I\'ve heard…','One thing I\'ve already noticed is…','I think the key is…','My approach has always been to…'] },
+  ]},
+];
+
+let selectedRPScenario = null;
+let rpTurnIdx = 0;
+let rpFeedbackScores = [];
+
+const rpGrid = document.getElementById('rpScenarioGrid');
+RP_SCENARIOS.forEach((s,i)=>{
+  const card = document.createElement('div');
+  card.className='rp-scenario-card';
+  card.setAttribute('role','listitem');
+  card.innerHTML=`
+    <div class="rp-scenario-icon">${s.icon}</div>
+    <div class="rp-scenario-title">${s.title}</div>
+    <div class="rp-scenario-desc">${s.desc}</div>`;
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.rp-scenario-card').forEach(c=>c.classList.remove('selected'));
+    card.classList.add('selected');
+    startRP(i);
+  });
+  rpGrid.appendChild(card);
+});
+
+function startRP(idx){
+  selectedRPScenario = idx;
+  rpTurnIdx = 0;
+  rpFeedbackScores = [];
+  document.getElementById('rpChat').innerHTML='';
+  document.getElementById('rpChat').classList.add('active');
+  document.getElementById('finalScoreCard').classList.remove('show');
+  renderRPTurn();
+}
+
+function renderRPTurn(){
+  const scenario = RP_SCENARIOS[selectedRPScenario];
+  if(rpTurnIdx >= scenario.turns.length){ finishRP(); return; }
+  const turn = scenario.turns[rpTurnIdx];
+  const chat = document.getElementById('rpChat');
+  const turnEl = document.createElement('div');
+  turnEl.className='rp-turn';
+  turnEl.id=`rp-turn-${rpTurnIdx}`;
+  const hints = turn.hint.map(h=>`<div class="hint-phrase">${h}</div>`).join('');
+  turnEl.innerHTML=`
+    <div class="rp-prompt-label">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      ${scenario.turns[rpTurnIdx] ? scenario.turns[rpTurnIdx].speaker || 'Interlocutor' : 'Interlocutor'} says:
+    </div>
+    <div class="rp-prompt-text">"${turn.prompt}"</div>
+    <div class="rp-prompt-audio">
+      <button class="btn-audio" data-speak="${turn.prompt}" aria-label="Hear the prompt">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        Hear it
+      </button>
+    </div>
+    <div class="rp-input-area">
+      <label class="rp-input-label" for="rp-input-${rpTurnIdx}">Your response (full sentence in English):</label>
+      <textarea class="rp-textarea" id="rp-input-${rpTurnIdx}" placeholder="Type your answer here… e.g. &quot;That's a great question! I'd say the most exciting part for me is…&quot;" rows="3" aria-label="Your response"></textarea>
+      <div class="rp-actions">
+        <button class="btn btn-primary" id="rp-submit-${rpTurnIdx}" data-turn="${rpTurnIdx}">Submit →</button>
+        <button class="mic-btn" id="rp-mic-${rpTurnIdx}" aria-label="Use microphone">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          Speak
+        </button>
+        <button class="hint-toggle" id="rp-hint-${rpTurnIdx}" aria-expanded="false" aria-controls="rp-hint-box-${rpTurnIdx}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Show hints
+        </button>
+      </div>
+      <div class="hint-box" id="rp-hint-box-${rpTurnIdx}">
+        <div class="hint-box-title">Useful phrases</div>
+        <div class="hint-phrases">${hints}</div>
+      </div>
+      <div class="rp-feedback-box" id="rp-feedback-${rpTurnIdx}" aria-live="polite"></div>
+    </div>
+  `;
+  chat.appendChild(turnEl);
+  turnEl.scrollIntoView({behavior:'smooth',block:'start'});
+
+  makeAudioBtn(turn.prompt, turnEl.querySelector('[data-speak]'), false);
+
+  document.getElementById(`rp-hint-${rpTurnIdx}`).addEventListener('click',function(){
+    const box=document.getElementById(`rp-hint-box-${rpTurnIdx}`);
+    const open=box.classList.toggle('show');
+    this.setAttribute('aria-expanded',open);
+    this.textContent = open ? '▲ Hide hints' : '▼ Show hints';
+  });
+
+  document.getElementById(`rp-submit-${rpTurnIdx}`).addEventListener('click',()=>{
+    const val = document.getElementById(`rp-input-${rpTurnIdx}`).value.trim();
+    if(!val){ alert('Please write a response before submitting!'); return; }
+    evaluateRPResponse(val, rpTurnIdx);
+  });
+
+  // Microphone
+  setupMic(rpTurnIdx);
+}
+
+function setupMic(turnIdx){
+  const btn = document.getElementById(`rp-mic-${turnIdx}`);
+  if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){
+    btn.style.display='none'; return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SR();
+  rec.lang='en-US'; rec.continuous=false; rec.interimResults=false;
+  let isRecording=false;
+  btn.addEventListener('click',()=>{
+    if(!isRecording){ rec.start(); isRecording=true; btn.classList.add('recording'); btn.textContent='⏹ Stop'; }
+    else { rec.stop(); isRecording=false; btn.classList.remove('recording'); btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg> Speak'; }
+  });
+  rec.onresult=e=>{ document.getElementById(`rp-input-${turnIdx}`).value=e.results[0][0].transcript; };
+  rec.onend=()=>{ isRecording=false; btn.classList.remove('recording'); btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg> Speak'; };
+  rec.onerror=()=>{ isRecording=false; btn.classList.remove('recording'); };
+}
+
+function evaluateRPResponse(text, turnIdx){
+  const words = text.trim().split(/\s+/);
+  const wcount = words.length;
+  const hasQuestion = /\?/.test(text);
+  const hasPersonalPronoun = /\b(I|my|me|I'm|I've|I'd|I'll)\b/i.test(text);
+  const hasConnectors = /\b(because|although|however|but|since|so|therefore|which means|that's why|in fact|actually|honestly|to be honest)\b/i.test(text);
+  const hasFiller = /\b(well|you know|I mean|honestly|actually|right|basically|so)\b/i.test(text);
+  const hasCompliment = /\b(great|interesting|fascinating|love|wonderful|amazing|exactly|absolutely|totally)\b/i.test(text);
+
+  const lengthScore = Math.min(100, Math.round((wcount/20)*100));
+  const naturalScore = Math.round(((hasPersonalPronoun?30:0)+(hasConnectors?35:0)+(hasFiller?20:0)+(hasCompliment?15:0)));
+  const questionScore = hasQuestion ? 100 : 20;
+  const overall = Math.round((lengthScore*0.35 + naturalScore*0.4 + questionScore*0.25));
+  const stars = overall>=85?5:overall>=70?4:overall>=55?3:overall>=40?2:1;
+
+  rpFeedbackScores.push(overall);
+
+  let suggestion = '';
+  if(wcount < 10) suggestion = 'Try to give a <strong>longer, more detailed response</strong> — aim for at least 2 sentences that explain and elaborate.';
+  else if(!hasQuestion) suggestion = 'Great start! Now try adding a <strong>question at the end</strong> to keep the conversation going — "What about you?" or a specific follow-up.';
+  else if(!hasConnectors) suggestion = 'Add <strong>connectors and transitions</strong> like "because", "which means", "actually", or "to be honest" — they make your speech sound more fluent.';
+  else suggestion = 'Excellent! Your response is natural, detailed, and engaging. Native-speaker level!';
+
+  const fb = document.getElementById(`rp-feedback-${turnIdx}`);
+  fb.innerHTML=`
+    <div class="rp-stars" aria-label="${stars} out of 5 stars">${'★'.repeat(stars)+'☆'.repeat(5-stars)}</div>
+    <div class="rp-feedback-criteria">
+      <div class="rp-criterion">
+        <div class="criterion-label">Length</div>
+        <div class="criterion-bar"><div class="criterion-fill ${lengthScore>=70?'good':lengthScore>=45?'ok':'low'}" style="width:${lengthScore}%"></div></div>
+        <div class="criterion-score">${wcount} words</div>
+      </div>
+      <div class="rp-criterion">
+        <div class="criterion-label">Naturalness</div>
+        <div class="criterion-bar"><div class="criterion-fill ${naturalScore>=70?'good':naturalScore>=45?'ok':'low'}" style="width:${naturalScore}%"></div></div>
+        <div class="criterion-score">${naturalScore}%</div>
+      </div>
+      <div class="rp-criterion">
+        <div class="criterion-label">Engagement</div>
+        <div class="criterion-bar"><div class="criterion-fill ${questionScore>=70?'good':questionScore>=45?'ok':'low'}" style="width:${questionScore}%"></div></div>
+        <div class="criterion-score">${hasQuestion?'Has Q':'No Q'}</div>
+      </div>
+    </div>
+    <div class="rp-suggestion">${suggestion}</div>
+    ${rpTurnIdx < RP_SCENARIOS[selectedRPScenario].turns.length-1
+      ? `<button class="btn btn-primary" style="margin-top:var(--space-4)" id="rp-next-${turnIdx}">Next turn →</button>`
+      : `<button class="btn btn-primary" style="margin-top:var(--space-4)" id="rp-next-${turnIdx}">Finish Role-play →</button>`}
+  `;
+  fb.classList.add('show');
+  document.getElementById(`rp-input-${turnIdx}`).disabled=true;
+  document.getElementById(`rp-submit-${turnIdx}`).disabled=true;
+  document.getElementById(`rp-mic-${turnIdx}`).disabled=true;
+  document.getElementById(`rp-next-${turnIdx}`).addEventListener('click',()=>{
+    rpTurnIdx++;
+    renderRPTurn();
+  });
+}
+
+function finishRP(){
+  const avg = rpFeedbackScores.length ? Math.round(rpFeedbackScores.reduce((a,b)=>a+b,0)/rpFeedbackScores.length) : 0;
+  const stars = avg>=85?'⭐⭐⭐⭐⭐':avg>=70?'⭐⭐⭐⭐':avg>=55?'⭐⭐⭐':avg>=40?'⭐⭐':'⭐';
+  completedSections.add(3);
+  document.getElementById('completionBadge').classList.toggle('show',currentSection===3);
+  window.rpScore = avg;
+  const card = document.getElementById('finalScoreCard');
+  document.getElementById('finalScoreMsg').textContent=`Overall role-play score: ${avg}/100 ${stars}`;
+  document.getElementById('finalWarmup').textContent=window.warmupScore!=null?`${window.warmupScore}/3`:'—';
+  document.getElementById('finalVocab').textContent=window.vocabScore!=null?`${window.vocabScore}/3`:'—';
+  document.getElementById('finalDialogue').textContent=window.dialogueScore!=null?`${window.dialogueScore}/3`:'—';
+  document.getElementById('finalRP').textContent=`${avg}%`;
+  card.classList.add('show');
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>

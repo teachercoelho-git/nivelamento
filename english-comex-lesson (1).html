@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English for Foreign Trade – Job Interview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root, [data-theme="light"] {
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-surface-offset:#f0ede8;--color-divider:#dcd9d5;--color-border:#d4d1ca;
+  --color-text:#28251d;--color-text-muted:#6b6860;--color-text-faint:#b5b4b0;
+  --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-active:#0f3638;
+  --color-primary-highlight:#d2e8e6;
+  --color-accent:#c25b00;--color-accent-hover:#a04800;
+  --color-accent-highlight:#f0ddd0;
+  --color-success:#437a22;--color-success-highlight:#d4dfcc;
+  --color-error:#a12c7b;--color-error-highlight:#f0daea;
+  --color-warning:#c07a00;--color-warning-highlight:#f0e6c4;
+  --color-gold:#d19900;
+  --color-blue:#006494;--color-blue-highlight:#c6d8e4;
+  --color-purple:#7a39bb;--color-purple-highlight:#dfd0ee;
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;--radius-xl:1rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16,1,0.3,1);
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:'Inter', 'Helvetica Neue', sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;
+  --color-primary-highlight:#1e3536;
+  --color-accent:#f09050;--color-accent-hover:#fca060;
+  --color-accent-highlight:#4a2e18;
+  --color-success:#6daa45;--color-success-highlight:#283620;
+  --color-error:#d163a7;--color-error-highlight:#3a1a30;
+  --color-warning:#e8af34;--color-warning-highlight:#3a2e10;
+  --color-gold:#e8af34;
+  --color-blue:#5591c7;--color-blue-highlight:#1a2d40;
+  --color-purple:#a86fdf;--color-purple-highlight:#2e1e44;
+  --shadow-sm:0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md:0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0 / 0.4);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme]){
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-highlight:#1e3536;
+  --color-accent:#f09050;--color-accent-hover:#fca060;--color-accent-highlight:#4a2e18;
+  --color-success:#6daa45;--color-success-highlight:#283620;
+  --color-error:#d163a7;--color-error-highlight:#3a1a30;
+  --color-warning:#e8af34;--color-warning-highlight:#3a2e10;
+  --color-gold:#e8af34;--color-blue:#5591c7;--color-blue-highlight:#1a2d40;
+  --color-purple:#a86fdf;--color-purple-highlight:#2e1e44;
+}}
+
+/* ===== BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:5rem}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background-color:var(--color-bg);line-height:1.6}
+img,svg{display:block;max-width:100%}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+a,button,[role="button"],input,textarea,select{transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),box-shadow var(--transition-interactive)}
+h1,h2,h3,h4{font-family:var(--font-display);text-wrap:balance;line-height:1.15}
+p,li{text-wrap:pretty;max-width:72ch}
+::selection{background:oklch(from var(--color-primary) l c h / 0.2);color:var(--color-text)}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+
+/* ===== LAYOUT ===== */
+.container{max-width:960px;margin-inline:auto;padding-inline:var(--space-4)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+
+/* ===== TOP NAV ===== */
+.top-nav{position:sticky;top:0;z-index:100;background:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-sm)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding-block:var(--space-3);max-width:960px;margin-inline:auto;padding-inline:var(--space-4)}
+.nav-logo{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-primary);text-decoration:none}
+.nav-logo svg{flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:var(--space-2)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-full);color:var(--color-text-muted);background:var(--color-surface-offset)}
+.theme-toggle:hover{color:var(--color-text);background:var(--color-divider)}
+.timer-badge{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);background:var(--color-surface-offset);font-size:var(--text-sm);color:var(--color-text-muted);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0.02em}
+.timer-badge svg{color:var(--color-accent)}
+.timer-dot{width:8px;height:8px;border-radius:50%;background:var(--color-accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar-wrap{position:sticky;top:52px;z-index:99;height:4px;background:var(--color-divider)}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--color-primary),var(--color-accent));transition:width 0.5s ease;width:0%}
+
+/* ===== HERO ===== */
+.hero{padding:var(--space-12) 0 var(--space-8);text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-4)}
+.hero h1{font-size:var(--text-2xl);font-weight:700;color:var(--color-text);margin-bottom:var(--space-3)}
+.hero h1 span{color:var(--color-primary)}
+.hero-desc{font-size:var(--text-base);color:var(--color-text-muted);max-width:56ch;margin-inline:auto;margin-bottom:var(--space-6)}
+.hero-meta{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:var(--space-3)}
+.meta-chip{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);background:var(--color-surface);border:1px solid var(--color-border);font-size:var(--text-sm);color:var(--color-text-muted)}
+.meta-chip strong{color:var(--color-text)}
+
+/* ===== STEP TABS ===== */
+.step-nav{display:flex;align-items:stretch;gap:0;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;margin-block:var(--space-8);background:var(--color-surface)}
+.step-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-1);padding:var(--space-3) var(--space-2);border-right:1px solid var(--color-border);font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);background:var(--color-surface);cursor:pointer;transition:background var(--transition-interactive),color var(--transition-interactive)}
+.step-btn:last-child{border-right:none}
+.step-btn:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.step-btn.active{background:var(--color-primary);color:#fff}
+.step-btn.done{background:var(--color-success-highlight);color:var(--color-success)}
+.step-btn .step-num{font-size:var(--text-lg);font-family:var(--font-display);font-weight:700;line-height:1}
+.step-btn .step-label{text-align:center;line-height:1.2}
+.step-btn .step-time{font-size:var(--text-xs);opacity:0.7}
+
+/* ===== SECTIONS ===== */
+.lesson-section{display:none;padding-bottom:var(--space-16)}
+.lesson-section.active{display:block}
+
+/* ===== SECTION HEADER ===== */
+.section-header{padding:var(--space-6) 0 var(--space-5)}
+.section-label{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);margin-bottom:var(--space-3)}
+.section-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.section-header h2{font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-2)}
+.section-header p{color:var(--color-text-muted);font-size:var(--text-base)}
+.objective-box{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-4);background:var(--color-primary-highlight);border-radius:var(--radius-lg);margin-top:var(--space-4);margin-bottom:var(--space-2)}
+.objective-box svg{flex-shrink:0;color:var(--color-primary);margin-top:2px}
+.objective-box p{font-size:var(--text-sm);color:var(--color-primary-hover)}
+
+/* ===== CARDS ===== */
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm);margin-bottom:var(--space-5)}
+.card-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-3)}
+.card-subtitle{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4)}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;border:none;cursor:pointer;transition:all var(--transition-interactive)}
+.btn-primary{background:var(--color-primary);color:#fff}
+.btn-primary:hover{background:var(--color-primary-hover)}
+.btn-secondary{background:var(--color-surface-offset);color:var(--color-text);border:1px solid var(--color-border)}
+.btn-secondary:hover{background:var(--color-divider)}
+.btn-accent{background:var(--color-accent);color:#fff}
+.btn-accent:hover{background:var(--color-accent-hover)}
+.btn-sm{padding:var(--space-1) var(--space-3);font-size:var(--text-xs)}
+.btn-group{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
+
+/* ===== FLASHCARDS ===== */
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:var(--space-4);margin-top:var(--space-4)}
+.flashcard-outer{perspective:800px;cursor:pointer}
+.flashcard-inner{position:relative;height:180px;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+.flashcard-outer.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flashcard-front,.flashcard-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-xl);padding:var(--space-5);display:flex;flex-direction:column;justify-content:space-between}
+.flashcard-front{background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-md)}
+.flashcard-back{background:var(--color-primary);color:#fff;transform:rotateY(180deg);box-shadow:var(--shadow-md)}
+.flashcard-front .tag{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-faint)}
+.flashcard-back .tag{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:oklch(from #fff l c h / 0.6)}
+.flashcard-term{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text)}
+.flashcard-back .flashcard-term{color:#fff}
+.flashcard-def{font-size:var(--text-sm);color:oklch(from #fff l c h / 0.9);line-height:1.5}
+.flashcard-hint{font-size:var(--text-xs);color:var(--color-text-muted);display:flex;align-items:center;gap:4px}
+.flashcard-back .flashcard-hint{color:oklch(from #fff l c h / 0.6)}
+
+/* ===== QUIZ ===== */
+.quiz-question{margin-bottom:var(--space-6)}
+.quiz-question-text{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--color-divider)}
+.quiz-options{display:flex;flex-direction:column;gap:var(--space-2)}
+.quiz-option{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);border:2px solid var(--color-border);background:var(--color-surface);cursor:pointer;font-size:var(--text-sm);font-weight:500;transition:all var(--transition-interactive);text-align:left}
+.quiz-option:hover:not(.answered){border-color:var(--color-primary);background:var(--color-primary-highlight)}
+.quiz-option.correct{border-color:var(--color-success);background:var(--color-success-highlight);color:var(--color-success)}
+.quiz-option.wrong{border-color:var(--color-error);background:var(--color-error-highlight);color:var(--color-error)}
+.quiz-option .opt-letter{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:var(--radius-full);background:var(--color-surface-offset);font-weight:700;font-size:var(--text-xs);flex-shrink:0;font-family:var(--font-display)}
+.quiz-option.correct .opt-letter{background:var(--color-success);color:#fff}
+.quiz-option.wrong .opt-letter{background:var(--color-error);color:#fff}
+.quiz-feedback{margin-top:var(--space-3);padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);font-size:var(--text-sm);display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.success{background:var(--color-success-highlight);color:var(--color-success);border:1px solid var(--color-success)}
+.quiz-feedback.error{background:var(--color-error-highlight);color:var(--color-error);border:1px solid var(--color-error)}
+.quiz-score{display:none;text-align:center;padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);margin-top:var(--space-6)}
+.quiz-score.show{display:block}
+.score-num{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-primary)}
+.score-sub{color:var(--color-text-muted);font-size:var(--text-sm);margin-top:var(--space-1)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--color-divider)}
+.quiz-counter{font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted)}
+.quiz-progress{height:6px;background:var(--color-divider);border-radius:var(--radius-full);margin-bottom:var(--space-4);overflow:hidden}
+.quiz-progress-fill{height:100%;background:var(--color-primary);border-radius:var(--radius-full);transition:width 0.4s ease}
+
+/* ===== ROLEPLAY ===== */
+.chat-wrap{background:var(--color-surface-offset);border-radius:var(--radius-xl);padding:var(--space-4);max-height:400px;overflow-y:auto;margin-bottom:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
+.chat-bubble{max-width:80%;padding:var(--space-3) var(--space-4);border-radius:var(--radius-xl);font-size:var(--text-sm);line-height:1.6}
+.bubble-bot{background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text);align-self:flex-start;border-bottom-left-radius:var(--radius-sm)}
+.bubble-bot strong{color:var(--color-primary);display:block;font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-1)}
+.bubble-user{background:var(--color-primary);color:#fff;align-self:flex-end;border-bottom-right-radius:var(--radius-sm)}
+.bubble-user strong{color:oklch(from #fff l c h / 0.7);display:block;font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-1)}
+.bubble-tip{background:var(--color-warning-highlight);border:1px dashed var(--color-warning);color:var(--color-warning);max-width:100%;align-self:center;font-size:var(--text-xs);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3)}
+.roleplay-input-wrap{display:flex;gap:var(--space-2)}
+.roleplay-input{flex:1;padding:var(--space-3) var(--space-4);border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);font-size:var(--text-sm);color:var(--color-text);font-family:var(--font-body)}
+.roleplay-input:focus{outline:2px solid var(--color-primary);outline-offset:2px;border-color:transparent}
+.roleplay-options{display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-3)}
+.roleplay-opt-btn{padding:var(--space-2) var(--space-4);border-radius:var(--radius-lg);border:1px solid var(--color-border);background:var(--color-surface);font-size:var(--text-sm);text-align:left;cursor:pointer}
+.roleplay-opt-btn:hover{border-color:var(--color-primary);background:var(--color-primary-highlight)}
+.roleplay-opt-btn.used{opacity:0.4;cursor:default}
+.roleplay-score-row{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-3)}
+.r-badge{display:inline-flex;align-items:center;gap:var(--space-1);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
+.r-badge.good{background:var(--color-success-highlight);color:var(--color-success)}
+.r-badge.ok{background:var(--color-warning-highlight);color:var(--color-warning)}
+.r-badge.bad{background:var(--color-error-highlight);color:var(--color-error)}
+
+/* ===== INTERVIEW SIM ===== */
+.interview-q{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5);margin-bottom:var(--space-4)}
+.interview-q .q-tag{display:inline-flex;align-items:center;gap:var(--space-1);padding:2px var(--space-2);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)}
+.interview-q .q-text{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-3);color:var(--color-text)}
+.interview-q .q-hint{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md);display:none}
+.interview-q .q-hint.show{display:block}
+.interview-q .model-answer{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-3);padding:var(--space-3);background:var(--color-success-highlight);border-radius:var(--radius-md);border-left:3px solid var(--color-success);display:none}
+.interview-q .model-answer.show{display:block}
+.interview-q textarea{width:100%;padding:var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);font-size:var(--text-sm);color:var(--color-text);font-family:var(--font-body);min-height:100px;resize:vertical}
+.interview-q textarea:focus{outline:2px solid var(--color-primary);outline-offset:2px;border-color:transparent}
+
+/* ===== HOMEWORK ===== */
+.hw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:var(--space-5);margin-top:var(--space-4)}
+.hw-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.hw-day-badge{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-3)}
+.hw-card:nth-child(1) .hw-day-badge{background:var(--color-blue-highlight);color:var(--color-blue)}
+.hw-card:nth-child(2) .hw-day-badge{background:var(--color-purple-highlight);color:var(--color-purple)}
+.hw-card h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-2)}
+.hw-card p{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);line-height:1.7}
+.hw-steps{list-style:none;display:flex;flex-direction:column;gap:var(--space-2)}
+.hw-steps li{display:flex;align-items:flex-start;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted)}
+.hw-steps li .step-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;flex-shrink:0;font-family:var(--font-display)}
+.hw-card:nth-child(2) .step-icon{background:var(--color-purple-highlight);color:var(--color-purple)}
+.hw-card .hw-rubric{margin-top:var(--space-4);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-md)}
+.hw-rubric p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6}
+.hw-rubric strong{color:var(--color-text);display:block;margin-bottom:var(--space-1)}
+
+/* ===== VOCAB TABLE ===== */
+.vocab-table{width:100%;border-collapse:collapse;margin-top:var(--space-3)}
+.vocab-table th{padding:var(--space-2) var(--space-3);text-align:left;font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-muted);background:var(--color-surface-offset);border-bottom:1px solid var(--color-border)}
+.vocab-table td{padding:var(--space-2) var(--space-3);font-size:var(--text-sm);border-bottom:1px solid var(--color-divider);vertical-align:top}
+.vocab-table tr:hover td{background:var(--color-surface-offset)}
+.vocab-table td:first-child{font-weight:600;color:var(--color-primary);width:30%}
+.vocab-table td:nth-child(2){color:var(--color-text-muted);font-style:italic;width:30%}
+.vocab-table td:last-child{color:var(--color-text);width:40%}
+
+/* ===== NAV BOTTOM ===== */
+.section-nav{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-6);border-top:2px solid var(--color-divider);margin-top:var(--space-8)}
+.section-nav-time{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted)}
+
+/* ===== AUDIO PLACEHOLDER ===== */
+.audio-script{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5);margin-bottom:var(--space-4)}
+.audio-script-header{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)}
+.audio-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-full);background:var(--color-accent-highlight);color:var(--color-accent);flex-shrink:0}
+.audio-title{font-weight:600;font-size:var(--text-base)}
+.audio-sub{font-size:var(--text-xs);color:var(--color-text-muted)}
+.audio-body{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8}
+.audio-body em{color:var(--color-accent);font-style:normal;font-weight:600}
+
+/* ===== MISC ===== */
+.divider{height:1px;background:var(--color-divider);margin-block:var(--space-5)}
+.tag{display:inline-flex;align-items:center;padding:2px var(--space-2);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
+.tag-warm{background:var(--color-accent-highlight);color:var(--color-accent)}
+.tag-cool{background:var(--color-primary-highlight);color:var(--color-primary)}
+.tag-blue{background:var(--color-blue-highlight);color:var(--color-blue)}
+.tag-purple{background:var(--color-purple-highlight);color:var(--color-purple)}
+.tip-box{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-4);background:var(--color-warning-highlight);border-radius:var(--radius-lg);margin-block:var(--space-4)}
+.tip-box svg{flex-shrink:0;color:var(--color-warning);margin-top:2px}
+.tip-box p{font-size:var(--text-sm);color:var(--color-text);line-height:1.7}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-3)}
+.checklist li{display:flex;align-items:flex-start;gap:var(--space-3);font-size:var(--text-sm)}
+.check-box{width:20px;height:20px;border-radius:var(--radius-sm);border:2px solid var(--color-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all var(--transition-interactive);margin-top:2px}
+.check-box.checked{background:var(--color-primary);border-color:var(--color-primary)}
+.check-box.checked svg{color:#fff}
+.check-box svg{display:none}
+.check-box.checked svg{display:block}
+.check-text.checked{text-decoration:line-through;color:var(--color-text-muted)}
+
+@media(max-width:600px){
+  .step-nav{flex-wrap:wrap}
+  .step-btn{min-width:calc(33.33% - 2px)}
+  .step-btn:nth-child(4){border-top:1px solid var(--color-border)}
+  .flashcard-inner{height:160px}
+  .hw-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav" role="navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="English for Foreign Trade">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2"/>
+        <ellipse cx="14" cy="14" rx="6" ry="12" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="2" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M7 8.5 Q14 6 21 8.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M7 19.5 Q14 22 21 19.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      <span>ComexEnglish</span>
+    </a>
+    <div class="nav-actions">
+      <div class="timer-badge" id="lesson-timer">
+        <div class="timer-dot"></div>
+        <span id="timer-display">60:00</span>
+      </div>
+      <button class="theme-toggle" data-theme-toggle aria-label="Alternar tema" onclick="toggleTheme()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+
+<main class="container">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    Intermediate Level · B1–B2
+  </div>
+  <h1>English for <span>Foreign Trade</span><br>Job Interviews</h1>
+  <p class="hero-desc">Prepare to ace your comércio exterior interview in English. Vocabulary, fluency, and confidence — all in 60 minutes.</p>
+  <div class="hero-meta">
+    <div class="meta-chip">⏱ <strong>60 minutes</strong></div>
+    <div class="meta-chip">🎯 <strong>B1–B2 Level</strong></div>
+    <div class="meta-chip">🌍 <strong>Foreign Trade</strong></div>
+    <div class="meta-chip">💼 <strong>Job Interview Prep</strong></div>
+  </div>
+</header>
+
+<!-- STEP TABS -->
+<nav class="step-nav" role="tablist" aria-label="Etapas da aula">
+  <button class="step-btn active" onclick="goToSection(0)" role="tab" aria-selected="true" id="tab-0">
+    <span class="step-num">🔥</span>
+    <span class="step-label">Aquecimento</span>
+    <span class="step-time">10 min</span>
+  </button>
+  <button class="step-btn" onclick="goToSection(1)" role="tab" id="tab-1">
+    <span class="step-num">📚</span>
+    <span class="step-label">Vocabulário</span>
+    <span class="step-time">15 min</span>
+  </button>
+  <button class="step-btn" onclick="goToSection(2)" role="tab" id="tab-2">
+    <span class="step-num">🎯</span>
+    <span class="step-label">Quiz</span>
+    <span class="step-time">10 min</span>
+  </button>
+  <button class="step-btn" onclick="goToSection(3)" role="tab" id="tab-3">
+    <span class="step-num">🎭</span>
+    <span class="step-label">Role-Play</span>
+    <span class="step-time">15 min</span>
+  </button>
+  <button class="step-btn" onclick="goToSection(4)" role="tab" id="tab-4">
+    <span class="step-num">💼</span>
+    <span class="step-label">Entrevista</span>
+    <span class="step-time">10 min</span>
+  </button>
+  <button class="step-btn" onclick="goToSection(5)" role="tab" id="tab-5">
+    <span class="step-num">📝</span>
+    <span class="step-label">Lição de Casa</span>
+    <span class="step-time">Recap</span>
+  </button>
+</nav>
+
+<!-- ============================================================ -->
+<!-- SECTION 0: AQUECIMENTO -->
+<!-- ============================================================ -->
+<section class="lesson-section active" id="section-0" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-accent)"></div>Etapa 1 — Warm-Up</div>
+    <h2>🔥 Aquecimento: Getting Ready</h2>
+    <p>Ative seu vocabulário e prepare sua mente para pensar em inglês.</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> quebrar o gelo, ativar o inglês oral e introduzir o contexto de entrevista de comércio exterior.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌡️ Ice Breaker — Discussion Starters</div>
+    <div class="card-subtitle">Responda em inglês com seu parceiro ou anote suas ideias. 2–3 minutos.</div>
+    <ul class="checklist" id="icebreaker-list">
+      <li>
+        <span class="check-box" onclick="toggleCheck(this)" role="checkbox" aria-checked="false" tabindex="0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="check-text">Have you ever had a job interview in English? How did it go?</span>
+      </li>
+      <li>
+        <span class="check-box" onclick="toggleCheck(this)" role="checkbox" aria-checked="false" tabindex="0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="check-text">What foreign trade documents do you know? Name at least 2 in English.</span>
+      </li>
+      <li>
+        <span class="check-box" onclick="toggleCheck(this)" role="checkbox" aria-checked="false" tabindex="0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="check-text">What countries does Brazil trade with most? Say it in English!</span>
+      </li>
+      <li>
+        <span class="check-box" onclick="toggleCheck(this)" role="checkbox" aria-checked="false" tabindex="0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="check-text">Describe your ideal job in foreign trade using 3 words in English.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎧 Listening Warm-Up — Read Aloud Activity</div>
+    <div class="card-subtitle">O professor lê em voz alta; alunos repetem e marcam o estresse correto.</div>
+    <div class="audio-script">
+      <div class="audio-script-header">
+        <div class="audio-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </div>
+        <div><div class="audio-title">Interview Opening Script</div><div class="audio-sub">Pratique a pronúncia destas frases-chave</div></div>
+      </div>
+      <div class="audio-body">
+        "Good morning. <em>Thank you for the opportunity</em> to interview for this position. My name is [Name], and I have been working in <em>international trade</em> for two years. I'm particularly experienced in <em>import and export procedures</em>, <em>customs clearance</em>, and <em>logistics coordination</em>. I'm confident that my skills in <em>foreign trade documentation</em> align well with your company's needs."
+      </div>
+    
+      <button onclick="speak('Good morning. Thank you for the opportunity to interview for this position. My name is John, and I have been working in international trade for two years. I am particularly experienced in import and export procedures, customs clearance, and logistics coordination. I am confident that my skills in foreign trade documentation align well with your company needs.')" class="btn btn-accent btn-sm" style="margin-top:var(--space-3)">🔊 Listen in English (TTS)</button></div>
+    <div class="tip-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Tip for students:</strong> When introducing yourself, always mention your area of expertise, one specific skill, and express enthusiasm. Avoid just saying "I am [Name] and I studied foreign trade."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ Rapid Fire — Word Association</div>
+    <div class="card-subtitle">O professor fala a palavra em português. Alunos respondem em inglês. 30 segundos cada!</div>
+    <div id="rapid-fire-game">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3)">
+        <div style="font-size:var(--text-sm);color:var(--color-text-muted)">Palavra <span id="rf-current">1</span> de <span id="rf-total">8</span></div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-faint)" id="rf-score-show">✅ Certas: 0</div>
+      </div>
+      <div style="text-align:center;padding:var(--space-8) var(--space-4);background:var(--color-surface-offset);border-radius:var(--radius-xl);margin-bottom:var(--space-4)">
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:var(--space-2)">🇧🇷 Português</div>
+        <div style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:var(--color-text)" id="rf-pt-word">Exportação</div>
+        <div id="rf-answer-reveal" style="display:none;margin-top:var(--space-3)">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">🇺🇸 Resposta</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-primary)" id="rf-en-word">Export</div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="rfReveal()" id="rf-reveal-btn">👁 Revelar Resposta</button>
+        <button class="btn btn-primary" onclick="rfNext(true)" id="rf-correct-btn" style="display:none">✅ Acertei</button>
+        <button class="btn btn-secondary" onclick="rfNext(false)" id="rf-wrong-btn" style="display:none">❌ Errei</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <div class="section-nav-time">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      ⏱ ~10 minutos
+    </div>
+    <button class="btn btn-primary" onclick="goToSection(1)">
+      Próxima etapa: Vocabulário →
+    </button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: VOCABULÁRIO + FLASHCARDS -->
+<!-- ============================================================ -->
+<section class="lesson-section" id="section-1" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-primary)"></div>Etapa 2 — Vocabulary</div>
+    <h2>📚 Key Vocabulary for the Interview</h2>
+    <p>Aprenda e pratique os 20 termos mais importantes de comércio exterior para sua entrevista.</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> dominar a terminologia técnica e aprender a usá-la em contexto profissional de entrevista.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Quick Reference Table</div>
+    <div class="card-subtitle">Os 12 termos essenciais — estude antes dos flashcards.</div>
+    <div style="overflow-x:auto">
+    <table class="vocab-table">
+      <thead>
+        <tr><th>Term (English)</th><th>Português</th><th>Example sentence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bill of Lading (B/L)</td><td>Conhecimento de embarque</td><td>"The bill of lading confirms the goods were shipped."</td></tr>
+        <tr><td>Customs clearance</td><td>Desembaraço aduaneiro</td><td>"We handle customs clearance for all imports."</td></tr>
+        <tr><td>Letter of Credit (L/C)</td><td>Carta de crédito</td><td>"Payment was secured by a letter of credit."</td></tr>
+        <tr><td>Incoterms</td><td>Termos internacionais de comércio</td><td>"We agreed on FOB Incoterms for this shipment."</td></tr>
+        <tr><td>Freight forwarder</td><td>Agente de carga / despachante</td><td>"I worked directly with the freight forwarder."</td></tr>
+        <tr><td>ETA / ETD</td><td>Previsão de chegada / saída</td><td>"The ETA for the cargo is Friday."</td></tr>
+        <tr><td>Tariff</td><td>Tarifa aduaneira</td><td>"The tariff on electronics was reduced this year."</td></tr>
+        <tr><td>Trade surplus / deficit</td><td>Superávit / déficit comercial</td><td>"Brazil ran a trade surplus last quarter."</td></tr>
+        <tr><td>Supply chain</td><td>Cadeia de suprimentos</td><td>"I optimized the supply chain to reduce delays."</td></tr>
+        <tr><td>Bonded warehouse</td><td>Entreposto aduaneiro</td><td>"Goods are stored in a bonded warehouse."</td></tr>
+        <tr><td>Certificate of origin</td><td>Certificado de origem</td><td>"We need a certificate of origin for this shipment."</td></tr>
+        <tr><td>Drawback</td><td>Drawback (regime aduaneiro)</td><td>"We used the drawback regime to reduce taxes."</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🃏 Interactive Flashcards</div>
+    <div class="card-subtitle">Clique em cada card para ver a tradução e o contexto. Tente lembrar o significado antes de virar!</div>
+    <div class="flashcard-grid" id="flashcard-grid">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary btn-sm" onclick="shuffleFlashcards()">🔀 Embaralhar</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetFlashcards()">↺ Resetar</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗣️ Speaking Practice — Use the Term!</div>
+    <div class="card-subtitle">Para cada termo, crie uma frase sobre sua experiência profissional real ou imaginária. Fale em voz alta!</div>
+    <div class="tip-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Modelo:</strong> "During my internship, I was responsible for <em>[term]</em>, which involved <em>[action/description]</em>." | Tente com: <em>customs clearance, bill of lading, supply chain</em>.</p>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-secondary" onclick="goToSection(0)">← Aquecimento</button>
+    <div class="section-nav-time">⏱ ~15 minutos</div>
+    <button class="btn btn-primary" onclick="goToSection(2)">Quiz →</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: QUIZ -->
+<!-- ============================================================ -->
+<section class="lesson-section" id="section-2" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-gold)"></div>Etapa 3 — Knowledge Check</div>
+    <h2>🎯 Vocabulary Quiz</h2>
+    <p>Teste seu domínio dos termos. 10 perguntas, contextualizadas para entrevistas de comércio exterior.</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> consolidar o vocabulário e identificar gaps antes do role-play.</p>
+    </div>
+  </div>
+
+  <div class="card" id="quiz-card">
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+    <div id="quiz-container"></div>
+    <div class="quiz-nav">
+      <div class="quiz-counter" id="quiz-counter">Pergunta 1 de 10</div>
+      <button class="btn btn-primary" onclick="nextQuestion()" id="quiz-next-btn" disabled>Próxima →</button>
+    </div>
+    <div class="quiz-score" id="quiz-score">
+      <div class="score-num" id="score-num">0/10</div>
+      <div class="score-sub" id="score-sub">Keep practicing!</div>
+      <div class="btn-group" style="justify-content:center;margin-top:var(--space-4)">
+        <button class="btn btn-primary" onclick="restartQuiz()">🔄 Refazer o Quiz</button>
+        <button class="btn btn-secondary" onclick="goToSection(3)">Ir para Role-Play →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-secondary" onclick="goToSection(1)">← Vocabulário</button>
+    <div class="section-nav-time">⏱ ~10 minutos</div>
+    <button class="btn btn-primary" onclick="goToSection(3)">Role-Play →</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: ROLE-PLAY -->
+<!-- ============================================================ -->
+<section class="lesson-section" id="section-3" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-purple)"></div>Etapa 4 — Role-Play</div>
+    <h2>🎭 Mock Interview Role-Play</h2>
+    <p>Simule uma entrevista real com o recrutador. Escolha suas respostas — e descubra o que o recrutador realmente quer ouvir!</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> praticar fluência oral, escolher respostas profissionais e desenvolver confiança na entrevista.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 Contexto da Entrevista</div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:var(--space-3);margin-bottom:var(--space-4)">
+      <div style="padding:var(--space-3);background:var(--color-primary-highlight);border-radius:var(--radius-lg)">
+        <div style="font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);font-weight:700;margin-bottom:4px">Company</div>
+        <div style="font-weight:600;color:var(--color-text);font-size:var(--text-sm)">GlobalTrade Solutions S.A.</div>
+      </div>
+      <div style="padding:var(--space-3);background:var(--color-accent-highlight);border-radius:var(--radius-lg)">
+        <div style="font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;color:var(--color-accent);font-weight:700;margin-bottom:4px">Position</div>
+        <div style="font-weight:600;color:var(--color-text);font-size:var(--text-sm)">Junior Foreign Trade Analyst</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>O recrutador faz perguntas. Escolha a opção de resposta que considera mais profissional e veja o feedback!</p>
+    </div>
+  </div>
+
+  <div class="card" id="roleplay-card">
+    <div id="roleplay-container"></div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-secondary" onclick="goToSection(2)">← Quiz</button>
+    <div class="section-nav-time">⏱ ~15 minutos</div>
+    <button class="btn btn-primary" onclick="goToSection(4)">Entrevista Simulada →</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: ENTREVISTA SIMULADA -->
+<!-- ============================================================ -->
+<section class="lesson-section" id="section-4" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-blue)"></div>Etapa 5 — Simulated Interview</div>
+    <h2>💼 Perguntas de Entrevista Simulada</h2>
+    <p>Pratique responder perguntas reais. Escreva ou diga sua resposta, depois revele o modelo ideal.</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> desenvolver respostas estruturadas usando o método STAR (Situation, Task, Action, Result).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⭐ The STAR Method</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:var(--space-3);margin-top:var(--space-2)">
+      <div style="padding:var(--space-3);background:var(--color-primary-highlight);border-radius:var(--radius-lg)">
+        <div style="font-weight:700;color:var(--color-primary);margin-bottom:4px">S — Situation</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">Set the context. Where were you? When?</div>
+      </div>
+      <div style="padding:var(--space-3);background:var(--color-accent-highlight);border-radius:var(--radius-lg)">
+        <div style="font-weight:700;color:var(--color-accent);margin-bottom:4px">T — Task</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">What was your responsibility?</div>
+      </div>
+      <div style="padding:var(--space-3);background:var(--color-blue-highlight);border-radius:var(--radius-lg)">
+        <div style="font-weight:700;color:var(--color-blue);margin-bottom:4px">A — Action</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">What did YOU specifically do?</div>
+      </div>
+      <div style="padding:var(--space-3);background:var(--color-success-highlight);border-radius:var(--radius-lg)">
+        <div style="font-weight:700;color:var(--color-success);margin-bottom:4px">R — Result</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted)">What was the outcome? Use numbers!</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="interview-questions-container"></div>
+
+  <div class="section-nav">
+    <button class="btn btn-secondary" onclick="goToSection(3)">← Role-Play</button>
+    <div class="section-nav-time">⏱ ~10 minutos</div>
+    <button class="btn btn-primary" onclick="goToSection(5)">Lição de Casa →</button>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: LIÇÃO DE CASA -->
+<!-- ============================================================ -->
+<section class="lesson-section" id="section-5" role="tabpanel">
+  <div class="section-header">
+    <div class="section-label"><div class="dot" style="background:var(--color-success)"></div>Encerramento — Homework</div>
+    <h2>📝 Lição de Casa & Encerramento</h2>
+    <p>Ótimo trabalho! Continue praticando com estas atividades para os próximos dois dias.</p>
+    <div class="objective-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <p><strong>Objetivo:</strong> consolidar o aprendizado da aula com prática independente — uma atividade escrita e uma oral.</p>
+    </div>
+  </div>
+
+  <div class="hw-grid">
+    <!-- DIA 1 -->
+    <div class="hw-card">
+      <div class="hw-day-badge">📅 Day 1 — Written Task</div>
+      <h3>Your Professional Profile</h3>
+      <p>Escreva um parágrafo de apresentação profissional em inglês, como se fosse para uma entrevista de comércio exterior. Imagine que você é candidato(a) a uma vaga de <em>Foreign Trade Analyst</em>.</p>
+      <ul class="hw-steps">
+        <li><span class="step-icon">1</span><span>Write <strong>80–100 words</strong> introducing yourself, your background, and your skills in foreign trade.</span></li>
+        <li><span class="step-icon">2</span><span>Use <strong>at least 5 vocabulary terms</strong> from today's lesson (e.g., customs clearance, supply chain, Incoterms...).</span></li>
+        <li><span class="step-icon">3</span><span>Include <strong>one specific achievement</strong> or experience using the STAR method.</span></li>
+        <li><span class="step-icon">4</span><span>Proofread for grammar: check subject-verb agreement and use of past tense.</span></li>
+      </ul>
+      <div class="hw-rubric">
+        <strong>📊 Rubric (10 points)</strong>
+        <p>Vocabulary use (3pts) · Grammar accuracy (3pts) · Clarity and organization (2pts) · Use of STAR method (2pts)</p>
+      </div>
+    </div>
+
+    <!-- DIA 2 -->
+    <div class="hw-card">
+      <div class="hw-day-badge">🎤 Day 2 — Oral Task</div>
+      <h3>Recorded Mock Interview</h3>
+      <p>Grave um vídeo ou áudio de 2–3 minutos respondendo a 3 perguntas de entrevista escolhidas por você. Use seu celular ou computador.</p>
+      <ul class="hw-steps">
+        <li><span class="step-icon">1</span><span>Choose <strong>3 questions</strong> from the Simulated Interview section of today's class.</span></li>
+        <li><span class="step-icon">2</span><span>Record yourself answering each question in English. <strong>No reading from paper!</strong></span></li>
+        <li><span class="step-icon">3</span><span>Watch your recording and note: eye contact, pace, vocabulary usage, filler words ("uhm", "like").</span></li>
+        <li><span class="step-icon">4</span><span>Write a <strong>self-assessment</strong> (3–5 sentences): what went well, what to improve.</span></li>
+      </ul>
+      <div class="hw-rubric">
+        <strong>📊 Rubric (10 points)</strong>
+        <p>Fluency & confidence (3pts) · Vocabulary range (3pts) · Answer structure/STAR (2pts) · Self-assessment quality (2pts)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-6)">
+    <div class="card-title">🎓 Lesson Wrap-Up — What We Covered Today</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:var(--space-3);margin-top:var(--space-3)">
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">🔥</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm)">Warm-Up</div><div style="font-size:var(--text-xs);color:var(--color-text-muted)">Ice breaker, listening script, rapid fire vocab</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">📚</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm)">Vocabulary</div><div style="font-size:var(--text-xs);color:var(--color-text-muted)">12 terms + interactive flashcards</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">🎯</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm)">Quiz</div><div style="font-size:var(--text-xs);color:var(--color-text-muted)">10 contextualized questions with feedback</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">🎭</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm)">Role-Play</div><div style="font-size:var(--text-xs);color:var(--color-text-muted)">Mock interview with choice-based feedback</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-surface-offset);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">💼</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm)">Interview Sim</div><div style="font-size:var(--text-xs);color:var(--color-text-muted)">STAR method + 5 real interview questions</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-3);background:var(--color-primary-highlight);border-radius:var(--radius-lg)">
+        <span style="font-size:1.4em">🏆</span>
+        <div><div style="font-weight:600;font-size:var(--text-sm);color:var(--color-primary)">You did it!</div><div style="font-size:var(--text-xs);color:var(--color-primary-hover)">60 minutes of focused interview prep</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-secondary" onclick="goToSection(4)">← Entrevista</button>
+    <div class="section-nav-time">⏱ Fim da aula 🎉</div>
+    <button class="btn btn-primary" onclick="goToSection(0)">↩ Recomeçar</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+// ===== THEME =====
+function toggleTheme(){
+  const h=document.documentElement;
+  const cur=h.getAttribute('data-theme')||'light';
+  const next=cur==='dark'?'light':'dark';
+  h.setAttribute('data-theme',next);
+  const btn=document.querySelector('[data-theme-toggle]');
+  if(btn)btn.innerHTML=next==='dark'
+    ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+    :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+}
+
+// ===== TIMER =====
+let timerSec=3600;
+(function(){
+  setInterval(function(){
+    if(timerSec<=0)return;
+    timerSec--;
+    var m=Math.floor(timerSec/60),s=timerSec%60;
+    var el=document.getElementById('timer-display');
+    if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  },1000);
+})();
+
+// ===== PROGRESS =====
+var currentSection=0;
+function updateProgress(){
+  var pct=((currentSection+1)/6)*100;
+  var el=document.getElementById('progress-fill');
+  if(el)el.style.width=pct+'%';
+}
+
+// ===== SECTION NAV =====
+function goToSection(idx){
+  document.querySelectorAll('.lesson-section').forEach(function(s,i){
+    s.classList.toggle('active',i===idx);
+  });
+  document.querySelectorAll('.step-btn').forEach(function(b,i){
+    b.classList.remove('active','done');
+    if(i===idx)b.classList.add('active');
+    else if(i<idx)b.classList.add('done');
+  });
+  currentSection=idx;
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ===== CHECKLIST =====
+function toggleCheck(el){
+  el.classList.toggle('checked');
+  el.setAttribute('aria-checked',el.classList.contains('checked'));
+  var txt=el.nextElementSibling;
+  if(txt)txt.classList.toggle('checked',el.classList.contains('checked'));
+}
+
+// ===== TTS =====
+function speak(text){
+  if(!window.speechSynthesis)return alert('Text-to-speech not supported in this browser.');
+  window.speechSynthesis.cancel();
+  var utt=new SpeechSynthesisUtterance(text);
+  utt.lang='en-US';
+  utt.rate=0.9;
+  window.speechSynthesis.speak(utt);
+}
+
+// ===== RAPID FIRE =====
+var rfData=[
+  {pt:'Exportação',en:'Export'},
+  {pt:'Importação',en:'Import'},
+  {pt:'Alfândega',en:'Customs'},
+  {pt:'Conhecimento de embarque',en:'Bill of Lading'},
+  {pt:'Cadeia de suprimentos',en:'Supply chain'},
+  {pt:'Carta de crédito',en:'Letter of Credit'},
+  {pt:'Desembaraço aduaneiro',en:'Customs clearance'},
+  {pt:'Agente de carga',en:'Freight forwarder'},
+];
+var rfIdx=0,rfScore=0,rfRevealed=false;
+document.addEventListener('DOMContentLoaded',function(){
+  var tot=document.getElementById('rf-total');
+  if(tot)tot.textContent=rfData.length;
+});
+function rfReveal(){
+  rfRevealed=true;
+  document.getElementById('rf-answer-reveal').style.display='block';
+  document.getElementById('rf-reveal-btn').style.display='none';
+  document.getElementById('rf-correct-btn').style.display='';
+  document.getElementById('rf-wrong-btn').style.display='';
+}
+function rfNext(correct){
+  if(correct)rfScore++;
+  rfIdx=(rfIdx+1)%rfData.length;
+  rfRevealed=false;
+  document.getElementById('rf-pt-word').textContent=rfData[rfIdx].pt;
+  document.getElementById('rf-en-word').textContent=rfData[rfIdx].en;
+  document.getElementById('rf-answer-reveal').style.display='none';
+  document.getElementById('rf-reveal-btn').style.display='';
+  document.getElementById('rf-correct-btn').style.display='none';
+  document.getElementById('rf-wrong-btn').style.display='none';
+  document.getElementById('rf-current').textContent=rfIdx+1;
+  document.getElementById('rf-score-show').textContent='✅ Certas: '+rfScore;
+}
+
+// ===== FLASHCARDS =====
+var flashcardsData=[
+  {term:'Bill of Lading (B/L)',tag:'Documents',def:'A legal document issued by a carrier to acknowledge receipt of cargo for shipment.',pt:'Conhecimento de Embarque'},
+  {term:'Customs Clearance',tag:'Logistics',def:'The process of passing goods through customs so they can enter or leave a country.',pt:'Desembaraço Aduaneiro'},
+  {term:'Letter of Credit',tag:'Finance',def:'A bank guarantee ensuring payment to a seller once delivery conditions are met.',pt:'Carta de Crédito'},
+  {term:'Incoterms',tag:'Trade Rules',def:'International trade terms (e.g., FOB, CIF) defining buyer/seller responsibilities.',pt:'Incoterms'},
+  {term:'Freight Forwarder',tag:'Logistics',def:'An agent or company that organizes shipments on behalf of exporters/importers.',pt:'Agente de Carga'},
+  {term:'ETA',tag:'Shipping',def:'Estimated Time of Arrival — the expected date cargo will reach its destination.',pt:'Previsão de Chegada'},
+  {term:'Tariff',tag:'Trade Policy',def:'A tax imposed on imported or exported goods by a government.',pt:'Tarifa Aduaneira'},
+  {term:'Supply Chain',tag:'Operations',def:'The entire network of people and processes involved in producing and distributing a product.',pt:'Cadeia de Suprimentos'},
+];
+var flashcardsState=[];
+function initFlashcards(){
+  flashcardsState=flashcardsData.map(function(_,i){return{idx:i,flipped:false};});
+  renderFlashcards();
+}
+function renderFlashcards(){
+  var grid=document.getElementById('flashcard-grid');
+  if(!grid)return;
+  grid.innerHTML='';
+  flashcardsState.forEach(function(s){
+    var d=flashcardsData[s.idx];
+    var outer=document.createElement('div');
+    outer.className='flashcard-outer'+(s.flipped?' flipped':'');
+    outer.setAttribute('tabindex','0');
+    outer.setAttribute('role','button');
+    outer.setAttribute('aria-label','Flashcard: '+d.term+'. Press to flip.');
+    outer.addEventListener('click',function(){s.flipped=!s.flipped;outer.classList.toggle('flipped',s.flipped);});
+    outer.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();s.flipped=!s.flipped;outer.classList.toggle('flipped',s.flipped);}});
+    outer.innerHTML='<div class="flashcard-inner"><div class="flashcard-front"><span class="tag">'+d.tag+'</span><span class="flashcard-term">'+d.term+'</span><span class="flashcard-hint">Click to see meaning</span></div><div class="flashcard-back"><span class="tag">🇧🇷 '+d.pt+'</span><span class="flashcard-term">'+d.term+'</span><span class="flashcard-def">'+d.def+'</span><span class="flashcard-hint">Click to flip back</span></div></div>';
+    grid.appendChild(outer);
+  });
+}
+function shuffleFlashcards(){flashcardsState.sort(function(){return Math.random()-0.5;});renderFlashcards();}
+function resetFlashcards(){initFlashcards();}
+
+// ===== QUIZ =====
+var quizData=[
+  {q:'A company receives a shipment from China. Before the goods can be picked up from the port, what process must be completed?',opts:['Freight forwarding','Customs clearance','Bill of lading','Trade surplus'],correct:1,feedback:'Customs clearance (desembaraço aduaneiro) is required before goods can be released from the port.'},
+  {q:'An interviewer asks: "What document proves ownership of cargo during ocean shipping?" The correct answer is:',opts:['Certificate of Origin','Letter of Credit','Bill of Lading','Incoterms'],correct:2,feedback:'The Bill of Lading (B/L) is the document that proves ownership of cargo during ocean shipping.'},
+  {q:'Your company uses "FOB Santos" in a contract. What does FOB stand for?',opts:['Full Order Business','Free On Board','Forward On Booking','Finance On Balance'],correct:1,feedback:'FOB (Free On Board) is an Incoterm meaning the seller is responsible until the goods are loaded onto the ship.'},
+  {q:'A recruiter asks about your experience with "trade finance." Which concept is MOST relevant?',opts:['Supply chain optimization','Letter of Credit','Bonded warehouse','Tariff classification'],correct:1,feedback:'Letter of Credit is the central instrument in trade finance — it guarantees payment between importers and exporters.'},
+  {q:'What is the correct English term for "superávit comercial"?',opts:['Trade deficit','Trade balance','Trade surplus','Trade margin'],correct:2,feedback:'Trade surplus (superávit comercial) means a country exports more than it imports.'},
+  {q:'Which Incoterm makes the SELLER responsible for all costs including delivery to buyer country?',opts:['EXW (Ex Works)','FOB (Free on Board)','DDP (Delivered Duty Paid)','FAS (Free Alongside Ship)'],correct:2,feedback:'DDP (Delivered Duty Paid) places maximum responsibility on the seller — they cover all costs to the buyer door.'},
+  {q:'A recruiter says: "Tell me about your ETA management experience." They are asking about:',opts:['Email and Technology Adaptation','Estimated Time of Arrival tracking','Extra Tariff Assessment','Export Tax Acknowledgment'],correct:1,feedback:'ETA (Estimated Time of Arrival) management is a key logistics skill — tracking when shipments will arrive.'},
+  {q:'You need to store imported goods before they are released by customs. Where do they go?',opts:['Distribution center','Freight terminal','Bonded warehouse','Cold storage'],correct:2,feedback:'A bonded warehouse (entreposto aduaneiro) stores goods under customs control before they are officially imported.'},
+  {q:'An interviewer asks: "What experience do you have with supply chain?" The BEST answer structure is:',opts:['I studied supply chain in college.','I have some experience with supply chain processes.','During my internship at X, I coordinated supply chain activities for 3 clients, reducing delivery delays by 15%.','Supply chain is very important in foreign trade.'],correct:2,feedback:'The STAR method is best! Specific, with measurable results. Always quantify your achievements when possible.'},
+  {q:'What does "certificate of origin" prove in an international trade transaction?',opts:['The goods were insured during shipment','The goods were manufactured in a specific country','The payment was received by the seller','The goods passed quality control'],correct:1,feedback:'A Certificate of Origin proves where goods were manufactured — essential for applying correct tariffs and trade agreements.'},
+];
+var quizCurrent=0,quizScore=0,quizAnsweredQ=false;
+
+function renderQuiz(){
+  var container=document.getElementById('quiz-container');
+  if(!container)return;
+  if(quizCurrent>=quizData.length){
+    container.innerHTML='';
+    document.getElementById('quiz-progress-fill').style.width='100%';
+    var scoreEl=document.getElementById('quiz-score');
+    scoreEl.classList.add('show');
+    document.getElementById('score-num').textContent=quizScore+'/'+quizData.length;
+    var pct=Math.round((quizScore/quizData.length)*100);
+    var msg=pct>=90?'🏆 Outstanding! You are interview-ready!':pct>=70?'👍 Great job! Review a few more terms.':pct>=50?'💪 Good effort. Let us revisit the vocabulary section!':'📚 Keep practicing! Go back to the vocabulary section.';
+    document.getElementById('score-sub').textContent=msg;
+    document.getElementById('quiz-next-btn').disabled=true;
+    return;
+  }
+  var q=quizData[quizCurrent];
+  quizAnsweredQ=false;
+  document.getElementById('quiz-next-btn').disabled=true;
+  document.getElementById('quiz-counter').textContent='Pergunta '+(quizCurrent+1)+' de '+quizData.length;
+  document.getElementById('quiz-progress-fill').style.width=(((quizCurrent)/quizData.length)*100)+'%';
+  var letters=['A','B','C','D'];
+  var optsHtml=q.opts.map(function(o,i){
+    return '<button class="quiz-option" data-action="answer-quiz" data-idx="'+i+'" id="opt-'+i+'"><span class="opt-letter">'+letters[i]+'</span>'+escHtml(o)+'</button>';
+  }).join('');
+  container.innerHTML='<div class="quiz-question"><div class="quiz-question-text">'+escHtml((quizCurrent+1)+'. ')+q.q+'</div><div class="quiz-options" id="opts-wrap">'+optsHtml+'</div><div class="quiz-feedback" id="quiz-feedback"></div></div>';
+}
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function answerQuiz(idx){
+  if(quizAnsweredQ)return;
+  quizAnsweredQ=true;
+  var q=quizData[quizCurrent];
+  document.querySelectorAll('.quiz-option').forEach(function(o,i){
+    o.classList.add('answered');
+    if(i===q.correct)o.classList.add('correct');
+    else if(i===idx&&idx!==q.correct)o.classList.add('wrong');
+  });
+  var fb=document.getElementById('quiz-feedback');
+  if(idx===q.correct){quizScore++;fb.className='quiz-feedback show success';fb.textContent='✅ Correct! '+q.feedback;}
+  else{fb.className='quiz-feedback show error';fb.textContent='❌ Not quite. '+q.feedback;}
+  document.getElementById('quiz-next-btn').disabled=false;
+}
+function nextQuestion(){quizCurrent++;renderQuiz();}
+function restartQuiz(){quizCurrent=0;quizScore=0;quizAnsweredQ=false;document.getElementById('quiz-score').classList.remove('show');renderQuiz();}
+
+// ===== ROLE-PLAY =====
+var roleplayData=[
+  {
+    q:'Good morning! Thank you for coming in. Can you please tell me a bit about yourself?',
+    tag:{label:'Opening Question',color:'var(--color-primary)'},
+    opts:[
+      {text:'Hi! I am a student from Brazil and I like foreign trade.',score:'bad',fb:'Too informal and vague. Use a professional opening: mention your background, key skills, and what you bring to the role.'},
+      {text:'Good morning! I hold a degree in International Business and have two years of experience in import and export operations, including customs clearance and freight coordination. I am excited about this opportunity.',score:'good',fb:'Excellent! Professional tone, specific skills mentioned, and enthusiasm expressed. This is a strong opening.'},
+      {text:'I have worked in foreign trade for some time and I know about Incoterms and documentation.',score:'ok',fb:'Decent, but too vague. Quantify your experience (how long?) and mention specific achievements or skills.'},
+    ]
+  },
+  {
+    q:'What do you know about Incoterms and how have you applied them in practice?',
+    tag:{label:'Technical Knowledge',color:'var(--color-accent)'},
+    opts:[
+      {text:'I have studied Incoterms in college. FOB and CIF are the main ones used in Brazil.',score:'ok',fb:'Shows basic knowledge, but no practical experience mentioned. Always tie technical knowledge to real-world application.'},
+      {text:'Incoterms are international trade terms. I know FOB means Free On Board.',score:'bad',fb:'Too basic for a job interview. You need to demonstrate applied knowledge — how you have used these rules.'},
+      {text:'I am very familiar with Incoterms. In my last role, I managed contracts using FOB Santos and CIF Rotterdam, ensuring our team understood the risk transfer point for each shipment. This helped us avoid two costly disputes over insurance responsibility.',score:'good',fb:'Outstanding answer! Specific terms, a concrete situation, measurable outcome. This is how you impress a recruiter.'},
+    ]
+  },
+  {
+    q:'Can you describe a challenging situation you faced in your work and how you solved it?',
+    tag:{label:'Behavioral Question (STAR)',color:'var(--color-blue)'},
+    opts:[
+      {text:'Once we had a problem with a shipment that was delayed. I talked to the supplier and eventually it was resolved.',score:'ok',fb:'Uses a real situation, but lacks detail. Use the full STAR method: what was the situation, your specific task, your action, and the result.'},
+      {text:'I always handle problems calmly and professionally. I think communication is key.',score:'bad',fb:'This is a generic non-answer. Recruiters want specific stories, not general statements about your personality.'},
+      {text:'During my internship, a shipment was held at customs because of an incorrect HS code. My task was to resolve it urgently. I coordinated with the customs broker and the supplier to issue a corrected invoice within 24 hours. As a result, the shipment was released and we met our deadline.',score:'good',fb:'Perfect STAR answer! Situation, Task, Action, Result — with technical vocabulary used naturally. Excellent!'},
+    ]
+  },
+];
+var rpStep=0;
+function renderRoleplay(){
+  var container=document.getElementById('roleplay-container');
+  if(!container)return;
+  if(rpStep>=roleplayData.length){
+    container.innerHTML='<div style="text-align:center;padding:var(--space-8)"><div style="font-size:2.5em;margin-bottom:var(--space-3)">🎉</div><div style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-2)">Role-Play Complete!</div><div style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-5)">You completed all 3 mock interview questions. Great practice!</div><div class="btn-group" style="justify-content:center"><button class="btn btn-secondary" data-action="rp-restart">🔄 Restart Role-Play</button><button class="btn btn-primary" data-action="goto-section" data-idx="4">Simulated Interview →</button></div></div>';
+    return;
+  }
+  var item=roleplayData[rpStep];
+  var letters=['A','B','C'];
+  var optsHtml=item.opts.map(function(o,i){
+    return '<button class="roleplay-opt-btn" data-action="select-rp" data-idx="'+i+'"><strong>'+letters[i]+'.</strong> '+escHtml(o.text)+'</button>';
+  }).join('');
+  container.innerHTML='<div style="display:flex;align-items:flex-start;gap:var(--space-3);margin-bottom:var(--space-4)"><div style="width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--color-surface-offset);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><div style="font-size:var(--text-xs);font-weight:700;color:var(--color-text-muted)">Recruiter · <span style="color:'+item.tag.color+'">'+item.tag.label+'</span></div><div style="font-weight:600;font-size:var(--text-base);margin-top:2px">&ldquo;'+escHtml(item.q)+'&rdquo;</div></div></div><div style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);font-style:italic">Select the best response:</div><div id="rp-opts">'+optsHtml+'</div><div id="rp-feedback" style="display:none;margin-top:var(--space-4)"></div><div id="rp-next-wrap" style="display:none;margin-top:var(--space-4)"><button class="btn btn-primary" data-action="rp-next">Next Question →</button></div><div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--color-text-faint)">Question '+(rpStep+1)+' of '+roleplayData.length+'</div>';
+}
+function selectRpOpt(idx){
+  var item=roleplayData[rpStep];
+  var opt=item.opts[idx];
+  document.querySelectorAll('.roleplay-opt-btn').forEach(function(b){b.classList.add('used');b.disabled=true;});
+  var badgeClass=opt.score==='good'?'good':opt.score==='ok'?'ok':'bad';
+  var badgeLabel=opt.score==='good'?'✅ Strong Answer':opt.score==='ok'?'⚡ Acceptable':'❌ Needs Improvement';
+  var fb=document.getElementById('rp-feedback');
+  fb.style.display='block';
+  fb.innerHTML='<div style="padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)"><div class="r-badge '+badgeClass+'" style="margin-bottom:var(--space-2)">'+badgeLabel+'</div><div style="font-size:var(--text-sm);line-height:1.7">'+escHtml(opt.fb)+'</div></div>';
+  document.getElementById('rp-next-wrap').style.display='block';
+}
+
+// ===== INTERVIEW QUESTIONS =====
+var interviewQs=[
+  {tag:{label:'Personal Background',color:'var(--color-primary)'},q:'Tell me about your experience in foreign trade and why you are applying for this position.',hint:'Use the STAR method. Start with your background, mention specific skills (Incoterms, customs, documentation), then connect to the position.',model:'I hold a degree in International Business from [University] and completed a one-year internship at [Company], where I was responsible for managing export documentation, including bills of lading, certificates of origin, and commercial invoices. During that time, I processed over 50 shipments to markets in Europe and Asia. I am applying because GlobalTrade Solutions has a strong reputation for complex supply chain operations, and I believe my technical background aligns with your needs.'},
+  {tag:{label:'Technical Skills',color:'var(--color-accent)'},q:'Can you explain the difference between FOB and CIF Incoterms?',hint:'Define each term clearly, mention what responsibilities they assign to seller/buyer, and give a practical example.',model:'FOB, or Free On Board, means the seller is responsible for the goods until they are loaded onto the vessel at the port of origin. After that, risk transfers to the buyer. CIF, or Cost, Insurance and Freight, means the seller is responsible for shipping costs, insurance, and freight until the goods arrive at the destination port. For example, if we are importing machinery from Germany, using CIF Hamburg means our supplier covers shipping and insurance to the Port of Santos.'},
+  {tag:{label:'Problem-Solving',color:'var(--color-blue)'},q:'Describe a time you identified and solved a problem in a trade operation.',hint:'This is a behavioral question — use STAR! Situation (set the scene), Task (your role), Action (what YOU did), Result (measurable outcome).',model:'During my internship, a critical shipment was held at Guarulhos airport because the commercial invoice listed the wrong HS classification code. My task was to coordinate the correction. I contacted the supplier to issue a new invoice, worked with our customs broker to submit revised documentation, and liaised with the freight forwarder to reschedule the clearance appointment. The shipment was released within 18 hours, saving the company approximately R$ 5,000 in storage costs.'},
+  {tag:{label:'Industry Knowledge',color:'var(--color-purple)'},q:'How do you stay up to date with changes in trade regulations and tariffs?',hint:'Show that you are proactive. Mention specific sources: SECEX, Receita Federal, WTO updates, trade publications, professional networks.',model:'I follow several reliable sources to stay current. I regularly check updates from the Secretaria de Comercio Exterior (SECEX) and the Receita Federal for regulatory changes. I also subscribe to trade publications such as the WTO newsletter and follow industry associations. Additionally, I participate in online forums for foreign trade professionals. Recently, I tracked changes in the Special Import Regime for capital goods, which directly affected our CAPEX planning.'},
+  {tag:{label:'Communication',color:'var(--color-success)'},q:'How do you handle communication with international suppliers or partners who are not native English speakers?',hint:'Show cultural intelligence, patience, and professional communication skills. Mention tools, written confirmation, and patience.',model:'When working with non-native speakers, I always prioritize clarity over complexity. I use simple, direct language, avoid idioms, and always follow up verbal or audio communications with a written summary via email. For example, when I coordinated with a supplier in Shanghai, we had occasional language barriers during calls, so I created standardized email templates with clear checklists for order confirmations and document requirements. This reduced miscommunication significantly.'},
+];
+function renderInterviewQuestions(){
+  var container=document.getElementById('interview-questions-container');
+  if(!container)return;
+  container.innerHTML=interviewQs.map(function(item,i){
+    return '<div class="interview-q"><div class="q-tag" style="background:var(--color-surface-offset);color:'+item.tag.color+'">'
+      +item.tag.label+'</div><div class="q-text">Q'+(i+1)+'. '+escHtml(item.q)+'</div>'
+      +'<textarea placeholder="Write your answer here (or speak aloud)..." aria-label="Your answer to question '+(i+1)+'"></textarea>'
+      +'<div class="btn-group">'
+      +'<button class="btn btn-secondary btn-sm" data-action="toggle-hint" data-idx="'+i+'">💡 Show Hint</button>'
+      +'<button class="btn btn-sm" style="background:var(--color-success-highlight);color:var(--color-success)" data-action="toggle-model" data-idx="'+i+'">🏆 Model Answer</button>'
+      +'<button class="btn btn-sm" style="background:var(--color-accent-highlight);color:var(--color-accent)" data-action="speak-question" data-idx="'+i+'">🔊 Listen</button>'
+      +'</div>'
+      +'<div class="q-hint" id="hint-'+i+'">📝 <strong>Hint:</strong> '+escHtml(item.hint)+'</div>'
+      +'<div class="model-answer" id="model-'+i+'">✅ <strong>Model Answer:</strong> '+escHtml(item.model)+'</div>'
+      +'</div>';
+  }).join('');
+}
+function toggleHint(i){var el=document.getElementById('hint-'+i);if(el)el.classList.toggle('show');}
+function toggleModel(i){var el=document.getElementById('model-'+i);if(el)el.classList.toggle('show');}
+
+// ===== DELEGATED EVENT LISTENER (fixes all inline onclick issues) =====
+document.addEventListener('click',function(e){
+  var target=e.target.closest('[data-action]');
+  if(!target)return;
+  var action=target.getAttribute('data-action');
+  var idx=parseInt(target.getAttribute('data-idx')||'0',10);
+  if(action==='answer-quiz'){answerQuiz(idx);}
+  else if(action==='select-rp'){selectRpOpt(idx);}
+  else if(action==='rp-next'){rpStep++;renderRoleplay();}
+  else if(action==='rp-restart'){rpStep=0;renderRoleplay();}
+  else if(action==='goto-section'){goToSection(idx);}
+  else if(action==='toggle-hint'){toggleHint(idx);}
+  else if(action==='toggle-model'){toggleModel(idx);}
+  else if(action==='speak-question'){speak(interviewQs[idx].q);}
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded',function(){
+  initFlashcards();
+  renderQuiz();
+  renderRoleplay();
+  renderInterviewQuestions();
+  updateProgress();
+  var tot=document.getElementById('rf-total');
+  if(tot)tot.textContent=rfData.length;
+});
+</script>
+</body>
+</html>

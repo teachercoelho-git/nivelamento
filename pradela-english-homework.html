@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pradela's English Homework — Verb Tenses</title>
+
+<!-- Fonts -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<!-- Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root, [data-theme="light"] {
+  --color-bg: #f5f4f0;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #ffffff;
+  --color-surface-offset: #edeae5;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #1e1c18;
+  --color-text-muted: #6b6a65;
+  --color-text-faint: #b0afa9;
+  --color-text-inverse: #f9f8f4;
+
+  /* Tense accent colors */
+  --color-pp: #01696f;
+  --color-pp-light: #e0f0ef;
+  --color-pp-mid: #cedcd8;
+  --color-pperf: #7a39bb;
+  --color-pperf-light: #ede6f8;
+  --color-pperf-mid: #dacfde;
+  --color-pastperf: #964219;
+  --color-pastperf-light: #f5ece5;
+  --color-pastperf-mid: #ddcfc6;
+  --color-simple: #006494;
+  --color-simple-light: #e5f0f7;
+  --color-simple-mid: #c6d8e4;
+  --color-cont: #437a22;
+  --color-cont-light: #ebf4e4;
+  --color-cont-mid: #d4dfcc;
+  --color-future: #a13544;
+  --color-future-light: #f5e8ea;
+  --color-future-mid: #dececb;
+
+  --color-correct: #437a22;
+  --color-correct-bg: #ebf4e4;
+  --color-wrong: #a12c7b;
+  --color-wrong-bg: #f5e5f0;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.09);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.13);
+
+  --font-display: 'Cabinet Grotesk', 'Instrument Serif', Georgia, serif;
+  --font-body: 'Satoshi', 'Inter', sans-serif;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem;
+
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #222120;
+  --color-surface-offset: #262523;
+  --color-divider: #2e2c2a;
+  --color-border: #363431;
+  --color-text: #d0cfc9;
+  --color-text-muted: #787773;
+  --color-text-faint: #555350;
+  --color-text-inverse: #1e1c18;
+
+  --color-pp: #4f98a3;
+  --color-pp-light: #1e2f30;
+  --color-pp-mid: #243535;
+  --color-pperf: #a86fdf;
+  --color-pperf-light: #2a1e38;
+  --color-pperf-mid: #342846;
+  --color-pastperf: #bb653b;
+  --color-pastperf-light: #2e1e14;
+  --color-pastperf-mid: #3a2419;
+  --color-simple: #5591c7;
+  --color-simple-light: #1a2736;
+  --color-simple-mid: #223040;
+  --color-cont: #6daa45;
+  --color-cont-light: #1c2e14;
+  --color-cont-mid: #25391d;
+  --color-future: #dd6974;
+  --color-future-light: #2e1b1e;
+  --color-future-mid: #392326;
+
+  --color-correct: #6daa45;
+  --color-correct-bg: #1c2e14;
+  --color-wrong: #d163a7;
+  --color-wrong-bg: #2e1826;
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+  transition: background 0.3s, color 0.3s;
+}
+img, svg { display: block; max-width: 100%; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
+p, li { max-width: 72ch; text-wrap: pretty; }
+ul[role="list"] { list-style: none; padding: 0; }
+::selection { background: oklch(from var(--color-pp) l c h / 0.18); }
+:focus-visible { outline: 2px solid var(--color-pp); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute; left: var(--space-4); top: var(--space-4);
+  background: var(--color-pp); color: white; padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md); transform: translateY(-150%); transition: transform 0.2s;
+  z-index: 100;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ===== TOP NAV ===== */
+.top-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: oklch(from var(--color-bg) l c h / 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-divider);
+  padding: var(--space-3) var(--space-6);
+  display: flex; align-items: center; gap: var(--space-4);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display); font-size: var(--text-lg); font-weight: 800;
+  color: var(--color-text);
+}
+.nav-logo svg { color: var(--color-pp); }
+.nav-tabs {
+  display: flex; align-items: center; gap: var(--space-1);
+  overflow-x: auto; flex: 1;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 500;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  color: var(--color-text-muted);
+}
+.nav-tab:hover { background: var(--color-surface-offset); color: var(--color-text); }
+.nav-tab.active { font-weight: 700; border-color: currentColor; }
+.nav-actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+.theme-toggle {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-surface-offset);
+  transition: background var(--transition);
+}
+.theme-toggle:hover { background: var(--color-divider); }
+
+/* Tense color theming for nav tabs */
+.nav-tab[data-tense="pp"] { --tense-c: var(--color-pp); }
+.nav-tab[data-tense="pperf"] { --tense-c: var(--color-pperf); }
+.nav-tab[data-tense="pastperf"] { --tense-c: var(--color-pastperf); }
+.nav-tab[data-tense="simple"] { --tense-c: var(--color-simple); }
+.nav-tab[data-tense="cont"] { --tense-c: var(--color-cont); }
+.nav-tab[data-tense="future"] { --tense-c: var(--color-future); }
+.nav-tab.active { color: var(--tense-c); border-color: var(--tense-c); }
+
+/* ===== MAIN LAYOUT ===== */
+main { max-width: 880px; margin: 0 auto; padding: var(--space-8) var(--space-6) var(--space-20); }
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: var(--space-12) var(--space-6) var(--space-10);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--color-pp-light); color: var(--color-pp);
+  border-radius: var(--radius-full); padding: var(--space-1) var(--space-4);
+  font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-5);
+}
+.hero h1 {
+  font-size: var(--text-2xl); font-weight: 900;
+  color: var(--color-text); margin-bottom: var(--space-4);
+}
+.hero h1 em { font-style: italic; font-family: 'Instrument Serif', serif; color: var(--color-pp); }
+.hero-desc {
+  font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-8);
+  max-width: 56ch; margin-inline: auto; margin-bottom: var(--space-8);
+}
+.hero-score-card {
+  display: inline-flex; gap: var(--space-6); background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-8); box-shadow: var(--shadow-sm);
+}
+.score-item { text-align: center; }
+.score-value { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; color: var(--color-text); }
+.score-label { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ===== TENSE SECTIONS ===== */
+.tense-section {
+  margin-bottom: var(--space-16);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.tense-header {
+  padding: var(--space-8) var(--space-8) var(--space-6);
+  position: relative;
+}
+.tense-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--tense-light);
+  opacity: 1;
+}
+.tense-header > * { position: relative; }
+.tense-tag {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--tense-color);
+  background: oklch(from var(--tense-color) l c h / 0.14);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+.tense-title {
+  font-size: var(--text-xl); font-weight: 900; color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.tense-subtitle {
+  font-size: var(--text-base); color: var(--color-text-muted); max-width: 60ch;
+}
+
+/* Tense color vars per section */
+.tense-section[data-tense="pp"]       { --tense-color: var(--color-pp);       --tense-light: var(--color-pp-light);       --tense-mid: var(--color-pp-mid); }
+.tense-section[data-tense="pperf"]    { --tense-color: var(--color-pperf);     --tense-light: var(--color-pperf-light);    --tense-mid: var(--color-pperf-mid); }
+.tense-section[data-tense="pastperf"] { --tense-color: var(--color-pastperf);  --tense-light: var(--color-pastperf-light); --tense-mid: var(--color-pastperf-mid); }
+.tense-section[data-tense="simple"]   { --tense-color: var(--color-simple);    --tense-light: var(--color-simple-light);   --tense-mid: var(--color-simple-mid); }
+.tense-section[data-tense="cont"]     { --tense-color: var(--color-cont);      --tense-light: var(--color-cont-light);     --tense-mid: var(--color-cont-mid); }
+.tense-section[data-tense="future"]   { --tense-color: var(--color-future);    --tense-light: var(--color-future-light);   --tense-mid: var(--color-future-mid); }
+
+/* ===== CONTENT BLOCK ===== */
+.tense-body {
+  background: var(--color-surface-2);
+  border-top: 1px solid var(--tense-mid);
+}
+
+.content-tabs {
+  display: flex; border-bottom: 1px solid var(--color-divider);
+  padding: 0 var(--space-8);
+  gap: var(--space-1);
+}
+.content-tab {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm); font-weight: 600; color: var(--color-text-muted);
+  border-bottom: 2.5px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.content-tab:hover { color: var(--color-text); }
+.content-tab.active { color: var(--tense-color); border-bottom-color: var(--tense-color); }
+
+.content-panel { display: none; padding: var(--space-8); }
+.content-panel.active { display: block; }
+
+/* ===== GRAMMAR SUMMARY ===== */
+.formula-box {
+  background: var(--color-surface-offset);
+  border: 1px solid var(--tense-mid);
+  border-left: 4px solid var(--tense-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-display);
+}
+.formula-label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--tense-color); margin-bottom: var(--space-2);
+}
+.formula-text {
+  font-size: var(--text-lg); font-weight: 700; color: var(--color-text);
+}
+.formula-text code {
+  background: oklch(from var(--tense-color) l c h / 0.13);
+  color: var(--tense-color);
+  padding: 2px 8px; border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 0.9em; font-weight: 600;
+}
+
+.usage-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4); margin-bottom: var(--space-6);
+}
+.usage-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+.usage-card-icon {
+  font-size: 1.5rem; margin-bottom: var(--space-2);
+}
+.usage-card-title {
+  font-size: var(--text-sm); font-weight: 700; color: var(--tense-color);
+  margin-bottom: var(--space-1);
+}
+.usage-card-desc { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+.example-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.example-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex; align-items: flex-start; gap: var(--space-3);
+}
+.example-item-icon {
+  width: 28px; height: 28px; border-radius: var(--radius-full);
+  background: oklch(from var(--tense-color) l c h / 0.13);
+  color: var(--tense-color);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.85rem; font-weight: 700; margin-top: 2px;
+}
+.example-sentence {
+  font-size: var(--text-base); color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+.example-sentence strong {
+  color: var(--tense-color);
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-style: dotted; font-weight: 700;
+}
+.example-note { font-size: var(--text-sm); color: var(--color-text-muted); font-style: italic; }
+
+.timeline-container {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+.timeline-label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: var(--space-4);
+}
+.timeline {
+  position: relative; height: 60px;
+  display: flex; align-items: center;
+}
+.timeline-line {
+  position: absolute; left: 0; right: 0; top: 50%;
+  height: 2px; background: var(--color-border); transform: translateY(-50%);
+}
+.timeline-point {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.timeline-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--color-bg);
+  border: 2.5px solid var(--color-border);
+  z-index: 1;
+}
+.timeline-point.active .timeline-dot {
+  background: var(--tense-color);
+  border-color: var(--tense-color);
+  box-shadow: 0 0 0 4px oklch(from var(--tense-color) l c h / 0.18);
+}
+.timeline-point-label {
+  font-size: 10px; font-weight: 600; color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.timeline-bar {
+  position: absolute; height: 5px;
+  background: oklch(from var(--tense-color) l c h / 0.35);
+  border-radius: 3px; top: 50%; transform: translateY(-50%);
+}
+.timeline-arrow {
+  position: absolute; top: 50%; font-size: 1.2rem;
+  transform: translateY(-50%);
+  color: var(--tense-color);
+}
+.timeline-now {
+  position: absolute; left: 50%; top: -6px; bottom: -6px;
+  width: 2px; background: var(--color-text-faint);
+  transform: translateX(-50%);
+}
+
+/* keyword pills */
+.keyword-chip {
+  display: inline-block;
+  background: oklch(from var(--tense-color) l c h / 0.12);
+  color: var(--tense-color);
+  border: 1px solid oklch(from var(--tense-color) l c h / 0.25);
+  padding: 2px 10px; border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600; margin: 2px;
+}
+.keywords-box {
+  margin-top: var(--space-5);
+}
+.keywords-title {
+  font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted);
+  margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.07em;
+}
+
+/* ===== EXERCISES ===== */
+.exercises-container { display: flex; flex-direction: column; gap: var(--space-6); }
+.exercise-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.exercise-number {
+  font-size: var(--text-xs); font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--tense-color); margin-bottom: var(--space-2);
+}
+.exercise-prompt {
+  font-size: var(--text-base); font-weight: 600; color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+.exercise-context {
+  font-size: var(--text-sm); color: var(--color-text-muted);
+  font-style: italic; margin-bottom: var(--space-4);
+}
+
+/* fill-in-the-blank */
+.blank-sentence {
+  font-size: var(--text-base); color: var(--color-text);
+  line-height: 2.2;
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.blank-input {
+  border: none; border-bottom: 2.5px solid var(--tense-color);
+  background: transparent; color: var(--color-text);
+  font: inherit; font-size: var(--text-base); font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  min-width: 120px; width: auto;
+  outline: none; text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+  border-radius: 0;
+}
+.blank-input:focus { background: oklch(from var(--tense-color) l c h / 0.07); border-bottom-color: var(--tense-color); }
+.blank-input.correct { border-bottom-color: var(--color-correct); background: var(--color-correct-bg); border-radius: var(--radius-sm); }
+.blank-input.wrong { border-bottom-color: var(--color-wrong); background: var(--color-wrong-bg); border-radius: var(--radius-sm); }
+
+/* multiple choice */
+.mc-options { display: flex; flex-direction: column; gap: var(--space-2); }
+.mc-option {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg); cursor: pointer;
+  background: var(--color-surface-2);
+  transition: all var(--transition);
+  font-size: var(--text-base); color: var(--color-text);
+  user-select: none;
+}
+.mc-option:hover { border-color: var(--tense-color); background: var(--tense-light); }
+.mc-option.selected { border-color: var(--tense-color); background: var(--tense-light); }
+.mc-option.correct { border-color: var(--color-correct); background: var(--color-correct-bg); color: var(--color-correct); font-weight: 600; }
+.mc-option.wrong { border-color: var(--color-wrong); background: var(--color-wrong-bg); color: var(--color-wrong); }
+.mc-option.reveal-correct { border-color: var(--color-correct); background: var(--color-correct-bg); }
+.mc-letter {
+  width: 28px; height: 28px; border-radius: var(--radius-full);
+  background: var(--color-surface-offset); color: var(--color-text-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-xs); font-weight: 700; flex-shrink: 0;
+  transition: background var(--transition), color var(--transition);
+}
+.mc-option.selected .mc-letter, .mc-option:hover .mc-letter { background: var(--tense-color); color: white; }
+.mc-option.correct .mc-letter { background: var(--color-correct); color: white; }
+.mc-option.wrong .mc-letter { background: var(--color-wrong); color: white; }
+
+/* error correction */
+.error-text {
+  font-size: var(--text-base); background: var(--color-surface-offset);
+  border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  padding: var(--space-4); margin-bottom: var(--space-4); line-height: 1.8;
+}
+.error-highlight { text-decoration: underline wavy var(--color-wrong); font-weight: 600; cursor: pointer; }
+.correction-input {
+  display: block; width: 100%;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text); font: inherit;
+  font-size: var(--text-base);
+  padding: var(--space-3) var(--space-4);
+  outline: none;
+  transition: border-color var(--transition);
+  margin-bottom: var(--space-4);
+}
+.correction-input:focus { border-color: var(--tense-color); }
+.correction-input.correct { border-color: var(--color-correct); background: var(--color-correct-bg); }
+.correction-input.wrong { border-color: var(--color-wrong); background: var(--color-wrong-bg); }
+
+/* reorder / drag */
+.reorder-words {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+  padding: var(--space-4); background: var(--color-surface-offset);
+  border-radius: var(--radius-md); margin-bottom: var(--space-4); min-height: 56px;
+}
+.word-chip {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-2); border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600;
+  cursor: pointer; transition: all var(--transition); user-select: none;
+}
+.word-chip:hover { background: var(--tense-light); border-color: var(--tense-color); color: var(--tense-color); }
+.word-chip.selected { background: var(--tense-color); color: white; border-color: var(--tense-color); }
+.word-chip.used { opacity: 0.35; pointer-events: none; }
+.answer-zone {
+  display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center;
+  padding: var(--space-4); background: var(--color-surface-2);
+  border: 1.5px dashed var(--color-border); border-radius: var(--radius-md);
+  min-height: 56px; margin-bottom: var(--space-4);
+}
+.placed-word {
+  padding: var(--space-2) var(--space-3);
+  background: oklch(from var(--tense-color) l c h / 0.15);
+  border: 1.5px solid var(--tense-color);
+  border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600;
+  color: var(--tense-color); cursor: pointer;
+}
+.placed-word:hover { background: var(--tense-color); color: white; }
+.answer-zone.correct { border-color: var(--color-correct); background: var(--color-correct-bg); }
+.answer-zone.wrong { border-color: var(--color-wrong); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 700;
+  cursor: pointer; transition: all var(--transition);
+  border: 2px solid transparent;
+}
+.btn-primary {
+  background: var(--tense-color); color: white;
+}
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-ghost {
+  background: transparent; color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+.btn-ghost:hover { background: var(--color-surface-offset); color: var(--color-text); }
+.btn-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4); }
+
+/* feedback */
+.feedback-box {
+  display: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm); font-weight: 600;
+  margin-top: var(--space-3);
+  align-items: center; gap: var(--space-2);
+}
+.feedback-box.show { display: flex; }
+.feedback-box.correct { background: var(--color-correct-bg); color: var(--color-correct); }
+.feedback-box.wrong { background: var(--color-wrong-bg); color: var(--color-wrong); }
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar-outer {
+  width: 100%; height: 6px; background: var(--color-surface-offset);
+  border-radius: var(--radius-full); margin: var(--space-3) 0;
+  overflow: hidden;
+}
+.progress-bar-inner {
+  height: 100%; border-radius: var(--radius-full);
+  background: var(--tense-color);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== SCROLL-DRIVEN REVEALS ===== */
+@supports (animation-timeline: scroll()) {
+  .tense-section {
+    opacity: 0;
+    animation: section-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+@keyframes section-reveal {
+  to { opacity: 1; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  main { padding: var(--space-4) var(--space-3) var(--space-16); }
+  .top-nav { padding: var(--space-3) var(--space-3); gap: var(--space-2); }
+  .nav-logo span { display: none; }
+  .hero { padding: var(--space-8) var(--space-3) var(--space-6); }
+  .hero-score-card { gap: var(--space-4); padding: var(--space-4); }
+  .tense-header, .content-panel { padding: var(--space-5) var(--space-4); }
+  .content-tabs { padding: 0 var(--space-4); }
+  .content-tab { padding: var(--space-3) var(--space-3); font-size: 0.8rem; }
+  .usage-grid { grid-template-columns: 1fr; }
+  .formula-text { font-size: var(--text-base); }
+  .blank-sentence { font-size: var(--text-sm); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tense-section { animation: none; opacity: 1; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- TOP NAV -->
+<nav class="top-nav" aria-label="Jump to section">
+  <div class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect x="2" y="2" width="22" height="22" rx="6" fill="currentColor" opacity="0.15"/>
+      <path d="M7 18 L7 8 L12 8 Q15.5 8 15.5 11 Q15.5 14 12 14 L7 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17 8 L19 8 M17 13 L19 13 M17 18 L21 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span>Pradela's English</span>
+  </div>
+  <div class="nav-tabs" role="tablist" aria-label="Verb tenses">
+    <button class="nav-tab active" data-tense="pp" data-target="sec-pp" role="tab">Present Perfect</button>
+    <button class="nav-tab" data-tense="pperf" data-target="sec-pperf" role="tab">Pres. Perfect Continuous</button>
+    <button class="nav-tab" data-tense="pastperf" data-target="sec-pastperf" role="tab">Past Perfect</button>
+    <button class="nav-tab" data-tense="simple" data-target="sec-simple" role="tab">Past Simple</button>
+    <button class="nav-tab" data-tense="cont" data-target="sec-cont" role="tab">Past Continuous</button>
+    <button class="nav-tab" data-tense="future" data-target="sec-future" role="tab">Future Perfect</button>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Welcome">
+    <div class="hero-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+      Advanced English — Pradela
+    </div>
+    <h1>Master the <em>Perfect</em> Tenses</h1>
+    <p class="hero-desc">Your interactive study guide for the verb tenses you need to use naturally in speech and writing. Study the summary, then test yourself!</p>
+    <div class="hero-score-card" aria-live="polite">
+      <div class="score-item">
+        <div class="score-value" id="score-correct">0</div>
+        <div class="score-label">Correct</div>
+      </div>
+      <div class="score-item">
+        <div class="score-value" id="score-total">0</div>
+        <div class="score-label">Answered</div>
+      </div>
+      <div class="score-item">
+        <div class="score-value" id="score-pct">—</div>
+        <div class="score-label">Accuracy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 1. PRESENT PERFECT =================== -->
+  <section class="tense-section" id="sec-pp" data-tense="pp" aria-labelledby="title-pp">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Tense 1
+      </div>
+      <h2 class="tense-title" id="title-pp">Present Perfect</h2>
+      <p class="tense-subtitle">Actions that happened at an unspecified time in the past — what matters is the result NOW.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="pp-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="pp-exercises">✏️ Exercises</button>
+      </div>
+      <!-- SUMMARY -->
+      <div class="content-panel active" id="pp-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>have/has</code> + <code>past participle</code></div>
+        </div>
+        <div class="timeline-container" aria-label="Timeline: action in past connected to now">
+          <div class="timeline-label">Time Diagram</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-bar" style="left:15%;right:53%;"></div>
+            <div class="timeline-point" style="left:15%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label">Some past time</div>
+            </div>
+            <div class="timeline-point active" style="left:15%">
+              <div></div>
+            </div>
+            <div class="timeline-point active" style="left:50%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-pp);font-weight:700">NOW</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">🎯</div>
+            <div class="usage-card-title">Life experience</div>
+            <div class="usage-card-desc">Something done (or not) at some point in life</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">🔗</div>
+            <div class="usage-card-title">Result in the present</div>
+            <div class="usage-card-desc">The action is over but its effect is still felt now</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">📅</div>
+            <div class="usage-card-title">Unfinished time period</div>
+            <div class="usage-card-desc">With "today", "this week", "this year"</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">🆕</div>
+            <div class="usage-card-title">Recent news</div>
+            <div class="usage-card-desc">Something that just happened — announcing new info</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">I <strong>have visited</strong> Japan three times.</div>
+              <div class="example-note">Life experience — the exact time doesn't matter.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">She <strong>has broken</strong> her leg, so she can't play.</div>
+              <div class="example-note">Result now — she broke it in the past, but NOW she can't play.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">They <strong>have lived</strong> here for ten years.</div>
+              <div class="example-note">Unfinished time — they started in the past and STILL live here.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">4</div>
+            <div>
+              <div class="example-sentence">The president <strong>has announced</strong> a new policy.</div>
+              <div class="example-note">Recent news — just happened.</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words</div>
+          <span class="keyword-chip">ever</span><span class="keyword-chip">never</span>
+          <span class="keyword-chip">already</span><span class="keyword-chip">yet</span>
+          <span class="keyword-chip">just</span><span class="keyword-chip">recently</span>
+          <span class="keyword-chip">since</span><span class="keyword-chip">for</span>
+          <span class="keyword-chip">so far</span><span class="keyword-chip">lately</span>
+        </div>
+      </div>
+      <!-- EXERCISES -->
+      <div class="content-panel" id="pp-exercises">
+        <div class="exercises-container">
+
+          <!-- Ex 1: Fill in blank -->
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Complete with the Present Perfect.</div>
+            <div class="blank-sentence">
+              My sister _______ (never / try) sushi before, but she <span class="blank-input" style="min-width:140px"></span> it last night.
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted)"><em>Hint: "never try" → Present Perfect, "last night" → Past Simple</em></p>
+            <div>
+              <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">She has never tried sushi, but she...</label>
+              <input class="blank-input" data-answer="tried" data-tense="pp" style="display:block;margin-top:8px;min-width:200px;border:1.5px solid var(--color-pp);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4)" placeholder="type the correct form...">
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkFillBlank(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <!-- Ex 2: Multiple choice -->
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">Choose the correct option.</div>
+            <div class="exercise-context">"We _______ each other for twenty years." (we still know each other)</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="false" onclick="selectMC(this)">
+                <span class="mc-letter">A</span> We knew
+              </div>
+              <div class="mc-option" data-value="b" data-correct="true" onclick="selectMC(this)">
+                <span class="mc-letter">B</span> We have known
+              </div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)">
+                <span class="mc-letter">C</span> We have been knowing
+              </div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)">
+                <span class="mc-letter">D</span> We had known
+              </div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <!-- Ex 3: Error correction -->
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Find and correct the mistake.</div>
+            <div class="error-text">
+              "I <span class="error-highlight">have seen</span> him yesterday at the market."
+            </div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="I saw him yesterday at the market." placeholder="Write the corrected sentence..." data-tense="pp">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <!-- Ex 4: Sentence reorder -->
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder the words</div>
+            <div class="exercise-prompt">Tap words in the correct order to form a sentence.</div>
+            <div class="reorder-words" id="words-pp4">
+              <span class="word-chip" onclick="placeWord(this,'zone-pp4')">eaten</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp4')">Have</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp4')">already</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp4')">you</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp4')">?</span>
+            </div>
+            <div class="answer-zone" id="zone-pp4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-pp4','Have you already eaten ?')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-pp4','zone-pp4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+        </div><!-- /exercises-container -->
+      </div><!-- /pp-exercises -->
+    </div><!-- /tense-body -->
+  </section>
+
+  <!-- =================== 2. PRESENT PERFECT CONTINUOUS =================== -->
+  <section class="tense-section" id="sec-pperf" data-tense="pperf" aria-labelledby="title-pperf">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Tense 2
+      </div>
+      <h2 class="tense-title" id="title-pperf">Present Perfect Continuous</h2>
+      <p class="tense-subtitle">An action that started in the past and is STILL ongoing — focusing on the duration and the process.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="pperf-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="pperf-exercises">✏️ Exercises</button>
+      </div>
+      <div class="content-panel active" id="pperf-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>have/has been</code> + <code>verb-ing</code></div>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-label">Time Diagram</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-bar" style="left:20%;right:45%;background: var(--color-pperf); opacity:0.4;"></div>
+            <div class="timeline-arrow" style="left:53%">→</div>
+            <div class="timeline-point active" style="left:20%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-pperf);font-weight:700">Start</div>
+            </div>
+            <div class="timeline-point active" style="left:50%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-pperf);font-weight:700">NOW (still!)</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">⏳</div>
+            <div class="usage-card-title">Ongoing action</div>
+            <div class="usage-card-desc">Started in the past, still happening now</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">💪</div>
+            <div class="usage-card-title">Visible result / tiredness</div>
+            <div class="usage-card-desc">"You've been running — you're out of breath!"</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">📏</div>
+            <div class="usage-card-title">Duration emphasis</div>
+            <div class="usage-card-desc">Used with "for" and "since" to highlight HOW LONG</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">I <strong>have been studying</strong> English for five years.</div>
+              <div class="example-note">I started 5 years ago and I'm still studying now.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">She <strong>has been crying</strong> — her eyes are red.</div>
+              <div class="example-note">Visible effect — maybe she stopped, but we see the result.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">They <strong>have been waiting</strong> since 8 o'clock.</div>
+              <div class="example-note">Emphasizes the duration and the ongoing nature.</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words</div>
+          <span class="keyword-chip">for</span><span class="keyword-chip">since</span>
+          <span class="keyword-chip">all day / all morning</span><span class="keyword-chip">lately</span>
+          <span class="keyword-chip">recently</span><span class="keyword-chip">How long...?</span>
+        </div>
+        <div style="margin-top:var(--space-6);padding:var(--space-4) var(--space-5);background:var(--color-pperf-light);border:1px solid var(--color-pperf-mid);border-radius:var(--radius-lg)">
+          <strong style="color:var(--color-pperf)">⚠️ VS Present Perfect:</strong>
+          <p style="font-size:var(--text-sm);margin-top:var(--space-2)">
+            "I <strong>have read</strong> the book." = I finished it. (result)<br>
+            "I <strong>have been reading</strong> the book." = I'm still reading it. (process/duration)
+          </p>
+        </div>
+      </div>
+      <div class="content-panel" id="pperf-exercises">
+        <div class="exercises-container">
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Use the Present Perfect Continuous.</div>
+            <div class="exercise-context">Verb: <strong>work</strong> | It's 11 PM. Marco started working at 7 AM and is still at his desk.</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Marco _____ all day long.</label>
+            <input class="blank-input" data-answer="has been working" data-tense="pperf" style="display:block;margin-top:8px;min-width:240px;border:1.5px solid var(--color-pperf);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4)" placeholder="has been ___ing...">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkFillBlank(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">Choose the correct tense.</div>
+            <div class="exercise-context">"How long _______ Spanish?" — He started learning 2 years ago and still does.</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">A</span> have you learned</div>
+              <div class="mc-option" data-value="b" data-correct="true" onclick="selectMC(this)"><span class="mc-letter">B</span> have you been learning</div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">C</span> did you learn</div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">D</span> are you learning</div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Find and correct the error.</div>
+            <div class="error-text">"She has been knowing him since she was a child."</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="She has known him since she was a child." placeholder="Write the corrected sentence..." data-tense="pperf">
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);font-style:italic">Hint: "know" is a stative verb — it doesn't take the continuous form!</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder</div>
+            <div class="exercise-prompt">Arrange the words to make a correct sentence.</div>
+            <div class="reorder-words" id="words-pperf4">
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">raining</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">It</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">been</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">has</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">morning</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pperf4')">all</span>
+            </div>
+            <div class="answer-zone" id="zone-pperf4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-pperf4','It has been raining all morning')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-pperf4','zone-pperf4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 3. PAST PERFECT =================== -->
+  <section class="tense-section" id="sec-pastperf" data-tense="pastperf" aria-labelledby="title-pastperf">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 12 3 18"/><path d="M21 12H5"/></svg>
+        Tense 3
+      </div>
+      <h2 class="tense-title" id="title-pastperf">Past Perfect</h2>
+      <p class="tense-subtitle">The "past before the past" — used when two things happened in the past and you need to show which one came FIRST.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="pastperf-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="pastperf-exercises">✏️ Exercises</button>
+      </div>
+      <div class="content-panel active" id="pastperf-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>had</code> + <code>past participle</code></div>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-label">Time Diagram — TWO past events in sequence</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-point active" style="left:20%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-pastperf);font-weight:700">1st event (HAD)</div>
+            </div>
+            <div class="timeline-point" style="left:40%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label">2nd event (Past Simple)</div>
+            </div>
+            <div class="timeline-point" style="left:50%">
+              <div class="timeline-dot" style="border-color:var(--color-text-faint)"></div>
+              <div class="timeline-point-label">NOW</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">1️⃣</div>
+            <div class="usage-card-title">Sequence in the past</div>
+            <div class="usage-card-desc">Clarifies that event A happened before event B (both in the past)</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">🔔</div>
+            <div class="usage-card-title">Reported speech</div>
+            <div class="usage-card-desc">Backshift: "I have done it" → She said she had done it</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">😔</div>
+            <div class="usage-card-title">Unreal past (wishes)</div>
+            <div class="usage-card-desc">"I wish I had studied harder." / "If I had known..."</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">When I arrived at the cinema, the film <strong>had already started</strong>.</div>
+              <div class="example-note">1st: film started → 2nd: I arrived</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">She was tired because she <strong>hadn't slept</strong> well.</div>
+              <div class="example-note">Explains the reason — bad sleep (past) caused tiredness (past).</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">If he <strong>had called</strong> me, I would have come.</div>
+              <div class="example-note">3rd conditional — unreal past situation.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">4</div>
+            <div>
+              <div class="example-sentence">He told me he <strong>had seen</strong> that movie before.</div>
+              <div class="example-note">Reported speech backshift from Present Perfect.</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words</div>
+          <span class="keyword-chip">after</span><span class="keyword-chip">before</span>
+          <span class="keyword-chip">when</span><span class="keyword-chip">by the time</span>
+          <span class="keyword-chip">already</span><span class="keyword-chip">just</span>
+          <span class="keyword-chip">never … before</span><span class="keyword-chip">once</span>
+        </div>
+      </div>
+      <div class="content-panel" id="pastperf-exercises">
+        <div class="exercises-container">
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Use Past Perfect or Past Simple correctly.</div>
+            <div class="exercise-context">Verb: <strong>finish / arrive</strong></div>
+            <p style="font-size:var(--text-base);margin-bottom:var(--space-3)">By the time the guests _____ (arrive), Maria _____ (already / finish) cooking.</p>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Type the full corrected sentence:</label>
+            <input class="correction-input" data-answer="By the time the guests arrived, Maria had already finished cooking." placeholder="By the time the guests ..." data-tense="pastperf">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">Choose the correct option.</div>
+            <div class="exercise-context">"I realized I _______ my phone at home."</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">A</span> left</div>
+              <div class="mc-option" data-value="b" data-correct="true" onclick="selectMC(this)"><span class="mc-letter">B</span> had left</div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">C</span> have left</div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">D</span> was leaving</div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Find and fix the mistake.</div>
+            <div class="error-text">"After she <span class="error-highlight">has eaten</span> dinner, she went for a walk."</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="After she had eaten dinner, she went for a walk." placeholder="Write the corrected sentence..." data-tense="pastperf">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder</div>
+            <div class="exercise-prompt">Build the sentence in the correct order.</div>
+            <div class="reorder-words" id="words-pp3r4">
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">had</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">They</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">before</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">never</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">that</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-pp3r4')">met</span>
+            </div>
+            <div class="answer-zone" id="zone-pp3r4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-pp3r4','They had never met before that')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-pp3r4','zone-pp3r4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 4. PAST SIMPLE =================== -->
+  <section class="tense-section" id="sec-simple" data-tense="simple" aria-labelledby="title-simple">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="13" x2="13" y2="13"/></svg>
+        Tense 4
+      </div>
+      <h2 class="tense-title" id="title-simple">Past Simple</h2>
+      <p class="tense-subtitle">A completed action at a specific time in the past — the most common past tense for telling stories.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="simple-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="simple-exercises">✏️ Exercises</button>
+      </div>
+      <div class="content-panel active" id="simple-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>verb (past form)</code> &nbsp;|&nbsp; Negative: <code>didn't + base verb</code></div>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-label">Time Diagram — completed, finished, over</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-point active" style="left:30%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-simple);font-weight:700">✓ Done (specific time)</div>
+            </div>
+            <div class="timeline-point" style="left:50%">
+              <div class="timeline-dot" style="border-color:var(--color-text-faint)"></div>
+              <div class="timeline-point-label">NOW</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">✅</div>
+            <div class="usage-card-title">Completed action</div>
+            <div class="usage-card-desc">Happened at a specific, known time in the past</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">📖</div>
+            <div class="usage-card-title">Narrative / sequence</div>
+            <div class="usage-card-desc">Telling a story — events in chronological order</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">🔁</div>
+            <div class="usage-card-title">Past habits / repeated actions</div>
+            <div class="usage-card-desc">"I played football every Saturday as a kid."</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">She <strong>graduated</strong> from university in 2019.</div>
+              <div class="example-note">Specific time = Past Simple, not Present Perfect.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">He <strong>woke up</strong>, <strong>made</strong> coffee, and <strong>left</strong> the house.</div>
+              <div class="example-note">Sequence of completed past actions (narrative).</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">They <strong>didn't come</strong> to the party last night.</div>
+              <div class="example-note">"Last night" forces Past Simple — never Present Perfect with this.</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words (ALWAYS force Past Simple!)</div>
+          <span class="keyword-chip">yesterday</span><span class="keyword-chip">last night/week/year</span>
+          <span class="keyword-chip">ago</span><span class="keyword-chip">in 2020</span>
+          <span class="keyword-chip">when (+ specific)</span><span class="keyword-chip">at that time</span>
+        </div>
+      </div>
+      <div class="content-panel" id="simple-exercises">
+        <div class="exercises-container">
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Use Past Simple.</div>
+            <div class="exercise-context">Verb: <strong>travel</strong></div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Last summer, they _____ to Portugal for two weeks.</label>
+            <input class="blank-input" data-answer="travelled" data-tense="simple" style="display:block;margin-top:8px;min-width:200px;border:1.5px solid var(--color-simple);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4)" placeholder="past simple form...">
+            <p style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:4px">Also accepted: "traveled" (US spelling)</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkFillBlankMultiple(this,['travelled','traveled'])">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">Choose the correct tense.</div>
+            <div class="exercise-context">"_______ you see the match last night?"</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="true" onclick="selectMC(this)"><span class="mc-letter">A</span> Did</div>
+              <div class="mc-option" data-value="b" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">B</span> Have</div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">C</span> Had</div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">D</span> Do</div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Correct the tense error.</div>
+            <div class="error-text">"I <span class="error-highlight">have gone</span> to the supermarket yesterday and bought everything we needed."</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="I went to the supermarket yesterday and bought everything we needed." placeholder="Corrected sentence..." data-tense="simple">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder</div>
+            <div class="exercise-prompt">Build the Past Simple sentence.</div>
+            <div class="reorder-words" id="words-simple4">
+              <span class="word-chip" onclick="placeWord(this,'zone-simple4')">call</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-simple4')">He</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-simple4')">morning</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-simple4')">didn't</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-simple4')">this</span>
+            </div>
+            <div class="answer-zone" id="zone-simple4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-simple4','He didn\'t call this morning')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-simple4','zone-simple4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 5. PAST CONTINUOUS =================== -->
+  <section class="tense-section" id="sec-cont" data-tense="cont" aria-labelledby="title-cont">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 3l14 9-14 9V3z"/></svg>
+        Tense 5
+      </div>
+      <h2 class="tense-title" id="title-cont">Past Continuous</h2>
+      <p class="tense-subtitle">An action that was IN PROGRESS at a specific moment in the past — often interrupted by another event.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="cont-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="cont-exercises">✏️ Exercises</button>
+      </div>
+      <div class="content-panel active" id="cont-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>was/were</code> + <code>verb-ing</code></div>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-label">Ongoing background action + interruption</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-bar" style="left:10%;right:60%;background:var(--color-cont);opacity:0.3"></div>
+            <div class="timeline-arrow" style="left:40%;color:var(--color-notification);font-size:1rem">⚡</div>
+            <div class="timeline-point active" style="left:10%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-cont);font-weight:700">was doing →</div>
+            </div>
+            <div class="timeline-point" style="left:40%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label">interruption (Past Simple)</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">🎬</div>
+            <div class="usage-card-title">Background setting</div>
+            <div class="usage-card-desc">Describes what was happening when something else occurred</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">⚡</div>
+            <div class="usage-card-title">Interrupted action</div>
+            <div class="usage-card-desc">Continuous = the background; Past Simple = the interrupt</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">🔀</div>
+            <div class="usage-card-title">Two parallel actions</div>
+            <div class="usage-card-desc">"While she was cooking, he was setting the table."</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">I <strong>was sleeping</strong> when the alarm went off.</div>
+              <div class="example-note">Background (sleeping) + interruption (alarm went off).</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">They <strong>were having</strong> dinner at 8 PM last night.</div>
+              <div class="example-note">Action in progress at a specific past moment.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">While he <strong>was driving</strong>, it started to rain.</div>
+              <div class="example-note">Classic "while" structure — continuous + simple.</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words</div>
+          <span class="keyword-chip">while</span><span class="keyword-chip">when</span>
+          <span class="keyword-chip">as</span><span class="keyword-chip">at that moment</span>
+          <span class="keyword-chip">at 8 PM last night</span><span class="keyword-chip">all morning</span>
+        </div>
+      </div>
+      <div class="content-panel" id="cont-exercises">
+        <div class="exercises-container">
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Use Past Continuous OR Past Simple.</div>
+            <div class="exercise-context">Verb: <strong>walk / see</strong></div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">I _____ (walk) home when I _____ (see) the accident.</label>
+            <input class="correction-input" data-answer="I was walking home when I saw the accident." placeholder="Full sentence..." data-tense="cont">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">What was happening at 10 PM last night?</div>
+            <div class="exercise-context">"At 10 PM, Maria _______ a book."</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">A</span> read</div>
+              <div class="mc-option" data-value="b" data-correct="true" onclick="selectMC(this)"><span class="mc-letter">B</span> was reading</div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">C</span> has read</div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">D</span> had read</div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Correct the sentence.</div>
+            <div class="error-text">"While I <span class="error-highlight">cooked</span>, my brother was listening to music."</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="While I was cooking, my brother was listening to music." placeholder="Corrected sentence..." data-tense="cont">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder</div>
+            <div class="exercise-prompt">Build the Past Continuous sentence.</div>
+            <div class="reorder-words" id="words-cont4">
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">phone</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">were</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">talking</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">They</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">the</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-cont4')">on</span>
+            </div>
+            <div class="answer-zone" id="zone-cont4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-cont4','They were talking on the phone')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-cont4','zone-cont4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 6. FUTURE PERFECT =================== -->
+  <section class="tense-section" id="sec-future" data-tense="future" aria-labelledby="title-future">
+    <div class="tense-header">
+      <div class="tense-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Tense 6
+      </div>
+      <h2 class="tense-title" id="title-future">Future Perfect</h2>
+      <p class="tense-subtitle">An action that will be completed BEFORE a specific point in the future — looking forward to a finished result.</p>
+    </div>
+    <div class="tense-body">
+      <div class="content-tabs">
+        <button class="content-tab active" data-panel="future-summary">📘 Summary</button>
+        <button class="content-tab" data-panel="future-exercises">✏️ Exercises</button>
+      </div>
+      <div class="content-panel active" id="future-summary">
+        <div class="formula-box">
+          <div class="formula-label">Formula</div>
+          <div class="formula-text">Subject + <code>will have</code> + <code>past participle</code></div>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-label">Done before a future point</div>
+          <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-now"></div>
+            <div class="timeline-bar" style="left:52%;right:25%;background:var(--color-future);opacity:0.35"></div>
+            <div class="timeline-point" style="left:50%">
+              <div class="timeline-dot" style="border-color:var(--color-text-faint)"></div>
+              <div class="timeline-point-label">NOW</div>
+            </div>
+            <div class="timeline-point active" style="left:70%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label" style="color:var(--color-future);font-weight:700">✓ Will have done</div>
+            </div>
+            <div class="timeline-point" style="left:85%">
+              <div class="timeline-dot"></div>
+              <div class="timeline-point-label">Future deadline</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-card-icon">🏁</div>
+            <div class="usage-card-title">Completed before future deadline</div>
+            <div class="usage-card-desc">Emphasizes that the action will be finished by a point in the future</div>
+          </div>
+          <div class="usage-card">
+            <div class="usage-card-icon">📊</div>
+            <div class="usage-card-title">Predictions about completion</div>
+            <div class="usage-card-desc">"By 2030, scientists will have discovered a cure."</div>
+          </div>
+        </div>
+        <div class="example-list">
+          <div class="example-item">
+            <div class="example-item-icon">1</div>
+            <div>
+              <div class="example-sentence">By next June, she <strong>will have finished</strong> her degree.</div>
+              <div class="example-note">The action (finishing) will be complete before "next June".</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">2</div>
+            <div>
+              <div class="example-sentence">By the time you arrive, I <strong>will have cooked</strong> dinner.</div>
+              <div class="example-note">Cooking will be done before you arrive.</div>
+            </div>
+          </div>
+          <div class="example-item">
+            <div class="example-item-icon">3</div>
+            <div>
+              <div class="example-sentence">They <strong>will have been</strong> married for 30 years next November.</div>
+              <div class="example-note">Future Perfect with duration (will have been + ing also exists).</div>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-box">
+          <div class="keywords-title">⚡ Signal words</div>
+          <span class="keyword-chip">by (next week/month/year)</span>
+          <span class="keyword-chip">by the time</span>
+          <span class="keyword-chip">before</span>
+          <span class="keyword-chip">in (x years)</span>
+          <span class="keyword-chip">by then</span>
+        </div>
+      </div>
+      <div class="content-panel" id="future-exercises">
+        <div class="exercises-container">
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 1 — Fill in the blank</div>
+            <div class="exercise-prompt">Use the Future Perfect.</div>
+            <div class="exercise-context">Verb: <strong>save</strong></div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">By December, he _____ enough money to buy a car.</label>
+            <input class="blank-input" data-answer="will have saved" data-tense="future" style="display:block;margin-top:8px;min-width:240px;border:1.5px solid var(--color-future);border-radius:var(--radius-md);padding:var(--space-2) var(--space-4)" placeholder="will have ___...">
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkFillBlank(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 2 — Multiple Choice</div>
+            <div class="exercise-prompt">Which sentence is correct?</div>
+            <div class="mc-options">
+              <div class="mc-option" data-value="a" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">A</span> By Friday, I finish the project.</div>
+              <div class="mc-option" data-value="b" data-correct="true" onclick="selectMC(this)"><span class="mc-letter">B</span> By Friday, I will have finished the project.</div>
+              <div class="mc-option" data-value="c" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">C</span> By Friday, I have finished the project.</div>
+              <div class="mc-option" data-value="d" data-correct="false" onclick="selectMC(this)"><span class="mc-letter">D</span> By Friday, I had finished the project.</div>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 3 — Error Correction</div>
+            <div class="exercise-prompt">Fix the tense error.</div>
+            <div class="error-text">"By the time we <span class="error-highlight">will arrive</span>, the concert will have started."</div>
+            <label style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted)">Corrected sentence:</label>
+            <input class="correction-input" data-answer="By the time we arrive, the concert will have started." placeholder="Corrected sentence..." data-tense="future">
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);font-style:italic">Hint: After "by the time", use Present Simple (not future)!</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkCorrection(this)">Check</button>
+              <button class="btn btn-ghost" onclick="resetExercise(this)">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+
+          <div class="exercise-card">
+            <div class="exercise-number">Exercise 4 — Reorder</div>
+            <div class="exercise-prompt">Build the Future Perfect sentence.</div>
+            <div class="reorder-words" id="words-future4">
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">graduated</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">By</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">will</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">She</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">have</span>
+              <span class="word-chip" onclick="placeWord(this,'zone-future4')">2027</span>
+            </div>
+            <div class="answer-zone" id="zone-future4" onclick="unplaceWord(event)"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="checkReorder(this,'zone-future4','By 2027 She will have graduated')">Check</button>
+              <button class="btn btn-ghost" onclick="resetReorder('words-future4','zone-future4')">Reset</button>
+            </div>
+            <div class="feedback-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ===== GLOBAL SCORE =====
+let totalAnswered = 0, totalCorrect = 0;
+function updateScore(correct) {
+  totalAnswered++;
+  if (correct) totalCorrect++;
+  document.getElementById('score-correct').textContent = totalCorrect;
+  document.getElementById('score-total').textContent = totalAnswered;
+  const pct = Math.round((totalCorrect / totalAnswered) * 100);
+  document.getElementById('score-pct').textContent = pct + '%';
+}
+
+// ===== THEME TOGGLE =====
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  if (t) t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    t.innerHTML = d === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+
+// ===== NAV TABS =====
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ===== CONTENT TABS (Summary / Exercises) =====
+document.querySelectorAll('.content-tabs').forEach(tabsEl => {
+  tabsEl.querySelectorAll('.content-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const section = tabsEl.closest('.tense-body');
+      section.querySelectorAll('.content-tab').forEach(t => t.classList.remove('active'));
+      section.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const targetId = tab.dataset.panel;
+      const panel = document.getElementById(targetId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// ===== FILL IN BLANK =====
+function checkFillBlank(btn) {
+  const card = btn.closest('.exercise-card');
+  const input = card.querySelector('input.blank-input[data-answer]');
+  if (!input) return;
+  const answer = input.dataset.answer.trim().toLowerCase();
+  const userVal = input.value.trim().toLowerCase();
+  const correct = userVal === answer;
+  input.classList.remove('correct','wrong');
+  input.classList.add(correct ? 'correct' : 'wrong');
+  showFeedback(card, correct, correct ? '🎉 Perfect!' : `❌ The correct answer is: "${input.dataset.answer}"`);
+  updateScore(correct);
+  btn.disabled = true;
+}
+
+function checkFillBlankMultiple(btn, answers) {
+  const card = btn.closest('.exercise-card');
+  const input = card.querySelector('input.blank-input[data-tense]');
+  if (!input) return;
+  const userVal = input.value.trim().toLowerCase();
+  const correct = answers.map(a=>a.toLowerCase()).includes(userVal);
+  input.classList.remove('correct','wrong');
+  input.classList.add(correct ? 'correct' : 'wrong');
+  showFeedback(card, correct, correct ? '🎉 Correct!' : `❌ Correct: "${answers[0]}" (or "${answers[1]}")`);
+  updateScore(correct);
+  btn.disabled = true;
+}
+
+// ===== MULTIPLE CHOICE =====
+function selectMC(optionEl) {
+  const card = optionEl.closest('.exercise-card');
+  if (card.dataset.answered) return;
+  card.dataset.answered = '1';
+
+  const allOpts = card.querySelectorAll('.mc-option');
+  allOpts.forEach(o => o.classList.remove('selected'));
+  optionEl.classList.add('selected');
+
+  setTimeout(() => {
+    const isCorrect = optionEl.dataset.correct === 'true';
+    allOpts.forEach(o => {
+      if (o.dataset.correct === 'true') { o.classList.add('correct'); o.classList.remove('selected'); }
+    });
+    if (!isCorrect) {
+      optionEl.classList.remove('selected');
+      optionEl.classList.add('wrong');
+    }
+    showFeedback(card, isCorrect, isCorrect ? '🎉 Correct!' : '❌ Not quite — see the correct answer above.');
+    updateScore(isCorrect);
+  }, 300);
+}
+
+// ===== ERROR CORRECTION =====
+function checkCorrection(btn) {
+  const card = btn.closest('.exercise-card');
+  const input = card.querySelector('input.correction-input[data-answer]');
+  if (!input) return;
+  const answer = input.dataset.answer.trim().toLowerCase().replace(/\s+/g,' ');
+  const userVal = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+  const correct = userVal === answer;
+  input.classList.remove('correct','wrong');
+  input.classList.add(correct ? 'correct' : 'wrong');
+  showFeedback(card, correct, correct ? '🎉 Excellent! That\'s right.' : `❌ The correct version: "${input.dataset.answer}"`);
+  updateScore(correct);
+  btn.disabled = true;
+}
+
+// ===== WORD REORDER =====
+function placeWord(chip, zoneId) {
+  if (chip.classList.contains('used')) return;
+  chip.classList.add('used');
+  const zone = document.getElementById(zoneId);
+  const placed = document.createElement('span');
+  placed.className = 'placed-word';
+  placed.textContent = chip.textContent;
+  placed.dataset.source = chip.closest('.reorder-words').id;
+  placed.dataset.word = chip.textContent;
+  zone.appendChild(placed);
+}
+function unplaceWord(e) {
+  const placed = e.target.closest('.placed-word');
+  if (!placed) return;
+  const sourceId = placed.dataset.source;
+  const word = placed.dataset.word;
+  const sourceChips = document.querySelectorAll(`#${sourceId} .word-chip`);
+  sourceChips.forEach(chip => {
+    if (chip.textContent === word && chip.classList.contains('used')) {
+      chip.classList.remove('used');
+    }
+  });
+  placed.remove();
+}
+function checkReorder(btn, zoneId, correctAnswer) {
+  const zone = document.getElementById(zoneId);
+  const words = Array.from(zone.querySelectorAll('.placed-word')).map(w => w.textContent);
+  const userAnswer = words.join(' ').replace(/\s+/g,' ').trim().toLowerCase().replace(/[?!.]/g,'');
+  const correct = correctAnswer.toLowerCase().replace(/[?!.]/g,'').replace(/\s+/g,' ').trim();
+  const isCorrect = userAnswer === correct;
+  zone.classList.remove('correct','wrong');
+  zone.classList.add(isCorrect ? 'correct' : 'wrong');
+  const card = btn.closest('.exercise-card');
+  showFeedback(card, isCorrect, isCorrect ? '🎉 Perfect order!' : `❌ Correct: "${correctAnswer}"`);
+  updateScore(isCorrect);
+  btn.disabled = true;
+}
+function resetReorder(wordsId, zoneId) {
+  const words = document.getElementById(wordsId);
+  const zone = document.getElementById(zoneId);
+  words.querySelectorAll('.word-chip').forEach(c => c.classList.remove('used'));
+  zone.innerHTML = '';
+  zone.classList.remove('correct','wrong');
+  const card = zone.closest('.exercise-card');
+  const fb = card.querySelector('.feedback-box');
+  fb.classList.remove('show','correct','wrong');
+  const btn = card.querySelector('.btn-primary');
+  if (btn) btn.disabled = false;
+}
+
+// ===== RESET EXERCISE =====
+function resetExercise(btn) {
+  const card = btn.closest('.exercise-card');
+  card.querySelectorAll('input').forEach(i => {
+    i.value = '';
+    i.classList.remove('correct','wrong');
+  });
+  const fb = card.querySelector('.feedback-box');
+  fb.classList.remove('show','correct','wrong');
+  const checkBtn = card.querySelector('.btn-primary');
+  if (checkBtn) checkBtn.disabled = false;
+  delete card.dataset.answered;
+  card.querySelectorAll('.mc-option').forEach(o => o.classList.remove('selected','correct','wrong','reveal-correct'));
+}
+
+// ===== FEEDBACK =====
+function showFeedback(card, correct, message) {
+  const fb = card.querySelector('.feedback-box');
+  fb.classList.remove('show','correct','wrong');
+  fb.innerHTML = (correct ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>') + ' ' + message;
+  void fb.offsetWidth;
+  fb.classList.add('show', correct ? 'correct' : 'wrong');
+}
+
+// ===== INIT LUCIDE =====
+lucide.createIcons();
+</script>
+</body>
+</html>

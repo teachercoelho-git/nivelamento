@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Homework ✨</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+/* ========================
+   DESIGN TOKENS
+======================== */
+:root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito', 'Segoe UI', sans-serif;
+
+  --text-xs:   clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Soft pastel palette for girls — rose & lilac theme */
+  --color-bg:             #fdf8fd;
+  --color-surface:        #fff4fb;
+  --color-surface-2:      #ffffff;
+  --color-surface-offset: #f5eaf6;
+  --color-divider:        #e8d7ee;
+  --color-border:         #e0cce8;
+
+  --color-text:           #2a1a2e;
+  --color-text-muted:     #6b5070;
+  --color-text-faint:     #b89cc0;
+  --color-text-inverse:   #fdf8fd;
+
+  --color-primary:        #c2185b;
+  --color-primary-hover:  #ad1457;
+  --color-primary-active: #880e4f;
+  --color-primary-light:  #fce4ec;
+
+  --color-secondary:      #7b1fa2;
+  --color-secondary-hover:#6a1b9a;
+  --color-secondary-light:#f3e5f5;
+
+  --color-accent:         #ff6090;
+  --color-accent-light:   #ffe8f0;
+
+  --color-success:        #43a047;
+  --color-success-light:  #e8f5e9;
+  --color-error:          #e53935;
+  --color-error-light:    #ffebee;
+
+  --shadow-sm: 0 1px 4px oklch(0.3 0.05 330 / 0.08);
+  --shadow-md: 0 4px 16px oklch(0.3 0.05 330 / 0.12);
+  --shadow-lg: 0 12px 40px oklch(0.3 0.05 330 / 0.18);
+}
+
+/* ========================
+   BASE
+======================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: none; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  min-height: 100dvh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* ========================
+   LAYOUT
+======================== */
+.container {
+  max-width: 820px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/* ========================
+   HERO HEADER
+======================== */
+.site-header {
+  background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #ede7f6 100%);
+  padding: var(--space-10) 0 var(--space-8);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, oklch(0.88 0.12 350 / 0.35) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, oklch(0.85 0.1 290 / 0.3) 0%, transparent 45%);
+  pointer-events: none;
+}
+.site-header .container { position: relative; }
+
+.hero-img {
+  width: 200px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-2xl);
+  margin: 0 auto var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+.site-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+}
+.site-header .subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+.subject-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ========================
+   STUDENT TABS
+======================== */
+.student-tabs {
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-divider);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.tabs-inner {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  max-width: 820px;
+  margin-inline: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs-inner::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: all var(--transition-interactive);
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+.tab-btn:hover { background: var(--color-surface-offset); color: var(--color-primary); }
+.tab-btn.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+.tab-btn .tab-avatar {
+  width: 28px; height: 28px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  background: white;
+  color: var(--color-primary);
+  font-weight: 800;
+  transition: all var(--transition-interactive);
+}
+.tab-btn.active .tab-avatar {
+  background: rgba(255,255,255,0.25);
+  color: white;
+}
+
+/* ========================
+   STUDENT PANELS
+======================== */
+.student-panel { display: none; }
+.student-panel.active { display: block; }
+
+.panel-header {
+  padding: var(--space-10) 0 var(--space-6);
+  text-align: center;
+}
+.panel-header .name-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-2xl);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  box-shadow: var(--shadow-md);
+}
+.panel-header .greeting {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+.panel-header .score-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+.panel-header .score-display span.score-num {
+  font-size: var(--text-xl);
+  font-weight: 900;
+  color: var(--color-primary);
+}
+
+/* ========================
+   EXERCISE CARDS
+======================== */
+.exercises { padding-bottom: var(--space-20); }
+
+.exercise-card {
+  background: var(--color-surface-2);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-interactive);
+  position: relative;
+  overflow: hidden;
+}
+.exercise-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.exercise-card.speaking::before { background: linear-gradient(90deg, #e91e63, #f06292); }
+.exercise-card.multiplechoice::before { background: linear-gradient(90deg, #7b1fa2, #ba68c8); }
+.exercise-card.fillin::before { background: linear-gradient(90deg, #ff6090, #f48fb1); }
+.exercise-card.ordering::before { background: linear-gradient(90deg, #c2185b, #e91e63); }
+.exercise-card.matching::before { background: linear-gradient(90deg, #6a1b9a, #9c27b0); }
+
+.exercise-card:hover { box-shadow: var(--shadow-md); }
+
+.exercise-num {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  width: 36px; height: 36px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.exercise-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+
+.exercise-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1.3;
+  margin-bottom: var(--space-2);
+}
+.exercise-card .instruction {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ========================
+   SPEAKING EXERCISE
+======================== */
+.speaking-prompt {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+  text-align: center;
+}
+.speaking-prompt .prompt-emoji { font-size: 3rem; margin-bottom: var(--space-3); display: block; }
+.speaking-prompt .prompt-text {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+.speaking-prompt .prompt-hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+.speaking-controls { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.btn-record {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  transition: all var(--transition-interactive);
+  border: 2px solid;
+}
+.btn-record.start {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.btn-record.start:hover { background: var(--color-primary-hover); box-shadow: var(--shadow-md); }
+.btn-record.stop {
+  background: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+  display: none;
+}
+.recording-indicator {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-error);
+  font-weight: 700;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.recording-indicator .dot {
+  width: 10px; height: 10px;
+  background: var(--color-error);
+  border-radius: var(--radius-full);
+}
+.recorded-msg {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  background: var(--color-success-light);
+  color: var(--color-success);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+}
+
+/* ========================
+   MULTIPLE CHOICE
+======================== */
+.choices-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+@media (max-width: 500px) { .choices-grid { grid-template-columns: 1fr; } }
+.choice-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  text-align: left;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  transition: all var(--transition-interactive);
+  cursor: pointer;
+  color: var(--color-text);
+}
+.choice-btn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.choice-btn.correct {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+.choice-btn.wrong {
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+  color: var(--color-error);
+}
+.choice-letter {
+  min-width: 26px; height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-offset);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 900;
+  margin-top: 1px;
+  transition: all var(--transition-interactive);
+}
+.choice-btn.correct .choice-letter { background: var(--color-success); color: white; }
+.choice-btn.wrong .choice-letter { background: var(--color-error); color: white; }
+.choice-btn:disabled { cursor: default; }
+
+.feedback-area {
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  display: none;
+}
+.feedback-area.correct { background: var(--color-success-light); color: var(--color-success); display: flex; align-items: center; gap: var(--space-2); }
+.feedback-area.wrong { background: var(--color-error-light); color: var(--color-error); display: flex; align-items: center; gap: var(--space-2); }
+
+/* ========================
+   FILL IN THE BLANK
+======================== */
+.fill-sentence {
+  font-size: var(--text-lg);
+  line-height: 2;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+.fill-input {
+  display: inline-block;
+  min-width: 100px;
+  border: none;
+  border-bottom: 3px solid var(--color-primary);
+  background: var(--color-primary-light);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: var(--color-primary);
+  text-align: center;
+  outline: none;
+  transition: all var(--transition-interactive);
+}
+.fill-input:focus { border-bottom-color: var(--color-secondary); background: var(--color-secondary-light); color: var(--color-secondary); }
+.fill-input.correct { border-bottom-color: var(--color-success); background: var(--color-success-light); color: var(--color-success); }
+.fill-input.wrong { border-bottom-color: var(--color-error); background: var(--color-error-light); color: var(--color-error); }
+.fill-input:disabled { cursor: default; }
+
+.fill-submit {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--color-secondary);
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  transition: all var(--transition-interactive);
+  margin-top: var(--space-4);
+}
+.fill-submit:hover:not(:disabled) { background: var(--color-secondary-hover); box-shadow: var(--shadow-md); }
+.fill-submit:disabled { opacity: 0.5; cursor: default; }
+
+/* ========================
+   ORDERING
+======================== */
+.ordering-container {
+  margin-bottom: var(--space-5);
+}
+.ordering-instruction {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+.words-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  min-height: 60px;
+  margin-bottom: var(--space-4);
+  border: 2px dashed var(--color-border);
+}
+.answer-zone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  min-height: 60px;
+  border: 2px dashed var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.word-chip {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all var(--transition-interactive);
+  user-select: none;
+}
+.words-pool .word-chip {
+  background: white;
+  border-color: var(--color-border);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+.words-pool .word-chip:hover { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.answer-zone .word-chip {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.answer-zone .word-chip:hover { background: var(--color-primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.answer-zone.correct-order { background: var(--color-success-light); border-color: var(--color-success); }
+.answer-zone.correct-order .word-chip { background: var(--color-success); border-color: var(--color-success); }
+.answer-zone.wrong-order { background: var(--color-error-light); border-color: var(--color-error); }
+.answer-zone.wrong-order .word-chip { background: var(--color-error); border-color: var(--color-error); }
+.ordering-btn-row { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }
+.btn-check-order {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  transition: all var(--transition-interactive);
+}
+.btn-check-order:hover:not(:disabled) { background: var(--color-primary-hover); box-shadow: var(--shadow-md); }
+.btn-reset-order {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--color-surface-offset);
+  color: var(--color-text-muted);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  border: 2px solid var(--color-border);
+  transition: all var(--transition-interactive);
+}
+.btn-reset-order:hover { background: var(--color-surface-offset); border-color: var(--color-text-muted); color: var(--color-text); }
+
+/* ========================
+   MATCHING
+======================== */
+.matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+@media (max-width: 500px) { .matching-grid { grid-template-columns: 1fr; } }
+.matching-col { display: flex; flex-direction: column; gap: var(--space-2); }
+.matching-col h4 {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-2);
+}
+.match-item {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-interactive);
+  display: flex; align-items: center; gap: var(--space-2);
+  min-height: 48px;
+}
+.match-item:hover:not(.matched):not(.selected) { border-color: var(--color-secondary); background: var(--color-secondary-light); color: var(--color-secondary); }
+.match-item.selected { border-color: var(--color-primary); background: var(--color-primary-light); color: var(--color-primary); box-shadow: var(--shadow-sm); }
+.match-item.matched { border-color: var(--color-success); background: var(--color-success-light); color: var(--color-success); cursor: default; }
+.match-item.wrong-match { border-color: var(--color-error); background: var(--color-error-light); color: var(--color-error); }
+
+.match-indicator {
+  width: 12px; height: 12px; border-radius: var(--radius-full);
+  background: var(--color-border); flex-shrink: 0;
+  transition: all var(--transition-interactive);
+}
+.match-item.selected .match-indicator { background: var(--color-primary); }
+.match-item.matched .match-indicator { background: var(--color-success); }
+.match-item.wrong-match .match-indicator { background: var(--color-error); }
+
+/* ========================
+   SCORE + PROGRESS
+======================== */
+.progress-bar-wrap {
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-full);
+  height: 8px;
+  overflow: hidden;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================
+   CONFETTI
+======================== */
+.confetti-wrap {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 10px; height: 10px;
+  animation: confetti-fall 2.5s linear forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-100px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; }
+}
+
+/* ========================
+   COMPLETION
+======================== */
+.completion-banner {
+  display: none;
+  text-align: center;
+  padding: var(--space-10) var(--space-8);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--color-border);
+  margin-bottom: var(--space-8);
+}
+.completion-banner.visible { display: block; }
+.completion-banner h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  margin: var(--space-4) 0 var(--space-2);
+}
+.completion-banner p { color: var(--color-text-muted); font-size: var(--text-base); }
+
+/* ========================
+   FOOTER
+======================== */
+.site-footer {
+  text-align: center;
+  padding: var(--space-8) 0;
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* ========================
+   THEME COLORS PER STUDENT
+======================== */
+[data-student="stephanny"] .name-pill {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  color: #c2185b;
+}
+[data-student="stephanny"] .exercise-num {
+  background: #fce4ec; color: #c2185b;
+}
+[data-student="stephanny"] .exercise-type-badge {
+  background: #fce4ec; color: #c2185b;
+}
+
+[data-student="tatiane"] .name-pill {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+  color: #7b1fa2;
+}
+[data-student="tatiane"] .exercise-num {
+  background: #f3e5f5; color: #7b1fa2;
+}
+[data-student="tatiane"] .exercise-type-badge {
+  background: #f3e5f5; color: #7b1fa2;
+}
+
+[data-student="juliana"] .name-pill {
+  background: linear-gradient(135deg, #ffe8f0, #ffd6e8);
+  color: #e91e63;
+}
+[data-student="juliana"] .exercise-num {
+  background: #ffe8f0; color: #e91e63;
+}
+[data-student="juliana"] .exercise-type-badge {
+  background: #ffe8f0; color: #e91e63;
+}
+
+/* ========================
+   SCROLL REVEAL
+======================== */
+.exercise-card {
+  opacity: 1;
+}
+@supports (animation-timeline: scroll()) {
+  .exercise-card {
+    opacity: 0;
+    animation: reveal-card linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+  @keyframes reveal-card { to { opacity: 1; } }
+}
+
+/* ========================
+   UTILITIES
+======================== */
+.text-center { text-align: center; }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.gap-2 { gap: var(--space-2); }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO HEADER ===================== -->
+<header class="site-header">
+  <div class="container">
+    <div class="subject-badge">
+      <i data-lucide="book-open" style="width:14px;height:14px;"></i>
+      English Homework
+    </div>
+    <h1>✨ Let's Practice English! ✨</h1>
+    <p class="subtitle">Choose your name below and complete all the fun exercises. You've got this, girls! 💪🌸</p>
+    <img
+      class="hero-img"
+      src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d1775acd-7ec7-499e-b660-0da5f990b1ff.png"
+      alt="Three girls studying together"
+      width="200" height="160" loading="lazy"
+    />
+  </div>
+</header>
+
+<!-- ===================== STUDENT TABS ===================== -->
+<nav class="student-tabs" role="tablist" aria-label="Select student">
+  <div class="tabs-inner">
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-stephanny" onclick="switchStudent('stephanny', this)">
+      <span class="tab-avatar">S</span> Stephanny
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tatiane" onclick="switchStudent('tatiane', this)">
+      <span class="tab-avatar">T</span> Tatiane
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-juliana" onclick="switchStudent('juliana', this)">
+      <span class="tab-avatar">J</span> Juliana
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== MAIN ===================== -->
+<main>
+
+<!-- ================= STEPHANNY ================= -->
+<section id="panel-stephanny" class="student-panel active" role="tabpanel" data-student="stephanny">
+  <div class="container">
+    <div class="panel-header">
+      <div class="name-pill">
+        <span>🌸</span> Hello, Stephanny!
+        <span>🌸</span>
+      </div>
+      <p class="greeting">Today's topic: <strong>Work, Business English &amp; Professional Communication</strong></p>
+      <div class="score-display">
+        Score: <span class="score-num" id="score-stephanny">0</span> / 5
+      </div>
+      <div class="progress-bar-wrap" style="max-width:300px;margin-inline:auto;margin-top:var(--space-3)">
+        <div class="progress-bar-fill" id="progress-stephanny" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="completion-banner" id="complete-stephanny">
+      <div style="font-size:3rem">🎉</div>
+      <h2>Outstanding, Stephanny!</h2>
+      <p>You completed all exercises! You're ready for the professional world! 🌸💼✨</p>
+    </div>
+
+    <div class="exercises">
+
+      <!-- EX 1: Speaking — Job Description -->
+      <div class="exercise-card speaking" id="s-ex1">
+        <span class="exercise-num">01</span>
+        <span class="exercise-type-badge"><i data-lucide="briefcase" style="width:12px;height:12px"></i> Speaking</span>
+        <h3>Describe Your Job</h3>
+        <p class="instruction">Speak for at least 45 seconds describing your work. Use vocabulary such as: <em>I work at / I am responsible for / My duties include / I deal with / I report to / My shift starts at...</em></p>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">💼</span>
+          <div class="prompt-text">"Tell me about your job. What do you do, where do you work, and what are your main responsibilities?"</div>
+          <div class="prompt-hint">Mention your job title, workplace, main tasks and working hours!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="s-rec-start-1" onclick="startRecording('stephanny','s-rec-start-1','s-rec-stop-1','s-rec-ind-1','s-rec-done-1')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="s-rec-stop-1" onclick="stopRecording('stephanny','s-rec-start-1','s-rec-stop-1','s-rec-ind-1','s-rec-done-1',1)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="s-rec-ind-1">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="s-rec-done-1">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Excellent! Professional description recorded. +1 point! 🌟
+        </div>
+      </div>
+
+      <!-- EX 2: Multiple Choice — Business English -->
+      <div class="exercise-card multiplechoice" id="s-ex2">
+        <span class="exercise-num">02</span>
+        <span class="exercise-type-badge"><i data-lucide="list" style="width:12px;height:12px"></i> Multiple Choice</span>
+        <h3>Professional Vocabulary</h3>
+        <p class="instruction">Read the workplace situation and choose the most appropriate response in English.</p>
+        <div style="background:var(--color-surface-offset);padding:var(--space-5);border-radius:var(--radius-xl);margin-bottom:var(--space-5);">
+          <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-2);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">📋 Situation</p>
+          <p style="font-size:var(--text-base);font-weight:600;color:var(--color-text);">Your manager asks you to finish a report by 5 PM, but you are already overloaded with tasks. What is the most professional way to respond?</p>
+        </div>
+        <div class="choices-grid" style="grid-template-columns:1fr;">
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','stephanny')">
+            <span class="choice-letter">A</span> "I can't do it. I have too much work already."
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','stephanny')">
+            <span class="choice-letter">B</span> "No problem! I will try."
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'correct','stephanny')">
+            <span class="choice-letter">C</span> "I'd be happy to help, but I'm currently working on [task]. Could we discuss priorities so I can manage my time effectively?"
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','stephanny')">
+            <span class="choice-letter">D</span> "I will do it later, maybe tomorrow."
+          </button>
+        </div>
+        <div class="feedback-area" id="s-fb-2"></div>
+      </div>
+
+      <!-- EX 3: Fill in the blank — Work Phrases -->
+      <div class="exercise-card fillin" id="s-ex3">
+        <span class="exercise-num">03</span>
+        <span class="exercise-type-badge"><i data-lucide="pencil" style="width:12px;height:12px"></i> Fill in the Blank</span>
+        <h3>Complete the Professional Sentences</h3>
+        <p class="instruction">Use the correct word from the box to complete each professional phrase. No word bank this time — you need to think! 💪</p>
+        <div style="background:linear-gradient(135deg,var(--color-primary-light),var(--color-secondary-light));padding:var(--space-4);border-radius:var(--radius-lg);margin-bottom:var(--space-6);text-align:center;">
+          <p style="font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-primary);margin-bottom:var(--space-2)">Word Bank</p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;">
+            <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">deadline</span>
+            <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">promoted</span>
+            <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">colleagues</span>
+            <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">overtime</span>
+          </div>
+        </div>
+        <div class="fill-sentence">
+          1. We need to meet the <input class="fill-input" id="s-fill-1" data-answer="deadline" placeholder="______" size="9" /> by Friday or the client will be unhappy.
+        </div>
+        <div class="fill-sentence">
+          2. After two years of hard work, she was finally <input class="fill-input" id="s-fill-2" data-answer="promoted" placeholder="______" size="9" /> to team manager.
+        </div>
+        <div class="fill-sentence">
+          3. I get along well with my <input class="fill-input" id="s-fill-3" data-answer="colleagues" placeholder="______" size="10" /> at the office.
+        </div>
+        <div class="fill-sentence">
+          4. Last week was so busy — I had to work <input class="fill-input" id="s-fill-4" data-answer="overtime" placeholder="______" size="9" /> three days in a row.
+        </div>
+        <div style="text-align:center">
+          <button class="fill-submit" id="s-fill-btn" onclick="checkFillIn(['s-fill-1','s-fill-2','s-fill-3','s-fill-4'],'stephanny','s-fill-btn','s-fill-fb')">
+            <i data-lucide="check" style="width:16px;height:16px"></i> Check All Answers
+          </button>
+        </div>
+        <div class="feedback-area mt-4" id="s-fill-fb"></div>
+      </div>
+
+      <!-- EX 4: Ordering — Formal Email sentence -->
+      <div class="exercise-card ordering" id="s-ex4">
+        <span class="exercise-num">04</span>
+        <span class="exercise-type-badge"><i data-lucide="mail" style="width:12px;height:12px"></i> Ordering</span>
+        <h3>Build a Professional Email Sentence</h3>
+        <p class="instruction">This is a line from a formal work email. Put the words in the correct order to make a polite, professional sentence. This is harder — think carefully about formal English word order!</p>
+        <div class="ordering-container">
+          <div class="ordering-instruction">🔤 Word bank — click to add to your sentence:</div>
+          <div class="words-pool" id="s-pool-4"></div>
+          <div class="ordering-instruction">✉️ Your sentence:</div>
+          <div class="answer-zone" id="s-answer-4"></div>
+          <div class="ordering-btn-row">
+            <button class="btn-check-order" onclick="checkOrdering('s-pool-4','s-answer-4','stephanny','s-ord-fb-4',['I','would','like','to','request','a','meeting','to','discuss','the','project','timeline'])">
+              <i data-lucide="check" style="width:16px;height:16px"></i> Check
+            </button>
+            <button class="btn-reset-order" onclick="resetOrdering('s-pool-4','s-answer-4',['I','would','like','to','request','a','meeting','to','discuss','the','project','timeline'])">
+              <i data-lucide="refresh-cw" style="width:16px;height:16px"></i> Reset
+            </button>
+          </div>
+          <div style="background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);margin-top:var(--space-3);">
+            <p style="font-size:var(--text-xs);font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-1)">💡 Tip</p>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Think: Subject + modal verb + main verb + infinitive phrase. This is a very common pattern in formal business emails!</p>
+          </div>
+          <div class="feedback-area mt-2" id="s-ord-fb-4"></div>
+        </div>
+      </div>
+
+      <!-- EX 5: Speaking — Roleplay Job Interview -->
+      <div class="exercise-card speaking" id="s-ex5">
+        <span class="exercise-num">05</span>
+        <span class="exercise-type-badge"><i data-lucide="user-check" style="width:12px;height:12px"></i> Speaking — Roleplay</span>
+        <h3>Job Interview Roleplay 🎤</h3>
+        <p class="instruction">Pretend you are in a job interview for a better position at your company — or a new company! Answer the interviewer's question. Use formal language, speak clearly, and be confident. Aim for 60 seconds!</p>
+        <div style="background:var(--color-surface-offset);border-radius:var(--radius-xl);padding:var(--space-5);margin-bottom:var(--space-5);">
+          <p style="font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);margin-bottom:var(--space-3)">🎯 Use these structures in your answer:</p>
+          <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-2);">
+            <li style="background:var(--color-primary-light);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);">I have X years of experience in...</li>
+            <li style="background:var(--color-secondary-light);color:var(--color-secondary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);">My greatest strength is...</li>
+            <li style="background:var(--color-primary-light);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);">I am skilled at / good at...</li>
+            <li style="background:var(--color-secondary-light);color:var(--color-secondary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);">In my current role, I...</li>
+            <li style="background:var(--color-primary-light);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);">I believe I am a good fit because...</li>
+          </ul>
+        </div>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">👔</span>
+          <div class="prompt-text">"Tell me about yourself and why you would be a great candidate for this position."</div>
+          <div class="prompt-hint">Speak for at least 60 seconds — be professional and confident!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="s-rec-start-5" onclick="startRecording('stephanny','s-rec-start-5','s-rec-stop-5','s-rec-ind-5','s-rec-done-5')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="s-rec-stop-5" onclick="stopRecording('stephanny','s-rec-start-5','s-rec-stop-5','s-rec-ind-5','s-rec-done-5',5)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="s-rec-ind-5">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="s-rec-done-5">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Impressive! You nailed that interview! +1 point! 🌟
+        </div>
+      </div>
+
+    </div><!-- /exercises -->
+  </div>
+</section>
+
+<!-- ================= TATIANE ================= -->
+<section id="panel-tatiane" class="student-panel" role="tabpanel" data-student="tatiane">
+  <div class="container">
+    <div class="panel-header">
+      <div class="name-pill">
+        <span>💜</span> Hello, Tatiane!
+        <span>💜</span>
+      </div>
+      <p class="greeting">Today's topic: <strong>Food & Likes / Dislikes</strong></p>
+      <div class="score-display">
+        Score: <span class="score-num" id="score-tatiane">0</span> / 5
+      </div>
+      <div class="progress-bar-wrap" style="max-width:300px;margin-inline:auto;margin-top:var(--space-3)">
+        <div class="progress-bar-fill" id="progress-tatiane" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="completion-banner" id="complete-tatiane">
+      <div style="font-size:3rem">🎉</div>
+      <h2>Wonderful, Tatiane!</h2>
+      <p>You nailed all the exercises! You're a superstar! 💜⭐</p>
+    </div>
+
+    <div class="exercises">
+
+      <!-- EX 1: Speaking -->
+      <div class="exercise-card speaking" id="t-ex1">
+        <span class="exercise-num">01</span>
+        <span class="exercise-type-badge"><i data-lucide="mic" style="width:12px;height:12px"></i> Speaking</span>
+        <h3>Talk About Your Favorite Food</h3>
+        <p class="instruction">Describe your favorite food in English! Use adjectives: delicious, sweet, salty, crunchy, warm... Speak for about 30 seconds.</p>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">🍕</span>
+          <div class="prompt-text">"What is your favorite food and why do you love it?"</div>
+          <div class="prompt-hint">Use at least 3 describing words (adjectives)!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="t-rec-start-1" onclick="startRecording('tatiane','t-rec-start-1','t-rec-stop-1','t-rec-ind-1','t-rec-done-1')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="t-rec-stop-1" onclick="stopRecording('tatiane','t-rec-start-1','t-rec-stop-1','t-rec-ind-1','t-rec-done-1',1)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="t-rec-ind-1">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="t-rec-done-1">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Delicious description! +1 point! 🌟
+        </div>
+      </div>
+
+      <!-- EX 2: Multiple Choice -->
+      <div class="exercise-card multiplechoice" id="t-ex2">
+        <span class="exercise-num">02</span>
+        <span class="exercise-type-badge"><i data-lucide="list" style="width:12px;height:12px"></i> Multiple Choice</span>
+        <h3>Choose the Right Expression</h3>
+        <p class="instruction">Which sentence correctly expresses a dislike?</p>
+        <div class="choices-grid" style="grid-template-columns:1fr;">
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','tatiane')">
+            <span class="choice-letter">A</span> I really love broccoli!
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','tatiane')">
+            <span class="choice-letter">B</span> She likes pizza a lot.
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'correct','tatiane')">
+            <span class="choice-letter">C</span> I can't stand spicy food.
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','tatiane')">
+            <span class="choice-letter">D</span> They enjoy eating sushi.
+          </button>
+        </div>
+        <div class="feedback-area" id="t-fb-2"></div>
+      </div>
+
+      <!-- EX 3: Fill in the blank -->
+      <div class="exercise-card fillin" id="t-ex3">
+        <span class="exercise-num">03</span>
+        <span class="exercise-type-badge"><i data-lucide="pencil" style="width:12px;height:12px"></i> Fill in the Blank</span>
+        <h3>Complete the Sentences</h3>
+        <p class="instruction">Fill in each blank with the correct word from the box.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:var(--space-4);margin-bottom:var(--space-6);">
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">hates</span>
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">loves</span>
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">prefers</span>
+        </div>
+        <div class="fill-sentence">
+          1. Ana <input class="fill-input" id="t-fill-1" data-answer="loves" placeholder="___" size="6" /> eating chocolate ice cream!
+        </div>
+        <div class="fill-sentence">
+          2. My brother <input class="fill-input" id="t-fill-2" data-answer="hates" placeholder="___" size="6" /> vegetables.
+        </div>
+        <div class="fill-sentence">
+          3. She <input class="fill-input" id="t-fill-3" data-answer="prefers" placeholder="___" size="8" /> coffee to tea in the morning.
+        </div>
+        <div style="text-align:center">
+          <button class="fill-submit" id="t-fill-btn" onclick="checkFillIn(['t-fill-1','t-fill-2','t-fill-3'],'tatiane','t-fill-btn','t-fill-fb')">
+            <i data-lucide="check" style="width:16px;height:16px"></i> Check Answers
+          </button>
+        </div>
+        <div class="feedback-area mt-4" id="t-fill-fb"></div>
+      </div>
+
+      <!-- EX 4: Matching -->
+      <div class="exercise-card matching" id="t-ex4">
+        <span class="exercise-num">04</span>
+        <span class="exercise-type-badge"><i data-lucide="link" style="width:12px;height:12px"></i> Matching</span>
+        <h3>Match the Food to Its Category</h3>
+        <p class="instruction">Click one food from the left column, then click its matching category on the right. Match all 4 pairs!</p>
+        <div class="matching-grid" id="t-match-grid">
+          <div class="matching-col">
+            <h4>🍽️ Food</h4>
+            <div class="match-item" id="t-m-left-1" data-pair="1" onclick="selectMatchItem(this,'left','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> 🍰 Cake
+            </div>
+            <div class="match-item" id="t-m-left-2" data-pair="2" onclick="selectMatchItem(this,'left','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> 🥕 Carrot
+            </div>
+            <div class="match-item" id="t-m-left-3" data-pair="3" onclick="selectMatchItem(this,'left','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> 🥩 Steak
+            </div>
+            <div class="match-item" id="t-m-left-4" data-pair="4" onclick="selectMatchItem(this,'left','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> 🍋 Lemon
+            </div>
+          </div>
+          <div class="matching-col">
+            <h4>📂 Category</h4>
+            <div class="match-item" id="t-m-right-3" data-pair="3" onclick="selectMatchItem(this,'right','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> Protein / Meat
+            </div>
+            <div class="match-item" id="t-m-right-1" data-pair="1" onclick="selectMatchItem(this,'right','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> Sweet / Dessert
+            </div>
+            <div class="match-item" id="t-m-right-4" data-pair="4" onclick="selectMatchItem(this,'right','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> Sour / Citrus
+            </div>
+            <div class="match-item" id="t-m-right-2" data-pair="2" onclick="selectMatchItem(this,'right','tatiane','t-match-grid','t-match-fb')">
+              <span class="match-indicator"></span> Vegetable
+            </div>
+          </div>
+        </div>
+        <div class="feedback-area" id="t-match-fb"></div>
+      </div>
+
+      <!-- EX 5: Speaking -->
+      <div class="exercise-card speaking" id="t-ex5">
+        <span class="exercise-num">05</span>
+        <span class="exercise-type-badge"><i data-lucide="message-circle" style="width:12px;height:12px"></i> Speaking</span>
+        <h3>Describe a Meal</h3>
+        <p class="instruction">Imagine you are in a restaurant. Describe your ideal meal. Use: "I would like...", "I want to order...", "For dessert, I'll have..."</p>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">🍽️</span>
+          <div class="prompt-text">"Describe your perfect restaurant meal from starter to dessert."</div>
+          <div class="prompt-hint">Include a starter, main course, and dessert!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="t-rec-start-5" onclick="startRecording('tatiane','t-rec-start-5','t-rec-stop-5','t-rec-ind-5','t-rec-done-5')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="t-rec-stop-5" onclick="stopRecording('tatiane','t-rec-start-5','t-rec-stop-5','t-rec-ind-5','t-rec-done-5',5)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="t-rec-ind-5">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="t-rec-done-5">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Sounds delicious! +1 point! 🌟
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= JULIANA ================= -->
+<section id="panel-juliana" class="student-panel" role="tabpanel" data-student="juliana">
+  <div class="container">
+    <div class="panel-header">
+      <div class="name-pill">
+        <span>🌺</span> Hello, Juliana!
+        <span>🌺</span>
+      </div>
+      <p class="greeting">Today's topic: <strong>Hobbies & Free Time Activities</strong></p>
+      <div class="score-display">
+        Score: <span class="score-num" id="score-juliana">0</span> / 5
+      </div>
+      <div class="progress-bar-wrap" style="max-width:300px;margin-inline:auto;margin-top:var(--space-3)">
+        <div class="progress-bar-fill" id="progress-juliana" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="completion-banner" id="complete-juliana">
+      <div style="font-size:3rem">🎉</div>
+      <h2>Fantastic work, Juliana!</h2>
+      <p>You completed every exercise perfectly! You're amazing! 🌺💫</p>
+    </div>
+
+    <div class="exercises">
+
+      <!-- EX 1: Speaking -->
+      <div class="exercise-card speaking" id="j-ex1">
+        <span class="exercise-num">01</span>
+        <span class="exercise-type-badge"><i data-lucide="mic" style="width:12px;height:12px"></i> Speaking</span>
+        <h3>Talk About Your Hobbies</h3>
+        <p class="instruction">Tell us about your favorite free-time activities! Use: "In my free time I...", "I enjoy...", "I love...", "I'm into..."</p>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">🎨</span>
+          <div class="prompt-text">"What do you like to do in your free time and why?"</div>
+          <div class="prompt-hint">Mention at least 3 different hobbies or activities!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="j-rec-start-1" onclick="startRecording('juliana','j-rec-start-1','j-rec-stop-1','j-rec-ind-1','j-rec-done-1')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="j-rec-stop-1" onclick="stopRecording('juliana','j-rec-start-1','j-rec-stop-1','j-rec-ind-1','j-rec-done-1',1)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="j-rec-ind-1">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="j-rec-done-1">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Wonderful! Your response was recorded. +1 point! 🌟
+        </div>
+      </div>
+
+      <!-- EX 2: Multiple Choice -->
+      <div class="exercise-card multiplechoice" id="j-ex2">
+        <span class="exercise-num">02</span>
+        <span class="exercise-type-badge"><i data-lucide="list" style="width:12px;height:12px"></i> Multiple Choice</span>
+        <h3>Choose the Correct Sentence</h3>
+        <p class="instruction">Which sentence correctly uses the verb + -ing pattern for hobbies?</p>
+        <div class="choices-grid" style="grid-template-columns:1fr;">
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','juliana')">
+            <span class="choice-letter">A</span> She enjoy to dance every weekend.
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'correct','juliana')">
+            <span class="choice-letter">B</span> She enjoys dancing every weekend.
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','juliana')">
+            <span class="choice-letter">C</span> She is enjoy dancing every weekend.
+          </button>
+          <button class="choice-btn" onclick="checkChoice(this,'wrong','juliana')">
+            <span class="choice-letter">D</span> She enjoys to dances every weekend.
+          </button>
+        </div>
+        <div class="feedback-area" id="j-fb-2"></div>
+      </div>
+
+      <!-- EX 3: Fill in the blank -->
+      <div class="exercise-card fillin" id="j-ex3">
+        <span class="exercise-num">03</span>
+        <span class="exercise-type-badge"><i data-lucide="pencil" style="width:12px;height:12px"></i> Fill in the Blank</span>
+        <h3>Complete the Sentences</h3>
+        <p class="instruction">Use the words from the box to complete each sentence correctly.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:var(--space-4);margin-bottom:var(--space-6);">
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">reading</span>
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">plays</span>
+          <span style="background:white;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-weight:700;font-size:var(--text-sm);color:var(--color-secondary);border:2px solid var(--color-secondary-light)">watching</span>
+        </div>
+        <div class="fill-sentence">
+          1. My hobby is <input class="fill-input" id="j-fill-1" data-answer="reading" placeholder="___" size="8" /> books on weekends.
+        </div>
+        <div class="fill-sentence">
+          2. Lucas <input class="fill-input" id="j-fill-2" data-answer="plays" placeholder="___" size="6" /> guitar in a band.
+        </div>
+        <div class="fill-sentence">
+          3. I love <input class="fill-input" id="j-fill-3" data-answer="watching" placeholder="___" size="8" /> movies on Netflix.
+        </div>
+        <div style="text-align:center">
+          <button class="fill-submit" id="j-fill-btn" onclick="checkFillIn(['j-fill-1','j-fill-2','j-fill-3'],'juliana','j-fill-btn','j-fill-fb')">
+            <i data-lucide="check" style="width:16px;height:16px"></i> Check Answers
+          </button>
+        </div>
+        <div class="feedback-area mt-4" id="j-fill-fb"></div>
+      </div>
+
+      <!-- EX 4: Ordering -->
+      <div class="exercise-card ordering" id="j-ex4">
+        <span class="exercise-num">04</span>
+        <span class="exercise-type-badge"><i data-lucide="move" style="width:12px;height:12px"></i> Ordering</span>
+        <h3>Put the Words in Order</h3>
+        <p class="instruction">Click the words to build the correct sentence. Click words in your answer to put them back!</p>
+        <div class="ordering-container">
+          <div class="ordering-instruction">🔤 Word bank — click to add:</div>
+          <div class="words-pool" id="j-pool-4"></div>
+          <div class="ordering-instruction">✏️ Your sentence:</div>
+          <div class="answer-zone" id="j-answer-4"></div>
+          <div class="ordering-btn-row">
+            <button class="btn-check-order" onclick="checkOrdering('j-pool-4','j-answer-4','juliana','j-ord-fb-4',['i','love','painting','and','drawing','in','my','free','time'])">
+              <i data-lucide="check" style="width:16px;height:16px"></i> Check
+            </button>
+            <button class="btn-reset-order" onclick="resetOrdering('j-pool-4','j-answer-4',['i','love','painting','and','drawing','in','my','free','time'])">
+              <i data-lucide="refresh-cw" style="width:16px;height:16px"></i> Reset
+            </button>
+          </div>
+          <div class="feedback-area mt-2" id="j-ord-fb-4"></div>
+        </div>
+      </div>
+
+      <!-- EX 5: Speaking -->
+      <div class="exercise-card speaking" id="j-ex5">
+        <span class="exercise-num">05</span>
+        <span class="exercise-type-badge"><i data-lucide="message-circle" style="width:12px;height:12px"></i> Speaking</span>
+        <h3>Interview Challenge! 🎤</h3>
+        <p class="instruction">Pretend you are being interviewed for a talent show! Answer these questions in English. Try to sound confident and enthusiastic!</p>
+        <div class="speaking-prompt">
+          <span class="prompt-emoji">🎤</span>
+          <div class="prompt-text">"Tell me about a hobby you are really passionate about. How did you start and what do you love most about it?"</div>
+          <div class="prompt-hint">Speak for at least 45 seconds — you're a star!</div>
+        </div>
+        <div class="speaking-controls">
+          <button class="btn-record start" id="j-rec-start-5" onclick="startRecording('juliana','j-rec-start-5','j-rec-stop-5','j-rec-ind-5','j-rec-done-5')">
+            <i data-lucide="mic" style="width:16px;height:16px"></i> Start Speaking
+          </button>
+          <button class="btn-record stop" id="j-rec-stop-5" onclick="stopRecording('juliana','j-rec-start-5','j-rec-stop-5','j-rec-ind-5','j-rec-done-5',5)">
+            <i data-lucide="square" style="width:16px;height:16px"></i> Done
+          </button>
+          <div class="recording-indicator" id="j-rec-ind-5">
+            <div class="dot"></div> Recording...
+          </div>
+        </div>
+        <div class="recorded-msg" id="j-rec-done-5">
+          <i data-lucide="check-circle" style="width:18px;height:18px"></i> Superstar! +1 point! 🌟
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Made with 💗 for Stephanny, Tatiane & Juliana · English Practice · April 2026
+  </div>
+</footer>
+
+<!-- CONFETTI -->
+<div class="confetti-wrap" id="confetti-wrap" aria-hidden="true"></div>
+
+<script>
+// ============================================================
+//  STATE
+// ============================================================
+const scores = { stephanny: 0, tatiane: 0, juliana: 0 };
+const completed = {
+  stephanny: new Set(),
+  tatiane: new Set(),
+  juliana: new Set()
+};
+const TOTAL = 5;
+
+// ============================================================
+//  TAB SWITCHING
+// ============================================================
+function switchStudent(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.student-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+// ============================================================
+//  SCORE + PROGRESS
+// ============================================================
+function addPoint(student, exerciseId) {
+  if (completed[student].has(exerciseId)) return;
+  completed[student].add(exerciseId);
+  scores[student]++;
+  document.getElementById('score-' + student).textContent = scores[student];
+  const pct = (scores[student] / TOTAL) * 100;
+  document.getElementById('progress-' + student).style.width = pct + '%';
+  if (scores[student] === TOTAL) {
+    setTimeout(() => {
+      document.getElementById('complete-' + student).classList.add('visible');
+      document.getElementById('complete-' + student).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      launchConfetti();
+    }, 600);
+  }
+}
+
+// ============================================================
+//  CONFETTI
+// ============================================================
+function launchConfetti() {
+  const wrap = document.getElementById('confetti-wrap');
+  wrap.innerHTML = '';
+  const colors = ['#e91e63','#f06292','#7b1fa2','#ba68c8','#ff6090','#f8bbd0','#e1bee7','#ffd6e8','#fff176','#80deea'];
+  for (let i = 0; i < 80; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: -20px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${6 + Math.random() * 10}px;
+      height: ${6 + Math.random() * 10}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-delay: ${Math.random() * 1.5}s;
+      animation-duration: ${1.5 + Math.random() * 1.5}s;
+    `;
+    wrap.appendChild(piece);
+  }
+  setTimeout(() => { wrap.innerHTML = ''; }, 4000);
+}
+
+// ============================================================
+//  SPEAKING EXERCISE
+// ============================================================
+function startRecording(student, startId, stopId, indId, doneId) {
+  document.getElementById(startId).style.display = 'none';
+  document.getElementById(stopId).style.display = 'flex';
+  document.getElementById(indId).style.display = 'flex';
+}
+function stopRecording(student, startId, stopId, indId, doneId, exNum) {
+  document.getElementById(stopId).style.display = 'none';
+  document.getElementById(indId).style.display = 'none';
+  const done = document.getElementById(doneId);
+  done.style.display = 'flex';
+  addPoint(student, 'speak-' + exNum);
+}
+
+// ============================================================
+//  MULTIPLE CHOICE
+// ============================================================
+function checkChoice(btn, result, student) {
+  const card = btn.closest('.exercise-card');
+  const allBtns = card.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+
+  const fbId = card.querySelector('.feedback-area').id;
+  const fb = document.getElementById(fbId);
+
+  if (result === 'correct') {
+    btn.classList.add('correct');
+    fb.className = 'feedback-area correct';
+    fb.innerHTML = '<i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0"></i> Correct! Excellent answer! 🎉 +1 point!';
+    addPoint(student, 'mc-' + card.id);
+  } else {
+    btn.classList.add('wrong');
+    // highlight correct
+    allBtns.forEach(b => {
+      if (b.onclick.toString().includes("'correct'")) b.classList.add('correct');
+    });
+    fb.className = 'feedback-area wrong';
+    fb.innerHTML = '<i data-lucide="x-circle" style="width:18px;height:18px;flex-shrink:0"></i> Not quite! Check the highlighted correct answer. Try again next time! 💪';
+    addPoint(student, 'mc-' + card.id); // still give point for attempt
+  }
+  lucide.createIcons();
+}
+
+// ============================================================
+//  FILL IN THE BLANK
+// ============================================================
+function checkFillIn(inputIds, student, btnId, fbId) {
+  let allCorrect = true;
+  let allFilled = true;
+
+  inputIds.forEach(id => {
+    const input = document.getElementById(id);
+    const answer = input.dataset.answer.toLowerCase().trim();
+    const val = input.value.toLowerCase().trim();
+    if (!val) { allFilled = false; return; }
+    input.classList.remove('correct', 'wrong');
+    if (val === answer) {
+      input.classList.add('correct');
+    } else {
+      input.classList.add('wrong');
+      allCorrect = false;
+    }
+    input.disabled = true;
+  });
+
+  const fb = document.getElementById(fbId);
+  const btn = document.getElementById(btnId);
+
+  if (!allFilled) {
+    fb.className = 'feedback-area wrong';
+    fb.innerHTML = '<i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0"></i> Please fill in all the blanks first!';
+    inputIds.forEach(id => { document.getElementById(id).disabled = false; });
+    lucide.createIcons();
+    return;
+  }
+
+  btn.disabled = true;
+
+  if (allCorrect) {
+    fb.className = 'feedback-area correct';
+    fb.innerHTML = '<i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0"></i> Perfect! All answers are correct! 🌟 +1 point!';
+    addPoint(student, 'fill-' + student);
+  } else {
+    fb.className = 'feedback-area wrong';
+    fb.innerHTML = '<i data-lucide="x-circle" style="width:18px;height:18px;flex-shrink:0"></i> Some answers are incorrect (highlighted in red). Review the word box! 💪 +1 point for trying!';
+    addPoint(student, 'fill-' + student);
+  }
+  lucide.createIcons();
+}
+
+// ============================================================
+//  ORDERING
+// ============================================================
+function initOrdering(poolId, answerId, words) {
+  const pool = document.getElementById(poolId);
+  const answer = document.getElementById(answerId);
+  if (!pool || !answer) return;
+  pool.innerHTML = '';
+  answer.innerHTML = '';
+  answer.className = 'answer-zone';
+  const shuffled = [...words].sort(() => Math.random() - 0.5);
+  shuffled.forEach(word => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.textContent = word;
+    chip.onclick = () => {
+      if (pool.contains(chip)) {
+        pool.removeChild(chip);
+        answer.appendChild(chip);
+      } else {
+        answer.removeChild(chip);
+        pool.appendChild(chip);
+      }
+    };
+    pool.appendChild(chip);
+  });
+}
+
+function checkOrdering(poolId, answerId, student, fbId, correctOrder) {
+  const answer = document.getElementById(answerId);
+  const chips = Array.from(answer.querySelectorAll('.word-chip'));
+  if (chips.length === 0) {
+    const fb = document.getElementById(fbId);
+    fb.className = 'feedback-area wrong';
+    fb.innerHTML = '<i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0"></i> Please add words to your answer first!';
+    lucide.createIcons();
+    return;
+  }
+  const userOrder = chips.map(c => c.textContent.toLowerCase());
+  const correct = correctOrder.map(w => w.toLowerCase());
+  const isCorrect = JSON.stringify(userOrder) === JSON.stringify(correct);
+
+  const fb = document.getElementById(fbId);
+  if (isCorrect) {
+    answer.classList.add('correct-order');
+    fb.className = 'feedback-area correct';
+    fb.innerHTML = '<i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0"></i> Perfect sentence! Great job! 🎉 +1 point!';
+    addPoint(student, 'ord-' + student);
+  } else {
+    answer.classList.add('wrong-order');
+    fb.className = 'feedback-area wrong';
+    fb.innerHTML = '<i data-lucide="x-circle" style="width:18px;height:18px;flex-shrink:0"></i> Not quite right. Reset and try again! 💪 +1 point for trying!';
+    addPoint(student, 'ord-' + student);
+  }
+  lucide.createIcons();
+}
+
+function resetOrdering(poolId, answerId, words) {
+  const pool = document.getElementById(poolId);
+  const answer = document.getElementById(answerId);
+  answer.className = 'answer-zone';
+  const allChips = [
+    ...Array.from(pool.querySelectorAll('.word-chip')),
+    ...Array.from(answer.querySelectorAll('.word-chip'))
+  ];
+  answer.innerHTML = '';
+  pool.innerHTML = '';
+  const shuffled = [...words].sort(() => Math.random() - 0.5);
+  shuffled.forEach(word => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.textContent = word;
+    chip.onclick = () => {
+      if (pool.contains(chip)) { pool.removeChild(chip); answer.appendChild(chip); }
+      else { answer.removeChild(chip); pool.appendChild(chip); }
+    };
+    pool.appendChild(chip);
+  });
+  // clear feedback
+  const fbCandidates = document.querySelectorAll(`[id*="ord-fb"]`);
+}
+
+// ============================================================
+//  MATCHING
+// ============================================================
+let matchState = {};
+
+function selectMatchItem(el, side, student, gridId, fbId) {
+  if (el.classList.contains('matched')) return;
+
+  const key = student + '-' + gridId;
+  if (!matchState[key]) matchState[key] = { left: null, right: null, matched: 0 };
+  const state = matchState[key];
+
+  // Deselect same side if already selected
+  if (state[side] && state[side] !== el) {
+    state[side].classList.remove('selected');
+  }
+
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) {
+    state[side] = el;
+  } else {
+    state[side] = null;
+    return;
+  }
+
+  // Both sides selected — check match
+  if (state.left && state.right) {
+    const leftPair = state.left.dataset.pair;
+    const rightPair = state.right.dataset.pair;
+
+    if (leftPair === rightPair) {
+      state.left.classList.remove('selected');
+      state.right.classList.remove('selected');
+      state.left.classList.add('matched');
+      state.right.classList.add('matched');
+      state.left.style.pointerEvents = 'none';
+      state.right.style.pointerEvents = 'none';
+      state.matched++;
+      state.left = null;
+      state.right = null;
+
+      if (state.matched === 4) {
+        const fb = document.getElementById(fbId);
+        fb.className = 'feedback-area correct';
+        fb.innerHTML = '<i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0"></i> Excellent! All pairs matched correctly! 🎉 +1 point!';
+        lucide.createIcons();
+        addPoint(student, 'match-' + student);
+      }
+    } else {
+      state.left.classList.remove('selected');
+      state.right.classList.remove('selected');
+      state.left.classList.add('wrong-match');
+      state.right.classList.add('wrong-match');
+      setTimeout(() => {
+        state.left && state.left.classList.remove('wrong-match');
+        state.right && state.right.classList.remove('wrong-match');
+        state.left = null;
+        state.right = null;
+      }, 800);
+    }
+  }
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+
+  // Init ordering exercises
+  initOrdering('s-pool-4', 's-answer-4', ['I','would','like','to','request','a','meeting','to','discuss','the','project','timeline']);
+  initOrdering('j-pool-4', 'j-answer-4', ['i','love','painting','and','drawing','in','my','free','time']);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verbos Irregulares em Inglês — Estudo Interativo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9; --color-surface-offset: #edeae5; --color-border: #d4d1ca; --color-divider:#dcd9d5;
+      --color-text: #28251d; --color-text-muted: #6f6d68; --color-text-faint:#a5a29b; --color-text-inverse:#f9f8f4;
+      --color-primary: #01696f; --color-primary-hover:#0c4e54; --color-primary-highlight:#cedcd8; --color-success:#437a22; --color-warning:#964219; --color-error:#a12c7b;
+      --radius-sm: .375rem; --radius-md:.75rem; --radius-lg:1rem; --radius-xl:1.25rem; --radius-full:999px;
+      --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06); --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08); --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+      --font-display: 'Instrument Serif', Georgia, serif; --font-body: 'Inter', system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface:#1c1b19; --color-surface-2:#201f1d; --color-surface-offset:#22211f; --color-border:#393836; --color-divider:#262523;
+      --color-text:#cdccca; --color-text-muted:#9a9996; --color-text-faint:#666563; --color-text-inverse:#171614;
+      --color-primary:#4f98a3; --color-primary-hover:#227f8b; --color-primary-highlight:#313b3b; --color-success:#6daa45; --color-warning:#bb653b; --color-error:#d163a7;
+      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2); --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3); --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:var(--color-bg);color:var(--color-text)}
+    img,svg{display:block;max-width:100%;height:auto}
+    button,input,select{font:inherit;color:inherit}
+    button{cursor:pointer;border:none;background:none}
+    a{color:inherit}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:var(--space-4);top:var(--space-4);background:var(--color-surface-2);padding:var(--space-3) var(--space-4);z-index:1000;border-radius:var(--radius-md)}
+    .app{max-width:1200px;margin:0 auto;padding:var(--space-4)}
+    header{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:var(--space-4) 0 var(--space-8);position:sticky;top:0;background:color-mix(in oklab, var(--color-bg) 88%, transparent);backdrop-filter: blur(14px);z-index:10;border-bottom:1px solid color-mix(in oklab, var(--color-border) 60%, transparent)}
+    .brand{display:flex;gap:var(--space-3);align-items:center}
+    .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--color-primary-highlight),var(--color-surface-offset));display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+    .brand svg{width:24px;height:24px;color:var(--color-primary)}
+    .brand h1{font-family:var(--font-display);font-size:var(--text-xl);line-height:1}
+    .brand p{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+    .icon-btn,.btn{min-height:44px;padding:0 var(--space-4);border-radius:var(--radius-full);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);transition:.18s ease;background:var(--color-surface);border:1px solid color-mix(in oklab,var(--color-text) 12%, transparent);box-shadow:var(--shadow-sm)}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);border-color:transparent}.btn-primary:hover{background:var(--color-primary-hover)}
+    .icon-btn:hover,.btn:hover{transform:translateY(-1px)}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--space-6);padding:var(--space-6) 0 var(--space-8)}
+    .hero-card,.panel,.flashcard,.quiz-card,.table-wrap,.mini-card{background:var(--color-surface);border:1px solid color-mix(in oklab,var(--color-text) 10%, transparent);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}
+    .hero-copy{padding:var(--space-8)}
+    .eyebrow{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--color-primary);font-weight:700;margin-bottom:var(--space-3)}
+    .hero h2{font-family:var(--font-display);font-size:var(--text-2xl);line-height:.98;max-width:11ch;margin-bottom:var(--space-4)}
+    .hero p{color:var(--color-text-muted);max-width:56ch}
+    .plan{display:grid;gap:var(--space-3);margin-top:var(--space-6)}
+    .plan li{list-style:none;padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid color-mix(in oklab,var(--color-text) 8%, transparent)}
+    .hero-side{padding:var(--space-6);display:grid;gap:var(--space-4);align-content:start}
+    .stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}
+    .mini-card{padding:var(--space-4)}
+    .mini-card strong{display:block;font-size:var(--text-xl);line-height:1.1}
+    .mini-card span{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .layout{display:grid;grid-template-columns:330px 1fr;gap:var(--space-6);align-items:start}
+    .panel{padding:var(--space-5);position:sticky;top:92px}
+    .panel h3,.section h3{font-size:var(--text-lg);margin-bottom:var(--space-4)}
+    .control{display:grid;gap:var(--space-2);margin-bottom:var(--space-4)}
+    .control label{font-size:var(--text-sm);font-weight:600}
+    .control input,.control select{min-height:44px;padding:0 var(--space-4);background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+    .hint{font-size:var(--text-xs);color:var(--color-text-muted)}
+    .section{display:grid;gap:var(--space-6)}
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:var(--space-4)}
+    .flashcard{padding:var(--space-5);display:grid;gap:var(--space-3);position:relative;overflow:hidden;min-height:220px}
+    .flashcard::after{content:"";position:absolute;inset:auto -40px -40px auto;width:130px;height:130px;border-radius:50%;background:color-mix(in oklab,var(--color-primary) 10%, transparent)}
+    .tag{display:inline-flex;align-items:center;gap:var(--space-2);width:max-content;padding:0.35rem .7rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;background:var(--color-primary-highlight);color:var(--color-primary)}
+    .verb{font-size:var(--text-xl);font-weight:800;line-height:1.1}
+    .forms{display:grid;gap:var(--space-2);font-size:var(--text-sm)}
+    .forms div{padding:var(--space-3);background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid color-mix(in oklab,var(--color-text) 8%, transparent)}
+    .example{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:auto}
+    .btn-small{min-height:40px;padding:0 var(--space-3);border-radius:var(--radius-full);background:var(--color-surface-2);border:1px solid color-mix(in oklab,var(--color-text) 12%, transparent)}
+    .quiz-card,.table-wrap{padding:var(--space-5)}
+    .quiz-top{display:flex;justify-content:space-between;gap:var(--space-4);align-items:center;margin-bottom:var(--space-4)}
+    .question{font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-4)}
+    .options{display:grid;gap:var(--space-3)}
+    .option{min-height:48px;padding:var(--space-3) var(--space-4);text-align:left;border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid color-mix(in oklab,var(--color-text) 10%, transparent)}
+    .option.correct{border-color:color-mix(in oklab,var(--color-success) 55%, var(--color-border));background:color-mix(in oklab,var(--color-success) 14%, var(--color-surface-2))}
+    .option.wrong{border-color:color-mix(in oklab,var(--color-error) 55%, var(--color-border));background:color-mix(in oklab,var(--color-error) 14%, var(--color-surface-2))}
+    .feedback{margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);min-height:1.6em}
+    table{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+    th,td{padding:var(--space-3);text-align:left;border-bottom:1px solid var(--color-divider)}
+    th{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted)}
+    .footer-note{padding:var(--space-6) 0 var(--space-10);color:var(--color-text-muted);font-size:var(--text-sm)}
+    .hidden{display:none!important}
+    @media (max-width: 980px){.hero,.layout{grid-template-columns:1fr}.panel{position:static;top:auto}.hero h2{max-width:none}}
+    @media (max-width: 640px){header{align-items:flex-start;flex-direction:column}.stat-grid{grid-template-columns:1fr 1fr}.app{padding:var(--space-3)}.hero-copy,.hero-side,.panel,.quiz-card,.table-wrap{padding:var(--space-4)}}
+    @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-label="Logo do estudo">
+            <path d="M5 6.5h7a4 4 0 0 1 0 8H8"></path>
+            <path d="M8 6.5v11"></path>
+            <path d="M14.5 17.5h4.5"></path>
+            <path d="M16.75 15.25v4.5"></path>
+          </svg>
+        </div>
+        <div>
+          <h1>Irregular Verbs</h1>
+          <p>Material interativo para memorizar os verbos mais usados.</p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Alternar tema">🌙</button>
+        <button class="btn btn-primary" type="button" id="shuffleAll">Misturar estudo</button>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero">
+        <article class="hero-card hero-copy">
+          <div class="eyebrow">Plano simples</div>
+          <h2>Estude pouco, repita muito e use frases.</h2>
+          <p>Este material foi montado para você decorar os verbos irregulares mais usados em inglês com blocos curtos, flashcards, quiz e revisão visual por grupos de padrão.</p>
+          <ul class="plan" role="list">
+            <li><strong>Passo 1.</strong> Escolha um grupo pequeno de verbos.</li>
+            <li><strong>Passo 2.</strong> Veja a forma base, o passado e o particípio.</li>
+            <li><strong>Passo 3.</strong> Faça frases e depois teste no quiz.</li>
+            <li><strong>Passo 4.</strong> Revise os erros até acertar sem olhar.</li>
+          </ul>
+        </article>
+        <aside class="hero-card hero-side">
+          <div class="stat-grid">
+            <div class="mini-card"><strong id="countAll">30</strong><span>verbos principais</span></div>
+            <div class="mini-card"><strong>10–15 min</strong><span>revisão ideal por dia</span></div>
+            <div class="mini-card"><strong>3 formas</strong><span>base, past, participle</span></div>
+            <div class="mini-card"><strong id="masteredCount">0</strong><span>marcados como dominados</span></div>
+          </div>
+          <div class="mini-card">
+            <strong style="font-size:var(--text-lg)">Como lembrar melhor</strong>
+            <span>Procure padrões como sing–sang–sung, drink–drank–drunk e write–wrote–written.</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="layout">
+        <aside class="panel" aria-label="Filtros de estudo">
+          <h3>Filtros</h3>
+          <div class="control">
+            <label for="search">Buscar verbo</label>
+            <input id="search" type="text" placeholder="Ex.: go, take, ver" />
+          </div>
+          <div class="control">
+            <label for="group">Grupo</label>
+            <select id="group">
+              <option value="all">Todos</option>
+              <option value="essentials">Essenciais</option>
+              <option value="common">Muito usados</option>
+              <option value="pattern-a">Padrão vowel shift</option>
+              <option value="same">Mesma forma</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="studyMode">Modo</label>
+            <select id="studyMode">
+              <option value="all">Mostrar tudo</option>
+              <option value="hidden">Esconder respostas</option>
+              <option value="mastered">Só dominados</option>
+              <option value="unmastered">Só revisar</option>
+            </select>
+          </div>
+          <div class="toolbar" style="margin-top:var(--space-2)">
+            <button class="btn" type="button" id="revealAll">Mostrar respostas</button>
+            <button class="btn" type="button" id="resetProgress">Zerar progresso</button>
+          </div>
+          <p class="hint" style="margin-top:var(--space-4)">Dica: marque como dominado somente quando você lembrar as 3 formas sem olhar.</p>
+        </aside>
+
+        <div class="section">
+          <section aria-labelledby="flashcards-title">
+            <h3 id="flashcards-title">Flashcards</h3>
+            <div class="cards" id="cards"></div>
+          </section>
+
+          <section class="quiz-card" aria-labelledby="quiz-title">
+            <div class="quiz-top">
+              <h3 id="quiz-title">Quiz rápido</h3>
+              <div class="toolbar">
+                <button class="btn" type="button" id="newQuestion">Nova pergunta</button>
+                <button class="btn" type="button" id="toggleQuestionMode">Perguntar particípio</button>
+              </div>
+            </div>
+            <div class="question" id="question">Carregando pergunta...</div>
+            <div class="options" id="options"></div>
+            <div class="feedback" id="feedback"></div>
+          </section>
+
+          <section class="table-wrap" aria-labelledby="table-title">
+            <h3 id="table-title">Tabela de revisão</h3>
+            <div style="overflow:auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Base</th>
+                    <th>Past</th>
+                    <th>Participle</th>
+                    <th>Tradução</th>
+                    <th>Grupo</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <p class="footer-note">Sugestão de uso: estude 10 verbos por vez, leia em voz alta, esconda as respostas e depois faça 5 perguntas do quiz antes de encerrar.</p>
+    </main>
+  </div>
+
+  <script>
+    const verbs = [
+      {base:'be', past:'was/were', part:'been', pt:'ser / estar', group:'essentials', example:'I was tired yesterday. / I have been busy all week.'},
+      {base:'have', past:'had', part:'had', pt:'ter', group:'essentials', example:'She had a meeting. / We have had this idea before.'},
+      {base:'do', past:'did', part:'done', pt:'fazer', group:'essentials', example:'He did his homework. / I have done enough today.'},
+      {base:'go', past:'went', part:'gone', pt:'ir', group:'essentials', example:'They went home early. / She has gone to school.'},
+      {base:'come', past:'came', part:'come', pt:'vir', group:'essentials', example:'My friend came late. / He has come back.'},
+      {base:'see', past:'saw', part:'seen', pt:'ver', group:'essentials', example:'I saw the movie. / We have seen this before.'},
+      {base:'get', past:'got', part:'got/gotten', pt:'pegar / conseguir / ficar', group:'essentials', example:'She got a job. / I have got your message.'},
+      {base:'make', past:'made', part:'made', pt:'fazer / criar', group:'essentials', example:'They made dinner. / We have made progress.'},
+      {base:'say', past:'said', part:'said', pt:'dizer', group:'essentials', example:'He said no. / She has said that already.'},
+      {base:'know', past:'knew', part:'known', pt:'saber / conhecer', group:'essentials', example:'I knew the answer. / We have known each other for years.'},
+      {base:'take', past:'took', part:'taken', pt:'pegar / levar', group:'common', example:'She took the bus. / I have taken notes.'},
+      {base:'give', past:'gave', part:'given', pt:'dar', group:'common', example:'He gave me a book. / They have given us time.'},
+      {base:'find', past:'found', part:'found', pt:'encontrar', group:'common', example:'I found my keys. / She has found a solution.'},
+      {base:'think', past:'thought', part:'thought', pt:'pensar', group:'common', example:'We thought about it. / I have thought a lot lately.'},
+      {base:'tell', past:'told', part:'told', pt:'contar / dizer', group:'common', example:'She told the truth. / I have told you before.'},
+      {base:'leave', past:'left', part:'left', pt:'deixar / sair', group:'common', example:'They left early. / He has left the office.'},
+      {base:'feel', past:'felt', part:'felt', pt:'sentir', group:'common', example:'I felt sick. / She has felt better today.'},
+      {base:'put', past:'put', part:'put', pt:'colocar', group:'same', example:'He put the phone away. / I have put it here.'},
+      {base:'bring', past:'brought', part:'brought', pt:'trazer', group:'common', example:'She brought coffee. / They have brought good news.'},
+      {base:'begin', past:'began', part:'begun', pt:'começar', group:'pattern-a', example:'The class began at 8. / It has begun already.'},
+      {base:'keep', past:'kept', part:'kept', pt:'manter / guardar', group:'common', example:'I kept the receipt. / We have kept in touch.'},
+      {base:'hold', past:'held', part:'held', pt:'segurar / realizar', group:'common', example:'She held my hand. / They have held many events.'},
+      {base:'write', past:'wrote', part:'written', pt:'escrever', group:'pattern-a', example:'He wrote an email. / I have written the report.'},
+      {base:'speak', past:'spoke', part:'spoken', pt:'falar', group:'pattern-a', example:'We spoke yesterday. / She has spoken to him.'},
+      {base:'read', past:'read', part:'read', pt:'ler', group:'same', example:'I read the article last night. / I have read that book.'},
+      {base:'hear', past:'heard', part:'heard', pt:'ouvir', group:'common', example:'I heard a noise. / Have you heard the news?'},
+      {base:'run', past:'ran', part:'run', pt:'correr', group:'pattern-a', example:'He ran fast. / She has run three miles.'},
+      {base:'sit', past:'sat', part:'sat', pt:'sentar', group:'common', example:'They sat near me. / I have sat here before.'},
+      {base:'stand', past:'stood', part:'stood', pt:'ficar em pé', group:'common', example:'We stood outside. / She has stood there for an hour.'},
+      {base:'meet', past:'met', part:'met', pt:'encontrar / conhecer', group:'common', example:'I met her yesterday. / We have met before.'}
+    ];
+
+    const state = {
+      showAnswers: true,
+      theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      questionMode: 'past',
+      mastered: new Set(),
+      currentQuestion: null
+    };
+
+    const els = {
+      cards: document.getElementById('cards'),
+      search: document.getElementById('search'),
+      group: document.getElementById('group'),
+      studyMode: document.getElementById('studyMode'),
+      revealAll: document.getElementById('revealAll'),
+      resetProgress: document.getElementById('resetProgress'),
+      countAll: document.getElementById('countAll'),
+      masteredCount: document.getElementById('masteredCount'),
+      tableBody: document.getElementById('tableBody'),
+      question: document.getElementById('question'),
+      options: document.getElementById('options'),
+      feedback: document.getElementById('feedback'),
+      newQuestion: document.getElementById('newQuestion'),
+      toggleQuestionMode: document.getElementById('toggleQuestionMode'),
+      shuffleAll: document.getElementById('shuffleAll')
+    };
+
+    document.documentElement.setAttribute('data-theme', state.theme);
+    document.querySelector('[data-theme-toggle]').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+
+    function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
+
+    function getFilteredVerbs(){
+      const q = els.search.value.trim().toLowerCase();
+      const group = els.group.value;
+      const mode = els.studyMode.value;
+      return verbs.filter(v => {
+        const matchesQuery = !q || [v.base, v.past, v.part, v.pt].some(x => x.toLowerCase().includes(q));
+        const matchesGroup = group === 'all' || v.group === group;
+        const isMastered = state.mastered.has(v.base);
+        const matchesMode = mode === 'all' || (mode === 'mastered' && isMastered) || (mode === 'unmastered' && !isMastered) || mode === 'hidden';
+        return matchesQuery && matchesGroup && matchesMode;
+      });
+    }
+
+    function groupLabel(group){
+      return ({essentials:'Essenciais', common:'Muito usados', 'pattern-a':'Padrão vowel shift', same:'Mesma forma'})[group] || group;
+    }
+
+    function renderCards(){
+      const data = getFilteredVerbs();
+      els.cards.innerHTML = '';
+      data.forEach(v => {
+        const card = document.createElement('article');
+        card.className = 'flashcard';
+        const hide = els.studyMode.value === 'hidden' || !state.showAnswers;
+        card.innerHTML = `
+          <span class="tag">${groupLabel(v.group)}</span>
+          <div>
+            <div class="verb">${v.base}</div>
+            <div class="example">${v.pt}</div>
+          </div>
+          <div class="forms ${hide ? 'hidden' : ''}">
+            <div><strong>Past:</strong> ${v.past}</div>
+            <div><strong>Participle:</strong> ${v.part}</div>
+            <div><strong>Exemplo:</strong> ${v.example}</div>
+          </div>
+          <div class="actions">
+            <button class="btn-small" type="button" data-action="toggle">${hide ? 'Mostrar resposta' : 'Esconder resposta'}</button>
+            <button class="btn-small" type="button" data-action="master">${state.mastered.has(v.base) ? 'Dominado ✓' : 'Marcar dominado'}</button>
+          </div>`;
+        card.querySelector('[data-action="toggle"]').addEventListener('click', () => {
+          const forms = card.querySelector('.forms');
+          const hidden = forms.classList.toggle('hidden');
+          card.querySelector('[data-action="toggle"]').textContent = hidden ? 'Mostrar resposta' : 'Esconder resposta';
+        });
+        card.querySelector('[data-action="master"]').addEventListener('click', () => {
+          if (state.mastered.has(v.base)) state.mastered.delete(v.base); else state.mastered.add(v.base);
+          updateCounts();
+          renderCards();
+        });
+        els.cards.appendChild(card);
+      });
+      if (!data.length) {
+        els.cards.innerHTML = '<div class="flashcard"><div class="verb">Nada encontrado</div><p class="example">Tente outro filtro ou outra busca.</p></div>';
+      }
+      renderTable(data);
+    }
+
+    function renderTable(data){
+      els.tableBody.innerHTML = data.map(v => `
+        <tr>
+          <td>${v.base}</td>
+          <td>${els.studyMode.value === 'hidden' && state.showAnswers === false ? '••••' : v.past}</td>
+          <td>${els.studyMode.value === 'hidden' && state.showAnswers === false ? '••••' : v.part}</td>
+          <td>${v.pt}</td>
+          <td>${groupLabel(v.group)}</td>
+        </tr>`).join('');
+    }
+
+    function updateCounts(){
+      els.countAll.textContent = verbs.length;
+      els.masteredCount.textContent = state.mastered.size;
+    }
+
+    function newQuestion(){
+      const pool = getFilteredVerbs();
+      const source = pool.length >= 4 ? pool : verbs;
+      const answerVerb = source[Math.floor(Math.random() * source.length)];
+      const prop = state.questionMode === 'past' ? 'past' : 'part';
+      const prompt = state.questionMode === 'past' ? `Qual é o passado de “${answerVerb.base}”?` : `Qual é o particípio de “${answerVerb.base}”?`;
+      const options = shuffle([answerVerb, ...shuffle(source.filter(v => v.base !== answerVerb.base)).slice(0,3)]).map(v => ({label:v[prop], correct:v.base===answerVerb.base}));
+      state.currentQuestion = {answerVerb, options, prop};
+      els.question.textContent = prompt;
+      els.feedback.textContent = '';
+      els.options.innerHTML = '';
+      options.forEach(opt => {
+        const b = document.createElement('button');
+        b.className = 'option';
+        b.type = 'button';
+        b.textContent = opt.label;
+        b.addEventListener('click', () => {
+          [...els.options.children].forEach(x => x.disabled = true);
+          if (opt.correct) {
+            b.classList.add('correct');
+            els.feedback.textContent = `Certo. ${answerVerb.base} → ${answerVerb.past} → ${answerVerb.part}.`;
+          } else {
+            b.classList.add('wrong');
+            [...els.options.children].forEach(x => {
+              if (x.textContent === answerVerb[prop]) x.classList.add('correct');
+            });
+            els.feedback.textContent = `Resposta correta: ${answerVerb[prop]}. Sequência completa: ${answerVerb.base} → ${answerVerb.past} → ${answerVerb.part}.`;
+          }
+        });
+        els.options.appendChild(b);
+      });
+    }
+
+    els.search.addEventListener('input', renderCards);
+    els.group.addEventListener('change', () => { renderCards(); newQuestion(); });
+    els.studyMode.addEventListener('change', renderCards);
+    els.revealAll.addEventListener('click', () => { state.showAnswers = true; renderCards(); });
+    els.resetProgress.addEventListener('click', () => { state.mastered.clear(); updateCounts(); renderCards(); });
+    els.newQuestion.addEventListener('click', newQuestion);
+    els.toggleQuestionMode.addEventListener('click', () => {
+      state.questionMode = state.questionMode === 'past' ? 'part' : 'past';
+      els.toggleQuestionMode.textContent = state.questionMode === 'past' ? 'Perguntar particípio' : 'Perguntar passado';
+      newQuestion();
+    });
+    els.shuffleAll.addEventListener('click', () => {
+      verbs.sort(() => Math.random() - 0.5);
+      renderCards();
+      newQuestion();
+    });
+    document.querySelector('[data-theme-toggle]').addEventListener('click', () => {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', state.theme);
+      document.querySelector('[data-theme-toggle]').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+    });
+
+    updateCounts();
+    renderCards();
+    newQuestion();
+  </script>
+</body>
+</html>

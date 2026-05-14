@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>English Training - Finance & Everyday Expressions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #0d1b2a;
+            --color-bg-deep: #060d14;
+            --color-surface: #1a2d42;
+            --color-text: #e8f4f8;
+            --color-text-secondary: #a8d4e6;
+            --color-text-muted: #6b9db8;
+            --color-accent-1: #00b4d8;
+            --color-accent-2: #90e0ef;
+            --color-accent-3: #ffd166;
+            --color-glass-bg: rgba(255,255,255,0.06);
+            --color-glass-border: rgba(255,255,255,0.10);
+            --color-vignette: rgba(0,0,0,0.45);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+    </style>
+
+    <style>
+        :root { --color-bg: #0d1b2a; --color-text: #e8f4f8; --glow-color-rgb: 0,180,216; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.95); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1100px; padding: clamp(1.5rem, 4vw, 4rem); }
+        .nav-controls { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: var(--color-glass-bg); backdrop-filter: blur(10px); padding: 10px 24px; border-radius: 40px; border: 1px solid var(--color-glass-border); }
+        .nav-btn { width: 40px; height: 40px; border: none; background: var(--color-glass-bg); color: var(--color-accent-1); border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .nav-btn:hover { background: var(--color-glass-border); }
+        .slide-dots { display: flex; gap: 8px; }
+        .slide-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-glass-border); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .slide-dots .dot.active { background: var(--color-accent-1); transform: scale(1.3); }
+        .slide-counter { font-size: 0.8rem; color: var(--color-text-muted); min-width: 40px; text-align: center; }
+        .reveal { opacity: 0; transform: translateY(20px); }
+
+        .text-glow { text-shadow: 0 0 20px rgba(0,180,216,0.5), 0 0 40px rgba(0,180,216,0.2); }
+        .stat-glow { text-shadow: 0 0 30px rgba(0,180,216,0.6), 0 0 60px rgba(0,180,216,0.25); }
+        @keyframes glow-pulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(0,180,216,0.5), 0 0 40px rgba(0,180,216,0.2); }
+            50% { text-shadow: 0 0 30px rgba(0,180,216,0.8), 0 0 60px rgba(0,180,216,0.3); }
+        }
+        .glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+        @keyframes float-slow {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -50px) scale(1.12); }
+            50% { transform: translate(-40px, 40px) scale(0.9); }
+            75% { transform: translate(50px, 20px) scale(1.08); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes float-drift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(-50px, -60px) scale(1.15) rotate(3deg); }
+            66% { transform: translate(40px, 30px) scale(0.88) rotate(-2deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); animation: float-slow 10s ease-in-out infinite; }
+        .blob:nth-child(2) { animation: float-drift 14s ease-in-out infinite; }
+        .blob:nth-child(3) { animation: float-slow 18s ease-in-out infinite reverse; }
+
+        .slide::before {
+            content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 256px 256px; opacity: 0.03; mix-blend-mode: overlay;
+        }
+        .slide::after {
+            content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 50%, var(--color-vignette) 100%);
+        }
+
+        .wrong-badge { background: rgba(239,68,68,0.18); border: 1px solid rgba(239,68,68,0.35); color: #fca5a5; border-radius: 8px; padding: 0.3rem 0.75rem; font-size: 0.9rem; display: inline-block; }
+        .right-badge { background: rgba(0,180,216,0.18); border: 1px solid rgba(0,180,216,0.4); color: #90e0ef; border-radius: 8px; padding: 0.3rem 0.75rem; font-size: 0.9rem; display: inline-block; }
+        .rule-card { background: var(--color-glass-bg); border: 1px solid var(--color-glass-border); border-radius: 14px; padding: 1.4rem 1.6rem; backdrop-filter: blur(12px); transition: transform 0.3s, box-shadow 0.3s; }
+        .rule-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,180,216,0.15); }
+        .accent-line { border-left: 4px solid var(--color-accent-1); padding-left: 1rem; }
+        .gold-tag { background: rgba(255,209,102,0.15); border: 1px solid rgba(255,209,102,0.3); color: #ffd166; border-radius: 6px; padding: 0.2rem 0.6rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .finance-tag { background: rgba(0,180,216,0.15); border: 1px solid rgba(0,180,216,0.3); color: #90e0ef; border-radius: 6px; padding: 0.2rem 0.6rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; }
+        .practice-box { background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(144,224,239,0.05)); border: 1px solid rgba(0,180,216,0.2); border-radius: 14px; padding: 1.2rem 1.5rem; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+
+<div class="deck">
+
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide slide-1 active" data-slide="1">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:500px;height:500px;top:-100px;right:-100px;background:var(--color-accent-1);opacity:0.13;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:var(--color-accent-2);opacity:0.10;"></div>
+            <div class="blob" style="width:200px;height:200px;top:40%;left:12%;background:var(--color-accent-3);opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content text-center">
+            <div style="font-size:110px;margin-bottom:1.2rem;animation:float 3s ease-in-out infinite;" class="reveal">🇺🇸</div>
+            <h1 class="font-display reveal" style="font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:900;background:linear-gradient(135deg,var(--color-accent-1),var(--color-accent-2),var(--color-accent-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;line-height:1.1;">
+                English Training
+            </h1>
+            <p class="reveal" style="font-size:clamp(1rem,2vw,1.4rem);font-weight:400;color:var(--color-text-muted);letter-spacing:0.18em;text-transform:uppercase;">
+                Age · Politeness · Finance · Vocabulary
+            </p>
+            <p class="reveal" style="font-size:0.95rem;color:var(--color-text-muted);margin-top:1.6rem;opacity:0.7;">
+                Prepared especially for you 🎯
+            </p>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: AGENDA -->
+    <div class="slide slide-2" data-slide="2">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:350px;height:350px;top:-60px;right:-60px;background:var(--color-accent-1);opacity:0.08;"></div>
+            <div class="blob" style="width:250px;height:250px;bottom:-50px;left:-40px;background:var(--color-accent-2);opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-bottom:1.8rem;color:var(--color-accent-2);">What We'll Practice Today</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;">
+                <div class="rule-card reveal">
+                    <div style="font-size:1.8rem;margin-bottom:0.5rem;">👤</div>
+                    <div style="font-weight:700;color:var(--color-accent-1);font-size:1.05rem;">Lesson 1</div>
+                    <div style="color:var(--color-text-secondary);font-size:0.95rem;">Saying your age correctly: <em>I am 26</em></div>
+                </div>
+                <div class="rule-card reveal">
+                    <div style="font-size:1.8rem;margin-bottom:0.5rem;">🙏</div>
+                    <div style="font-weight:700;color:var(--color-accent-1);font-size:1.05rem;">Lesson 2</div>
+                    <div style="color:var(--color-text-secondary);font-size:0.95rem;">Being polite: <em>I would like…</em></div>
+                </div>
+                <div class="rule-card reveal">
+                    <div style="font-size:1.8rem;margin-bottom:0.5rem;">📈</div>
+                    <div style="font-weight:700;color:var(--color-accent-1);font-size:1.05rem;">Lesson 3</div>
+                    <div style="color:var(--color-text-secondary);font-size:0.95rem;">Better word choices: <em>improve</em> vs <em>better</em></div>
+                </div>
+                <div class="rule-card reveal">
+                    <div style="font-size:1.8rem;margin-bottom:0.5rem;">💰</div>
+                    <div style="font-weight:700;color:var(--color-accent-1);font-size:1.05rem;">Lesson 4</div>
+                    <div style="color:var(--color-text-secondary);font-size:0.95rem;">Finance vocabulary in English</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: I AM 26 - Explanation -->
+    <div class="slide slide-3" data-slide="3">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:400px;height:400px;top:-80px;left:-80px;background:var(--color-accent-3);opacity:0.10;"></div>
+            <div class="blob" style="width:280px;height:280px;bottom:-50px;right:-50px;background:var(--color-accent-1);opacity:0.08;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 1 — Age</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.6rem;">How to Say Your Age</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.4rem;">
+                <div class="rule-card reveal" style="border-color:rgba(239,68,68,0.3);">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#f87171;margin-bottom:0.6rem;">❌ Common mistake</div>
+                    <p style="font-size:1.15rem;color:#fca5a5;font-style:italic;">"I have 26 years old."</p>
+                    <p style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.5rem;">Direct translation from Portuguese. Does not exist in English!</p>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(0,180,216,0.35);">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-2);margin-bottom:0.6rem;">✅ Correct</div>
+                    <p style="font-size:1.15rem;color:var(--color-accent-2);font-style:italic;">"I am 26 years old."</p>
+                    <p style="font-size:0.82rem;color:var(--color-text-muted);margin-top:0.5rem;">Or simply: <strong>"I'm 26."</strong> — both are natural and correct.</p>
+                </div>
+            </div>
+            <div class="practice-box reveal">
+                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-3);margin-bottom:0.6rem;">🔑 The Rule</div>
+                <p style="color:var(--color-text-secondary);font-size:0.95rem;">In English, age uses the verb <strong style="color:var(--color-accent-1);">TO BE</strong> (am/is/are). In Portuguese you say <em>"ter"</em> (to have), but in English we say <em>"I AM 26"</em>, not "I have 26".</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: I AM 26 - Practice -->
+    <div class="slide slide-4" data-slide="4">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:380px;height:380px;top:-70px;right:-70px;background:var(--color-accent-3);opacity:0.09;"></div>
+            <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:var(--color-accent-1);opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 1 — Practice</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.4rem;">Say It Right! 🗣️</h2>
+            <div style="display:flex;flex-direction:column;gap:0.85rem;">
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">I have 30 years old.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.7rem;">→</span>
+                    <span class="right-badge">I am 30 years old. / I'm 30.</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">She has 22 years.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.7rem;">→</span>
+                    <span class="right-badge">She is 22. / She's 22 years old.</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">My boss have 45 years.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.7rem;">→</span>
+                    <span class="right-badge">My boss is 45 years old.</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">I have 26.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.7rem;">→</span>
+                    <span class="right-badge">I am 26. / I'm 26.</span>
+                </div>
+            </div>
+            <div class="practice-box reveal" style="margin-top:1.2rem;">
+                <p style="color:var(--color-text-secondary);font-size:0.9rem;">💬 <strong>Now say it out loud:</strong> "My name is [your name] and I am [your age] years old."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: WOULD LIKE - Explanation -->
+    <div class="slide slide-5" data-slide="5">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:420px;height:420px;top:-90px;right:-90px;background:var(--color-accent-2);opacity:0.10;"></div>
+            <div class="blob" style="width:260px;height:260px;bottom:-50px;left:-40px;background:var(--color-accent-3);opacity:0.08;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 2 — Politeness</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-top:0.8rem;margin-bottom:0.6rem;">Using <em style="color:var(--color-accent-1);">"Would Like"</em></h2>
+            <p class="reveal" style="color:var(--color-text-secondary);font-size:0.95rem;margin-bottom:1.3rem;">The polite way to express desires, requests, and wishes in professional settings.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.2rem;">
+                <div class="rule-card reveal" style="border-color:rgba(239,68,68,0.25);">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#f87171;margin-bottom:0.5rem;">Less polite (casual)</div>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">
+                        <li style="color:#fca5a5;font-size:0.93rem;">• "I want coffee."</li>
+                        <li style="color:#fca5a5;font-size:0.93rem;">• "I want to meet you."</li>
+                        <li style="color:#fca5a5;font-size:0.93rem;">• "I want more information."</li>
+                    </ul>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(0,180,216,0.3);">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-2);margin-bottom:0.5rem;">✅ Polite & Professional</div>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">
+                        <li style="color:var(--color-accent-2);font-size:0.93rem;">• "I would like a coffee."</li>
+                        <li style="color:var(--color-accent-2);font-size:0.93rem;">• "I would like to meet you."</li>
+                        <li style="color:var(--color-accent-2);font-size:0.93rem;">• "I would like more information."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="practice-box reveal">
+                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-3);margin-bottom:0.5rem;">💡 Tip — Contractions</div>
+                <p style="color:var(--color-text-secondary);font-size:0.9rem;"><strong style="color:var(--color-accent-1);">I'd like</strong> = I would like (spoken / informal writing). Example: <em>"I'd like to schedule a meeting."</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: WOULD LIKE - Practice -->
+    <div class="slide slide-6" data-slide="6">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:360px;height:360px;top:-70px;left:-70px;background:var(--color-accent-2);opacity:0.09;"></div>
+            <div class="blob" style="width:240px;height:240px;bottom:-40px;right:-40px;background:var(--color-accent-1);opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 2 — Practice</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.3rem;">Transform These Sentences 🔄</h2>
+            <div style="display:flex;flex-direction:column;gap:0.85rem;">
+                <div class="rule-card reveal accent-line">
+                    <span style="color:var(--color-text-muted);font-size:0.85rem;display:block;margin-bottom:0.3rem;">Make it polite:</span>
+                    <span style="color:var(--color-text);font-style:italic;">"I want to open an account."</span>
+                    <div style="margin-top:0.4rem;"><span class="right-badge">"I would like to open an account."</span></div>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span style="color:var(--color-text-muted);font-size:0.85rem;display:block;margin-bottom:0.3rem;">Make it polite:</span>
+                    <span style="color:var(--color-text);font-style:italic;">"I want to know the exchange rate."</span>
+                    <div style="margin-top:0.4rem;"><span class="right-badge">"I would like to know the exchange rate."</span></div>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span style="color:var(--color-text-muted);font-size:0.85rem;display:block;margin-bottom:0.3rem;">Make it polite:</span>
+                    <span style="color:var(--color-text);font-style:italic;">"I want to invest in bonds."</span>
+                    <div style="margin-top:0.4rem;"><span class="right-badge">"I'd like to invest in bonds."</span></div>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span style="color:var(--color-text-muted);font-size:0.85rem;display:block;margin-bottom:0.3rem;">Make it polite:</span>
+                    <span style="color:var(--color-text);font-style:italic;">"I want more details about the interest rate."</span>
+                    <div style="margin-top:0.4rem;"><span class="right-badge">"I would like more details about the interest rate."</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: IMPROVE vs BETTER -->
+    <div class="slide slide-7" data-slide="7">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:440px;height:440px;top:-100px;right:-80px;background:var(--color-accent-1);opacity:0.10;"></div>
+            <div class="blob" style="width:260px;height:260px;bottom:-50px;left:-40px;background:var(--color-accent-3);opacity:0.08;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 3 — Vocabulary</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-top:0.8rem;margin-bottom:0.5rem;"><em style="color:var(--color-accent-1);">Improve</em> vs <em style="color:var(--color-accent-3);">Better</em></h2>
+            <p class="reveal" style="color:var(--color-text-secondary);font-size:0.93rem;margin-bottom:1.2rem;">Using <strong>improve</strong> sounds more professional and specific than just saying <strong>better</strong>.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.2rem;">
+                <div class="rule-card reveal">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-3);margin-bottom:0.5rem;">BETTER — adjective / adverb</div>
+                    <p style="font-size:0.88rem;color:var(--color-text-muted);margin-bottom:0.5rem;">Describes a state of being superior</p>
+                    <ul style="list-style:none;padding:0;margin:0;font-size:0.88rem;color:var(--color-text-secondary);display:flex;flex-direction:column;gap:0.35rem;">
+                        <li>• "The results are <strong>better</strong> this month."</li>
+                        <li>• "She feels <strong>better</strong> today."</li>
+                    </ul>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(0,180,216,0.3);">
+                    <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent-2);margin-bottom:0.5rem;">IMPROVE — verb (more powerful!)</div>
+                    <p style="font-size:0.88rem;color:var(--color-text-muted);margin-bottom:0.5rem;">Describes an action of making something better</p>
+                    <ul style="list-style:none;padding:0;margin:0;font-size:0.88rem;color:var(--color-text-secondary);display:flex;flex-direction:column;gap:0.35rem;">
+                        <li>• "We aim to <strong>improve</strong> our results."</li>
+                        <li>• "I want to <strong>improve</strong> my English."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="practice-box reveal">
+                <div style="display:flex;flex-direction:column;gap:0.4rem;">
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);">❌ Less precise: <em>"I want to make my skills better."</em></div>
+                    <div style="font-size:0.87rem;color:var(--color-accent-2);">✅ More professional: <em>"I want to <strong>improve</strong> my skills."</em></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: IMPROVE - More Examples -->
+    <div class="slide slide-8" data-slide="8">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:350px;height:350px;top:-70px;left:-60px;background:var(--color-accent-1);opacity:0.08;"></div>
+            <div class="blob" style="width:220px;height:220px;bottom:-40px;right:-30px;background:var(--color-accent-2);opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <span class="gold-tag reveal">Lesson 3 — Practice</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.3rem;">Use <em style="color:var(--color-accent-1);">Improve</em> Like a Pro 💼</h2>
+            <div style="display:flex;flex-direction:column;gap:0.85rem;">
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">My English is getting better.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.6rem;">→</span>
+                    <span class="right-badge">My English is improving. ✨</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">We need to make the process better.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.6rem;">→</span>
+                    <span class="right-badge">We need to improve the process.</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">The company's numbers got better.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.6rem;">→</span>
+                    <span class="right-badge">The company's numbers improved.</span>
+                </div>
+                <div class="rule-card reveal accent-line">
+                    <span class="wrong-badge">I want to get better at communication.</span>
+                    <span style="color:var(--color-text-muted);margin:0 0.6rem;">→</span>
+                    <span class="right-badge">I would like to improve my communication skills.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: FINANCE VOCABULARY - Exchange Rate -->
+    <div class="slide slide-9" data-slide="9">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:460px;height:460px;top:-100px;right:-100px;background:var(--color-accent-3);opacity:0.12;"></div>
+            <div class="blob" style="width:280px;height:280px;bottom:-60px;left:-50px;background:var(--color-accent-1);opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content">
+            <span class="finance-tag reveal">Lesson 4 — Finance</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.4rem;">Key Finance Words 💱</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <div class="rule-card reveal" style="border-color:rgba(255,209,102,0.25);">
+                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;">
+                        <span style="font-size:1.4rem;">💱</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:1rem;">Câmbio</div>
+                            <div style="font-size:0.75rem;color:var(--color-text-muted);">in English:</div>
+                        </div>
+                    </div>
+                    <p style="color:var(--color-accent-2);font-size:1rem;font-weight:600;margin-bottom:0.3rem;">Exchange Rate / Foreign Exchange</p>
+                    <p style="font-size:0.8rem;color:var(--color-text-muted);">"What is the dollar <strong>exchange rate</strong> today?"<br>"The <strong>FX</strong> market is volatile."</p>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(255,209,102,0.25);">
+                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;">
+                        <span style="font-size:1.4rem;">📊</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:1rem;">Taxa de juros</div>
+                            <div style="font-size:0.75rem;color:var(--color-text-muted);">in English:</div>
+                        </div>
+                    </div>
+                    <p style="color:var(--color-accent-2);font-size:1rem;font-weight:600;margin-bottom:0.3rem;">Interest Rate</p>
+                    <p style="font-size:0.8rem;color:var(--color-text-muted);">"The <strong>interest rate</strong> went up."<br>"The central bank raised the <strong>rate</strong>."</p>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(255,209,102,0.25);">
+                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;">
+                        <span style="font-size:1.4rem;">🏦</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:1rem;">Investimento</div>
+                            <div style="font-size:0.75rem;color:var(--color-text-muted);">in English:</div>
+                        </div>
+                    </div>
+                    <p style="color:var(--color-accent-2);font-size:1rem;font-weight:600;margin-bottom:0.3rem;">Investment</p>
+                    <p style="font-size:0.8rem;color:var(--color-text-muted);">"She made a great <strong>investment</strong>."<br>"Return on <strong>investment</strong> (ROI) was 15%."</p>
+                </div>
+                <div class="rule-card reveal" style="border-color:rgba(255,209,102,0.25);">
+                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;">
+                        <span style="font-size:1.4rem;">📉</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:1rem;">Ações / Bolsa</div>
+                            <div style="font-size:0.75rem;color:var(--color-text-muted);">in English:</div>
+                        </div>
+                    </div>
+                    <p style="color:var(--color-accent-2);font-size:1rem;font-weight:600;margin-bottom:0.3rem;">Stocks / Stock Market</p>
+                    <p style="font-size:0.8rem;color:var(--color-text-muted);">"She bought <strong>stocks</strong> last year."<br>"The <strong>stock market</strong> crashed."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: MORE FINANCE VOCABULARY -->
+    <div class="slide slide-10" data-slide="10">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:380px;height:380px;top:-80px;left:-80px;background:var(--color-accent-3);opacity:0.10;"></div>
+            <div class="blob" style="width:250px;height:250px;bottom:-50px;right:-50px;background:var(--color-accent-1);opacity:0.08;"></div>
+        </div>
+        <div class="content">
+            <span class="finance-tag reveal">Lesson 4 — More Finance</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.3rem;">More Finance Words 📋</h2>
+            <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                <div class="rule-card reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+                    <div style="flex:1;min-width:160px;">
+                        <span style="color:var(--color-accent-3);font-weight:600;">Imposto / Tributo</span>
+                    </div>
+                    <div style="flex:2;min-width:200px;">
+                        <span class="right-badge" style="font-size:0.95rem;">Tax / Taxes</span>
+                        <span style="color:var(--color-text-muted);font-size:0.8rem;margin-left:0.6rem;">e.g. "income tax", "tax rate"</span>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+                    <div style="flex:1;min-width:160px;">
+                        <span style="color:var(--color-accent-3);font-weight:600;">Orçamento</span>
+                    </div>
+                    <div style="flex:2;min-width:200px;">
+                        <span class="right-badge" style="font-size:0.95rem;">Budget</span>
+                        <span style="color:var(--color-text-muted);font-size:0.8rem;margin-left:0.6rem;">e.g. "annual budget", "budget cut"</span>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+                    <div style="flex:1;min-width:160px;">
+                        <span style="color:var(--color-accent-3);font-weight:600;">Lucro / Ganho</span>
+                    </div>
+                    <div style="flex:2;min-width:200px;">
+                        <span class="right-badge" style="font-size:0.95rem;">Profit / Revenue</span>
+                        <span style="color:var(--color-text-muted);font-size:0.8rem;margin-left:0.6rem;">e.g. "net profit", "total revenue"</span>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+                    <div style="flex:1;min-width:160px;">
+                        <span style="color:var(--color-accent-3);font-weight:600;">Dívida</span>
+                    </div>
+                    <div style="flex:2;min-width:200px;">
+                        <span class="right-badge" style="font-size:0.95rem;">Debt</span>
+                        <span style="color:var(--color-text-muted);font-size:0.8rem;margin-left:0.6rem;">e.g. "public debt", "debt-free"</span>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;">
+                    <div style="flex:1;min-width:160px;">
+                        <span style="color:var(--color-accent-3);font-weight:600;">Inflação</span>
+                    </div>
+                    <div style="flex:2;min-width:200px;">
+                        <span class="right-badge" style="font-size:0.95rem;">Inflation</span>
+                        <span style="color:var(--color-text-muted);font-size:0.8rem;margin-left:0.6rem;">e.g. "inflation rate", "fight inflation"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: FINANCE SENTENCES IN CONTEXT -->
+    <div class="slide slide-11" data-slide="11">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:400px;height:400px;top:-90px;right:-90px;background:var(--color-accent-1);opacity:0.10;"></div>
+            <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:var(--color-accent-3);opacity:0.08;"></div>
+        </div>
+        <div class="content">
+            <span class="finance-tag reveal">Lesson 4 — In Context</span>
+            <h2 class="font-display reveal" style="font-size:clamp(1.7rem,3.3vw,2.4rem);font-weight:700;margin-top:0.8rem;margin-bottom:1.3rem;">Finance Sentences to Practice 🗣️</h2>
+            <div style="display:flex;flex-direction:column;gap:0.9rem;">
+                <div class="practice-box reveal">
+                    <p style="color:var(--color-text-secondary);font-size:0.95rem;margin:0;"><span style="color:var(--color-accent-3);font-weight:600;">Câmbio:</span> <em>"I would like to check the <strong>exchange rate</strong> for the dollar."</em></p>
+                </div>
+                <div class="practice-box reveal">
+                    <p style="color:var(--color-text-secondary);font-size:0.95rem;margin:0;"><span style="color:var(--color-accent-3);font-weight:600;">Juros:</span> <em>"The <strong>interest rate</strong> has improved compared to last year."</em></p>
+                </div>
+                <div class="practice-box reveal">
+                    <p style="color:var(--color-text-secondary);font-size:0.95rem;margin:0;"><span style="color:var(--color-accent-3);font-weight:600;">Ações:</span> <em>"I am 28 years old and I'd like to start investing in <strong>stocks</strong>."</em></p>
+                </div>
+                <div class="practice-box reveal">
+                    <p style="color:var(--color-text-secondary);font-size:0.95rem;margin:0;"><span style="color:var(--color-accent-3);font-weight:600;">Combining:</span> <em>"I am 26 years old, I would like to <strong>improve</strong> my understanding of <strong>exchange rates</strong> and <strong>investment</strong> strategies."</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: FULL REVIEW -->
+    <div class="slide slide-12" data-slide="12">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:420px;height:420px;top:-90px;left:-80px;background:var(--color-accent-2);opacity:0.09;"></div>
+            <div class="blob" style="width:280px;height:280px;bottom:-60px;right:-60px;background:var(--color-accent-3);opacity:0.10;"></div>
+        </div>
+        <div class="content">
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-bottom:1.4rem;">Quick Review 📝</h2>
+            <div style="display:flex;flex-direction:column;gap:0.9rem;">
+                <div class="rule-card reveal" style="border-left:4px solid var(--color-accent-3);">
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
+                        <span style="font-size:1.3rem;flex-shrink:0;">1️⃣</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:0.9rem;margin-bottom:0.2rem;">Age</div>
+                            <p style="font-size:0.88rem;color:var(--color-text-secondary);margin:0;">Use <strong style="color:var(--color-accent-1);">I AM</strong> (not I have) — <em>"I am 26 years old."</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="border-left:4px solid var(--color-accent-1);">
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
+                        <span style="font-size:1.3rem;flex-shrink:0;">2️⃣</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-1);font-size:0.9rem;margin-bottom:0.2rem;">Polite requests</div>
+                            <p style="font-size:0.88rem;color:var(--color-text-secondary);margin:0;">Use <strong style="color:var(--color-accent-2);">I WOULD LIKE</strong> — <em>"I'd like to know the exchange rate."</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="border-left:4px solid var(--color-accent-2);">
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
+                        <span style="font-size:1.3rem;flex-shrink:0;">3️⃣</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-2);font-size:0.9rem;margin-bottom:0.2rem;">Professional vocabulary</div>
+                            <p style="font-size:0.88rem;color:var(--color-text-secondary);margin:0;">Use <strong style="color:var(--color-accent-1);">IMPROVE</strong> instead of "get better" — <em>"I want to improve my skills."</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule-card reveal" style="border-left:4px solid var(--color-accent-3);">
+                    <div style="display:flex;gap:1rem;align-items:flex-start;">
+                        <span style="font-size:1.3rem;flex-shrink:0;">4️⃣</span>
+                        <div>
+                            <div style="font-weight:700;color:var(--color-accent-3);font-size:0.9rem;margin-bottom:0.2rem;">Finance words</div>
+                            <p style="font-size:0.88rem;color:var(--color-text-secondary);margin:0;"><strong>Exchange rate</strong> · <strong>Interest rate</strong> · <strong>Investment</strong> · <strong>Stock market</strong> · <strong>Budget</strong> · <strong>Profit</strong> · <strong>Inflation</strong> · <strong>Debt</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: FINAL CHALLENGE -->
+    <div class="slide slide-13" data-slide="13">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:480px;height:480px;top:-110px;right:-100px;background:var(--color-accent-1);opacity:0.14;"></div>
+            <div class="blob" style="width:300px;height:300px;bottom:-70px;left:-60px;background:var(--color-accent-3);opacity:0.12;"></div>
+            <div class="blob" style="width:180px;height:180px;top:35%;left:10%;background:var(--color-accent-2);opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content text-center">
+            <div style="font-size:90px;margin-bottom:1rem;animation:float 3s ease-in-out infinite;" class="reveal">🏆</div>
+            <h2 class="font-display reveal" style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;background:linear-gradient(135deg,var(--color-accent-1),var(--color-accent-2),var(--color-accent-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.2rem;line-height:1.2;">Final Challenge!</h2>
+            <div class="practice-box reveal" style="text-align:left;max-width:700px;margin:0 auto 1.2rem;">
+                <p style="color:var(--color-accent-3);font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.7rem;">Speak this paragraph aloud:</p>
+                <p style="color:var(--color-text-secondary);font-size:1rem;line-height:1.7;margin:0;">
+                    "My name is [name] and <strong style="color:var(--color-accent-2);">I am 26 years old</strong>. <strong style="color:var(--color-accent-2);">I would like to improve</strong> my knowledge of finance. <strong style="color:var(--color-accent-2);">I'd like to learn</strong> more about the <strong style="color:var(--color-accent-1);">exchange rate</strong>, <strong style="color:var(--color-accent-1);">interest rates</strong>, and how to <strong style="color:var(--color-accent-1);">invest</strong> in the <strong style="color:var(--color-accent-1);">stock market</strong>."
+                </p>
+            </div>
+            <p class="reveal" style="font-size:1rem;color:var(--color-accent-2);font-style:italic;">You're doing great — keep improving! 🚀</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="nav-controls">
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 13</span>
+</div>
+
+<script>
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) { const dot = document.createElement('div'); dot.className = 'dot' + (i === 1 ? ' active' : ''); dot.onclick = () => goToSlide(i); dotsContainer.appendChild(dot); }
+    function goToSlide(n) {
+        const prev = document.querySelector('.slide.active');
+        const next = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (prev) prev.classList.remove('active');
+        if (next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
+    function updateNav() { document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i + 1 === current); }); counter.textContent = current + ' / ' + total; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.offsetHeight;
+            const delay = i * 0.08;
+            el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0px)';
+        });
+        animateSlideEffects(slide);
+    }
+    function animateSlideEffects(slide) {
+        slide.querySelectorAll('[data-count]:not(.counted)').forEach(el => {
+            el.classList.add('counted');
+            const target = parseInt(el.dataset.count);
+            const suffix = el.dataset.suffix || '', prefix = el.dataset.prefix || '';
+            let cur = 0; const step = target / 40;
+            const timer = setInterval(() => { cur += step; if (cur >= target) { cur = target; clearInterval(timer); } el.textContent = prefix + Math.round(cur).toLocaleString() + suffix; }, 30);
+        });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        const spotlight = document.querySelector('.mouse-spotlight');
+        if (spotlight) {
+            spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(0,180,216,0.06), transparent 40%)`;
+        }
+    });
+
+    (function() {
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        (function tick() {
+            const ox = (mouseX - cx) / cx, oy = (mouseY - cy) / cy;
+            document.querySelectorAll('.deco-shape').forEach(shape => {
+                const speed = parseFloat(shape.dataset.speed) || 0.03;
+                shape.style.transform = `translate(${ox * speed * 100}px, ${oy * speed * 100}px)`;
+            });
+            requestAnimationFrame(tick);
+        })();
+    })();
+
+    window.initParticles = function(canvas, options) {
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+        const interactive = options.interactive !== false;
+        const count = options.count || (interactive ? 55 : 18);
+        let mx = -1000, my = -1000;
+        const particles = Array.from({ length: count }, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            size: Math.random() * 2.5 + 0.8, alpha: Math.random() * 0.35 + 0.1
+        }));
+        if (interactive) {
+            canvas.addEventListener('mousemove', (e) => { const rect = canvas.getBoundingClientRect(); mx = e.clientX - rect.left; my = e.clientY - rect.top; });
+            canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+        }
+        (function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 120) { const force = (120 - dist) / 120 * 2; p.vx += (dx / dist) * force * 0.1; p.vy += (dy / dist) * force * 0.1; } }
+                p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0,180,216,${p.alpha})`; ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        })();
+    };
+    document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 55 }));
+    document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 18 }));
+
+    try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+</script>
+
+</body>
+</html>

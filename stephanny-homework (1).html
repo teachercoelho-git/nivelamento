@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephanny's Homework — Nationalities & Countries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --bg:#f4f6fb;--surface:#fff;--surface2:#f9fafd;--surfoff:#eef1f8;
+  --border:#dde2ef;--divider:#e5e9f4;--text:#1a2040;--textm:#5a6380;--textf:#9ba5c0;--texti:#fff;
+  --pri:#4361ee;--prih:#3451d1;--prhl:#dce3fc;
+  --ok:#2a9d5c;--okhl:#d0f0e0;--err:#e34c4c;--errhl:#fde8e8;
+  --sh1:0 1px 3px rgba(26,32,64,.07);--sh2:0 4px 14px rgba(26,32,64,.10);--sh3:0 10px 30px rgba(26,32,64,.13);
+  --r1:.375rem;--r2:.5rem;--r3:.75rem;--r4:1rem;--rf:9999px;
+  --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.25rem;--s6:1.5rem;--s8:2rem;--s10:2.5rem;--s12:3rem;--s16:4rem;
+  --xs:clamp(.75rem,.7rem + .25vw,.875rem);--sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --base:clamp(1rem,.95rem + .25vw,1.125rem);--lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--xxl:clamp(1.8rem,1rem + 2vw,2.8rem);
+  --fd:'Nunito',sans-serif;--fb:'DM Sans',sans-serif;--tr:180ms cubic-bezier(.16,1,.3,1)
+}
+[data-theme="dark"]{
+  --bg:#131723;--surface:#1b2033;--surface2:#202540;--surfoff:#252b45;
+  --border:#2e3558;--divider:#252b45;--text:#dce2f8;--textm:#8892b4;--textf:#525c80;--texti:#1a2040;
+  --pri:#7b96ff;--prih:#6380ff;--prhl:#1e2d5a;
+  --ok:#47c97e;--okhl:#1a3b2a;--err:#ff7070;--errhl:#3b1a1a;
+  --sh1:0 1px 3px rgba(0,0,0,.25);--sh2:0 4px 14px rgba(0,0,0,.35);--sh3:0 10px 30px rgba(0,0,0,.45)
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#131723;--surface:#1b2033;--surface2:#202540;--surfoff:#252b45;--border:#2e3558;--divider:#252b45;--text:#dce2f8;--textm:#8892b4;--textf:#525c80;--pri:#7b96ff;--prih:#6380ff;--prhl:#1e2d5a;--ok:#47c97e;--okhl:#1a3b2a;--err:#ff7070;--errhl:#3b1a1a;--sh1:0 1px 3px rgba(0,0,0,.25);--sh2:0 4px 14px rgba(0,0,0,.35);--sh3:0 10px 30px rgba(0,0,0,.45)}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{min-height:100dvh;font-family:var(--fb);font-size:var(--base);color:var(--text);background:var(--bg);transition:background var(--tr),color var(--tr)}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--fd);line-height:1.15}
+::selection{background:var(--prhl);color:var(--text)}
+:focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:var(--r1)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.wrap{max-width:820px;margin-inline:auto;padding-inline:var(--s4)}
+header{background:var(--surface);border-bottom:1px solid var(--divider);box-shadow:var(--sh1);position:sticky;top:0;z-index:100}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s4);max-width:820px;margin-inline:auto}
+.logo{display:flex;align-items:center;gap:var(--s2);font-family:var(--fd);font-weight:800;font-size:var(--lg);color:var(--pri)}
+.hdra{display:flex;align-items:center;gap:var(--s3)}
+.sbadge{background:var(--prhl);color:var(--pri);font-family:var(--fd);font-weight:700;font-size:var(--sm);padding:var(--s1) var(--s3);border-radius:var(--rf)}
+.thbtn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--rf);color:var(--textm);transition:background var(--tr),color var(--tr)}
+.thbtn:hover{background:var(--surfoff);color:var(--text)}
+main{padding-block:var(--s8) var(--s16)}
+.hero{text-align:center;margin-bottom:var(--s10)}
+.hero-tag{font-size:var(--sm);font-weight:600;color:var(--pri);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--s2)}
+.hero h1{font-size:var(--xxl);font-weight:800;margin-bottom:var(--s3)}
+.hero h1 span{color:var(--pri)}
+.hero p{color:var(--textm);margin-inline:auto;max-width:55ch;margin-bottom:var(--s4)}
+.pbwrap{background:var(--surfoff);border-radius:var(--rf);height:8px;max-width:360px;margin-inline:auto;overflow:hidden}
+.pb{height:100%;background:linear-gradient(90deg,var(--pri),#7b96ff);border-radius:var(--rf);transition:width .5s cubic-bezier(.16,1,.3,1);width:0%}
+.plabel{font-size:var(--xs);color:var(--textf);margin-top:var(--s2)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s6);margin-bottom:var(--s6);box-shadow:var(--sh1);transition:box-shadow var(--tr)}
+.card:hover{box-shadow:var(--sh2)}
+.cardh{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s5)}
+.cnum{width:32px;height:32px;border-radius:var(--rf);background:var(--pri);color:var(--texti);font-family:var(--fd);font-weight:800;font-size:var(--sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cardh h2{font-size:var(--lg);font-weight:700}
+.ctag{font-size:var(--xs);font-weight:600;color:var(--textm);background:var(--surfoff);padding:2px 10px;border-radius:var(--rf);margin-left:auto}
+.sub{font-size:var(--sm);color:var(--textm);margin-bottom:var(--s4)}
+.mcols{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.mcolt{font-size:var(--sm);font-weight:700;color:var(--textm);text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--s3)}
+.mitem{background:var(--surface2);border:2px solid var(--border);border-radius:var(--r3);padding:var(--s3) var(--s4);cursor:pointer;font-size:var(--sm);font-weight:600;margin-bottom:var(--s2);transition:border-color var(--tr),background var(--tr),transform var(--tr);user-select:none}
+.mitem:hover{border-color:var(--pri);background:var(--prhl);transform:translateY(-1px)}
+.mitem.sel{border-color:var(--pri);background:var(--prhl)}
+.mitem.ok{border-color:var(--ok)!important;background:var(--okhl)!important;pointer-events:none;animation:pop .4s cubic-bezier(.16,1,.3,1)}
+.mitem.bad{border-color:var(--err)!important;background:var(--errhl)!important;animation:shake .35s ease}
+.mitem.used{opacity:.4;pointer-events:none}
+.sw{margin-bottom:var(--s4)}
+.sent{font-size:var(--base);line-height:2.2}
+.blinp{display:inline-block;width:130px;border:none;border-bottom:2px solid var(--pri);background:transparent;color:var(--text);font:inherit;font-weight:600;font-size:var(--base);text-align:center;padding:2px 4px;outline:none;transition:border-color var(--tr)}
+.blinp:focus{border-color:var(--prih)}
+.blinp.ok{border-color:var(--ok);color:var(--ok)}
+.blinp.bad{border-color:var(--err);color:var(--err)}
+.snum{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--prhl);color:var(--pri);border-radius:var(--rf);font-size:var(--xs);font-weight:700;margin-right:var(--s2);vertical-align:middle;flex-shrink:0}
+.hint{font-size:var(--xs);color:var(--textf);margin-top:2px;padding-left:30px}
+.qq{margin-bottom:var(--s6)}
+.qtext{font-size:var(--base);font-weight:600;margin-bottom:var(--s3);display:flex;align-items:flex-start;gap:var(--s2)}
+.qn{min-width:28px;height:28px;background:var(--pri);color:var(--texti);font-family:var(--fd);font-weight:800;font-size:var(--xs);border-radius:var(--rf);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.qopt{background:var(--surface2);border:2px solid var(--border);border-radius:var(--r2);padding:var(--s3);cursor:pointer;font-size:var(--sm);font-weight:500;display:flex;align-items:center;gap:var(--s2);transition:border-color var(--tr),background var(--tr),transform var(--tr);text-align:left;width:100%}
+.qopt:hover{border-color:var(--pri);background:var(--prhl);transform:translateX(2px)}
+.qopt.sel{border-color:var(--pri);background:var(--prhl)}
+.qopt.ok{border-color:var(--ok)!important;background:var(--okhl)!important;pointer-events:none}
+.qopt.bad{border-color:var(--err)!important;background:var(--errhl)!important}
+.qopt.reveal{border-color:var(--ok)!important;background:var(--okhl)!important;pointer-events:none}
+.qltr{min-width:24px;height:24px;border-radius:var(--rf);background:var(--surfoff);color:var(--textm);font-weight:700;font-size:var(--xs);display:flex;align-items:center;justify-content:center;font-family:var(--fd);flex-shrink:0}
+.wbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--s4)}
+.wbitem{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4)}
+.wbf{font-size:1.5rem;margin-bottom:var(--s1)}
+.wbc{font-size:var(--sm);color:var(--textm);margin-bottom:var(--s2);font-weight:700}
+.wbrow{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s2)}
+.wblbl{font-size:var(--xs);color:var(--textf);min-width:80px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.wbinp{flex:1;border:none;border-bottom:2px solid var(--border);background:transparent;color:var(--text);font:inherit;font-size:var(--sm);padding:2px 4px;outline:none;transition:border-color var(--tr)}
+.wbinp:focus{border-color:var(--pri)}
+.wbinp.ok{border-color:var(--ok);color:var(--ok)}
+.wbinp.bad{border-color:var(--err);color:var(--err)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);padding:var(--s3) var(--s6);border-radius:var(--rf);font:inherit;font-family:var(--fd);font-weight:700;font-size:var(--sm);cursor:pointer;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:none}
+.btn:active{transform:scale(.97)}
+.btnp{background:var(--pri);color:var(--texti);box-shadow:var(--sh1)}
+.btnp:hover{background:var(--prih);box-shadow:var(--sh2);transform:translateY(-1px)}
+.btns{background:var(--surfoff);color:var(--text);border:1px solid var(--border)}
+.btns:hover{background:var(--divider)}
+.bact{display:flex;gap:var(--s3);margin-top:var(--s5);flex-wrap:wrap}
+.fbrow{display:flex;align-items:center;gap:var(--s2);margin-top:var(--s3);font-size:var(--sm);font-weight:600;min-height:28px}
+.bok{color:var(--ok)}
+.berr{color:var(--err)}
+.rtw{overflow-x:auto}
+.rtbl{width:100%;border-collapse:collapse;font-size:var(--sm)}
+.rtbl th{background:var(--pri);color:var(--texti);font-family:var(--fd);font-weight:700;padding:var(--s2) var(--s4);text-align:left;font-size:var(--xs);text-transform:uppercase;letter-spacing:.06em}
+.rtbl td{padding:var(--s2) var(--s4);border-bottom:1px solid var(--divider);vertical-align:middle}
+.rtbl tr:last-child td{border-bottom:none}
+.rtbl tr:nth-child(even) td{background:var(--surface2)}
+.rtbl tr:hover td{background:var(--prhl)}
+.rp{background:linear-gradient(135deg,var(--pri) 0%,#7b96ff 100%);border-radius:var(--r4);padding:var(--s8);text-align:center;color:#fff;box-shadow:var(--sh3);margin-top:var(--s8)}
+.rp h2{font-size:var(--xl);font-weight:800;margin-bottom:var(--s2)}
+.rp p{opacity:.9;max-width:40ch;margin-inline:auto}
+.rscore{font-size:var(--xxl);font-weight:800;margin:var(--s4) 0}
+.rp .btns{background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.4)}
+.rp .btns:hover{background:rgba(255,255,255,.35)}
+@keyframes pop{0%{transform:scale(.9);opacity:.7}60%{transform:scale(1.07)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes cfd{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(90px) rotate(360deg);opacity:0}}
+.cfp{position:fixed;width:8px;height:8px;border-radius:1px;pointer-events:none;animation:cfd 1.2s ease-out forwards;z-index:9999}
+@media(max-width:600px){.mcols,.qopts,.wbgrid{grid-template-columns:1fr}.hero h1{font-size:var(--xl)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="hdr">
+  <div class="logo">
+   <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-label="Logo">
+    <circle cx="13" cy="13" r="12" fill="currentColor" opacity=".15"/>
+    <text x="13" y="18" text-anchor="middle" font-size="13" font-family="Nunito,sans-serif" font-weight="800" fill="currentColor">EN</text>
+   </svg>
+   Stephanny's HW
+  </div>
+  <div class="hdra">
+   <div class="sbadge" id="gscore">Score: 0</div>
+   <button class="thbtn" id="thbtn" aria-label="Toggle dark mode">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+   </button>
+  </div>
+ </div>
+</header>
+
+<main>
+ <div class="wrap">
+
+  <div class="hero">
+   <p class="hero-tag">English Homework 🎓</p>
+   <h1>Nationalities &amp; <span>Countries</span></h1>
+   <p>Hi Stephanny! Complete all 4 activities to practice countries, nationalities and languages. Have fun! 🌍</p>
+   <div class="pbwrap"><div class="pb" id="pb"></div></div>
+   <p class="plabel" id="plabel">0 of 4 activities completed</p>
+  </div>
+
+  <!-- REF -->
+  <div class="card">
+   <div class="cardh">
+    <div class="cnum" style="background:var(--textm)">📖</div>
+    <h2>Quick Reference</h2>
+    <span class="ctag">Tap to expand</span>
+   </div>
+   <button class="btn btns" id="refbtn">Show Reference Table</button>
+   <div id="reftbl" style="display:none;margin-top:var(--s4)">
+    <div class="rtw">
+     <table class="rtbl">
+      <thead><tr><th>Flag</th><th>Country</th><th>Nationality</th><th>Language</th></tr></thead>
+      <tbody>
+       <tr><td>🇧🇷</td><td>Brazil</td><td>Brazilian</td><td>Portuguese</td></tr>
+       <tr><td>🇺🇸</td><td>The United States</td><td>American</td><td>English</td></tr>
+       <tr><td>🇬🇧</td><td>The United Kingdom</td><td>British</td><td>English</td></tr>
+       <tr><td>🇫🇷</td><td>France</td><td>French</td><td>French</td></tr>
+       <tr><td>🇩🇪</td><td>Germany</td><td>German</td><td>German</td></tr>
+       <tr><td>🇯🇵</td><td>Japan</td><td>Japanese</td><td>Japanese</td></tr>
+       <tr><td>🇨🇳</td><td>China</td><td>Chinese</td><td>Mandarin</td></tr>
+       <tr><td>🇮🇹</td><td>Italy</td><td>Italian</td><td>Italian</td></tr>
+       <tr><td>🇪🇸</td><td>Spain</td><td>Spanish</td><td>Spanish</td></tr>
+       <tr><td>🇦🇺</td><td>Australia</td><td>Australian</td><td>English</td></tr>
+       <tr><td>🇰🇷</td><td>South Korea</td><td>Korean</td><td>Korean</td></tr>
+       <tr><td>🇲🇽</td><td>Mexico</td><td>Mexican</td><td>Spanish</td></tr>
+       <tr><td>🇨🇦</td><td>Canada</td><td>Canadian</td><td>English / French</td></tr>
+       <tr><td>🇵🇹</td><td>Portugal</td><td>Portuguese</td><td>Portuguese</td></tr>
+       <tr><td>🇦🇷</td><td>Argentina</td><td>Argentine</td><td>Spanish</td></tr>
+       <tr><td>🇷🇺</td><td>Russia</td><td>Russian</td><td>Russian</td></tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+
+  <!-- ACT 1 -->
+  <div class="card">
+   <div class="cardh">
+    <div class="cnum">1</div>
+    <h2>Flag Match</h2>
+    <span class="ctag">Match flags to nationalities</span>
+   </div>
+   <p class="sub">Click a flag, then click its matching nationality. Match all 8 pairs! (+16 pts)</p>
+   <div class="mcols">
+    <div><div class="mcolt">Flags &amp; Countries</div><div id="fcol"></div></div>
+    <div><div class="mcolt">Nationalities</div><div id="ncol"></div></div>
+   </div>
+   <div class="fbrow" id="fb1"></div>
+   <div class="bact"><button class="btn btns" id="r1btn">↺ Reset</button></div>
+  </div>
+
+  <!-- ACT 2 -->
+  <div class="card">
+   <div class="cardh">
+    <div class="cnum">2</div>
+    <h2>Fill in the Blanks</h2>
+    <span class="ctag">Nationalities &amp; languages</span>
+   </div>
+   <p class="sub">Complete each sentence. Type your answer and press Enter or click Check. (+20 pts)</p>
+   <div id="blc"></div>
+   <div class="fbrow" id="fb2"></div>
+   <div class="bact">
+    <button class="btn btnp" id="ck2btn">✓ Check Answers</button>
+    <button class="btn btns" id="r2btn">↺ Reset</button>
+   </div>
+  </div>
+
+  <!-- ACT 3 -->
+  <div class="card">
+   <div class="cardh">
+    <div class="cnum">3</div>
+    <h2>Multiple Choice Quiz</h2>
+    <span class="ctag">Country &amp; language knowledge</span>
+   </div>
+   <p class="sub">Choose the best answer for each question. (+24 pts max)</p>
+   <div id="qzc"></div>
+   <div class="fbrow" id="fb3"></div>
+   <div class="bact">
+    <button class="btn btnp" id="ck3btn">✓ Check Answers</button>
+    <button class="btn btns" id="r3btn">↺ Reset</button>
+   </div>
+  </div>
+
+  <!-- ACT 4 -->
+  <div class="card">
+   <div class="cardh">
+    <div class="cnum">4</div>
+    <h2>Word Builder</h2>
+    <span class="ctag">Country → Nationality → Language</span>
+   </div>
+   <p class="sub">Write the nationality adjective and official language for each country. (+20 pts)</p>
+   <div class="wbgrid" id="wbc"></div>
+   <div class="fbrow" id="fb4"></div>
+   <div class="bact">
+    <button class="btn btnp" id="ck4btn">✓ Check Answers</button>
+    <button class="btn btns" id="r4btn">↺ Reset</button>
+   </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="rp" id="rp" style="display:none">
+   <div id="remoji" style="font-size:3.5rem;margin-bottom:var(--s3)">🎉</div>
+   <h2>Great job, Stephanny!</h2>
+   <p id="rmsg"></p>
+   <div class="rscore" id="rsc"></div>
+   <div class="bact" style="justify-content:center;margin-top:var(--s4)">
+    <button class="btn btns" id="rabtn">↺ Try Again</button>
+   </div>
+  </div>
+
+ </div>
+</main>
+
+<script>
+// ── THEME ──────────────────────────────────────────────
+var thbtn = document.getElementById('thbtn');
+var html  = document.documentElement;
+var theme = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+html.setAttribute('data-theme', theme);
+var SUN  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+var MOON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+thbtn.innerHTML = theme === 'light' ? MOON : SUN;
+thbtn.addEventListener('click', function() {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', theme);
+  thbtn.innerHTML = theme === 'dark' ? SUN : MOON;
+});
+
+// ── GLOBAL ─────────────────────────────────────────────
+var score = 0, done = 0;
+function addScore(n) { score += n; document.getElementById('gscore').textContent = 'Score: ' + score; }
+function markDone() {
+  done++;
+  document.getElementById('pb').style.width = (done / 4 * 100) + '%';
+  document.getElementById('plabel').textContent = done + ' of 4 activities completed';
+  if (done === 4) setTimeout(showResults, 600);
+}
+function showResults() {
+  var rp = document.getElementById('rp');
+  rp.style.display = 'block';
+  rp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('rsc').textContent = score + ' pts';
+  document.getElementById('remoji').textContent = score >= 70 ? '🏆' : score >= 40 ? '🎯' : '💪';
+  document.getElementById('rmsg').textContent = score >= 70 ? 'Excellent! Your vocabulary is really strong!' : score >= 40 ? 'Good job! Keep practicing!' : 'Keep going! Practice makes perfect!';
+  confetti();
+}
+function confetti() {
+  var cols = ['#4361ee','#7b96ff','#47c97e','#ffb84d','#ff7070','#f4a123'];
+  for (var i = 0; i < 40; i++) {
+    (function() {
+      var el = document.createElement('div');
+      el.className = 'cfp';
+      el.style.left = (Math.random() * 100) + 'vw';
+      el.style.top  = (Math.random() * 30 + 20) + 'vh';
+      el.style.background = cols[Math.floor(Math.random() * cols.length)];
+      el.style.animationDelay    = (Math.random() * 0.7) + 's';
+      el.style.animationDuration = (0.9 + Math.random() * 0.7) + 's';
+      el.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+      document.body.appendChild(el);
+      setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 2200);
+    })();
+  }
+}
+
+// ── REF TABLE ──────────────────────────────────────────
+document.getElementById('refbtn').addEventListener('click', function() {
+  var t = document.getElementById('reftbl'), b = this;
+  if (t.style.display === 'none') { t.style.display = 'block'; b.textContent = 'Hide Reference Table'; }
+  else { t.style.display = 'none'; b.textContent = 'Show Reference Table'; }
+});
+
+// ── ACTIVITY 1 — MATCH ─────────────────────────────────
+var FLAGS = [
+  { flag: '🇧🇷', country: 'Brazil',       nat: 'Brazilian' },
+  { flag: '🇺🇸', country: 'USA',          nat: 'American'  },
+  { flag: '🇫🇷', country: 'France',       nat: 'French'    },
+  { flag: '🇩🇪', country: 'Germany',      nat: 'German'    },
+  { flag: '🇯🇵', country: 'Japan',        nat: 'Japanese'  },
+  { flag: '🇮🇹', country: 'Italy',        nat: 'Italian'   },
+  { flag: '🇦🇺', country: 'Australia',    nat: 'Australian'},
+  { flag: '🇰🇷', country: 'South Korea',  nat: 'Korean'    },
+];
+var a1sel = { flag: null, nat: null }, a1ok = 0, a1done = false;
+
+function shuffle(a) { return a.slice().sort(function() { return Math.random() - 0.5; }); }
+
+function buildAct1() {
+  var fc = document.getElementById('fcol'), nc = document.getElementById('ncol');
+  fc.innerHTML = ''; nc.innerHTML = '';
+  a1sel = { flag: null, nat: null }; a1ok = 0; a1done = false;
+  document.getElementById('fb1').innerHTML = '';
+  shuffle(FLAGS).forEach(function(d) {
+    var el = document.createElement('div');
+    el.className = 'mitem'; el.dataset.id = d.nat; el.dataset.side = 'flag';
+    el.textContent = d.flag + ' ' + d.country;
+    el.addEventListener('click', function() { pickMatch(el, 'flag'); });
+    fc.appendChild(el);
+  });
+  shuffle(FLAGS).forEach(function(d) {
+    var el = document.createElement('div');
+    el.className = 'mitem'; el.dataset.id = d.nat; el.dataset.side = 'nat';
+    el.textContent = d.nat;
+    el.addEventListener('click', function() { pickMatch(el, 'nat'); });
+    nc.appendChild(el);
+  });
+}
+function pickMatch(el, side) {
+  if (a1done) return;
+  if (a1sel[side]) a1sel[side].classList.remove('sel');
+  a1sel[side] = el; el.classList.add('sel');
+  if (a1sel.flag && a1sel.nat) checkMatch();
+}
+function checkMatch() {
+  var fe = a1sel.flag, ne = a1sel.nat, fb = document.getElementById('fb1');
+  if (fe.dataset.id === ne.dataset.id) {
+    fe.classList.remove('sel'); fe.classList.add('ok', 'used');
+    ne.classList.remove('sel'); ne.classList.add('ok', 'used');
+    a1ok++;
+    fb.innerHTML = '<span class="bok">✅ Correct! ' + a1ok + '/8 matched.</span>';
+    if (a1ok === 8) {
+      a1done = true;
+      fb.innerHTML = '<span>🎉</span> <span class="bok">All 8 matched! +16 pts</span>';
+      addScore(16); markDone();
+    }
+  } else {
+    fe.classList.add('bad'); ne.classList.add('bad');
+    fb.innerHTML = '<span class="berr">❌ Not a match. Try again!</span>';
+    setTimeout(function() { fe.classList.remove('sel','bad'); ne.classList.remove('sel','bad'); }, 700);
+  }
+  a1sel = { flag: null, nat: null };
+}
+document.getElementById('r1btn').addEventListener('click', function() { buildAct1(); });
+
+// ── ACTIVITY 2 — FILL BLANKS ───────────────────────────
+var BLANKS = [
+  { pre: 'She is from Japan. She is ',         suf: '.', ans: 'japanese',   hint: 'nationality' },
+  { pre: 'He speaks ',                          suf: " because he's from Brazil.", ans: 'portuguese', hint: 'language' },
+  { pre: 'They are from Australia. They are ', suf: '.', ans: 'australian', hint: 'nationality' },
+  { pre: 'My friend is from Germany. She is ', suf: '.', ans: 'german',     hint: 'nationality' },
+  { pre: 'People from France speak ',           suf: '.', ans: 'french',     hint: 'language'    },
+  { pre: 'He is from South Korea. He is ',     suf: '.', ans: 'korean',     hint: 'nationality' },
+  { pre: 'She moved to Italy and now speaks ', suf: '.', ans: 'italian',    hint: 'language'    },
+  { pre: 'My teacher is from the UK. She is ',suf: '.', ans: 'british',    hint: 'nationality' },
+];
+var a2done = false;
+
+function buildAct2() {
+  var c = document.getElementById('blc'); c.innerHTML = ''; a2done = false;
+  document.getElementById('fb2').innerHTML = '';
+  BLANKS.forEach(function(d, i) {
+    var w = document.createElement('div'); w.className = 'sw';
+    var inp = document.createElement('input');
+    inp.className = 'blinp'; inp.type = 'text';
+    inp.autocomplete = 'off'; inp.autocorrect = 'off'; inp.autocapitalize = 'off'; inp.spellcheck = false;
+    inp.placeholder = '...'; inp.dataset.ans = d.ans;
+    inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkBlanks(); });
+
+    var sentDiv = document.createElement('div'); sentDiv.className = 'sent';
+    var numSpan = document.createElement('span'); numSpan.className = 'snum'; numSpan.textContent = i + 1;
+    sentDiv.appendChild(numSpan);
+    sentDiv.appendChild(document.createTextNode(d.pre));
+    sentDiv.appendChild(inp);
+    sentDiv.appendChild(document.createTextNode(d.suf));
+
+    var hintP = document.createElement('p'); hintP.className = 'hint';
+    hintP.textContent = '💡 hint: ' + d.hint;
+
+    w.appendChild(sentDiv); w.appendChild(hintP);
+    c.appendChild(w);
+  });
+}
+function checkBlanks() {
+  if (a2done) return;
+  var correct = 0;
+  document.querySelectorAll('.blinp').forEach(function(inp) {
+    var v = inp.value.trim().toLowerCase();
+    inp.classList.remove('ok','bad');
+    if (v === inp.dataset.ans) { inp.classList.add('ok'); correct++; }
+    else if (v !== '') inp.classList.add('bad');
+  });
+  var fb = document.getElementById('fb2');
+  if (correct === BLANKS.length) {
+    fb.innerHTML = '<span>🎉</span> <span class="bok">All 8 correct! +20 pts</span>';
+    a2done = true; addScore(20); markDone();
+  } else {
+    fb.innerHTML = '<span class="berr">❌ ' + correct + '/8 correct — fix the red ones!</span>';
+  }
+}
+document.getElementById('ck2btn').addEventListener('click', function() { checkBlanks(); });
+document.getElementById('r2btn').addEventListener('click', function() { buildAct2(); });
+
+// ── ACTIVITY 3 — QUIZ ──────────────────────────────────
+var QUIZ = [
+  { q: 'What is the official language of Brazil?',                          opts: ['Spanish','French','Portuguese','English'],       ans: 2 },
+  { q: 'People from the United States are called…?',                       opts: ['North American','American','United Statesian','USAian'], ans: 1 },
+  { q: 'Which is the correct nationality for someone from Germany?',       opts: ['Germanish','Germanian','Deutsch','German'],      ans: 3 },
+  { q: 'What language do Australians speak?',                              opts: ['Australian','British English','English','Cockney'], ans: 2 },
+  { q: 'Someone from South Korea is…?',                                    opts: ['Korean','South Koreanian','South Korean','Koreanian'], ans: 0 },
+  { q: 'A person from France speaks…?',                                    opts: ['Frenglish','French','Francophone','Gallic'],     ans: 1 },
+  { q: 'What nationality are people from Canada?',                         opts: ['North American','American','Canadan','Canadian'], ans: 3 },
+  { q: 'The adjective for things related to Japan is…?',                   opts: ['Japanian','Japenese','Japanese','Japanish'],     ans: 2 },
+];
+var a3done = false, qAns = {};
+
+function buildAct3() {
+  var c = document.getElementById('qzc'); c.innerHTML = ''; a3done = false; qAns = {};
+  document.getElementById('fb3').innerHTML = '';
+  QUIZ.forEach(function(q, qi) {
+    var shuf = q.opts.map(function(o, i) { return { text: o, orig: i }; }).sort(function() { return Math.random() - 0.5; });
+    var newAns = shuf.findIndex(function(o) { return o.orig === q.ans; });
+    qAns[qi] = { sel: -1, correct: newAns };
+
+    var div = document.createElement('div'); div.className = 'qq';
+    var qtext = document.createElement('div'); qtext.className = 'qtext';
+    var qn = document.createElement('span'); qn.className = 'qn'; qn.textContent = qi + 1;
+    qtext.appendChild(qn); qtext.appendChild(document.createTextNode(q.q));
+    div.appendChild(qtext);
+
+    var opts = document.createElement('div'); opts.className = 'qopts';
+    var letters = ['A','B','C','D'];
+    shuf.forEach(function(o, oi) {
+      var btn = document.createElement('button'); btn.className = 'qopt';
+      btn.dataset.qi = qi; btn.dataset.oi = oi;
+      var ltr = document.createElement('span'); ltr.className = 'qltr'; ltr.textContent = letters[oi];
+      btn.appendChild(ltr); btn.appendChild(document.createTextNode(o.text));
+      btn.addEventListener('click', function() { pickQuiz(qi, oi); });
+      opts.appendChild(btn);
+    });
+    div.appendChild(opts); c.appendChild(div);
+  });
+}
+function pickQuiz(qi, oi) {
+  if (a3done) return;
+  document.querySelectorAll('[data-qi="' + qi + '"]').forEach(function(b) { b.classList.remove('sel'); });
+  document.querySelector('[data-qi="' + qi + '"][data-oi="' + oi + '"]').classList.add('sel');
+  qAns[qi].sel = oi;
+}
+function checkQuiz() {
+  if (a3done) return;
+  var correct = 0;
+  QUIZ.forEach(function(_, qi) {
+    var a = qAns[qi];
+    var allBtns = document.querySelectorAll('[data-qi="' + qi + '"]');
+    allBtns.forEach(function(b) { b.style.pointerEvents = 'none'; });
+    if (a.sel === -1) return;
+    allBtns.forEach(function(b, i) {
+      if (i === a.correct) b.classList.add(a.sel === a.correct ? 'ok' : 'reveal');
+      else if (i === a.sel && a.sel !== a.correct) b.classList.add('bad');
+    });
+    if (a.sel === a.correct) correct++;
+  });
+  var pts = correct === 8 ? 24 : correct * 3;
+  var fb = document.getElementById('fb3');
+  fb.innerHTML = correct === 8
+    ? '<span>🏆</span> <span class="bok">Perfect! +24 pts</span>'
+    : '<span class="' + (correct >= 4 ? 'bok' : 'berr') + '">' + correct + '/8 correct. +' + pts + ' pts. Green = correct answer.</span>';
+  a3done = true; addScore(pts); markDone();
+}
+document.getElementById('ck3btn').addEventListener('click', function() { checkQuiz(); });
+document.getElementById('r3btn').addEventListener('click', function() { buildAct3(); });
+
+// ── ACTIVITY 4 — WORD BUILDER ──────────────────────────
+var WB = [
+  { flag: '🇪🇸', country: 'Spain',     nat: 'spanish',    lang: 'spanish'    },
+  { flag: '🇨🇳', country: 'China',     nat: 'chinese',    lang: 'mandarin'   },
+  { flag: '🇷🇺', country: 'Russia',    nat: 'russian',    lang: 'russian'    },
+  { flag: '🇦🇷', country: 'Argentina', nat: 'argentine',  lang: 'spanish'    },
+  { flag: '🇵🇹', country: 'Portugal',  nat: 'portuguese', lang: 'portuguese' },
+  { flag: '🇲🇽', country: 'Mexico',    nat: 'mexican',    lang: 'spanish'    },
+];
+var a4done = false;
+
+function buildAct4() {
+  var c = document.getElementById('wbc'); c.innerHTML = ''; a4done = false;
+  document.getElementById('fb4').innerHTML = '';
+  WB.forEach(function(d, i) {
+    var div = document.createElement('div'); div.className = 'wbitem';
+
+    var flagDiv = document.createElement('div'); flagDiv.className = 'wbf'; flagDiv.textContent = d.flag;
+    var cntDiv  = document.createElement('div'); cntDiv.className  = 'wbc'; cntDiv.textContent  = d.country;
+
+    function makeRow(label, id, ans) {
+      var row = document.createElement('div'); row.className = 'wbrow';
+      var lbl = document.createElement('span'); lbl.className = 'wblbl'; lbl.textContent = label;
+      var inp = document.createElement('input'); inp.className = 'wbinp'; inp.type = 'text';
+      inp.id = id; inp.dataset.ans = ans;
+      inp.autocomplete = 'off'; inp.autocorrect = 'off'; inp.autocapitalize = 'off'; inp.spellcheck = false;
+      inp.placeholder = 'e.g. French';
+      inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkWB(); });
+      row.appendChild(lbl); row.appendChild(inp); return row;
+    }
+    div.appendChild(flagDiv); div.appendChild(cntDiv);
+    div.appendChild(makeRow('Nationality', 'wn' + i, d.nat));
+    div.appendChild(makeRow('Language',    'wl' + i, d.lang));
+    c.appendChild(div);
+  });
+}
+function checkWB() {
+  if (a4done) return;
+  var correct = 0, total = WB.length * 2;
+  WB.forEach(function(_, i) {
+    ['wn','wl'].forEach(function(p) {
+      var inp = document.getElementById(p + i);
+      var v = inp.value.trim().toLowerCase();
+      inp.classList.remove('ok','bad');
+      if (v === inp.dataset.ans) { inp.classList.add('ok'); correct++; }
+      else if (v !== '') inp.classList.add('bad');
+    });
+  });
+  var fb = document.getElementById('fb4');
+  if (correct === total) {
+    fb.innerHTML = '<span>⭐</span> <span class="bok">All ' + total + '/' + total + ' correct! +20 pts</span>';
+    a4done = true; addScore(20); markDone();
+  } else if (!a4done && correct >= total * 0.6) {
+    var pts = Math.round(correct * 1.5);
+    fb.innerHTML = '<span class="bok">' + correct + '/' + total + ' correct! +' + pts + ' pts</span>';
+    a4done = true; addScore(pts); markDone();
+  } else {
+    fb.innerHTML = '<span class="berr">❌ ' + correct + '/' + total + ' correct — fix the red ones!</span>';
+    if (!a4done && correct > 0) { a4done = true; addScore(correct); markDone(); }
+  }
+}
+document.getElementById('ck4btn').addEventListener('click', function() { checkWB(); });
+document.getElementById('r4btn').addEventListener('click', function() { buildAct4(); });
+
+// ── RESTART ────────────────────────────────────────────
+document.getElementById('rabtn').addEventListener('click', function() {
+  score = 0; done = 0;
+  document.getElementById('gscore').textContent = 'Score: 0';
+  document.getElementById('pb').style.width = '0%';
+  document.getElementById('plabel').textContent = '0 of 4 activities completed';
+  document.getElementById('rp').style.display = 'none';
+  buildAct1(); buildAct2(); buildAct3(); buildAct4();
+});
+
+// ── INIT ───────────────────────────────────────────────
+buildAct1(); buildAct2(); buildAct3(); buildAct4();
+</script>
+</body>
+</html>

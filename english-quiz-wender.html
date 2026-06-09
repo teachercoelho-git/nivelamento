@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Practice Quiz – Wender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #28251d;
+  --color-text-muted: #7a7974;
+  --color-text-faint: #bab9b4;
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-highlight: #cedcd8;
+  --color-success: #437a22;
+  --color-success-highlight: #d4dfcc;
+  --color-error: #a12c7b;
+  --color-error-highlight: #e0ced7;
+  --color-warning: #964219;
+  --color-warning-highlight: #ddcfc6;
+  --color-orange: #da7101;
+  --color-orange-highlight: #e7d7c4;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Work Sans', 'Helvetica Neue', sans-serif;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem;
+}
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-divider: #262523;
+  --color-border: #393836;
+  --color-text: #cdccca;
+  --color-text-muted: #797876;
+  --color-text-faint: #5a5957;
+  --color-primary: #4f98a3;
+  --color-primary-hover: #227f8b;
+  --color-primary-highlight: #313b3b;
+  --color-success: #6daa45;
+  --color-success-highlight: #3a4435;
+  --color-error: #d163a7;
+  --color-error-highlight: #4c3d46;
+  --color-warning: #bb653b;
+  --color-warning-highlight: #564942;
+  --color-orange: #fdab43;
+  --color-orange-highlight: #564b3e;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background var(--transition), color var(--transition);
+}
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font: inherit; color: inherit; background: none; border: none; }
+a, button { transition: color var(--transition), background var(--transition), box-shadow var(--transition), border-color var(--transition); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* ===== LAYOUT ===== */
+.container { max-width: 760px; margin-inline: auto; padding-inline: var(--space-4); }
+
+/* ===== HEADER ===== */
+header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-divider);
+  padding: var(--space-4) 0;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 760px; margin-inline: auto; padding-inline: var(--space-4);
+}
+.logo {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display); font-size: var(--text-lg);
+  color: var(--color-primary); text-decoration: none;
+}
+.theme-toggle {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+}
+.theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: var(--space-12) var(--space-4) var(--space-8);
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--color-orange-highlight);
+  color: var(--color-orange);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+[data-theme="dark"] .hero-tag { background: var(--color-orange-highlight); color: var(--color-orange); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+.hero-sub {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+}
+.score-banner {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  background: var(--color-error-highlight);
+  border: 1px solid oklch(from var(--color-error) l c h / 0.2);
+  color: var(--color-error);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+}
+.score-banner svg { flex-shrink: 0; }
+
+/* ===== PROGRESS ===== */
+.progress-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+.progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: var(--space-3);
+}
+.progress-label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+.progress-count { font-size: var(--text-sm); color: var(--color-text-muted); }
+.progress-bar-bg {
+  height: 8px; background: var(--color-surface-offset);
+  border-radius: var(--radius-full); overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; width: 0%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== QUIZ CARD ===== */
+.quiz-section { padding-bottom: var(--space-20); }
+
+.question-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.question-card.visible { opacity: 1; transform: translateY(0); }
+
+.q-header {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.q-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.q-text { font-size: var(--text-base); font-weight: 500; line-height: 1.5; }
+.q-section-tag {
+  display: inline-block;
+  background: var(--color-primary-highlight);
+  color: var(--color-primary);
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 2px var(--space-2); border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+}
+
+/* ===== OPTIONS ===== */
+.options { display: flex; flex-direction: column; gap: var(--space-2); }
+.option-btn {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform 0.15s ease;
+}
+.option-btn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-highlight);
+  transform: translateX(3px);
+}
+.option-btn:disabled { cursor: default; }
+
+.option-letter {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-offset);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: var(--text-xs);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+/* States */
+.option-btn.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-highlight);
+}
+.option-btn.selected .option-letter {
+  background: var(--color-primary); color: #fff; border-color: var(--color-primary);
+}
+.option-btn.correct {
+  border-color: var(--color-success);
+  background: var(--color-success-highlight);
+}
+.option-btn.correct .option-letter {
+  background: var(--color-success); color: #fff; border-color: var(--color-success);
+}
+.option-btn.wrong {
+  border-color: var(--color-error);
+  background: var(--color-error-highlight);
+}
+.option-btn.wrong .option-letter {
+  background: var(--color-error); color: #fff; border-color: var(--color-error);
+}
+
+/* ===== FEEDBACK ===== */
+.feedback {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm); line-height: 1.6;
+  display: none;
+}
+.feedback.show { display: block; animation: fadeIn 0.3s ease; }
+.feedback.correct-fb {
+  background: var(--color-success-highlight);
+  border: 1px solid oklch(from var(--color-success) l c h / 0.25);
+  color: var(--color-success);
+}
+.feedback.wrong-fb {
+  background: var(--color-error-highlight);
+  border: 1px solid oklch(from var(--color-error) l c h / 0.25);
+  color: var(--color-text);
+}
+.feedback strong { color: var(--color-primary); }
+.feedback .rule { display: block; margin-top: var(--space-2); color: var(--color-text-muted); font-style: italic; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* ===== RESULT ===== */
+#result-panel {
+  display: none;
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+}
+#result-panel.show { display: block; animation: fadeIn 0.5s ease; }
+.result-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  margin: 0 auto var(--space-6);
+  font-family: var(--font-display);
+}
+.result-circle .big-num { font-size: 2.8rem; line-height: 1; }
+.result-circle .denom { font-size: var(--text-sm); opacity: 0.8; }
+.result-h2 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-3); }
+.result-msg { font-size: var(--text-base); color: var(--color-text-muted); max-width: 48ch; margin-inline: auto; margin-bottom: var(--space-8); }
+.restart-btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background var(--transition), transform 0.15s ease, box-shadow var(--transition);
+}
+.restart-btn:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+/* ===== WRITING CORRECTION ===== */
+.writing-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+.writing-section h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.error-line {
+  background: var(--color-error-highlight);
+  border-left: 3px solid var(--color-error);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: var(--space-2);
+  font-family: monospace; font-size: var(--text-sm);
+}
+.fix-line {
+  background: var(--color-success-highlight);
+  border-left: 3px solid var(--color-success);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: var(--space-4);
+  font-family: monospace; font-size: var(--text-sm); color: var(--color-success);
+}
+.fix-note { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-4); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .question-card { padding: var(--space-4); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="English Practice">
+        <rect width="28" height="28" rx="8" fill="var(--color-primary)"/>
+        <path d="M7 9h14M7 14h9M7 19h12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="21" cy="19" r="3" fill="#fff" opacity="0.9"/>
+        <path d="M21 17.5v1.5l1 1" stroke="var(--color-primary)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      English Practice
+    </a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">Revisão Personalizada</span>
+  <h1>Keep Practicing,<br><em>Wender!</em></h1>
+  <p class="hero-sub">Este quiz foca nas <strong>16 questões que você errou</strong> no teste de nivelamento. Estude as explicações e tente de novo!</p>
+  <div class="score-banner">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+    </svg>
+    Placar original: <strong>4 / 20</strong> — Vamos melhorar isso! 💪
+  </div>
+</div>
+
+<!-- WRITING CORRECTION -->
+<div class="writing-section">
+  <h2>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>
+    Correção do Texto Escrito
+  </h2>
+  <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);">Seu texto original com os erros identificados e corrigidos:</p>
+
+  <div class="error-line">❌ "I <u>heve</u> 30 years old."</div>
+  <div class="fix-line">✅ "I <strong>am</strong> 30 years old."</div>
+  <p class="fix-note">Em inglês, usamos <em>to be</em> (am/is/are) para idade, não <em>to have</em>.</p>
+
+  <div class="error-line">❌ "I live in here <u>a</u> 10 years"</div>
+  <div class="fix-line">✅ "I have lived here <strong>for</strong> 10 years"</div>
+  <p class="fix-note">Use <em>for</em> para indicar duração. E: <em>have lived</em> (present perfect) porque a ação continua até hoje.</p>
+
+  <div class="error-line">❌ "a beautiful <u>wifr nomed</u> Heloisa"</div>
+  <div class="fix-line">✅ "a beautiful <strong>wife named</strong> Heloisa"</div>
+  <p class="fix-note">Erros de digitação: <em>wife</em> (esposa) e <em>named</em> (chamada).</p>
+
+  <div class="error-line">❌ "a <u>doughter the</u> 1 year"</div>
+  <div class="fix-line">✅ "a <strong>daughter of</strong> 1 year" / "a 1-year-old <strong>daughter</strong>"</div>
+  <p class="fix-note"><em>Daughter</em> = filha. Para idade de pessoas, use <em>of</em> ou o padrão <em>X-year-old</em>.</p>
+
+  <div class="error-line">❌ "I'm <u>Logistcs</u> Analyst in CMA CGM Company <u>where working for</u> 7 years."</div>
+  <div class="fix-line">✅ "I'm a <strong>Logistics</strong> Analyst at CMA CGM, <strong>where I have been working for</strong> 7 years."</div>
+  <p class="fix-note">Artigo <em>a</em> antes do cargo; preposição <em>at</em> para empresas; <em>where I have been working</em> (present perfect continuous).</p>
+
+  <details style="margin-top:var(--space-4);">
+    <summary style="cursor:pointer;font-size:var(--text-sm);font-weight:600;color:var(--color-primary);margin-bottom:var(--space-2);">📝 Texto Corrigido Completo</summary>
+    <div style="background:var(--color-success-highlight);border-radius:var(--radius-md);padding:var(--space-4);font-size:var(--text-sm);line-height:1.8;margin-top:var(--space-2);">
+      Hello! My name is Wender. I <strong>am</strong> 30 years old. I have lived here <strong>for</strong> 10 years, but I'm from Extrema – MG. I'm married to a beautiful <strong>wife named</strong> Heloisa and we have a <strong>daughter of</strong> 1 year old. I'm a <strong>Logistics</strong> Analyst at CMA CGM, <strong>where I have been working for</strong> 7 years.
+    </div>
+  </details>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap" id="progress-wrap">
+  <div class="progress-header">
+    <span class="progress-label">Seu progresso</span>
+    <span class="progress-count" id="progress-count">0 / 16</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section" id="quiz-container"></div>
+
+<!-- RESULT -->
+<div id="result-panel">
+  <div class="result-circle" id="result-circle">
+    <span class="big-num" id="result-num">0</span>
+    <span class="denom">/16</span>
+  </div>
+  <h2 class="result-h2" id="result-h2">Quiz completo!</h2>
+  <p class="result-msg" id="result-msg"></p>
+  <button class="restart-btn" onclick="restartQuiz()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+      <path d="M3 3v5h5"/>
+    </svg>
+    Tentar Novamente
+  </button>
+</div>
+
+</div>
+</main>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function updateIcon() {
+    t.innerHTML = d === 'dark'
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  updateIcon();
+  t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    updateIcon();
+  });
+})();
+
+// ===== QUIZ DATA =====
+const questions = [
+  {
+    id: 1,
+    section: "Basic Grammar & Present Simple",
+    q: "My name _____ Carlos and I _____ from Brazil.",
+    options: ["is / is", "am / is", "is / am", "are / am"],
+    correct: 1,
+    explanation: "Com <strong>I</strong>, usamos <strong>am</strong>. Com <strong>name</strong> (he/she/it), usamos <strong>is</strong>. Portanto: <em>My name <u>is</u> Carlos and I <u>am</u> from Brazil.</em>",
+    rule: "📌 To be: I am / He-She-It is / You-We-They are"
+  },
+  {
+    id: 2,
+    section: "Basic Grammar & Present Simple",
+    q: "She _____ English every day.",
+    options: ["study", "studies", "studying", "is study"],
+    correct: 1,
+    explanation: "No <strong>Present Simple</strong>, a 3ª pessoa do singular (he/she/it) recebe <strong>-s</strong> ou <strong>-es</strong>. <em>study</em> → <em>studies</em> (troca y por i + es).",
+    rule: "📌 He/She/It + verbo com -s/-es: she studies, he watches, it works."
+  },
+  {
+    id: 3,
+    section: "Basic Grammar & Present Simple",
+    q: "There _____ a book on the table.",
+    options: ["am", "is", "are", "be"],
+    correct: 1,
+    explanation: "<strong>There is</strong> é usado com substantivos no singular. <em>A book</em> é singular, então: <em>There <u>is</u> a book.</em>",
+    rule: "📌 There is + singular / There are + plural."
+  },
+  {
+    id: 4,
+    section: "Past Simple",
+    q: "Last year I _____ to Italy on vacation.",
+    options: ["go", "went", "goed", "going"],
+    correct: 1,
+    explanation: "<strong>Went</strong> é o passado irregular de <em>go</em>. Nunca se usa <em>goed</em> — o verbo <em>go</em> é irregular!",
+    rule: "📌 Verbos irregulares: go → went, come → came, see → saw."
+  },
+  {
+    id: 5,
+    section: "Past Simple",
+    q: "They _____ the homework yesterday.",
+    options: ["doesn't finish", "don't finish", "didn't finish", "didn't finished"],
+    correct: 2,
+    explanation: "Na negativa do <strong>Past Simple</strong>, usamos <strong>didn't + infinitivo</strong>. Nunca use o verbo no passado após <em>didn't</em>: <em>didn't finish</em> (✓) e não <em>didn't finished</em> (✗).",
+    rule: "📌 Past Simple negativa: didn't + verbo base (infinitivo)."
+  },
+  {
+    id: 6,
+    section: "Past Simple",
+    q: "_____ you see the new movie last weekend?",
+    options: ["Do", "Did", "Does", "Are"],
+    correct: 1,
+    explanation: "Para fazer perguntas no <strong>Past Simple</strong>, usamos <strong>Did</strong> + sujeito + verbo base. <em>Did you see...?</em>",
+    rule: "📌 Past Simple – pergunta: Did + subject + verb (base form)?"
+  },
+  {
+    id: 8,
+    section: "Present Perfect",
+    q: "I _____ to Paris three times.",
+    options: ["went", "go", "have been", "was"],
+    correct: 2,
+    explanation: "<strong>Have been</strong> é o Present Perfect de <em>go/be</em> para experiências de vida. Usamos <em>three times</em> (quantas vezes) = experiência acumulada. Não use Past Simple (<em>went/was</em>) aqui.",
+    rule: "📌 Present Perfect = experiências de vida, ações que aconteceram alguma vez (ever/never/before/times)."
+  },
+  {
+    id: 9,
+    section: "Present Perfect",
+    q: "He _____ here since 2020.",
+    options: ["lives", "lived", "has lived", "is living"],
+    correct: 2,
+    explanation: "<strong>Since 2020</strong> indica um momento específico no passado até o presente → obrigatoriamente <strong>Present Perfect</strong>: <em>has lived</em>.",
+    rule: "📌 Present Perfect + since (ponto específico) / for (duração): He has lived here since 2020."
+  },
+  {
+    id: 10,
+    section: "Future Forms",
+    q: "Tomorrow I _____ to the gym at 7 a.m.",
+    options: ["go", "am going", "went", "going"],
+    correct: 1,
+    explanation: "<strong>Am going</strong> (Present Continuous para futuro planejado) é correto. Também seria possível <em>will go</em>, mas para planos pessoais já decididos, <em>be going to</em> é mais natural.",
+    rule: "📌 Planos futuros pessoais: be going to / Present Continuous para futuro."
+  },
+  {
+    id: 11,
+    section: "Future Forms",
+    q: "I think it _____ rain tomorrow.",
+    options: ["is", "will", "going to", "is going"],
+    correct: 1,
+    explanation: "<strong>Will</strong> é usado para previsões baseadas em opinião ou expectativa (especialmente com verbos como <em>think, believe, expect</em>). <em>I think it <u>will</u> rain.</em>",
+    rule: "📌 Previsões com opinião: I think/believe + will + verbo base."
+  },
+  {
+    id: 12,
+    section: "Future Forms",
+    q: 'We _____ buy a new car next month. We already decided.',
+    options: ["will", "are going to", "might", "are"],
+    correct: 1,
+    explanation: "<strong>Are going to</strong> é usado para planos e intenções já decididos antes do momento da fala. 'We already decided' confirma que é <em>going to</em>, não <em>will</em>.",
+    rule: "📌 Decisões já tomadas/intenções = be going to. Decisões no momento da fala = will."
+  },
+  {
+    id: 14,
+    section: "Conditionals",
+    q: "If I _____ enough money, I would travel around the world.",
+    options: ["have", "had", "will have", "would have"],
+    correct: 1,
+    explanation: "Esta é uma <strong>Second Conditional</strong> (situação imaginária, improvável). A fórmula é: <em>If + Past Simple (had), would + infinitivo</em>.",
+    rule: "📌 2nd Conditional: If + past simple, would + verb base. (Ex.: If I had money, I would travel.)"
+  },
+  {
+    id: 16,
+    section: "Passive Voice",
+    q: "The book _____ by millions of people every year.",
+    options: ["reads", "is read", "was read", "has read"],
+    correct: 1,
+    explanation: "<strong>Is read</strong> é a <strong>voz passiva</strong> no presente. Fórmula: <em>is/are + past participle</em>. <em>The book <u>is read</u> by millions.</em>",
+    rule: "📌 Passive Voice (presente): Subject + is/are + past participle + by..."
+  },
+  {
+    id: 18,
+    section: "Passive Voice",
+    q: "The house _____ in 1920.",
+    options: ["built", "was built", "has built", "is built"],
+    correct: 1,
+    explanation: "<strong>Was built</strong> é a voz passiva no <strong>Past Simple</strong>. Em 1920 é uma data específica no passado → <em>was + past participle</em>.",
+    rule: "📌 Passive Voice (passado): Subject + was/were + past participle."
+  },
+  {
+    id: 19,
+    section: "Expressions & Prepositions",
+    q: "I'm looking forward _____ you next week.",
+    options: ["to see", "to seeing", "see", "seeing"],
+    correct: 1,
+    explanation: "<strong>Look forward to</strong> é uma expressão fixa e o <em>to</em> aqui é uma <strong>preposição</strong> (não parte do infinitivo), então sempre é seguido de <strong>gerúndio (-ing)</strong>: <em>looking forward to <u>seeing</u>.</em>",
+    rule: "📌 Look forward to + -ing (gerúndio). Outras: used to doing, be good at doing."
+  },
+  {
+    id: 20,
+    section: "Expressions & Prepositions",
+    q: "He's good _____ playing the piano.",
+    options: ["in", "at", "on", "for"],
+    correct: 1,
+    explanation: "A expressão correta em inglês é <strong>good at</strong> (algo/fazer algo). <em>He's good <u>at</u> playing the piano.</em>",
+    rule: "📌 Expressões fixas: good at, bad at, interested in, afraid of, proud of."
+  }
+];
+
+// ===== STATE =====
+let answered = new Array(questions.length).fill(null);
+let score = 0;
+
+// ===== BUILD QUIZ =====
+function buildQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  answered = new Array(questions.length).fill(null);
+  score = 0;
+  updateProgress();
+
+  questions.forEach((q, idx) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `card-${idx}`;
+
+    const optionsHtml = q.options.map((opt, i) => {
+      const letter = ['A','B','C','D'][i];
+      return `<button class="option-btn" onclick="selectAnswer(${idx}, ${i})" id="opt-${idx}-${i}">
+        <span class="option-letter">${letter}</span>
+        <span>${opt}</span>
+      </button>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="q-section-tag">${q.section}</div>
+      <div class="q-header">
+        <div class="q-num">${idx + 1}</div>
+        <div class="q-text">${q.q}</div>
+      </div>
+      <div class="options">${optionsHtml}</div>
+      <div class="feedback" id="fb-${idx}"></div>
+    `;
+    container.appendChild(card);
+
+    setTimeout(() => card.classList.add('visible'), idx * 80);
+  });
+
+  document.getElementById('result-panel').classList.remove('show');
+}
+
+// ===== SELECT ANSWER =====
+function selectAnswer(qIdx, optIdx) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+
+  const q = questions[qIdx];
+  const isCorrect = optIdx === q.correct;
+  if (isCorrect) score++;
+
+  // Disable all buttons for this question
+  for (let i = 0; i < q.options.length; i++) {
+    const btn = document.getElementById(`opt-${qIdx}-${i}`);
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    if (i === optIdx && !isCorrect) btn.classList.add('wrong');
+    if (i === optIdx && isCorrect) btn.classList.add('selected');
+  }
+
+  // Show feedback
+  const fb = document.getElementById(`fb-${qIdx}`);
+  if (isCorrect) {
+    fb.className = 'feedback correct-fb show';
+    fb.innerHTML = `✅ <strong>Correto!</strong> ${q.explanation}<span class="rule">${q.rule}</span>`;
+  } else {
+    const wrongOpt = q.options[optIdx];
+    const correctOpt = q.options[q.correct];
+    fb.className = 'feedback wrong-fb show';
+    fb.innerHTML = `❌ Você escolheu "<em>${wrongOpt}</em>". A resposta correta é <strong>"${correctOpt}"</strong>.<br>${q.explanation}<span class="rule">${q.rule}</span>`;
+  }
+
+  updateProgress();
+
+  // Check if all answered
+  const totalAnswered = answered.filter(a => a !== null).length;
+  if (totalAnswered === questions.length) {
+    setTimeout(showResult, 800);
+  }
+}
+
+// ===== PROGRESS =====
+function updateProgress() {
+  const total = questions.length;
+  const done = answered.filter(a => a !== null).length;
+  document.getElementById('progress-count').textContent = `${done} / ${total}`;
+  document.getElementById('progress-fill').style.width = `${(done / total) * 100}%`;
+}
+
+// ===== RESULT =====
+function showResult() {
+  const panel = document.getElementById('result-panel');
+  const pct = Math.round((score / questions.length) * 100);
+  const circle = document.getElementById('result-circle');
+  document.getElementById('result-num').textContent = score;
+
+  let h2, msg, bgColor, textColor;
+  if (pct >= 80) {
+    h2 = "Excelente! 🎉";
+    msg = "Você dominiu as questões mais difíceis! Continue praticando para chegar ao C1.";
+    bgColor = "var(--color-success-highlight)";
+    textColor = "var(--color-success)";
+  } else if (pct >= 60) {
+    h2 = "Muito bem! 👏";
+    msg = "Ótima evolução! Revise as questões erradas e refaça o quiz para chegar a 80%+.";
+    bgColor = "var(--color-primary-highlight)";
+    textColor = "var(--color-primary)";
+  } else if (pct >= 40) {
+    h2 = "Bom progresso! 💪";
+    msg = "Você está melhorando! Leia as explicações com atenção e tente novamente.";
+    bgColor = "var(--color-orange-highlight)";
+    textColor = "var(--color-orange)";
+  } else {
+    h2 = "Continue estudando! 📚";
+    msg = "Não desanime — cada questão tem uma explicação detalhada. Leia, pratique e refaça!";
+    bgColor = "var(--color-error-highlight)";
+    textColor = "var(--color-error)";
+  }
+
+  circle.style.background = bgColor;
+  circle.style.color = textColor;
+  circle.style.border = `3px solid ${textColor}`;
+  document.getElementById('result-h2').textContent = h2;
+  document.getElementById('result-msg').textContent = msg;
+
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ===== RESTART =====
+function restartQuiz() {
+  score = 0;
+  buildQuiz();
+  document.getElementById('progress-wrap').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ===== INIT =====
+buildQuiz();
+</script>
+</body>
+</html>

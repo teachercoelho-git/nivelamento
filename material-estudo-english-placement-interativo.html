@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material Interativo - English Placement</title>
+  <meta name="description" content="Material interativo de estudo com perguntas clicáveis, feedback imediato, pontuação e revisão guiada para English Placement Test." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9; --color-surface-offset: #edeae5; --color-border: #d4d1ca;
+      --color-text: #28251d; --color-text-muted: #66645f; --color-text-faint: #8f8d88; --color-text-inverse: #f9f8f4;
+      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-primary-highlight: #dceceb;
+      --color-success: #437a22; --color-success-bg: #e7f1e0; --color-error: #a12c7b; --color-error-bg: #f7e6ef; --color-warning: #964219; --color-warning-bg: #f4e7dd;
+      --radius-sm: .375rem; --radius-md: .75rem; --radius-lg: 1rem; --radius-xl: 1.25rem; --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.05); --shadow-md: 0 12px 28px rgba(0,0,0,.08);
+      --font-display: 'Merriweather', Georgia, serif; --font-body: 'Inter', Arial, sans-serif;
+      --transition: 180ms cubic-bezier(.16,1,.3,1);
+      --content: 1120px;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d; --color-surface-offset: #2a2825; --color-border: #393836;
+      --color-text: #e5e1d8; --color-text-muted: #b1aea7; --color-text-faint: #8d8a83; --color-text-inverse: #171614;
+      --color-primary: #69b7be; --color-primary-hover: #8bc9ce; --color-primary-highlight: #27383a;
+      --color-success: #8bc56a; --color-success-bg: #253223; --color-error: #dd83ba; --color-error-bg: #382632; --color-warning: #e1a378; --color-warning-bg: #392b22;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.25); --shadow-md: 0 14px 32px rgba(0,0,0,.35);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;color:var(--color-text);background:var(--color-bg)}
+    button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.15}
+    p{max-width:72ch}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .skip-link{position:absolute;left:-9999px;top:1rem;background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm);z-index:99}
+    .skip-link:focus{left:1rem}
+    .container{width:min(calc(100% - 2rem), var(--content));margin:0 auto}
+    .header{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-border)}
+    .header-inner{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:var(--space-4) 0}
+    .brand{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);font-weight:700}
+    .brand svg{color:var(--color-primary)}
+    .theme-toggle{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--color-border);border-radius:var(--radius-full);background:var(--color-surface)}
+    .hero{padding:clamp(3rem,8vw,6rem) 0 var(--space-10)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-8);align-items:start}
+    .eyebrow{display:inline-block;margin-bottom:var(--space-4);padding:.45rem .85rem;border-radius:var(--radius-full);background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-size:var(--text-2xl);max-width:14ch;margin-bottom:var(--space-4)}
+    .lead{color:var(--color-text-muted)}
+    .hero-card,.toolbar,.question-card,.writing-card,.practice-card,.result-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+    .hero-card,.toolbar,.writing-card,.practice-card,.result-card{padding:var(--space-6)}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+    .stat{padding:var(--space-4);background:var(--color-surface-2);border:1px solid color-mix(in srgb, var(--color-border) 70%, transparent);border-radius:var(--radius-md)}
+    .stat strong{display:block;font-size:var(--text-xl);font-family:var(--font-display)}
+    section{padding:var(--space-8) 0}
+    .section-title{font-size:var(--text-xl);margin-bottom:var(--space-3)}
+    .section-intro{color:var(--color-text-muted);margin-bottom:var(--space-6)}
+    .toolbar{display:grid;grid-template-columns:1fr auto auto;gap:var(--space-4);align-items:center;position:sticky;top:78px;z-index:9}
+    .progress-wrap{display:grid;gap:var(--space-2)}
+    .progress-bar{height:12px;background:var(--color-surface-offset);border-radius:var(--radius-full);overflow:hidden}
+    .progress-fill{height:100%;width:0%;background:var(--color-primary);transition:width .25s ease}
+    .pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 var(--space-4);border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface-2);font-size:var(--text-sm);font-weight:700}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);border-color:transparent}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .quiz-grid{display:grid;gap:var(--space-5)}
+    .question-card{padding:var(--space-6);content-visibility:auto}
+    .question-head{display:flex;justify-content:space-between;gap:var(--space-4);align-items:flex-start;margin-bottom:var(--space-4)}
+    .question-number{font-size:var(--text-sm);font-weight:700;color:var(--color-primary)}
+    .question-theme{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .options{display:grid;gap:var(--space-3);margin-top:var(--space-5)}
+    .option-btn{width:100%;min-height:52px;text-align:left;padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);transition:transform var(--transition),border-color var(--transition),background var(--transition),box-shadow var(--transition)}
+    .option-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+    .option-btn.selected{border-color:var(--color-primary);background:var(--color-primary-highlight)}
+    .option-btn.correct{border-color:var(--color-success);background:var(--color-success-bg)}
+    .option-btn.wrong{border-color:var(--color-error);background:var(--color-error-bg)}
+    .option-btn:disabled{cursor:default;opacity:1}
+    .feedback{margin-top:var(--space-5);padding:var(--space-5);border-radius:var(--radius-md);display:none;border:1px solid var(--color-border);background:var(--color-surface-2)}
+    .feedback.show{display:block}
+    .feedback.correct{background:var(--color-success-bg);border-color:color-mix(in srgb, var(--color-success) 55%, var(--color-border))}
+    .feedback.wrong{background:var(--color-error-bg);border-color:color-mix(in srgb, var(--color-error) 55%, var(--color-border))}
+    .feedback.warn{background:var(--color-warning-bg);border-color:color-mix(in srgb, var(--color-warning) 55%, var(--color-border))}
+    .feedback p + p{margin-top:var(--space-2)}
+    .legend{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-4);color:var(--color-text-muted);font-size:var(--text-sm)}
+    .legend span{display:inline-flex;align-items:center;gap:.45rem}
+    .dot{width:12px;height:12px;border-radius:50%}
+    .dot.correct{background:var(--color-success)} .dot.wrong{background:var(--color-error)} .dot.review{background:var(--color-warning)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
+    .student-text,.model-text{padding:var(--space-4);border-radius:var(--radius-md)}
+    .student-text{background:var(--color-warning-bg)} .model-text{background:var(--color-primary-highlight)}
+    .practice-card ol{padding-left:1.2rem;display:grid;gap:var(--space-3)}
+    .result-card{display:none;margin-top:var(--space-6)}
+    .result-card.show{display:block}
+    .result-score{font-size:var(--text-2xl);margin-bottom:var(--space-3)}
+    .muted{color:var(--color-text-muted)}
+    @media (max-width: 920px){
+      .hero-grid,.two-col,.toolbar{grid-template-columns:1fr}
+      .toolbar{top:70px}
+      .question-head{flex-direction:column}
+    }
+    @media (max-width: 640px){
+      .container{width:min(calc(100% - 1rem), var(--content))}
+      .stats{grid-template-columns:1fr}
+      .hero-card,.toolbar,.writing-card,.practice-card,.result-card,.question-card{padding:var(--space-5)}
+    }
+    @media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" aria-label="Logo Study Path">
+          <rect x="6" y="8" width="28" height="32" rx="6" stroke="currentColor" stroke-width="3"></rect>
+          <path d="M18 16h18M18 24h18M18 32h12" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+          <path d="M12 16h.01M12 24h.01M12 32h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+        </svg>
+        <span>Study Path • Quiz Interativo</span>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar tema"><span aria-hidden="true">◐</span></button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Treino com feedback imediato</span>
+          <h1>Agora ele pode clicar na resposta e ver o retorno na hora.</h1>
+          <p class="lead">Este material transforma o teste em prática interativa. O aluno escolhe uma alternativa, recebe correção imediata, vê a explicação da regra e acompanha a própria pontuação ao longo das questões.</p>
+        </div>
+        <aside class="hero-card" aria-label="Resumo do material">
+          <div class="stats">
+            <div class="stat"><span>Questões</span><strong>20</strong></div>
+            <div class="stat"><span>Feedback</span><strong>Imediato</strong></div>
+            <div class="stat"><span>Foco</span><strong>Gramática</strong></div>
+            <div class="stat"><span>Formato</span><strong>Prática guiada</strong></div>
+          </div>
+          <p class="muted" style="margin-top:1rem">As questões 7 e 10 foram marcadas como itens de revisão, porque a chave original parece inconsistente em relação à estrutura gramatical.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="toolbar" aria-label="Barra de progresso do quiz">
+          <div class="progress-wrap">
+            <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+              <strong>Progresso do quiz</strong>
+              <span id="progress-text" class="muted">0 de 20 respondidas</span>
+            </div>
+            <div class="progress-bar" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+          <div class="pill" id="score-pill">Pontuação: 0</div>
+          <button class="pill btn-primary" id="reset-quiz" type="button">Reiniciar</button>
+        </div>
+        <div class="legend">
+          <span><i class="dot correct"></i> Correta</span>
+          <span><i class="dot wrong"></i> Incorreta</span>
+          <span><i class="dot review"></i> Questão com observação</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Quiz clicável</h2>
+        <p class="section-intro">O aluno deve clicar em uma alternativa por questão. Depois do clique, a resposta certa aparece junto com a explicação.</p>
+        <div id="quiz" class="quiz-grid"></div>
+        <article class="result-card" id="result-card">
+          <h2 class="section-title">Resultado</h2>
+          <p class="result-score" id="result-score">0/20</p>
+          <p id="result-message" class="muted"></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <article class="writing-card">
+          <h2 class="section-title">Writing feedback</h2>
+          <p class="section-intro">Além do quiz, o aluno pode revisar a própria produção escrita e comparar com uma versão mais natural em inglês.</p>
+          <h3 style="font-size:var(--text-lg);margin-bottom:1rem">Texto do aluno</h3>
+          <div class="student-text">My name is Karl, I wakeup around 7:30 every days, take a shower, brush my teeth’s and have a breakfast, then i go to work. Take a lunch around 12:00 and return my clinic 1:00 pm.</div>
+          <h3 style="font-size:var(--text-lg);margin:1.25rem 0 1rem">Versão corrigida</h3>
+          <div class="model-text">My name is Karl. I wake up around 7:30 every day, take a shower, brush my teeth, and have breakfast. Then I go to work. I have lunch around 12:00 and return to my clinic at 1:00 p.m.</div>
+        </article>
+        <article class="practice-card">
+          <h2 class="section-title">Pontos para revisar</h2>
+          <ol>
+            <li>Verbo <em>to be</em> no presente.</li>
+            <li>Present simple com <em>he, she, it</em>.</li>
+            <li>Past simple com perguntas e negativas.</li>
+            <li>Present continuous para ações do momento.</li>
+            <li>Present perfect com <em>since</em>, <em>for</em> e experiências.</li>
+            <li>Futuro com <em>will</em> e <em>going to</em>.</li>
+            <li>Modal verbs, passive voice e preposições fixas.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {n:1, theme:'Verb to be', q:'My name _____ Carlos and I _____ from Brazil.', options:['is / is','am / is','is / am','are / am'], correct:2, explanation:'Usamos “My name is” e “I am”. Exemplo: My name is Ana and I am from Brazil.'},
+      {n:2, theme:'Present simple', q:'She _____ English every day.', options:['study','studies','studying','is study'], correct:1, explanation:'Com he, she e it, o verbo normalmente recebe -s ou -es. Study vira studies.'},
+      {n:3, theme:'There is / There are', q:'There _____ a book on the table.', options:['am','is','are','be'], correct:1, explanation:'Usamos there is para singular e there are para plural.'},
+      {n:4, theme:'Past simple', q:'Last year I _____ to Italy on vacation.', options:['go','went','goed','going'], correct:1, explanation:'O passado de go é went, porque é um verbo irregular.'},
+      {n:5, theme:'Past simple negative', q:'They _____ the homework yesterday.', options:["doesn't finish","don't finish","didn't finish","didn't finished"], correct:2, explanation:'Depois de didn\'t, o verbo vai para a forma base: finish.'},
+      {n:6, theme:'Past simple question', q:'_____ you see the new movie last weekend?', options:['Do','Did','Does','Are'], correct:1, explanation:'Perguntas no passado usam Did + sujeito + verbo base.'},
+      {n:7, theme:'Present continuous', q:'Right now, she _____ a book in her room.', options:['reads','read','is reading','reading'], correct:2, explanation:'“Right now” pede present continuous: am/is/are + verbo com -ing.', note:'A resposta do aluno nesta questão estava correta. Se o teste marcou erro, vale revisar a chave.'},
+      {n:8, theme:'Present perfect', q:'I _____ to Paris three times.', options:['went','go','have been','was'], correct:2, explanation:'Para experiências de vida sem dizer quando, usamos have been.'},
+      {n:9, theme:'Present perfect with since', q:'He _____ here since 2020.', options:['lives','lived','has lived','is living'], correct:2, explanation:'Com since, usamos present perfect para uma ação que começou no passado e continua no presente.'},
+      {n:10, theme:'Future forms', q:'Tomorrow I _____ to the gym at 7 a.m.', options:['go','am going','went','going'], correct:1, explanation:'Para um plano marcado no futuro, a forma mais natural aqui é am going.', note:'A chave original parecia indicar outra resposta, mas “am going” é a forma mais adequada nesta estrutura.'},
+      {n:11, theme:'Will for prediction', q:'I think it _____ rain tomorrow.', options:['is','will','going to','is going'], correct:1, explanation:'Depois de I think, é muito comum usar will para opinião ou previsão.'},
+      {n:12, theme:'Going to', q:'We _____ buy a new car next month. We already decided.', options:['will','are going to','might','are'], correct:1, explanation:'Quando a decisão já foi tomada, usamos be going to.'},
+      {n:13, theme:'Modals', q:'You _____ smoke in the hospital. It\'s forbidden.', options:['can','must','mustn\'t','should'], correct:2, explanation:'Mustn\'t expressa proibição.'},
+      {n:14, theme:'Second conditional', q:'If I _____ enough money, I would travel around the world.', options:['have','had','will have','would have'], correct:1, explanation:'No second conditional: If + past simple, would + verbo.'},
+      {n:15, theme:'Deduction', q:'She _____ be at home. Her car is in the garage.', options:['can','should','must','would'], correct:2, explanation:'Must mostra uma conclusão forte baseada em evidência.'},
+      {n:16, theme:'Passive voice', q:'The book _____ by millions of people every year.', options:['reads','is read','was read','has read'], correct:1, explanation:'A voz passiva no presente simples é am/is/are + particípio.'},
+      {n:17, theme:'Reported speech', q:'She said that she _____ tired.', options:['is','was','has been','will be'], correct:1, explanation:'Em reported speech, is geralmente volta para was.'},
+      {n:18, theme:'Passive past', q:'The house _____ in 1920.', options:['built','was built','has built','is built'], correct:1, explanation:'A forma passiva no passado é was/were + particípio.'},
+      {n:19, theme:'Expression', q:'I\'m looking forward _____ you next week.', options:['to see','to seeing','see','seeing'], correct:1, explanation:'Depois de look forward to, usamos verbo com -ing.'},
+      {n:20, theme:'Prepositions', q:'He\'s good _____ playing the piano.', options:['in','at','on','for'], correct:1, explanation:'A combinação correta é good at.'}
+    ];
+
+    const quizEl = document.getElementById('quiz');
+    const progressText = document.getElementById('progress-text');
+    const progressFill = document.getElementById('progress-fill');
+    const scorePill = document.getElementById('score-pill');
+    const resultCard = document.getElementById('result-card');
+    const resultScore = document.getElementById('result-score');
+    const resultMessage = document.getElementById('result-message');
+    const resetBtn = document.getElementById('reset-quiz');
+    let answers = new Array(questions.length).fill(null);
+
+    function renderQuiz() {
+      quizEl.innerHTML = questions.map((item, index) => `
+        <article class="question-card" id="q-${item.n}">
+          <div class="question-head">
+            <div>
+              <div class="question-number">Questão ${item.n}</div>
+              <h3 style="font-size:var(--text-lg); margin:.4rem 0 .55rem;">${item.q}</h3>
+              <p class="question-theme">Tema: ${item.theme}</p>
+            </div>
+          </div>
+          <div class="options" role="group" aria-label="Questão ${item.n}">
+            ${item.options.map((opt, optIndex) => `
+              <button type="button" class="option-btn" data-question="${index}" data-option="${optIndex}">
+                ${String.fromCharCode(97 + optIndex)}) ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="feedback" id="feedback-${index}" aria-live="polite"></div>
+        </article>
+      `).join('');
+
+      quizEl.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectAnswer(Number(btn.dataset.question), Number(btn.dataset.option)));
+      });
+      updateProgress();
+    }
+
+    function selectAnswer(questionIndex, optionIndex) {
+      if (answers[questionIndex] !== null) return;
+      answers[questionIndex] = optionIndex;
+      const question = questions[questionIndex];
+      const buttons = quizEl.querySelectorAll(`button[data-question="${questionIndex}"]`);
+      const feedback = document.getElementById(`feedback-${questionIndex}`);
+      const isCorrect = optionIndex === question.correct;
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === optionIndex) btn.classList.add('selected');
+        if (idx === question.correct) btn.classList.add('correct');
+        if (idx === optionIndex && !isCorrect) btn.classList.add('wrong');
+      });
+      const extraClass = question.note ? 'warn' : (isCorrect ? 'correct' : 'wrong');
+      feedback.className = `feedback show ${extraClass}`;
+      feedback.innerHTML = `
+        <p><strong>${isCorrect ? 'Resposta correta.' : 'Resposta incorreta.'}</strong></p>
+        <p><strong>Gabarito:</strong> ${String.fromCharCode(97 + question.correct)}) ${question.options[question.correct]}</p>
+        <p><strong>Explicação:</strong> ${question.explanation}</p>
+        ${question.note ? `<p><strong>Observação:</strong> ${question.note}</p>` : ''}
+      `;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answered = answers.filter(a => a !== null).length;
+      const score = answers.reduce((acc, ans, idx) => acc + (ans === questions[idx].correct ? 1 : 0), 0);
+      progressText.textContent = `${answered} de ${questions.length} respondidas`;
+      progressFill.style.width = `${(answered / questions.length) * 100}%`;
+      scorePill.textContent = `Pontuação: ${score}`;
+      if (answered === questions.length) {
+        resultCard.classList.add('show');
+        resultScore.textContent = `${score}/${questions.length}`;
+        resultMessage.textContent = score >= 16 ? 'Ótimo resultado. Agora vale revisar só os pontos mais finos.' : score >= 11 ? 'Bom caminho. Ainda vale reforçar alguns tempos verbais e estruturas.' : 'Este resultado mostra que a base precisa de consolidação. O ideal é praticar um bloco por vez com revisão frequente.';
+      } else {
+        resultCard.classList.remove('show');
+      }
+    }
+
+    resetBtn.addEventListener('click', () => {
+      answers = new Array(questions.length).fill(null);
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    (function(){
+      const btn = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      const renderTheme = () => { btn.innerHTML = theme === 'dark' ? '<span aria-hidden="true">☀</span>' : '<span aria-hidden="true">☾</span>'; };
+      renderTheme();
+      btn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', theme); renderTheme(); });
+    })();
+
+    renderQuiz();
+  </script>
+</body>
+</html>

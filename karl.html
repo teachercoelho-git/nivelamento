@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Path • Exercícios Interativos de Inglês</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-title {
+      font-size: 20px;
+      margin: 0 0 4px;
+    }
+
+    .quiz-subtitle {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .score-box {
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .reset-btn {
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .meta-info {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .question {
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .question-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .question-text {
+      margin-bottom: 4px;
+    }
+
+    .question-theme {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .option-btn {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .option-btn.correct {
+      border-color: #2e7d32;
+      background: #e8f5e9;
+    }
+
+    .option-btn.incorrect {
+      border-color: #c62828;
+      background: #ffebee;
+    }
+
+    .option-btn[disabled] {
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    .feedback {
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .feedback.correct {
+      color: #2e7d32;
+    }
+
+    .feedback.incorrect {
+      color: #c62828;
+    }
+
+    .explanation {
+      font-size: 12px;
+      color: #444;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="quiz-header">
+    <div>
+      <h1 class="quiz-title">Study Path • Exercícios Interativos de Inglês</h1>
+      <p class="quiz-subtitle">
+        Treino com feedback imediato. O aluno escolhe uma alternativa, recebe correção na hora, vê a explicação da regra e acompanha a própria pontuação ao longo das questões.
+      </p>
+      <p class="meta-info">
+        Questões: 15 • Feedback: imediato • Foco: gramática básica e tempos verbais.
+      </p>
+    </div>
+    <div class="score-box">
+      Progresso: <span id="progress">0</span> de <span id="total">15</span><br>
+      Pontuação: <span id="score">0</span>
+      <br>
+      <button class="reset-btn" onclick="resetQuiz()">Reiniciar</button>
+    </div>
+  </header>
+
+  <main id="quiz">
+
+    <!-- Q1: Verb to be -->
+    <section class="question" data-question="1">
+      <div class="question-title">Questão 1</div>
+      <div class="question-text">My brother _____ a doctor and he _____ in São Paulo.</div>
+      <div class="question-theme">Tema: Verb to be</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) are / live</button>
+        <button class="option-btn" data-correct="true">b) is / lives</button>
+        <button class="option-btn" data-correct="false">c) is / live</button>
+        <button class="option-btn" data-correct="false">d) are / lives</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Com “my brother” (he), usamos “is” e o verbo principal com -s: “lives”.
+      </div>
+    </section>
+
+    <!-- Q2: Present simple habit -->
+    <section class="question" data-question="2">
+      <div class="question-title">Questão 2</div>
+      <div class="question-text">They _____ coffee every morning before work.</div>
+      <div class="question-theme">Tema: Present simple</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) drink</button>
+        <button class="option-btn" data-correct="false">b) drinks</button>
+        <button class="option-btn" data-correct="false">c) are drinking</button>
+        <button class="option-btn" data-correct="false">d) drank</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “they” no present simple usa verbo base sem -s: “drink”.
+      </div>
+    </section>
+
+    <!-- Q3: Present simple 3rd person -->
+    <section class="question" data-question="3">
+      <div class="question-title">Questão 3</div>
+      <div class="question-text">Maria _____ English and French at university.</div>
+      <div class="question-theme">Tema: Present simple (3ª pessoa)</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) study</button>
+        <button class="option-btn" data-correct="true">b) studies</button>
+        <button class="option-btn" data-correct="false">c) is study</button>
+        <button class="option-btn" data-correct="false">d) studying</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Com “Maria” (she), o verbo recebe -ies: “studies”.
+      </div>
+    </section>
+
+    <!-- Q4: Present continuous now -->
+    <section class="question" data-question="4">
+      <div class="question-title">Questão 4</div>
+      <div class="question-text">Right now, we _____ for our English test.</div>
+      <div class="question-theme">Tema: Present continuous</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) study</button>
+        <button class="option-btn" data-correct="true">b) are studying</button>
+        <button class="option-btn" data-correct="false">c) is study</button>
+        <button class="option-btn" data-correct="false">d) studying</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Present continuous usa “be” + verbo -ing: “we are studying”.
+      </div>
+    </section>
+
+    <!-- Q5: There is / There are -->
+    <section class="question" data-question="5">
+      <div class="question-title">Questão 5</div>
+      <div class="question-text">There _____ three chairs and one table in the room.</div>
+      <div class="question-theme">Tema: There is / There are</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) are</button>
+        <button class="option-btn" data-correct="false">b) is</button>
+        <button class="option-btn" data-correct="false">c) was</button>
+        <button class="option-btn" data-correct="false">d) were</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “three chairs” é plural, então usamos “There are”.
+      </div>
+    </section>
+
+    <!-- Q6: Past simple regular -->
+    <section class="question" data-question="6">
+      <div class="question-title">Questão 6</div>
+      <div class="question-text">Last night I _____ a very interesting movie.</div>
+      <div class="question-theme">Tema: Past simple</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) watched</button>
+        <button class="option-btn" data-correct="false">b) watch</button>
+        <button class="option-btn" data-correct="false">c) was watching</button>
+        <button class="option-btn" data-correct="false">d) watching</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “watched” é passado simples do verbo regular “watch”.
+      </div>
+    </section>
+
+    <!-- Q7: Past simple question -->
+    <section class="question" data-question="7">
+      <div class="question-title">Questão 7</div>
+      <div class="question-text">_____ you visit your grandparents last weekend?</div>
+      <div class="question-theme">Tema: Past simple question</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) Do</button>
+        <button class="option-btn" data-correct="true">b) Did</button>
+        <button class="option-btn" data-correct="false">c) Are</button>
+        <button class="option-btn" data-correct="false">d) Was</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Perguntas no passado simples usam “Did” + verbo base.
+      </div>
+    </section>
+
+    <!-- Q8: Past simple negative -->
+    <section class="question" data-question="8">
+      <div class="question-title">Questão 8</div>
+      <div class="question-text">She _____ to the meeting because she was sick.</div>
+      <div class="question-theme">Tema: Past simple negative</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) didn't go</button>
+        <button class="option-btn" data-correct="false">b) doesn't go</button>
+        <button class="option-btn" data-correct="false">c) wasn't go</button>
+        <button class="option-btn" data-correct="false">d) didn't went</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Negativa no passado simples: “didn't” + verbo base (“go”).
+      </div>
+    </section>
+
+    <!-- Q9: Present perfect experience -->
+    <section class="question" data-question="9">
+      <div class="question-title">Questão 9</div>
+      <div class="question-text">I _____ to London twice.</div>
+      <div class="question-theme">Tema: Present perfect (experiências)</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) went</button>
+        <button class="option-btn" data-correct="true">b) have been</button>
+        <button class="option-btn" data-correct="false">c) am going</button>
+        <button class="option-btn" data-correct="false">d) was</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Experiências com número de vezes costumam usar “have been”: “I have been to London twice”.
+      </div>
+    </section>
+
+    <!-- Q10: Present perfect since -->
+    <section class="question" data-question="10">
+      <div class="question-title">Questão 10</div>
+      <div class="question-text">He has worked here _____ 2021.</div>
+      <div class="question-theme">Tema: Present perfect com since/for</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) since</button>
+        <button class="option-btn" data-correct="false">b) for</button>
+        <button class="option-btn" data-correct="false">c) in</button>
+        <button class="option-btn" data-correct="false">d) at</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “since” liga o início exato da ação ao presente: “since 2021”.
+      </div>
+    </section>
+
+    <!-- Q11: Future will -->
+    <section class="question" data-question="11">
+      <div class="question-title">Questão 11</div>
+      <div class="question-text">I think this exercise _____ help you a lot.</div>
+      <div class="question-theme">Tema: Will para previsão</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) will</button>
+        <button class="option-btn" data-correct="false">b) is</button>
+        <button class="option-btn" data-correct="false">c) going to</button>
+        <button class="option-btn" data-correct="false">d) helps</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “I think” + “will” é padrão para previsões: “will help”.
+      </div>
+    </section>
+
+    <!-- Q12: Going to plan -->
+    <section class="question" data-question="12">
+      <div class="question-title">Questão 12</div>
+      <div class="question-text">We _____ start a new unit next week. It's already planned.</div>
+      <div class="question-theme">Tema: Going to (plano decidido)</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) are going to</button>
+        <button class="option-btn" data-correct="false">b) will</button>
+        <button class="option-btn" data-correct="false">c) are</button>
+        <button class="option-btn" data-correct="false">d) goes to</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Planos já decididos: “We are going to start”.
+      </div>
+    </section>
+
+    <!-- Q13: Modals must/mustn't -->
+    <section class="question" data-question="13">
+      <div class="question-title">Questão 13</div>
+      <div class="question-text">You _____ speak Portuguese in this exam. Only English is allowed.</div>
+      <div class="question-theme">Tema: Modals (proibição)</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) can</button>
+        <button class="option-btn" data-correct="false">b) must</button>
+        <button class="option-btn" data-correct="true">c) mustn't</button>
+        <button class="option-btn" data-correct="false">d) should</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: “mustn't” indica proibição: “You mustn't speak Portuguese”.
+      </div>
+    </section>
+
+    <!-- Q14: Passive voice present -->
+    <section class="question" data-question="14">
+      <div class="question-title">Questão 14</div>
+      <div class="question-text">These exercises _____ in many language schools.</div>
+      <div class="question-theme">Tema: Passive voice (present)</div>
+      <div class="options">
+        <button class="option-btn" data-correct="true">a) are used</button>
+        <button class="option-btn" data-correct="false">b) use</button>
+        <button class="option-btn" data-correct="false">c) are using</button>
+        <button class="option-btn" data-correct="false">d) used</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: Voz passiva no presente simples: “are used”.
+      </div>
+    </section>
+
+    <!-- Q15: Prepositions fixed -->
+    <section class="question" data-question="15">
+      <div class="question-title">Questão 15</div>
+      <div class="question-text">He's good _____ explaining grammar to students.</div>
+      <div class="question-theme">Tema: Preposições fixas</div>
+      <div class="options">
+        <button class="option-btn" data-correct="false">a) in</button>
+        <button class="option-btn" data-correct="true">b) at</button>
+        <button class="option-btn" data-correct="false">c) on</button>
+        <button class="option-btn" data-correct="false">d) for</button>
+      </div>
+      <div class="feedback" data-feedback></div>
+      <div class="explanation">
+        Explicação: A expressão fixa é “good at” + verbo -ing.
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const totalQuestions = 15;
+    let score = 0;
+    let answered = 0;
+
+    document.getElementById('total').textContent = totalQuestions;
+
+    function handleClick(event) {
+      const btn = event.target;
+      if (!btn.classList.contains('option-btn')) return;
+
+      const questionEl = btn.closest('.question');
+      const options = questionEl.querySelectorAll('.option-btn');
+      const feedbackEl = questionEl.querySelector('[data-feedback]');
+
+      // Evita responder a mesma questão mais de uma vez
+      if (questionEl.dataset.answered === 'true') return;
+
+      const isCorrect = btn.dataset.correct === 'true';
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedbackEl.textContent = 'Correto!';
+        feedbackEl.className = 'feedback correct';
+        score++;
+        document.getElementById('score').textContent = score;
+      } else {
+        btn.classList.add('incorrect');
+        feedbackEl.textContent = 'Resposta incorreta. Veja a explicação da regra.';
+        feedbackEl.className = 'feedback incorrect';
+        const correctBtn = questionEl.querySelector('.option-btn[data-correct="true"]');
+        if (correctBtn) correctBtn.classList.add('correct');
+      }
+
+      // Marca questão como respondida
+      questionEl.dataset.answered = 'true';
+      answered++;
+      document.getElementById('progress').textContent = answered;
+
+      // Desabilita todos os botões da questão
+      options.forEach(o => o.disabled = true);
+    }
+
+    function resetQuiz() {
+      score = 0;
+      answered = 0;
+      document.getElementById('score').textContent = score;
+      document.getElementById('progress').textContent = answered;
+
+      document.querySelectorAll('.question').forEach(q => {
+        q.dataset.answered = 'false';
+        const feedbackEl = q.querySelector('[data-feedback]');
+        if (feedbackEl) {
+          feedbackEl.textContent = '';
+          feedbackEl.className = 'feedback';
+        }
+        q.querySelectorAll('.option-btn').forEach(btn => {
+          btn.classList.remove('correct', 'incorrect');
+          btn.disabled = false;
+        });
+      });
+    }
+
+    document.getElementById('quiz').addEventListener('click', handleClick);
+  </script>
+
+</body>
+</html>

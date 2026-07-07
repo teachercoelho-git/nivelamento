@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English for Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --bg:#f7f6f2;--surface:#f9f8f5;--surface2:#fbfbf9;--offset:#f0ede8;
+  --divider:#dcd9d5;--border:#d4d1ca;
+  --text:#28251d;--muted:#7a7974;--faint:#bab9b4;--inverse:#f9f8f4;
+  --primary:#01696f;--primary-h:#0c4e54;--primary-hi:#cedcd8;
+  --success:#437a22;--success-hi:#d4dfcc;
+  --error:#a12c7b;--error-hi:#e0ced7;
+  --warn:#964219;--warn-hi:#ddcfc6;
+  --orange:#da7101;
+  --sh-sm:0 1px 2px oklch(0.2 0.01 80/.06);
+  --sh-md:0 4px 12px oklch(0.2 0.01 80/.08);
+  --sh-lg:0 12px 32px oklch(0.2 0.01 80/.12);
+  --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+  --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+  --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;
+  --tx-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+  --tx-sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --tx-base:clamp(1rem,.95rem + .25vw,1.125rem);
+  --tx-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --tx-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --tx-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --ff-d:'Instrument Serif',Georgia,serif;
+  --ff-b:'Work Sans','Helvetica Neue',sans-serif;
+  --tr:180ms cubic-bezier(.16,1,.3,1);
+}
+[data-theme="dark"]{
+  --bg:#171614;--surface:#1c1b19;--surface2:#201f1d;--offset:#22211f;
+  --divider:#262523;--border:#393836;
+  --text:#cdccca;--muted:#797876;--faint:#5a5957;--inverse:#2b2a28;
+  --primary:#4f98a3;--primary-h:#227f8b;--primary-hi:#313b3b;
+  --success:#6daa45;--success-hi:#3a4435;
+  --error:#d163a7;--error-hi:#4c3d46;
+  --warn:#bb653b;--warn-hi:#564942;
+  --orange:#fdab43;
+  --sh-sm:0 1px 2px oklch(0 0 0/.2);
+  --sh-md:0 4px 12px oklch(0 0 0/.3);
+  --sh-lg:0 12px 32px oklch(0 0 0/.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:var(--sp16);-webkit-font-smoothing:antialiased}
+body{font-family:var(--ff-b);font-size:var(--tx-base);color:var(--text);background:var(--bg);min-height:100dvh;line-height:1.65;transition:background var(--tr),color var(--tr)}
+img{display:block;max-width:100%;height:auto}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+input,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--ff-d);line-height:1.15;text-wrap:balance}
+p,li{text-wrap:pretty}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:var(--r-sm)}
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--sh-sm);padding:var(--sp3) var(--sp6);display:flex;align-items:center;justify-content:space-between;gap:var(--sp4)}
+.logo{display:flex;align-items:center;gap:var(--sp3);text-decoration:none;color:var(--text)}
+.logo-txt{font-family:var(--ff-d);font-size:var(--tx-lg)}
+.logo-txt span{color:var(--primary)}
+.hdr-r{display:flex;align-items:center;gap:var(--sp3)}
+.badge{background:var(--primary-hi);color:var(--primary);padding:var(--sp1) var(--sp3);border-radius:var(--r-full);font-size:var(--tx-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.theme-btn{width:36px;height:36px;border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;background:var(--offset);color:var(--muted);transition:background var(--tr),color var(--tr);border:1px solid var(--border)}
+.theme-btn:hover{background:var(--primary-hi);color:var(--primary)}
+.hero{padding:var(--sp12) var(--sp6) var(--sp8);max-width:860px;margin-inline:auto;text-align:center}
+.hero h1{font-size:var(--tx-2xl);margin-bottom:var(--sp3)}
+.hero p{color:var(--muted);max-width:60ch;margin-inline:auto}
+.pb-wrap{margin:var(--sp6) auto 0;max-width:500px;background:var(--offset);border-radius:var(--r-full);height:10px;overflow:hidden;border:1px solid var(--border)}
+.pb-fill{height:100%;background:var(--primary);border-radius:var(--r-full);transition:width .5s cubic-bezier(.16,1,.3,1);width:0%}
+.pb-lbl{font-size:var(--tx-xs);color:var(--muted);margin-top:var(--sp2);text-align:center}
+.main{max-width:860px;margin-inline:auto;padding:var(--sp6) var(--sp6) var(--sp16)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp8);margin-bottom:var(--sp8);box-shadow:var(--sh-sm);transition:box-shadow var(--tr)}
+.card:hover{box-shadow:var(--sh-md)}
+.ex-hdr{display:flex;align-items:flex-start;gap:var(--sp4);margin-bottom:var(--sp6);padding-bottom:var(--sp5);border-bottom:1px solid var(--divider)}
+.ex-num{width:36px;height:36px;flex-shrink:0;background:var(--primary);color:var(--inverse);border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--tx-sm);margin-top:2px}
+.ex-tg{flex:1}
+.ex-title{font-size:var(--tx-lg);margin-bottom:var(--sp1)}
+.ex-sub{font-size:var(--tx-sm);color:var(--muted)}
+.ex-sc{font-size:var(--tx-xs);font-weight:700;padding:var(--sp1) var(--sp3);border-radius:var(--r-full);border:1px solid var(--border);background:var(--surface2);color:var(--muted);transition:all var(--tr);white-space:nowrap;align-self:flex-start}
+.ex-sc.done{background:var(--success-hi);color:var(--success);border-color:var(--success)}
+.rt{background:var(--surface2);border-left:3px solid var(--primary);border-radius:var(--r-md);padding:var(--sp5) var(--sp6);margin-bottom:var(--sp6);font-size:var(--tx-sm);line-height:1.85}
+.rt-lbl{font-size:var(--tx-xs);font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--sp2)}
+.question{margin-bottom:var(--sp6)}
+.question:last-of-type{margin-bottom:0}
+.q-lbl{font-size:var(--tx-sm);font-weight:600;margin-bottom:var(--sp2);display:flex;align-items:flex-start;gap:var(--sp2)}
+.q-num{background:var(--offset);border-radius:var(--r-full);padding:0 var(--sp2);font-size:var(--tx-xs);color:var(--muted);flex-shrink:0}
+.q-in{width:100%;padding:var(--sp3) var(--sp4);border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg);font-size:var(--tx-sm);color:var(--text);transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);outline:none}
+.q-in:focus{border-color:var(--primary);box-shadow:0 0 0 3px oklch(from var(--primary) l c h/.15)}
+.q-in.ok{border-color:var(--success);background:var(--success-hi)}
+.q-in.err{border-color:var(--error);background:var(--error-hi)}
+.fill-s{font-size:var(--tx-sm);line-height:2.4;display:flex;align-items:center;flex-wrap:wrap;gap:var(--sp1)}
+.fill-in{display:inline-block;min-width:130px;max-width:210px;padding:var(--sp1) var(--sp3);border:1.5px solid var(--border);border-radius:var(--r-md);background:var(--bg);font-size:var(--tx-sm);color:var(--text);transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);outline:none;vertical-align:middle}
+.fill-in:focus{border-color:var(--primary);box-shadow:0 0 0 3px oklch(from var(--primary) l c h/.15)}
+.fill-in.ok{border-color:var(--success)!important;background:var(--success-hi)!important}
+.fill-in.err{border-color:var(--error)!important;background:var(--error-hi)!important}
+.opts{list-style:none;display:flex;flex-direction:column;gap:var(--sp2)}
+.opt{display:flex;align-items:center;gap:var(--sp3);padding:var(--sp3) var(--sp4);border:1px solid var(--border);border-radius:var(--r-md);cursor:pointer;transition:border-color var(--tr),background var(--tr);font-size:var(--tx-sm);user-select:none}
+.opt:hover{border-color:var(--primary);background:var(--primary-hi)}
+.opt.sel{border-color:var(--primary);background:var(--primary-hi)}
+.opt.ok{border-color:var(--success)!important;background:var(--success-hi)!important;color:var(--success);font-weight:600}
+.opt.err{border-color:var(--error)!important;background:var(--error-hi)!important;color:var(--error);text-decoration:line-through}
+.opt.rev{border-color:var(--success)!important;background:var(--success-hi)!important;color:var(--success);font-weight:600}
+.opt-r{width:18px;height:18px;flex-shrink:0;border:2px solid var(--border);border-radius:var(--r-full);transition:all var(--tr)}
+.opt.sel .opt-r{border-color:var(--primary);background:var(--primary)}
+.opt.ok .opt-r{border-color:var(--success);background:var(--success)}
+.opt.err .opt-r{border-color:var(--error);background:var(--error)}
+.fb{margin-top:var(--sp3);padding:var(--sp3) var(--sp4);border-radius:var(--r-md);font-size:var(--tx-sm);display:none;align-items:flex-start;gap:var(--sp2);line-height:1.6}
+.fb.show{display:flex}
+.fb.ok{background:var(--success-hi);color:var(--success);border:1px solid var(--success)}
+.fb.err{background:var(--error-hi);color:var(--error);border:1px solid var(--error)}
+.fb-ic{font-size:1.1em;flex-shrink:0;margin-top:1px}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3)}
+@media(max-width:540px){.vg{grid-template-columns:1fr}}
+.vi{display:flex;flex-direction:column;gap:var(--sp2)}
+.vw{font-weight:700;font-size:var(--tx-sm);color:var(--primary)}
+.btn{padding:var(--sp3) var(--sp6);border-radius:var(--r-md);font-size:var(--tx-sm);font-weight:600;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:var(--sp2);border:1.5px solid transparent}
+.btn-p{background:var(--primary);color:var(--inverse);border-color:var(--primary)}
+.btn-p:hover{background:var(--primary-h);border-color:var(--primary-h)}
+.btn-s{background:var(--offset);color:var(--text);border-color:var(--border)}
+.btn-s:hover{background:var(--primary-hi);border-color:var(--primary);color:var(--primary)}
+.ex-act{display:flex;gap:var(--sp3);flex-wrap:wrap;margin-top:var(--sp6);padding-top:var(--sp5);border-top:1px solid var(--divider)}
+.toc{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp6);margin-bottom:var(--sp8)}
+.toc-h{font-size:var(--tx-xs);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--sp4);font-family:var(--ff-b)}
+.toc-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:var(--sp2)}
+.toc-a{padding:var(--sp2) var(--sp3);border-radius:var(--r-md);font-size:var(--tx-sm);color:var(--muted);border:1px solid transparent;text-decoration:none;transition:all var(--tr);display:flex;align-items:center;gap:var(--sp2)}
+.toc-a:hover{background:var(--primary-hi);color:var(--primary);border-color:var(--primary)}
+.toc-d{width:8px;height:8px;border-radius:var(--r-full);background:var(--border);flex-shrink:0;transition:background var(--tr)}
+.toc-a:hover .toc-d{background:var(--primary)}
+.toc-a.done .toc-d{background:var(--success)}
+.toc-a.done{color:var(--text)}
+.sc-sum{background:var(--surface);border:2px solid var(--primary);border-radius:var(--r-xl);padding:var(--sp8);margin:var(--sp8) 0;text-align:center}
+.sc-big{font-family:var(--ff-d);font-size:var(--tx-2xl);color:var(--primary)}
+.sc-lbl{color:var(--muted);margin-bottom:var(--sp4)}
+.sc-bd{display:flex;gap:var(--sp3);flex-wrap:wrap;justify-content:center;margin-top:var(--sp5)}
+.sc-chip{padding:var(--sp2) var(--sp4);border-radius:var(--r-full);font-size:var(--tx-xs);font-weight:600;background:var(--offset);color:var(--muted);border:1px solid var(--border)}
+.wa-sec{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--sp8);margin-top:var(--sp8);text-align:center;box-shadow:var(--sh-md)}
+.wa-title{font-size:var(--tx-lg);margin-bottom:var(--sp2)}
+.wa-desc{font-size:var(--tx-sm);color:var(--muted);max-width:50ch;margin:0 auto var(--sp6)}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366;font-size:var(--tx-base);padding:var(--sp4) var(--sp8);border-radius:var(--r-lg);box-shadow:var(--sh-md)}
+.btn-wa:hover{background:#128C7E;border-color:#128C7E}
+.btn-cp{background:var(--offset);border:1px solid var(--border);color:var(--text);margin-top:var(--sp3)}
+.btn-cp:hover{background:var(--primary-hi);border-color:var(--primary);color:var(--primary)}
+@media(max-width:600px){.card{padding:var(--sp5)}.hero{padding:var(--sp8) var(--sp4) var(--sp5)}.main{padding:var(--sp4) var(--sp4) var(--sp12)}.hdr{padding:var(--sp3) var(--sp4)}.ex-hdr{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="#" class="logo" aria-label="CyberEnglish Home">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="var(--primary)"/>
+      <path d="M8 16C8 11 12 8 16 8C20 8 24 11 24 16" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <rect x="11" y="16" width="10" height="8" rx="2" fill="white" opacity=".95"/>
+      <circle cx="16" cy="20" r="1.5" fill="var(--primary)"/>
+      <path d="M16 20L16 22.5" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-txt">Cyber<span>English</span></span>
+  </a>
+  <div class="hdr-r">
+    <span class="badge">B1 → B2</span>
+    <button class="theme-btn" data-theme-toggle aria-label="Alternar tema" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>English for Cybersecurity</h1>
+  <p>12 exercícios de gramática, vocabulário e leitura com foco em cibersegurança. Responda, confira o feedback e envie ao professor.</p>
+  <div class="pb-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12" aria-label="Progresso">
+    <div class="pb-fill" id="pbFill"></div>
+  </div>
+  <p class="pb-lbl" id="pbLbl">0 de 12 exercícios concluídos</p>
+</section>
+
+<main class="main">
+<nav class="toc" aria-label="Lista de exercícios">
+  <div class="toc-h">Exercícios</div>
+  <div class="toc-g" id="tocG">
+    <a href="#ex1"  class="toc-a" data-toc="ex1" ><span class="toc-d"></span>1. Reading Comprehension</a>
+    <a href="#ex2"  class="toc-a" data-toc="ex2" ><span class="toc-d"></span>2. Vocabulary</a>
+    <a href="#ex3"  class="toc-a" data-toc="ex3" ><span class="toc-d"></span>3. Present Simple</a>
+    <a href="#ex4"  class="toc-a" data-toc="ex4" ><span class="toc-d"></span>4. Present Continuous</a>
+    <a href="#ex5"  class="toc-a" data-toc="ex5" ><span class="toc-d"></span>5. Past Simple</a>
+    <a href="#ex6"  class="toc-a" data-toc="ex6" ><span class="toc-d"></span>6. Present Perfect</a>
+    <a href="#ex7"  class="toc-a" data-toc="ex7" ><span class="toc-d"></span>7. Prepositions</a>
+    <a href="#ex8"  class="toc-a" data-toc="ex8" ><span class="toc-d"></span>8. Error Correction</a>
+    <a href="#ex9"  class="toc-a" data-toc="ex9" ><span class="toc-d"></span>9. Reading SOC</a>
+    <a href="#ex10" class="toc-a" data-toc="ex10"><span class="toc-d"></span>10. Tradução</a>
+    <a href="#ex11" class="toc-a" data-toc="ex11"><span class="toc-d"></span>11. Complete a conversa</a>
+    <a href="#ex12" class="toc-a" data-toc="ex12"><span class="toc-d"></span>12. Leitura Entrevista</a>
+  </div>
+</nav>
+
+<!-- EX 1 -->
+<article class="card" id="ex1">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">1</div>
+    <div class="ex-tg"><h2 class="ex-title">Reading Comprehension</h2><p class="ex-sub">Leia o texto e responda em inglês</p></div>
+    <span class="ex-sc" id="sc1" aria-live="polite">0 / 5</span>
+  </div>
+  <div class="rt"><div class="rt-lbl">📖 Text</div>
+    Every company stores important information. This information may include customer data, employee records, and financial documents.<br><br>
+    Cybersecurity professionals protect this information from attackers. They use firewalls, antivirus software, and strong passwords. They also teach employees how to recognize phishing emails because human mistakes are one of the biggest security risks.<br><br>
+    Even a small company can become a target of cybercriminals.
+  </div>
+  <div class="question"><label class="q-lbl" for="in-1-1"><span class="q-num">1</span>What kinds of information do companies store?</label><input class="q-in" id="in-1-1" type="text" placeholder="Your answer in English…" data-ex="1" data-q="1"><div class="fb" id="fb-1-1" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-1-2"><span class="q-num">2</span>What tools do cybersecurity professionals use?</label><input class="q-in" id="in-1-2" type="text" placeholder="Your answer in English…" data-ex="1" data-q="2"><div class="fb" id="fb-1-2" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-1-3"><span class="q-num">3</span>Why do employees receive cybersecurity training?</label><input class="q-in" id="in-1-3" type="text" placeholder="Your answer in English…" data-ex="1" data-q="3"><div class="fb" id="fb-1-3" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-1-4"><span class="q-num">4</span>Can only large companies become targets?</label><input class="q-in" id="in-1-4" type="text" placeholder="Your answer in English…" data-ex="1" data-q="4"><div class="fb" id="fb-1-4" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-1-5"><span class="q-num">5</span>According to the text, what is one of the biggest security risks?</label><input class="q-in" id="in-1-5" type="text" placeholder="Your answer in English…" data-ex="1" data-q="5"><div class="fb" id="fb-1-5" role="alert"></div></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(1)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(1)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 2 -->
+<article class="card" id="ex2">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">2</div>
+    <div class="ex-tg"><h2 class="ex-title">Vocabulary</h2><p class="ex-sub">Escreva o significado em português</p></div>
+    <span class="ex-sc" id="sc2" aria-live="polite">0 / 10</span>
+  </div>
+  <div class="vg" id="vg"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(2)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(2)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 3 -->
+<article class="card" id="ex3">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">3</div>
+    <div class="ex-tg"><h2 class="ex-title">Grammar – Present Simple</h2><p class="ex-sub">Complete com a forma correta do verbo</p></div>
+    <span class="ex-sc" id="sc3" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex3q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(3)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(3)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 4 -->
+<article class="card" id="ex4">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">4</div>
+    <div class="ex-tg"><h2 class="ex-title">Grammar – Present Continuous</h2><p class="ex-sub">Complete com a forma correta</p></div>
+    <span class="ex-sc" id="sc4" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex4q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(4)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(4)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 5 -->
+<article class="card" id="ex5">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">5</div>
+    <div class="ex-tg"><h2 class="ex-title">Grammar – Past Simple</h2><p class="ex-sub">Complete — atenção aos verbos irregulares!</p></div>
+    <span class="ex-sc" id="sc5" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex5q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(5)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(5)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 6 -->
+<article class="card" id="ex6">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">6</div>
+    <div class="ex-tg"><h2 class="ex-title">Grammar – Present Perfect</h2><p class="ex-sub">Complete com have/has + particípio</p></div>
+    <span class="ex-sc" id="sc6" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex6q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(6)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(6)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 7 -->
+<article class="card" id="ex7">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">7</div>
+    <div class="ex-tg"><h2 class="ex-title">Prepositions</h2><p class="ex-sub">Escolha a preposição correta</p></div>
+    <span class="ex-sc" id="sc7" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex7q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(7)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(7)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 8 -->
+<article class="card" id="ex8">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">8</div>
+    <div class="ex-tg"><h2 class="ex-title">Error Correction</h2><p class="ex-sub">Há um erro em cada frase — reescreva corretamente</p></div>
+    <span class="ex-sc" id="sc8" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex8q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(8)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(8)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 9 -->
+<article class="card" id="ex9">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">9</div>
+    <div class="ex-tg"><h2 class="ex-title">Reading – SOC</h2><p class="ex-sub">Leia e responda em inglês</p></div>
+    <span class="ex-sc" id="sc9" aria-live="polite">0 / 5</span>
+  </div>
+  <div class="rt"><div class="rt-lbl">📖 Text</div>
+    A Security Operations Center (SOC) monitors networks twenty-four hours a day. Analysts investigate suspicious activity and respond to incidents. They also review logs, identify threats, and work with other teams to reduce security risks.
+  </div>
+  <div class="question"><label class="q-lbl" for="in-9-1"><span class="q-num">1</span>What does a SOC monitor?</label><input class="q-in" id="in-9-1" type="text" placeholder="Your answer…" data-ex="9" data-q="1"><div class="fb" id="fb-9-1" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-9-2"><span class="q-num">2</span>What do analysts investigate?</label><input class="q-in" id="in-9-2" type="text" placeholder="Your answer…" data-ex="9" data-q="2"><div class="fb" id="fb-9-2" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-9-3"><span class="q-num">3</span>What do they review?</label><input class="q-in" id="in-9-3" type="text" placeholder="Your answer…" data-ex="9" data-q="3"><div class="fb" id="fb-9-3" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-9-4"><span class="q-num">4</span>Why do they work with other teams?</label><input class="q-in" id="in-9-4" type="text" placeholder="Your answer…" data-ex="9" data-q="4"><div class="fb" id="fb-9-4" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-9-5"><span class="q-num">5</span>Does the SOC operate only during business hours?</label><input class="q-in" id="in-9-5" type="text" placeholder="Your answer…" data-ex="9" data-q="5"><div class="fb" id="fb-9-5" role="alert"></div></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(9)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(9)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 10 -->
+<article class="card" id="ex10">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">10</div>
+    <div class="ex-tg"><h2 class="ex-title">Tradução</h2><p class="ex-sub">Traduza as frases para o inglês</p></div>
+    <span class="ex-sc" id="sc10" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex10q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(10)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(10)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 11 -->
+<article class="card" id="ex11">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">11</div>
+    <div class="ex-tg"><h2 class="ex-title">Complete a Conversa</h2><p class="ex-sub">Complete com UMA palavra por lacuna</p></div>
+    <span class="ex-sc" id="sc11" aria-live="polite">0 / 5</span>
+  </div>
+  <div id="ex11q"></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(11)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(11)">↺ Recomeçar</button></div>
+</article>
+
+<!-- EX 12 -->
+<article class="card" id="ex12">
+  <div class="ex-hdr">
+    <div class="ex-num" aria-hidden="true">12</div>
+    <div class="ex-tg"><h2 class="ex-title">Leitura – Entrevista</h2><p class="ex-sub">Leia e responda em inglês</p></div>
+    <span class="ex-sc" id="sc12" aria-live="polite">0 / 5</span>
+  </div>
+  <div class="rt"><div class="rt-lbl">📖 Text</div>
+    I am changing my career from law to cybersecurity. I have worked as a lawyer for several years, but now I want to work in information security. I am currently studying networking, operating systems, and basic cybersecurity. I enjoy learning new technologies and solving technical problems.
+  </div>
+  <div class="question"><label class="q-lbl" for="in-12-1"><span class="q-num">1</span>What career is the person changing from?</label><input class="q-in" id="in-12-1" type="text" placeholder="Your answer…" data-ex="12" data-q="1"><div class="fb" id="fb-12-1" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-12-2"><span class="q-num">2</span>What does the person want to work with?</label><input class="q-in" id="in-12-2" type="text" placeholder="Your answer…" data-ex="12" data-q="2"><div class="fb" id="fb-12-2" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-12-3"><span class="q-num">3</span>What subjects is the person studying?</label><input class="q-in" id="in-12-3" type="text" placeholder="Your answer…" data-ex="12" data-q="3"><div class="fb" id="fb-12-3" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-12-4"><span class="q-num">4</span>Does the person like learning new technologies?</label><input class="q-in" id="in-12-4" type="text" placeholder="Your answer…" data-ex="12" data-q="4"><div class="fb" id="fb-12-4" role="alert"></div></div>
+  <div class="question"><label class="q-lbl" for="in-12-5"><span class="q-num">5</span>Is the person already working in cybersecurity?</label><input class="q-in" id="in-12-5" type="text" placeholder="Your answer…" data-ex="12" data-q="5"><div class="fb" id="fb-12-5" role="alert"></div></div>
+  <div class="ex-act"><button class="btn btn-p" type="button" onclick="chk(12)">✔ Verificar respostas</button><button class="btn btn-s" type="button" onclick="rst(12)">↺ Recomeçar</button></div>
+</article>
+
+<div class="sc-sum">
+  <div class="sc-big" id="scBig">0 / 62</div>
+  <div class="sc-lbl">pontos no total</div>
+  <div class="sc-bd" id="scBd"></div>
+</div>
+
+<div class="wa-sec">
+  <h2 class="wa-title">📤 Enviar respostas ao professor</h2>
+  <p class="wa-desc">Clique no botão abaixo para enviar todas as suas respostas pelo WhatsApp ao seu professor para feedback personalizado.</p>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:var(--sp3)">
+    <button class="btn btn-wa" type="button" onclick="sendWA()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar pelo WhatsApp
+    </button>
+    <button class="btn btn-cp" type="button" onclick="copyAns()">📋 Copiar respostas (texto)</button>
+  </div>
+</div>
+</main>
+
+<script>
+const vocab=[
+  {w:"Threat",a:["ameaca","ameaça","ameaca"]},
+  {w:"Vulnerability",a:["vulnerabilidade"]},
+  {w:"Malware",a:["malware","software malicioso","programa malicioso"]},
+  {w:"Firewall",a:["firewall","barreira de seguranca","barreira de segurança","parede de fogo"]},
+  {w:"Breach",a:["brecha","violacao","violação","vazamento","violacao de dados","violação de dados"]},
+  {w:"Password",a:["senha","palavra-passe"]},
+  {w:"Employee",a:["funcionario","funcionário","empregado","trabalhador"]},
+  {w:"Attacker",a:["atacante","agressor","invasor"]},
+  {w:"Encrypt",a:["criptografar","encriptar","cifrar","criptografado","encriptado"]},
+  {w:"Network",a:["rede"]}
+];
+const ex3d=[
+  {s:"A firewall _____ (protect) the network.",a:"protects",h:"3ª pessoa singular → verbo + <strong>s</strong>"},
+  {s:"Cybercriminals _____ (attack) companies every day.",a:"attack",h:"Plural → sem -s"},
+  {s:"An analyst _____ (monitor) security alerts.",a:"monitors",h:"3ª pessoa singular → verbo + <strong>s</strong>"},
+  {s:"Employees _____ (use) strong passwords.",a:"use",h:"Plural → sem -s"},
+  {s:"My company _____ (have) a security policy.",a:"has",h:"company = 3ª pessoa singular → <strong>has</strong> (não have)"}
+];
+const ex4d=[
+  {s:"The analyst _____ (investigate) an alert now.",a:"is investigating",h:"3ª pessoa singular → <strong>is</strong> + verbo-ing"},
+  {s:"We _____ (install) a new firewall.",a:"are installing",h:"Plural → <strong>are</strong> + verbo-ing"},
+  {s:"The attackers _____ (try) to access the server.",a:"are trying",h:"Plural → <strong>are trying</strong>"},
+  {s:"I _____ (study) cybersecurity this month.",a:"am studying",h:"1ª pessoa → <strong>am studying</strong>"},
+  {s:"They _____ (learn) about phishing.",a:"are learning",h:"Plural → <strong>are</strong> + verbo-ing"}
+];
+const ex5d=[
+  {s:"The hacker _____ (steal) customer data.",a:"stole",h:"steal → <strong>stole</strong> (irregular! Não 'stealed')"},
+  {s:"We _____ (change) all passwords yesterday.",a:"changed",h:"change → <strong>changed</strong> (regular)"},
+  {s:"The company _____ (detect) the attack.",a:"detected",h:"detect → <strong>detected</strong> (regular)"},
+  {s:"I _____ (finish) the Cisco course yesterday.",a:"finished",h:"finish → <strong>finished</strong> (regular)"},
+  {s:"They _____ (find) a vulnerability.",a:"found",h:"find → <strong>found</strong> (irregular! Não 'founded')"}
+];
+const ex6d=[
+  {s:"I _____ (finish) the module.",a:"have finished",h:"1ª pessoa → <strong>have finished</strong>"},
+  {s:"We _____ (install) the update.",a:"have installed",h:"Plural → <strong>have installed</strong>"},
+  {s:"The analyst _____ (find) three vulnerabilities.",a:"has found",h:"3ª pessoa singular → <strong>has found</strong>"},
+  {s:"They _____ (never/use) multi-factor authentication.",a:"have never used",h:"Plural + never → <strong>have never used</strong>"},
+  {s:"She _____ (already/change) the password.",a:"has already changed",h:"3ª pessoa + already → <strong>has already changed</strong>"}
+];
+const ex7d=[
+  {s:"The files are _____ the server.",opts:["in","on","at"],a:"on",h:"Arquivos ficam <strong>on</strong> a server / <strong>on</strong> a computer."},
+  {s:"The analyst works _____ the SOC.",opts:["in","on","under"],a:"in",h:"Trabalhamos <strong>in</strong> um departamento / <strong>in</strong> a building."},
+  {s:"We received an email _____ the attacker.",opts:["from","at","with"],a:"from",h:"<strong>from</strong> = de (origem de algo recebido)."},
+  {s:"The password is stored _____ the database.",opts:["in","on","to"],a:"in",h:"Dados são armazenados <strong>in</strong> o banco de dados."},
+  {s:"The malware spread _____ the network.",opts:["across","under","inside of"],a:"across",h:"<strong>across</strong> = por toda a extensão de."}
+];
+const ex8d=[
+  {w:"She don't know the password.",c:"She doesn't know the password.",h:"3ª pessoa singular → <strong>doesn't</strong>, não don't."},
+  {w:"The analyst monitor the logs.",c:"The analyst monitors the logs.",h:"3ª pessoa singular → monitor<strong>s</strong>"},
+  {w:"We was investigating the incident.",c:"We were investigating the incident.",h:"We → <strong>were</strong>, não was."},
+  {w:"They has installed the update.",c:"They have installed the update.",h:"They/we/you → <strong>have</strong>, não has."},
+  {w:"He study cybersecurity every day.",c:"He studies cybersecurity every day.",h:"3ª pessoa singular → study → <strong>studies</strong>"}
+];
+const ex10d=[
+  {pt:"Eu estudo cibersegurança todos os dias.",a:["i study cybersecurity every day","i study cyber security every day"]},
+  {pt:"Nós estamos analisando os logs.",a:["we are analyzing the logs","we are analysing the logs"]},
+  {pt:"O atacante roubou os dados.",a:["the attacker stole the data","the attacker stole the information"]},
+  {pt:"A empresa já corrigiu a vulnerabilidade.",a:["the company has already fixed the vulnerability","the company has already corrected the vulnerability","the company already fixed the vulnerability"]},
+  {pt:"Senhas fortes ajudam a proteger as contas.",a:["strong passwords help protect accounts","strong passwords help to protect accounts","strong passwords help protect the accounts"]}
+];
+const ex11d=[
+  {bf:"I",af:"studying cybersecurity.",a:["am"],h:"Present Continuous 1ª pessoa → <strong>am</strong>"},
+  {bf:"Because I",af:"solving problems.",a:["enjoy","like","love"],h:"<strong>enjoy</strong> é o esperado, mas <em>like</em> e <em>love</em> também são aceitos."},
+  {bf:"I don't have professional experience",af:", but I am studying every day.",a:["yet"],h:"<strong>yet</strong> = ainda (em frases negativas/perguntas)"},
+  {bf:"I",af:"taking the Cisco Introduction to Cybersecurity course.",a:["am"],h:"Present Continuous 1ª pessoa → <strong>am</strong>"},
+  {bf:"I am",af:"interested in blue team.",a:["more"],h:"<strong>more</strong> interested = mais interessado"}
+];
+const ex12d=[
+  {q:"What career is the person changing from?",a:["law","lawyer","from law","being a lawyer"]},
+  {q:"What does the person want to work with?",a:["information security","cybersecurity","cyber security"]},
+  {q:"What subjects is the person studying?",a:["networking, operating systems and basic cybersecurity","networking, operating systems, and basic cybersecurity","networking operating systems and basic cybersecurity"]},
+  {q:"Does the person like learning new technologies?",a:["yes","yes they do","yes the person does","yes they enjoy it"]},
+  {q:"Is the person already working in cybersecurity?",a:["no","no they are not","no not yet","no he is not"]}
+];
+const TOT={1:5,2:10,3:5,4:5,5:5,6:5,7:5,8:5,9:5,10:5,11:5,12:5};
+let scores={},done=new Set();
+for(let i=1;i<=12;i++)scores[i]=0;
+
+function nm(s){
+  return s.toLowerCase().trim()
+    .replace(/[áàâã]/g,'a').replace(/[éèê]/g,'e').replace(/[íî]/g,'i')
+    .replace(/[óôõ]/g,'o').replace(/[úû]/g,'u').replace(/ç/g,'c')
+    .replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' ');
+}
+function match(inp,ans){
+  const a=nm(inp);
+  return ans.some(b=>{
+    const nb=nm(b);
+    if(a===nb)return true;
+    if(nb.length<25&&a.includes(nb))return true;
+    if(a.length<25&&nb.includes(a))return true;
+    return false;
+  });
+}
+function showFB(id,type,msg){
+  const el=document.getElementById(id);if(!el)return;
+  el.className='fb show '+type;
+  const ic={ok:'✅',err:'❌'};
+  el.innerHTML=`<span class="fb-ic">${ic[type]||'⚠️'}</span><span>${msg}</span>`;
+}
+
+function buildFill(n,data){
+  const c=document.getElementById('ex'+n+'q');
+  data.forEach((d,i)=>{
+    const p=d.s.split('_____');
+    const div=document.createElement('div');div.className='question';
+    div.innerHTML=`<div class="q-lbl"><span class="q-num">${i+1}</span></div><div class="fill-s"><span>${p[0]}</span><input class="fill-in" type="text" data-ex="${n}" data-q="${i+1}" placeholder="…" aria-label="Resposta ${i+1}"><span>${p[1]}</span></div><div class="fb" id="fb-${n}-${i+1}" role="alert"></div>`;
+    c.appendChild(div);
+  });
+}
+function buildMC(n,data){
+  const c=document.getElementById('ex'+n+'q');
+  data.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='question';
+    div.innerHTML=`<div class="q-lbl"><span class="q-num">${i+1}</span>${d.s}</div><ul class="opts" id="opts-${n}-${i+1}" role="radiogroup" aria-label="Opções ${i+1}">${d.opts.map(o=>`<li class="opt" onclick="selOpt(this,${n},${i+1})" data-v="${o}" role="radio" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')selOpt(this,${n},${i+1})"><span class="opt-r" aria-hidden="true"></span>${o}</li>`).join('')}</ul><div class="fb" id="fb-${n}-${i+1}" role="alert"></div>`;
+    c.appendChild(div);
+  });
+}
+function buildEC(n,data){
+  const c=document.getElementById('ex'+n+'q');
+  data.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='question';
+    div.innerHTML=`<label class="q-lbl" for="in-${n}-${i+1}"><span class="q-num">${i+1}</span><em style="color:var(--error)">${d.w}</em></label><input class="q-in" id="in-${n}-${i+1}" type="text" placeholder="Reescreva corretamente…" data-ex="${n}" data-q="${i+1}"><div class="fb" id="fb-${n}-${i+1}" role="alert"></div>`;
+    c.appendChild(div);
+  });
+}
+function buildTr(n,data){
+  const c=document.getElementById('ex'+n+'q');
+  data.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='question';
+    div.innerHTML=`<label class="q-lbl" for="in-${n}-${i+1}"><span class="q-num">${i+1}</span>${d.pt}</label><input class="q-in" id="in-${n}-${i+1}" type="text" placeholder="Translate to English…" data-ex="${n}" data-q="${i+1}"><div class="fb" id="fb-${n}-${i+1}" role="alert"></div>`;
+    c.appendChild(div);
+  });
+}
+function buildConv(){
+  const c=document.getElementById('ex11q');
+  const qs=["What are you studying?","Why do you want to work in cybersecurity?","Do you have experience?","What course are you taking?","Are you interested in blue team or red team?"];
+  ex11d.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='question';
+    div.style.cssText='border-left:3px solid var(--primary);padding-left:var(--sp4);border-radius:0 var(--r-md) var(--r-md) 0';
+    div.innerHTML=`<div class="q-lbl"><span class="q-num">${i+1}</span><em style="color:var(--muted)">Interviewer: "${qs[i]}"</em></div><div class="fill-s" style="margin-top:var(--sp2)"><span style="color:var(--muted)">You:</span><span>${d.bf}</span><input class="fill-in" type="text" data-ex="11" data-q="${i+1}" placeholder="…" style="min-width:75px;max-width:110px" aria-label="Palavra ${i+1}"><span>${d.af}</span></div><div class="fb" id="fb-11-${i+1}" role="alert"></div>`;
+    c.appendChild(div);
+  });
+}
+function buildVocab(){
+  const g=document.getElementById('vg');
+  vocab.forEach((v,i)=>{
+    const d=document.createElement('div');d.className='vi';
+    d.innerHTML=`<label class="vw" for="in-2-${i+1}">${v.w}</label><input class="q-in" id="in-2-${i+1}" type="text" placeholder="Significado em português…" data-ex="2" data-q="${i+1}"><div class="fb" id="fb-2-${i+1}" role="alert"></div>`;
+    g.appendChild(d);
+  });
+}
+
+function selOpt(el,n,q){
+  const list=document.getElementById('opts-'+n+'-'+q);
+  list.querySelectorAll('.opt').forEach(li=>{li.classList.remove('sel');li.setAttribute('aria-checked','false');});
+  el.classList.add('sel');el.setAttribute('aria-checked','true');
+}
+
+function upScore(n,c){
+  scores[n]=c;
+  const b=document.getElementById('sc'+n);
+  if(b){b.textContent=c+' / '+TOT[n];b.classList.toggle('done',c>0);}
+  if(c===TOT[n]){done.add(n);document.querySelector('[data-toc="ex'+n+'"]')?.classList.add('done');}
+  updProg();updSum();
+}
+
+function chk(n){
+  let ok=0;
+  if(n===1||n===9){
+    const ex=n===1?[
+      {q:1,a:["customer data employee records and financial documents","customer data, employee records and financial documents"]},
+      {q:2,a:["firewalls antivirus software and strong passwords","firewalls, antivirus software and strong passwords"]},
+      {q:3,a:["to recognize phishing emails","recognize phishing emails","they receive training to recognize phishing emails"]},
+      {q:4,a:["no","any company can be a target","small companies can also be targets"]},
+      {q:5,a:["human mistakes","human error"]}
+    ]:[
+      {q:1,a:["networks","it monitors networks"]},
+      {q:2,a:["suspicious activity","they investigate suspicious activity"]},
+      {q:3,a:["logs","they review logs"]},
+      {q:4,a:["to reduce security risks","to reduce risks"]},
+      {q:5,a:["no","no it operates 24 hours a day"]}
+    ];
+    ex.forEach(it=>{
+      const inp=document.querySelector('[data-ex="'+n+'"][data-q="'+it.q+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,it.a);
+      inp.className='q-in '+(good?'ok':'err');
+      showFB('fb-'+n+'-'+it.q,good?'ok':'err',good?'Correto! ✔':'Resposta esperada: <strong>'+it.a[0]+'</strong>');
+      if(good)ok++;
+    });
+  } else if(n===2){
+    vocab.forEach((v,i)=>{
+      const inp=document.querySelector('[data-ex="2"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,v.a);
+      inp.className='q-in '+(good?'ok':'err');
+      showFB('fb-2-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta esperada: <strong>'+v.a[0]+'</strong>');
+      if(good)ok++;
+    });
+  } else if([3,4,5,6].includes(n)){
+    const dm={3:ex3d,4:ex4d,5:ex5d,6:ex6d}[n];
+    dm.forEach((d,i)=>{
+      const inp=document.querySelector('[data-ex="'+n+'"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,[d.a]);
+      inp.className='fill-in '+(good?'ok':'err');
+      showFB('fb-'+n+'-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta: <strong>'+d.a+'</strong> — '+d.h);
+      if(good)ok++;
+    });
+  } else if(n===7){
+    ex7d.forEach((d,i)=>{
+      const list=document.getElementById('opts-7-'+(i+1));
+      const sel=list?.querySelector('.opt.sel');if(!sel)return;
+      const v=sel.getAttribute('data-v');const good=v===d.a;
+      list.querySelectorAll('.opt').forEach(li=>{if(li.getAttribute('data-v')===d.a)li.classList.add('rev');});
+      sel.classList.add(good?'ok':'err');
+      showFB('fb-7-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta: <strong>'+d.a+'</strong> — '+d.h);
+      if(good)ok++;
+    });
+  } else if(n===8){
+    ex8d.forEach((d,i)=>{
+      const inp=document.querySelector('[data-ex="8"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,[d.c]);
+      inp.className='q-in '+(good?'ok':'err');
+      showFB('fb-8-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Correção: <strong>'+d.c+'</strong> — '+d.h);
+      if(good)ok++;
+    });
+  } else if(n===10){
+    ex10d.forEach((d,i)=>{
+      const inp=document.querySelector('[data-ex="10"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,d.a);
+      inp.className='q-in '+(good?'ok':'err');
+      showFB('fb-10-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta esperada: <strong>'+d.a[0]+'</strong>');
+      if(good)ok++;
+    });
+  } else if(n===11){
+    ex11d.forEach((d,i)=>{
+      const inp=document.querySelector('[data-ex="11"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,d.a);
+      inp.className='fill-in '+(good?'ok':'err');
+      showFB('fb-11-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta: <strong>'+d.a[0]+'</strong> — '+d.h);
+      if(good)ok++;
+    });
+  } else if(n===12){
+    ex12d.forEach((d,i)=>{
+      const inp=document.querySelector('[data-ex="12"][data-q="'+(i+1)+'"]');
+      if(!inp||!inp.value.trim())return;
+      const good=match(inp.value,d.a);
+      inp.className='q-in '+(good?'ok':'err');
+      showFB('fb-12-'+(i+1),good?'ok':'err',good?'Correto! ✔':'Resposta esperada: <strong>'+d.a[0]+'</strong>');
+      if(good)ok++;
+    });
+  }
+  upScore(n,ok);
+}
+
+function rst(n){
+  const card=document.getElementById('ex'+n);
+  card.querySelectorAll('input').forEach(inp=>{inp.value='';inp.className=inp.classList.contains('fill-in')?'fill-in':'q-in';});
+  card.querySelectorAll('.fb').forEach(fb=>{fb.className='fb';fb.innerHTML='';});
+  card.querySelectorAll('.opt').forEach(li=>{li.classList.remove('sel','ok','err','rev');li.setAttribute('aria-checked','false');});
+  scores[n]=0;done.delete(n);
+  const b=document.getElementById('sc'+n);
+  if(b){b.textContent='0 / '+TOT[n];b.classList.remove('done');}
+  document.querySelector('[data-toc="ex'+n+'"]')?.classList.remove('done');
+  updProg();updSum();
+}
+
+function updProg(){
+  const d=done.size,pct=(d/12)*100;
+  document.getElementById('pbFill').style.width=pct+'%';
+  document.getElementById('pbLbl').textContent=d+' de 12 exercícios concluídos';
+}
+function updSum(){
+  let t=0,m=0;for(let i=1;i<=12;i++){t+=scores[i]||0;m+=TOT[i];}
+  document.getElementById('scBig').textContent=t+' / '+m;
+  const bd=document.getElementById('scBd');bd.innerHTML='';
+  for(let i=1;i<=12;i++){if((scores[i]||0)>0){const ch=document.createElement('span');ch.className='sc-chip';ch.textContent='Ex.'+i+': '+scores[i]+'/'+TOT[i];bd.appendChild(ch);}}
+}
+
+function collectAns(){
+  let t=0,m=0;for(let i=1;i<=12;i++){t+=scores[i]||0;m+=TOT[i];}
+  const names={1:"Reading Comprehension",2:"Vocabulary",3:"Present Simple",4:"Present Continuous",5:"Past Simple",6:"Present Perfect",7:"Prepositions",8:"Error Correction",9:"Reading SOC",10:"Tradução",11:"Complete a Conversa",12:"Leitura Entrevista"};
+  let lines=["🔒 ENGLISH FOR CYBERSECURITY — Respostas do Aluno","📊 Pontuação: "+t+" / "+m,"─".repeat(38)];
+  for(let n=1;n<=12;n++){
+    lines.push("\nEx."+n+" – "+names[n]+" ("+(scores[n]||0)+"/"+TOT[n]+")");
+    if(n===7){for(let q=1;q<=5;q++){const s=document.getElementById('opts-7-'+q)?.querySelector('.opt.sel');lines.push("  "+q+") "+(s?s.getAttribute('data-v'):"(sem resposta)"));}}
+    else{document.querySelectorAll('[data-ex="'+n+'"][data-q]').forEach(inp=>{lines.push("  "+inp.getAttribute('data-q')+") "+(inp.value.trim()||"(sem resposta)"));});}
+  }
+  return lines.join("\n");
+}
+function sendWA(){window.open("https://wa.me/?text="+encodeURIComponent(collectAns()),"_blank","noopener,noreferrer");}
+function copyAns(){
+  const text=collectAns();
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{const b=document.querySelector('.btn-cp');const o=b.innerHTML;b.innerHTML='✅ Copiado!';setTimeout(()=>b.innerHTML=o,2000);});}
+  else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
+}
+(function(){
+  const btn=document.querySelector('[data-theme-toggle]'),root=document.documentElement;
+  let th=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  root.setAttribute('data-theme',th);
+  function ico(t){return t==='dark'?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+  if(btn){btn.innerHTML=ico(th);btn.addEventListener('click',()=>{th=th==='dark'?'light':'dark';root.setAttribute('data-theme',th);btn.innerHTML=ico(th);btn.setAttribute('aria-label','Mudar para tema '+(th==='dark'?'claro':'escuro'));});}
+})();
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.tagName==='INPUT'){const n=parseInt(document.activeElement.getAttribute('data-ex'));if(n)chk(n);}});
+buildVocab();buildFill(3,ex3d);buildFill(4,ex4d);buildFill(5,ex5d);buildFill(6,ex6d);buildMC(7,ex7d);buildEC(8,ex8d);buildTr(10,ex10d);buildConv();
+</script>
+</body>
+</html>

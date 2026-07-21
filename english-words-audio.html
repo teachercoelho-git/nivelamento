@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Words Audio Practice</title>
+  <meta name="description" content="Simple pronunciation practice page with audio buttons for key English words." />
+  <style>
+    :root {
+      --bg: #efeae2;
+      --surface: #fcfbf8;
+      --surface-2: #f7f3ed;
+      --text: #26231d;
+      --muted: #67635c;
+      --primary: #0b6a70;
+      --primary-2: #d7e9e9;
+      --border: rgba(38,35,29,.12);
+      --radius: 20px;
+      --shadow: 0 14px 36px rgba(38,35,29,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--bg), #f6f2ec);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    .hero, .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero {
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: var(--primary-2);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+    p { line-height: 1.6; color: var(--muted); }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .btn {
+      min-height: 46px;
+      border-radius: 999px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+      border-color: transparent;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .card { padding: 20px; }
+    .word-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .word {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .tag {
+      font-size: 12px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .pronounce {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .example {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .example strong { display: block; margin-bottom: 6px; }
+    .status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff7e7;
+      border: 1px solid rgba(150,102,25,.18);
+      color: #6a4a13;
+      font-size: 14px;
+    }
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero, .card { padding: 18px; }
+      .word-top { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Audio practice</div>
+      <h1>English words for your students</h1>
+      <p>Tap one word to hear it, or use the full sequence button to play all words in order. This page uses the browser speech feature, which works in many modern mobile browsers.</p>
+      <div class="controls">
+        <button class="btn primary" id="playAll">▶ Play all words</button>
+        <button class="btn" id="stopAll">■ Stop</button>
+        <button class="btn" id="slowMode">Slow mode: off</button>
+      </div>
+      <div class="status" id="status">Ready. Open this file in the browser and tap a button to hear the pronunciation.</div>
+    </section>
+
+    <section class="grid" id="wordGrid"></section>
+
+    <p class="footer">Words included: both, exactly, friction, expect, issue, message, relationship.</p>
+  </div>
+
+  <script>
+    const words = [
+      {
+        word: 'both',
+        ipa: '/bəʊθ/ or /boʊθ/',
+        syllables: '1 syllable',
+        tip: 'Long vowel sound before the final TH.',
+        example: 'Both teams agreed on the final shipping schedule.'
+      },
+      {
+        word: 'exactly',
+        ipa: '/ɪɡˈzæk(t)li/',
+        syllables: '3 syllables',
+        tip: 'Stress the second syllable: ZAC.',
+        example: 'That is exactly what the client asked for.'
+      },
+      {
+        word: 'friction',
+        ipa: '/ˈfrɪk.ʃən/',
+        syllables: '2 syllables',
+        tip: 'Stress the first syllable: FRIC.',
+        example: 'Poor communication can create friction between teams.'
+      },
+      {
+        word: 'expect',
+        ipa: '/ɪkˈspekt/',
+        syllables: '2 syllables',
+        tip: 'Stress the second syllable: SPECT.',
+        example: 'Clients expect clear updates about delays.'
+      },
+      {
+        word: 'issue',
+        ipa: '/ˈɪʃ.uː/ or /ˈɪs.juː/',
+        syllables: '2 syllables',
+        tip: 'Commonly pronounced ISH-oo.',
+        example: 'We need to discuss the customs issue carefully.'
+      },
+      {
+        word: 'message',
+        ipa: '/ˈmes.ɪdʒ/',
+        syllables: '2 syllables',
+        tip: 'Stress the first syllable: MES.',
+        example: 'Your message sounded clear and professional.'
+      },
+      {
+        word: 'relationship',
+        ipa: '/rɪˈleɪ.ʃən.ʃɪp/',
+        syllables: '4 syllables',
+        tip: 'Stress the second syllable: LA.',
+        example: 'Trust is important in a long-term business relationship.'
+      }
+    ];
+
+    const status = document.getElementById('status');
+    const wordGrid = document.getElementById('wordGrid');
+    const playAllBtn = document.getElementById('playAll');
+    const stopAllBtn = document.getElementById('stopAll');
+    const slowModeBtn = document.getElementById('slowMode');
+    let slowMode = false;
+
+    function setStatus(text) {
+      status.textContent = text;
+    }
+
+    function buildCards() {
+      words.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="word-top">
+            <div>
+              <div class="word">${item.word}</div>
+              <p>${item.ipa}</p>
+            </div>
+            <button class="pronounce" type="button" aria-label="Play pronunciation for ${item.word}" data-index="${index}">🔊</button>
+          </div>
+          <div class="meta">
+            <span class="tag">${item.syllables}</span>
+            <span class="tag">Tip: ${item.tip}</span>
+          </div>
+          <div class="example">
+            <strong>Example</strong>
+            <p>${item.example}</p>
+          </div>
+        `;
+        wordGrid.appendChild(card);
+      });
+    }
+
+    function speakText(text, onEnd) {
+      if (!('speechSynthesis' in window)) {
+        setStatus('This browser does not support built-in speech. Try Chrome, Edge, or Safari on mobile or desktop.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = slowMode ? 0.72 : 0.95;
+      utterance.pitch = 1;
+      utterance.onend = () => onEnd && onEnd();
+      utterance.onerror = () => setStatus('Audio could not be played on this device.');
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakWord(index) {
+      const item = words[index];
+      setStatus(`Playing: ${item.word}`);
+      speakText(item.word, () => setStatus(`Finished: ${item.word}`));
+    }
+
+    function playSequence(index = 0) {
+      if (index >= words.length) {
+        setStatus('Finished all words.');
+        return;
+      }
+      const item = words[index];
+      setStatus(`Playing ${index + 1}/${words.length}: ${item.word}`);
+      const utterance = new SpeechSynthesisUtterance(item.word);
+      utterance.lang = 'en-US';
+      utterance.rate = slowMode ? 0.7 : 0.92;
+      utterance.pitch = 1;
+      utterance.onend = () => setTimeout(() => playSequence(index + 1), 350);
+      utterance.onerror = () => setStatus('Audio could not be played on this device.');
+      window.speechSynthesis.speak(utterance);
+    }
+
+    buildCards();
+
+    wordGrid.addEventListener('click', (event) => {
+      const btn = event.target.closest('.pronounce');
+      if (!btn) return;
+      const index = Number(btn.dataset.index);
+      speakWord(index);
+    });
+
+    playAllBtn.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        setStatus('This browser does not support built-in speech.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      playSequence();
+    });
+
+    stopAllBtn.addEventListener('click', () => {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setStatus('Stopped.');
+    });
+
+    slowModeBtn.addEventListener('click', () => {
+      slowMode = !slowMode;
+      slowModeBtn.textContent = `Slow mode: ${slowMode ? 'on' : 'off'}`;
+      setStatus(`Slow mode turned ${slowMode ? 'on' : 'off'}.`);
+    });
+  </script>
+</body>
+</html>

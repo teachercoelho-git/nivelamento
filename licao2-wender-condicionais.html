@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lição 2 — Would, Could e Condicionais (Wender)</title>
+<style>
+:root{
+  --bg:#f7f6f2; --surface:#ffffff; --surface-2:#f3f0ec; --border:#e0ddd6;
+  --text:#28251d; --text-muted:#7a7974;
+  --primary:#01696f; --primary-hover:#0c4e54; --primary-highlight:#cedcd8;
+  --success:#437a22; --success-highlight:#d4dfcc;
+  --error:#a12c7b; --error-highlight:#e0ced7;
+  --radius-md:0.5rem; --radius-lg:0.75rem; --radius-full:9999px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.06); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Work Sans',system-ui,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6;
+  padding:24px 16px 80px;
+}
+.container{max-width:880px;margin:0 auto;}
+header{margin-bottom:28px;}
+h1{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:8px;}
+.subtitle{color:var(--text-muted);font-size:0.95rem;}
+.tag{
+  display:inline-block;background:var(--primary-highlight);color:var(--primary-hover);
+  padding:4px 12px;border-radius:var(--radius-full);font-size:0.8rem;font-weight:600;margin-top:8px;
+}
+section{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;margin-bottom:24px;box-shadow:var(--shadow-sm);
+}
+h2{font-size:1.25rem;margin-bottom:12px;}
+h3{font-size:1rem;margin-bottom:8px;color:var(--primary-hover);}
+.rule-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:16px;}
+@media(min-width:640px){.rule-grid{grid-template-columns:1fr 1fr;}}
+.rule-card{background:var(--surface-2);border-radius:var(--radius-md);padding:14px;}
+.rule-card .formula{font-weight:700;color:var(--primary-hover);font-size:0.9rem;margin-bottom:4px;}
+.rule-card .example{font-size:0.9rem;color:var(--text-muted);}
+.progress-bar{
+  background:var(--surface-2);border-radius:var(--radius-full);height:10px;overflow:hidden;margin-bottom:20px;
+}
+.progress-fill{
+  background:var(--primary);height:100%;width:0%;transition:width .4s ease;
+}
+.score-display{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:0.9rem;color:var(--text-muted);
+}
+.exercise{
+  border-bottom:1px solid var(--surface-2);padding:16px 0;
+}
+.exercise:last-child{border-bottom:none;}
+.exercise .q{font-weight:600;margin-bottom:10px;font-size:1rem;}
+.options{display:flex;flex-wrap:wrap;gap:10px;}
+.opt-btn{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:8px 16px;font-size:0.9rem;cursor:pointer;transition:all .15s;
+}
+.opt-btn:hover{background:var(--border);}
+.opt-btn.correct{background:var(--success-highlight);border-color:var(--success);color:var(--success);font-weight:700;}
+.opt-btn.wrong{background:var(--error-highlight);border-color:var(--error);color:var(--error);font-weight:700;}
+.feedback{margin-top:10px;font-size:0.85rem;font-style:italic;color:var(--text-muted);min-height:1.2em;}
+.fillblank{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;
+}
+.fillblank input{
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;font-size:0.95rem;
+  width:160px;font-family:inherit;
+}
+.fillblank input.correct{border-color:var(--success);background:var(--success-highlight);}
+.fillblank input.wrong{border-color:var(--error);background:var(--error-highlight);}
+.check-btn{
+  background:var(--primary);color:#fff;border:none;border-radius:var(--radius-md);
+  padding:8px 16px;font-size:0.85rem;cursor:pointer;font-weight:600;
+}
+.check-btn:hover{background:var(--primary-hover);}
+.role-scenario{
+  background:linear-gradient(135deg,var(--primary-highlight),var(--surface-2));
+  border-radius:var(--radius-md);padding:16px;margin-bottom:12px;
+}
+.role-scenario .situation{font-weight:700;margin-bottom:6px;}
+.role-scenario .prompt{font-size:0.9rem;color:var(--text-muted);}
+.card-flip-area{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px;}
+@media(min-width:640px){.card-flip-area{grid-template-columns:repeat(3,1fr);}}
+.flip-card{
+  background:var(--primary);color:#fff;border-radius:var(--radius-md);
+  aspect-ratio:1.4;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-weight:700;text-align:center;padding:10px;font-size:0.85rem;
+  transition:background .2s;
+}
+.flip-card.revealed{background:var(--surface-2);color:var(--text);font-weight:400;}
+.flip-card:hover{background:var(--primary-hover);}
+.summary-box{
+  text-align:center;padding:32px;display:none;
+}
+.summary-box.show{display:block;}
+.summary-box .big-score{font-size:2.5rem;font-weight:700;color:var(--primary);}
+.reset-btn{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:10px 20px;font-weight:600;cursor:pointer;margin-top:12px;
+}
+.note{
+  background:#fff9e6;border:1px solid #f0e0a0;border-radius:var(--radius-md);
+  padding:14px;font-size:0.85rem;margin-bottom:24px;color:#6b5510;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Lição 2 — Would, Could e Condicionais</h1>
+  <p class="subtitle">Prática dinâmica e interativa para o Wender</p>
+  <span class="tag">Foco: Modal Verbs & Conditionals</span>
+</header>
+
+<div class="note">
+  💡 Esta lição é 100% interativa: clique nas opções, complete as frases e vire as cartas. Seu progresso é mostrado na barra abaixo.
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="score-display"><span id="scoreText">Pontuação: 0 / 12</span><span id="progressText">0% concluído</span></div>
+
+<!-- REGRAS -->
+<section>
+  <h2>📘 Regras rápidas</h2>
+  <div class="rule-grid">
+    <div class="rule-card">
+      <div class="formula">WOULD → hipóteses / educação</div>
+      <div class="example">I would help you if I had time. / Would you like some coffee?</div>
+    </div>
+    <div class="rule-card">
+      <div class="formula">COULD → habilidade passada / possibilidade / sugestão</div>
+      <div class="example">She could swim when she was five. / We could go to the beach.</div>
+    </div>
+    <div class="rule-card">
+      <div class="formula">First Conditional: If + present, will + verb</div>
+      <div class="example">If it rains, I will stay home.</div>
+    </div>
+    <div class="rule-card">
+      <div class="formula">Second Conditional: If + past, would + verb</div>
+      <div class="example">If I won the lottery, I would travel the world.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCICIO 1: MULTIPLA ESCOLHA -->
+<section>
+  <h2>🎯 Exercício 1: Escolha a resposta certa</h2>
+  <div class="exercise" data-points="1">
+    <div class="q">1. If I ___ more time, I would learn French.</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false">have</button>
+      <button class="opt-btn" data-correct="true">had</button>
+      <button class="opt-btn" data-correct="false">will have</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="q">2. ___ you help me with this exercise, please?</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="true">Could</button>
+      <button class="opt-btn" data-correct="false">Was</button>
+      <button class="opt-btn" data-correct="false">Do</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="q">3. If she studies hard, she ___ pass the exam.</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false">would</button>
+      <button class="opt-btn" data-correct="true">will</button>
+      <button class="opt-btn" data-correct="false">could have</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="q">4. When I was a kid, I ___ climb trees really fast.</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="true">could</button>
+      <button class="opt-btn" data-correct="false">would</button>
+      <button class="opt-btn" data-correct="false">will</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<!-- EXERCICIO 2: COMPLETAR -->
+<section>
+  <h2>✏️ Exercício 2: Complete com would, could ou will</h2>
+  <div class="exercise" data-points="1">
+    <div class="fillblank">
+      <span>1. If I were you, I</span>
+      <input type="text" data-answer="would">
+      <span>talk to him.</span>
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="fillblank">
+      <span>2. If it doesn't rain tomorrow, we</span>
+      <input type="text" data-answer="will">
+      <span>go hiking.</span>
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="fillblank">
+      <span>3.</span>
+      <input type="text" data-answer="could">
+      <span>you pass me the salt, please?</span>
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+  <div class="exercise" data-points="1">
+    <div class="fillblank">
+      <span>4. If I had a million dollars, I</span>
+      <input type="text" data-answer="would">
+      <span>buy a house.</span>
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<!-- CARTAS DE CONVERSACAO -->
+<section>
+  <h2>🃏 Exercício 3: Fale espontaneamente (cartas)</h2>
+  <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:8px;">Clique em uma carta e responda em voz alta usando "would" ou "could" no seu diálogo. Não há resposta certa/errada — é prática oral livre.</p>
+  <div class="card-flip-area" id="cardArea">
+    <div class="flip-card" data-prompt="What would you do if you won the lottery?">Carta 1</div>
+    <div class="flip-card" data-prompt="If you could travel anywhere, where would you go?">Carta 2</div>
+    <div class="flip-card" data-prompt="What could you do to improve your English faster?">Carta 3</div>
+    <div class="flip-card" data-prompt="If you had one extra hour every day, what would you do with it?">Carta 4</div>
+    <div class="flip-card" data-prompt="Could you give me an example of something you could do as a child but can't do now?">Carta 5</div>
+    <div class="flip-card" data-prompt="What would you say to your younger self?">Carta 6</div>
+  </div>
+</section>
+
+<!-- ROLEPLAY -->
+<section>
+  <h2>🎭 Exercício 4: Simulação (Roleplay)</h2>
+  <div class="role-scenario">
+    <div class="situation">Cenário: Pedindo um favor no trabalho</div>
+    <div class="prompt">Wender pede a um colega para trocar de turno. Use "Could you..." e "Would you mind..." na conversa.</div>
+  </div>
+  <div class="role-scenario">
+    <div class="situation">Cenário: Planejando as férias dos sonhos</div>
+    <div class="prompt">Descreva o que você faria se pudesse tirar 3 meses de férias. Use "If I had... I would...".</div>
+  </div>
+  <div class="role-scenario">
+    <div class="situation">Cenário: Dando conselhos a um amigo</div>
+    <div class="prompt">Um amigo perdeu o emprego. Dê conselhos usando "If I were you, I would...".</div>
+  </div>
+</section>
+
+<div class="summary-box" id="summaryBox">
+  <div class="big-score" id="finalScore"></div>
+  <p style="margin-top:8px;color:var(--text-muted);">Muito bem, Wender! Continue praticando would, could e condicionais.</p>
+  <button class="reset-btn" id="resetBtn">Refazer exercícios</button>
+</div>
+
+</div>
+
+<script>
+let score = 0;
+const totalPoints = 8;
+
+function updateProgress(){
+  const pct = Math.min(100, Math.round((score/totalPoints)*100));
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('scoreText').textContent = 'Pontuação: ' + score + ' / ' + totalPoints;
+  document.getElementById('progressText').textContent = pct + '% concluído';
+  if(pct >= 100){
+    document.getElementById('summaryBox').classList.add('show');
+    document.getElementById('finalScore').textContent = score + ' / ' + totalPoints;
+  }
+}
+
+document.querySelectorAll('.exercise').forEach(ex => {
+  const optBtns = ex.querySelectorAll('.opt-btn');
+  if(optBtns.length){
+    let answered = false;
+    optBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(answered) return;
+        answered = true;
+        const correct = btn.dataset.correct === 'true';
+        const fb = ex.querySelector('.feedback');
+        optBtns.forEach(b => {
+          if(b.dataset.correct === 'true') b.classList.add('correct');
+          else if(b === btn) b.classList.add('wrong');
+        });
+        if(correct){
+          fb.textContent = '✅ Correto!';
+          score += 1;
+        } else {
+          fb.textContent = '❌ Quase! A resposta certa está em verde.';
+        }
+        updateProgress();
+      });
+    });
+  }
+});
+
+document.querySelectorAll('.exercise .check-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const wrap = btn.closest('.fillblank');
+    const input = wrap.querySelector('input');
+    if(input.dataset.checked) return;
+    const val = input.value.trim().toLowerCase();
+    const ans = input.dataset.answer.toLowerCase();
+    const fb = btn.closest('.exercise').querySelector('.feedback');
+    if(val === ans){
+      input.classList.add('correct');
+      fb.textContent = '✅ Correto!';
+      score += 1;
+    } else {
+      input.classList.add('wrong');
+      fb.textContent = '❌ Resposta correta: "' + input.dataset.answer + '"';
+    }
+    input.dataset.checked = 'true';
+    input.disabled = true;
+    updateProgress();
+  });
+});
+
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if(card.classList.contains('revealed')) return;
+    card.classList.add('revealed');
+    card.textContent = card.dataset.prompt;
+  });
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => location.reload());
+</script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Support English — Lição de Casa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-surface-offset-2: #edeae5;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #28251d;
+  --color-text-muted: #6b6a65;
+  --color-text-faint: #bab9b4;
+  --color-text-inverse: #f9f8f4;
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-highlight: #cedcd8;
+  --color-success: #437a22;
+  --color-success-highlight: #d4dfcc;
+  --color-error: #a12c7b;
+  --color-error-highlight: #e0ced7;
+  --color-gold: #b07a00;
+  --color-gold-highlight: #e9e0c6;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --font-display: 'Cabinet Grotesk', Georgia, serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-surface-offset-2: #22211f;
+  --color-divider: #262523;
+  --color-border: #393836;
+  --color-text: #cdccca;
+  --color-text-muted: #918f8c;
+  --color-text-faint: #5a5957;
+  --color-text-inverse: #2b2a28;
+  --color-primary: #4f98a3;
+  --color-primary-hover: #227f8b;
+  --color-primary-highlight: #313b3b;
+  --color-success: #6daa45;
+  --color-success-highlight: #3a4435;
+  --color-error: #d163a7;
+  --color-error-highlight: #4c3d46;
+  --color-gold: #e8af34;
+  --color-gold-highlight: #4d4332;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+* { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.65;
+  padding-bottom: 4rem;
+}
+img,svg{display:block;max-width:100%;}
+
+header.hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: var(--color-text-inverse);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 5vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+header.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 85% 20%, oklch(1 0 0 / 0.08), transparent 55%);
+}
+.hero-inner{ max-width: 960px; margin: 0 auto; position: relative; }
+.eyebrow {
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  opacity: 0.85; font-weight: 500; margin-bottom: 0.75rem;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.hero-sub { font-size: 1.05rem; opacity: 0.92; max-width: 62ch; }
+.students {
+  margin-top: 1.5rem; display:flex; gap:0.6rem; flex-wrap: wrap;
+}
+.chip {
+  background: oklch(1 0 0 / 0.15);
+  border: 1px solid oklch(1 0 0 / 0.25);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem; font-weight: 500;
+}
+
+.theme-toggle {
+  position: fixed; top: 1rem; right: 1rem; z-index: 50;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  width: 44px; height: 44px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-md); cursor:pointer; color: var(--color-text);
+}
+
+nav.progress-bar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--color-surface); border-bottom: 1px solid var(--color-divider);
+  padding: 0.75rem clamp(1rem, 5vw, 3rem);
+  display:flex; align-items:center; gap:1rem;
+}
+.progress-track {
+  flex:1; height: 8px; background: var(--color-surface-offset); border-radius: var(--radius-full); overflow:hidden;
+}
+.progress-fill {
+  height:100%; width:0%; background: var(--color-primary); border-radius: var(--radius-full);
+  transition: width 400ms cubic-bezier(0.16,1,0.3,1);
+}
+.progress-label { font-size: 0.85rem; color: var(--color-text-muted); white-space: nowrap; font-weight: 500;}
+
+main { max-width: 960px; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 3rem); }
+
+section.block {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+.section-head { display:flex; align-items:center; gap:0.75rem; margin-bottom: 1.25rem; }
+.section-num {
+  width: 36px; height:36px; border-radius: var(--radius-md);
+  background: var(--color-primary-highlight); color: var(--color-primary);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-family: var(--font-display); flex-shrink:0;
+}
+h2 { font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight:700; }
+.section-desc { color: var(--color-text-muted); font-size:0.95rem; margin-top:0.15rem;}
+
+.card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: clamp(1rem, 3vw, 1.75rem);
+  box-shadow: var(--shadow-sm); margin-bottom: 1rem;
+}
+
+/* Dialogue */
+.dialogue-toggle {
+  display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;
+}
+.lang-btn {
+  padding: 0.5rem 1rem; border-radius: var(--radius-full); border:1px solid var(--color-border);
+  background: var(--color-surface-2); font-size:0.85rem; font-weight:600; color:var(--color-text-muted); cursor:pointer;
+}
+.lang-btn.active { background: var(--color-primary); color: var(--color-text-inverse); border-color: var(--color-primary); }
+.line { display:flex; gap:0.85rem; padding: 0.75rem 0; border-bottom: 1px solid var(--color-divider); }
+.line:last-child{border-bottom:none;}
+.avatar {
+  width: 38px; height:38px; border-radius: var(--radius-full); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; color: var(--color-text-inverse);
+}
+.avatar.karina { background: #a12c7b; }
+.avatar.tatiane { background: #01696f; }
+.line-body { flex:1; }
+.speaker { font-weight:700; font-size:0.9rem; margin-bottom:0.2rem; }
+.line-text { font-size:0.98rem; }
+.line-text.pt { display:none; color: var(--color-text-muted); font-style: italic; }
+.show-pt .line-text.en { display:none; }
+.show-pt .line-text.pt { display:block; color: var(--color-text); font-style: normal;}
+.show-both .line-text.en { display:block; }
+.show-both .line-text.pt { display:block; margin-top:0.3rem; }
+
+/* Vocabulary */
+.vocab-grid {
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr));
+  gap: 0.85rem;
+}
+.vocab-card {
+  background: var(--color-surface); border:1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: 1rem;
+}
+.vocab-term { font-weight:700; color: var(--color-primary); font-size:1rem; margin-bottom:0.25rem; }
+.vocab-def { font-size:0.9rem; color: var(--color-text-muted); }
+
+/* Exercises */
+.q-block { margin-bottom:1.5rem; }
+.q-block:last-child{margin-bottom:0;}
+.q-text { font-weight:600; margin-bottom:0.6rem; }
+.blank-input {
+  border: none; border-bottom: 2px solid var(--color-border);
+  background: transparent; font-family: var(--font-body); font-size:1rem;
+  padding: 0.2rem 0.4rem; min-width:160px; color: var(--color-text);
+}
+.blank-input:focus { outline:none; border-color: var(--color-primary); }
+.blank-input.correct { border-color: var(--color-success); background: var(--color-success-highlight); }
+.blank-input.incorrect { border-color: var(--color-error); background: var(--color-error-highlight); }
+
+.tf-options { display:flex; gap:0.75rem; margin-top:0.5rem; }
+.tf-btn {
+  padding:0.55rem 1.25rem; border-radius: var(--radius-md); border:1px solid var(--color-border);
+  background: var(--color-surface-2); cursor:pointer; font-weight:600; font-size:0.9rem; color:var(--color-text);
+}
+.tf-btn.selected-correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-success); }
+.tf-btn.selected-incorrect { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-error); }
+
+.translate-box { display:flex; flex-direction:column; gap:0.4rem; }
+.translate-box textarea {
+  font-family: var(--font-body); font-size:0.95rem; padding:0.7rem;
+  border-radius: var(--radius-md); border:1px solid var(--color-border);
+  background: var(--color-surface-2); color:var(--color-text); resize:vertical; min-height:60px;
+}
+.translate-box textarea:focus{ outline:none; border-color: var(--color-primary); }
+.reveal-btn, .check-btn {
+  align-self:flex-start; margin-top:0.4rem; padding:0.5rem 1.1rem; border-radius: var(--radius-md);
+  background: var(--color-primary); color:var(--color-text-inverse); border:none; font-weight:600; font-size:0.85rem; cursor:pointer;
+}
+.reveal-btn:hover, .check-btn:hover { background: var(--color-primary-hover); }
+.answer-reveal {
+  display:none; background: var(--color-primary-highlight); color: var(--color-primary-hover);
+  padding:0.6rem 0.85rem; border-radius: var(--radius-md); font-size:0.9rem; margin-top:0.4rem; font-weight:500;
+}
+.answer-reveal.shown { display:block; }
+
+.discussion-list { list-style:none; display:flex; flex-direction:column; gap:0.9rem; }
+.discussion-list li {
+  background: var(--color-surface); border:1px solid var(--color-border); border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+}
+.discussion-num { color: var(--color-primary); font-weight:700; margin-right:0.4rem; }
+.discussion-list textarea {
+  width:100%; margin-top:0.6rem; font-family: var(--font-body); font-size:0.9rem;
+  padding:0.6rem; border-radius: var(--radius-sm); border:1px solid var(--color-border);
+  background: var(--color-surface-2); color:var(--color-text); min-height:50px; resize:vertical;
+}
+
+/* Homework */
+.homework-card {
+  background: linear-gradient(135deg, var(--color-gold-highlight), var(--color-surface));
+  border: 1px solid var(--color-border);
+}
+.hw-rules { display:grid; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap:0.75rem; margin: 1rem 0; }
+.hw-rule { display:flex; gap:0.6rem; align-items:flex-start; font-size:0.9rem; }
+.hw-rule .dot { width:8px;height:8px;border-radius:50%; background: var(--color-gold); margin-top:0.4rem; flex-shrink:0;}
+.suggested-words { display:flex; flex-wrap:wrap; gap:0.5rem; margin: 0.75rem 0 1rem; }
+.sug-word {
+  background: var(--color-surface-2); border:1px solid var(--color-border); padding:0.35rem 0.85rem;
+  border-radius: var(--radius-full); font-size:0.85rem; font-weight:600; color: var(--color-primary);
+}
+#homework-text {
+  width:100%; min-height:180px; font-family: var(--font-body); font-size:0.98rem;
+  padding:1rem; border-radius: var(--radius-md); border:1px solid var(--color-border);
+  background: var(--color-surface-2); color:var(--color-text); resize:vertical;
+}
+#homework-text:focus{ outline:none; border-color: var(--color-primary); }
+.word-count-row { display:flex; justify-content:space-between; align-items:center; margin-top:0.6rem; flex-wrap:wrap; gap:0.5rem;}
+.sentence-count { font-size:0.85rem; font-weight:600; color: var(--color-text-muted); }
+.sentence-count.ok { color: var(--color-success); }
+.vocab-used { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.6rem; }
+.vocab-used .tag { font-size:0.78rem; padding:0.25rem 0.65rem; border-radius:var(--radius-full); background: var(--color-surface-offset); color: var(--color-text-faint); font-weight:600;}
+.vocab-used .tag.found { background: var(--color-success-highlight); color: var(--color-success); }
+
+.save-bar {
+  position: sticky; bottom:0; margin-top:2.5rem; padding: 1rem clamp(1rem,5vw,3rem);
+  background: var(--color-surface); border-top:1px solid var(--color-divider);
+  display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.save-btn {
+  background: var(--color-primary); color: var(--color-text-inverse); border:none;
+  padding:0.75rem 1.5rem; border-radius: var(--radius-md); font-weight:700; cursor:pointer; font-size:0.95rem;
+}
+.save-btn:hover{ background: var(--color-primary-hover); }
+.score-summary { font-size:0.9rem; color: var(--color-text-muted); font-weight:600; }
+
+footer.foot {
+  text-align:center; padding: 2rem 1rem 0.5rem; color: var(--color-text-faint); font-size:0.82rem;
+}
+
+@media (max-width: 640px) {
+  .line { flex-direction:row; }
+  .students { gap:0.4rem; }
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" data-theme-toggle aria-label="Alternar tema">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Business English · Customer Support Vocabulary</div>
+    <h1>Lição de Casa Dinâmica</h1>
+    <p class="hero-sub">Um diálogo real de atendimento ao cliente, vocabulário essencial e exercícios interativos com correção automática. Complete no seu ritmo — seu progresso é salvo automaticamente enquanto você trabalha.</p>
+    <div class="students">
+      <span class="chip">👩‍🎓 Tatiane</span>
+      <span class="chip">👩‍🎓 Karina</span>
+    </div>
+  </div>
+</header>
+
+<nav class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0% completo</div>
+</nav>
+
+<main>
+
+<!-- DIALOGUE -->
+<section class="block" id="sec-dialogue">
+  <div class="section-head">
+    <div class="section-num">1</div>
+    <div>
+      <h2>Diálogo: Customer Support</h2>
+      <p class="section-desc">Leia o diálogo entre Karina e Tatiane. Alterne entre inglês, português e os dois idiomas.</p>
+    </div>
+  </div>
+  <div class="card" id="dialogueCard">
+    <div class="dialogue-toggle">
+      <button class="lang-btn active" data-mode="en">English</button>
+      <button class="lang-btn" data-mode="pt">Português</button>
+      <button class="lang-btn" data-mode="both">Ambos</button>
+    </div>
+    <div id="dialogueLines"></div>
+  </div>
+</section>
+
+<!-- VOCABULARY -->
+<section class="block" id="sec-vocab">
+  <div class="section-head">
+    <div class="section-num">2</div>
+    <div>
+      <h2>Vocabulário Essencial</h2>
+      <p class="section-desc">Termos-chave usados no diálogo. Você vai precisar deles nos exercícios abaixo.</p>
+    </div>
+  </div>
+  <div class="vocab-grid" id="vocabGrid"></div>
+</section>
+
+<!-- EXERCISE 1 -->
+<section class="block" id="sec-ex1">
+  <div class="section-head">
+    <div class="section-num">3</div>
+    <div>
+      <h2>Exercício 1 — Complete a Frase</h2>
+      <p class="section-desc">Digite a palavra correta do vocabulário em cada espaço.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="q-block">
+      <p class="q-text">1. The manager asked for everyone's <input type="text" class="blank-input" data-answer="input" data-q="ex1-1"> before making the final decision.</p>
+    </div>
+    <div class="q-block">
+      <p class="q-text">2. There was a small <input type="text" class="blank-input" data-answer="glitch" data-q="ex1-2"> in the app that caused it to crash randomly.</p>
+    </div>
+    <div class="q-block">
+      <p class="q-text">3. The client threatened to <input type="text" class="blank-input" data-answer="escalate" data-q="ex1-3"> the complaint to senior management.</p>
+    </div>
+    <div class="q-block">
+      <p class="q-text">4. We need to identify the <input type="text" class="blank-input" data-answer="root cause" data-q="ex1-4"> of the problem before we can fix it permanently.</p>
+    </div>
+    <button class="check-btn" onclick="checkEx1()">Verificar respostas</button>
+  </div>
+</section>
+
+<!-- EXERCISE 2 -->
+<section class="block" id="sec-ex2">
+  <div class="section-head">
+    <div class="section-num">4</div>
+    <div>
+      <h2>Exercício 2 — Verdadeiro ou Falso</h2>
+      <p class="section-desc">Clique em "True" ou "False" para cada afirmação.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="q-block">
+      <p class="q-text">1. Karina decided to ignore the client's complaint because he wasn't important.</p>
+      <div class="tf-options" data-q="tf1" data-answer="false">
+        <button class="tf-btn" data-value="true">True</button>
+        <button class="tf-btn" data-value="false">False</button>
+      </div>
+    </div>
+    <div class="q-block">
+      <p class="q-text">2. The billing error was caused by a system update glitch.</p>
+      <div class="tf-options" data-q="tf2" data-answer="true">
+        <button class="tf-btn" data-value="true">True</button>
+        <button class="tf-btn" data-value="false">False</button>
+      </div>
+    </div>
+    <div class="q-block">
+      <p class="q-text">3. Tatiane suggested offering a 10% discount without needing any approval.</p>
+      <div class="tf-options" data-q="tf3" data-answer="false">
+        <button class="tf-btn" data-value="true">True</button>
+        <button class="tf-btn" data-value="false">False</button>
+      </div>
+      <div class="answer-reveal" id="tf3-note">💡 Falso — é necessária aprovação do financeiro antes de prometer o desconto.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE 3 -->
+<section class="block" id="sec-ex3">
+  <div class="section-head">
+    <div class="section-num">5</div>
+    <div>
+      <h2>Exercício 3 — Traduza para o Inglês</h2>
+      <p class="section-desc">Escreva sua tradução e depois revele a resposta sugerida para comparar.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="q-block">
+      <p class="q-text">1. Vamos manter você informado sobre o andamento do caso.</p>
+      <div class="translate-box">
+        <textarea placeholder="Digite sua tradução..." data-q="tr1"></textarea>
+        <button class="reveal-btn" onclick="toggleReveal('tr1-answer')">Ver resposta sugerida</button>
+        <div class="answer-reveal" id="tr1-answer">✅ We'll keep you posted on the case.</div>
+      </div>
+    </div>
+    <div class="q-block">
+      <p class="q-text">2. Precisamos entrar em contato de novo na próxima semana.</p>
+      <div class="translate-box">
+        <textarea placeholder="Digite sua tradução..." data-q="tr2"></textarea>
+        <button class="reveal-btn" onclick="toggleReveal('tr2-answer')">Ver resposta sugerida</button>
+        <div class="answer-reveal" id="tr2-answer">✅ We need to touch base again next week.</div>
+      </div>
+    </div>
+    <div class="q-block">
+      <p class="q-text">3. O cliente está sendo cobrado em excesso há dois meses.</p>
+      <div class="translate-box">
+        <textarea placeholder="Digite sua tradução..." data-q="tr3"></textarea>
+        <button class="reveal-btn" onclick="toggleReveal('tr3-answer')">Ver resposta sugerida</button>
+        <div class="answer-reveal" id="tr3-answer">✅ The client has been overcharged for two months.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE 4 -->
+<section class="block" id="sec-ex4">
+  <div class="section-head">
+    <div class="section-num">6</div>
+    <div>
+      <h2>Exercício 4 — Perguntas de Discussão</h2>
+      <p class="section-desc">Responda em frases completas. Não há resposta errada — pratique se expressar!</p>
+    </div>
+  </div>
+  <ul class="discussion-list" id="discussionList"></ul>
+</section>
+
+<!-- HOMEWORK -->
+<section class="block" id="sec-hw">
+  <div class="section-head">
+    <div class="section-num">7</div>
+    <div>
+      <h2>Lição de Casa Final</h2>
+      <p class="section-desc">Escreva um parágrafo original usando o vocabulário aprendido.</p>
+    </div>
+  </div>
+  <div class="card homework-card">
+    <p class="q-text">Escreva um parágrafo (8 a 10 frases) sobre uma situação real ou imaginária em que você resolveu um problema de um cliente no trabalho.</p>
+    <div class="hw-rules">
+      <div class="hw-rule"><span class="dot"></span>Use pelo menos 5 palavras do vocabulário</div>
+      <div class="hw-rule"><span class="dot"></span>Mínimo de 8 frases</div>
+      <div class="hw-rule"><span class="dot"></span>Máximo de 10 frases</div>
+    </div>
+    <p style="font-weight:600; font-size:0.9rem; margin-bottom:0.4rem;">Palavras sugeridas:</p>
+    <div class="suggested-words" id="suggestedWords"></div>
+    <textarea id="homework-text" placeholder="Write your paragraph here..."></textarea>
+    <div class="word-count-row">
+      <span class="sentence-count" id="sentenceCount">0 frases detectadas</span>
+    </div>
+    <div class="vocab-used" id="vocabUsed"></div>
+  </div>
+</section>
+
+</main>
+
+<div class="save-bar">
+  <span class="score-summary" id="scoreSummary">Complete os exercícios acima</span>
+  <button class="save-btn" onclick="finishLesson()">Concluir Lição</button>
+</div>
+
+<footer class="foot">Preparado para Tatiane &amp; Karina · Customer Support English Lesson</footer>
+
+<script>
+const dialogue = [
+  {speaker:"Karina", cls:"karina", en:"Hey Tatiane, do you have a minute? I need your input on something urgent.", pt:"Oi, Tatiane. Você tem um minuto? Preciso da sua ajuda com uma questão urgente."},
+  {speaker:"Tatiane", cls:"tatiane", en:"Sure, what's going on?", pt:"Claro. O que aconteceu?"},
+  {speaker:"Karina", cls:"karina", en:"One of our biggest clients, Mr. Alves from the São Paulo office, just called in. He's extremely frustrated because the invoice system has been showing the wrong amounts for the past two billing cycles.", pt:"Um dos nossos maiores clientes, o Sr. Alves, do escritório de São Paulo, acabou de ligar. Ele está bastante frustrado porque o sistema de faturamento vem apresentando valores incorretos nos últimos dois ciclos de cobrança."},
+  {speaker:"Tatiane", cls:"tatiane", en:"Oh no, that's not good. Did he say how much the discrepancy is?", pt:"Poxa, isso é preocupante. Ele comentou qual é a diferença nos valores?"},
+  {speaker:"Karina", cls:"karina", en:"He mentioned it's around 15% higher than it should be. He's threatening to escalate this to our manager if we don't resolve it by end of day.", pt:"Ele disse que o valor está cerca de 15% acima do correto. Também informou que levará o caso ao nosso gerente caso não seja resolvido até o fim do dia."},
+  {speaker:"Tatiane", cls:"tatiane", en:"Okay, let's not panic. First, let's pull up his account and go through the billing history line by line. Do we have access to the audit log?", pt:"Certo, sem pânico. Vamos analisar a conta dele e revisar todo o histórico de cobrança detalhadamente. Temos acesso ao log de auditoria?"},
+  {speaker:"Karina", cls:"karina", en:"Yes, I already pulled it up. It looks like there was a glitch after the last system update. Some clients were double-charged for a service they only used once.", pt:"Sim, já consultei os registros. Parece que houve uma falha após a última atualização do sistema. Alguns clientes foram cobrados em dobro por um serviço que utilizaram apenas uma vez."},
+  {speaker:"Tatiane", cls:"tatiane", en:"That explains it. We need to issue a refund for the overcharged amount and send him a formal apology email. Can you draft that while I loop in the billing team to fix the root cause?", pt:"Isso explica o problema. Precisamos reembolsar o valor cobrado indevidamente e enviar um e-mail formal de desculpas. Você pode preparar esse e-mail enquanto eu aciono a equipe de faturamento para corrigir a causa raiz?"},
+  {speaker:"Karina", cls:"karina", en:"On it. Should I offer him a discount on his next invoice as a goodwill gesture? It might help smooth things over.", pt:"Pode deixar comigo. Você acha que devemos oferecer um desconto na próxima fatura como forma de compensação? Isso pode ajudar a amenizar a situação."},
+  {speaker:"Tatiane", cls:"tatiane", en:"That's a great idea. Let's offer 10% off his next bill. Just make sure you get approval from finance before you promise anything.", pt:"Ótima ideia. Vamos oferecer um desconto de 10% na próxima fatura dele. Apenas garanta a aprovação da área financeira antes de assumir qualquer compromisso."},
+  {speaker:"Karina", cls:"karina", en:"Got it. I'll follow up with him within the hour and keep you posted. Thanks for jumping in so quickly.", pt:"Perfeito. Vou falar com ele ainda nesta hora e manter você atualizada. Obrigada por agir tão rapidamente."},
+  {speaker:"Tatiane", cls:"tatiane", en:"No problem, that's what teamwork is for. Let's touch base again after you speak with him.", pt:"Sem problemas. É exatamente para isso que existe o trabalho em equipe. Vamos nos atualizar novamente depois que você conversar com ele."},
+  {speaker:"Karina", cls:"karina", en:"Will do. Hopefully this keeps him from churning. He's been with us for five years.", pt:"Combinado. Espero que isso evite que ele deixe de ser nosso cliente. Ele está conosco há cinco anos."},
+  {speaker:"Tatiane", cls:"tatiane", en:"Agreed. Long-term clients like him are worth the extra effort. Let's make sure this doesn't happen again.", pt:"Concordo. Clientes de longa data como ele merecem toda a nossa atenção. Vamos garantir que isso não aconteça novamente."}
+];
+
+const vocab = [
+  {term:"Input", def:"opinião, contribuição"},
+  {term:"Billing Cycle", def:"ciclo de cobrança"},
+  {term:"Discrepancy", def:"discrepância, divergência"},
+  {term:"Escalate", def:"escalar um problema"},
+  {term:"Glitch", def:"falha temporária"},
+  {term:"Overcharged", def:"cobrado em excesso"},
+  {term:"Root Cause", def:"causa raiz"},
+  {term:"Goodwill Gesture", def:"gesto de boa vontade"},
+  {term:"Smooth Things Over", def:"amenizar uma situação"},
+  {term:"Touch Base", def:"alinhar rapidamente, atualizar-se"},
+  {term:"Churn", def:"perder um cliente"},
+  {term:"Keep Someone Posted", def:"manter alguém informado"}
+];
+
+const discussionQuestions = [
+  "Have you ever dealt with an angry customer? What happened?",
+  "What would you do if a client was charged incorrectly?",
+  "Why is it important to identify the root cause of a problem?",
+  "Have you ever made a mistake at work? How did you solve it?",
+  "What is the best way to keep customers satisfied?",
+  "When should a problem be escalated to management?",
+  "Why are long-term customers important for a company?",
+  "Would you offer a discount to keep a customer? Why or why not?"
+];
+
+function renderDialogue(){
+  const container = document.getElementById('dialogueLines');
+  container.innerHTML = dialogue.map(l => `
+    <div class="line">
+      <div class="avatar ${l.cls}">${l.speaker[0]}</div>
+      <div class="line-body">
+        <div class="speaker">${l.speaker}</div>
+        <div class="line-text en">${l.en}</div>
+        <div class="line-text pt">${l.pt}</div>
+      </div>
+    </div>
+  `).join('');
+}
+renderDialogue();
+
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const card = document.getElementById('dialogueCard');
+    card.classList.remove('show-pt','show-both');
+    const mode = btn.dataset.mode;
+    if(mode==='pt') card.classList.add('show-pt');
+    if(mode==='both') card.classList.add('show-both');
+  });
+});
+
+function renderVocab(){
+  document.getElementById('vocabGrid').innerHTML = vocab.map(v => `
+    <div class="vocab-card">
+      <div class="vocab-term">${v.term}</div>
+      <div class="vocab-def">${v.def}</div>
+    </div>
+  `).join('');
+}
+renderVocab();
+
+function renderDiscussion(){
+  document.getElementById('discussionList').innerHTML = discussionQuestions.map((q,i)=>`
+    <li>
+      <span><span class="discussion-num">${i+1}.</span>${q}</span>
+      <textarea placeholder="Write your answer here..." data-q="disc${i}"></textarea>
+    </li>
+  `).join('');
+}
+renderDiscussion();
+
+document.getElementById('suggestedWords').innerHTML = ["Input","Escalate","Glitch","Overcharged","Root Cause","Touch Base","Keep Posted","Goodwill Gesture"]
+  .map(w=>`<span class="sug-word">${w}</span>`).join('');
+
+const progress = {};
+function markDone(key, done){
+  progress[key] = done;
+  updateProgress();
+}
+function updateProgress(){
+  const total = 9;
+  const done = Object.values(progress).filter(Boolean).length;
+  const pct = Math.round((done/total)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = pct+'% completo';
+}
+
+function normalize(s){ return s.trim().toLowerCase().replace(/\s+/g,' '); }
+
+function checkEx1(){
+  let correctCount = 0;
+  document.querySelectorAll('#sec-ex1 .blank-input').forEach(inp=>{
+    const ans = normalize(inp.dataset.answer);
+    const val = normalize(inp.value);
+    inp.classList.remove('correct','incorrect');
+    if(val === ans){ inp.classList.add('correct'); correctCount++; }
+    else { inp.classList.add('incorrect'); }
+  });
+  markDone('ex1', correctCount === 4);
+}
+
+document.querySelectorAll('.tf-options').forEach(group=>{
+  const correctAnswer = group.dataset.answer;
+  const qid = group.dataset.q;
+  group.querySelectorAll('.tf-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('selected-correct','selected-incorrect'));
+      if(btn.dataset.value === correctAnswer){
+        btn.classList.add('selected-correct');
+      } else {
+        btn.classList.add('selected-incorrect');
+        group.querySelector(`[data-value="${correctAnswer}"]`).classList.add('selected-correct');
+      }
+      const note = document.getElementById(qid+'-note');
+      if(note) note.classList.add('shown');
+      markDone(qid, true);
+    });
+  });
+});
+
+function toggleReveal(id){
+  document.getElementById(id).classList.toggle('shown');
+  markDone(id.replace('-answer',''), true);
+}
+
+document.querySelectorAll('#sec-ex4 textarea').forEach(ta=>{
+  ta.addEventListener('input', ()=>{
+    const answered = Array.from(document.querySelectorAll('#sec-ex4 textarea')).filter(t=>t.value.trim().length>10).length;
+    markDone('discussion', answered >= 4);
+  });
+});
+
+const hwText = document.getElementById('homework-text');
+const vocabWords = ["input","escalate","glitch","overcharged","root cause","touch base","keep.*posted","goodwill gesture"];
+hwText.addEventListener('input', ()=>{
+  const text = hwText.value;
+  const sentences = text.split(/[.!?]+/).filter(s=>s.trim().length>2).length;
+  const countEl = document.getElementById('sentenceCount');
+  countEl.textContent = sentences + ' frases detectadas';
+  countEl.classList.toggle('ok', sentences>=8 && sentences<=10);
+
+  const lower = text.toLowerCase();
+  let foundCount = 0;
+  const usedHtml = vocabWords.map(w=>{
+    const re = new RegExp(w);
+    const found = re.test(lower);
+    if(found) foundCount++;
+    const label = w.replace('.*',' ').replace(/^\w/, c=>c.toUpperCase());
+    return `<span class="tag ${found?'found':''}">${label}</span>`;
+  }).join('');
+  document.getElementById('vocabUsed').innerHTML = usedHtml;
+  markDone('homework', sentences>=8 && foundCount>=5);
+});
+
+function finishLesson(){
+  const total = 9;
+  const done = Object.values(progress).filter(Boolean).length;
+  const summary = document.getElementById('scoreSummary');
+  if(done === total){
+    summary.textContent = '🎉 Parabéns! Lição concluída com sucesso!';
+    summary.style.color = 'var(--color-success)';
+  } else {
+    summary.textContent = `Você completou ${done} de ${total} etapas. Revise as seções pendentes.`;
+    summary.style.color = 'var(--color-error)';
+  }
+}
+
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  t.addEventListener('click', ()=>{
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+  });
+})();
+</script>
+</body>
+</html>

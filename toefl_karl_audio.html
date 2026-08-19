@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL iBT 2026 · Karl · Odontologia no Canadá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#155ee8; --blue-dark:#0b3d91; --blue-light:#eaf1ff; --blue-soft:#f3f7ff;
+  --green:#17a06d; --green-light:#e5f8ef; --amber:#f5a623; --amber-light:#fff6e0;
+  --red:#e5484d; --red-light:#fdecec; --ink:#131c2e; --muted:#5c6b85; --card:#ffffff;
+  --shadow:0 8px 24px rgba(21,94,232,.08); --shadow-lg:0 16px 40px rgba(21,94,232,.14);
+  --radius:18px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; font-family:'Inter',sans-serif; color:var(--ink);
+  background:radial-gradient(circle at 10% 0%, #eaf1ff 0%, #f7f9fd 45%, #ffffff 100%);
+  min-height:100vh;
+}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif; margin:0;}
+.hero{
+  background:linear-gradient(135deg,var(--blue-dark),var(--blue) 65%, #3f8dff);
+  color:#fff; padding:48px 24px 90px; text-align:center; position:relative; overflow:hidden;
+}
+.hero::before, .hero::after{
+  content:""; position:absolute; border-radius:50%; background:rgba(255,255,255,.08);
+}
+.hero::before{ width:280px; height:280px; top:-120px; left:-80px; }
+.hero::after{ width:220px; height:220px; bottom:-100px; right:-60px; }
+.hero h1{ font-size:2.1em; font-weight:800; position:relative; z-index:1;}
+.hero p{ position:relative; z-index:1; opacity:.92; max-width:640px; margin:12px auto 0; font-size:1.02em;}
+.hero .badges{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px; position:relative; z-index:1;}
+.pill{ background:rgba(255,255,255,.18); backdrop-filter:blur(4px); padding:6px 16px; border-radius:999px; font-size:.82em; font-weight:600;}
+
+.wrap{ max-width:1080px; margin:-56px auto 60px; padding:0 20px; position:relative; z-index:2;}
+
+.progress-card{
+  background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow-lg);
+  padding:24px 26px; margin-bottom:26px; display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+}
+.ring{ width:88px; height:88px; border-radius:50%; flex-shrink:0;
+  background: conic-gradient(var(--green) calc(var(--pct,0)*1%), #e6ebf5 0);
+  display:flex; align-items:center; justify-content:center; position:relative;}
+.ring::before{ content:""; position:absolute; inset:8px; background:#fff; border-radius:50%;}
+.ring span{ position:relative; font-weight:800; font-family:'Poppins',sans-serif; color:var(--blue-dark); font-size:1.05em;}
+.progress-info h3{ font-size:1.1em; margin-bottom:4px;}
+.progress-info p{ margin:0; color:var(--muted); font-size:.92em;}
+#resetBtn{ margin-left:auto; background:var(--blue-light); color:var(--blue-dark); border:none; padding:10px 18px;
+  border-radius:12px; font-weight:600; cursor:pointer; font-size:.88em; transition:.2s;}
+#resetBtn:hover{ background:#dbe8ff; }
+
+.tabs{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:24px; scrollbar-width:thin;}
+.tab-btn{
+  border:none; background:#fff; color:var(--muted); padding:12px 20px; border-radius:14px; font-weight:600;
+  font-family:'Inter',sans-serif; font-size:.9em; cursor:pointer; white-space:nowrap; box-shadow:0 2px 8px rgba(21,94,232,.06);
+  transition:.2s; display:flex; align-items:center; gap:8px;
+}
+.tab-btn.active{ background:var(--blue-dark); color:#fff; box-shadow:var(--shadow);}
+.tab-btn .dot{ width:8px; height:8px; border-radius:50%; background:#c7d3e8; }
+.tab-btn.active .dot{ background:#8fd6b0; }
+.tab-btn:hover:not(.active){ background:var(--blue-light); }
+
+.panel{ display:none; animation:fadeIn .35s ease; }
+.panel.active{ display:block; }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.section-title{ display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+.section-title .num{ background:var(--blue-dark); color:#fff; width:36px; height:36px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Poppins',sans-serif;}
+.section-title h2{ font-size:1.35em; color:var(--blue-dark);}
+
+.card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;}
+.tip{ background:var(--amber-light); border-left:5px solid var(--amber); padding:14px 18px; border-radius:12px; margin:14px 0; font-size:.94em;}
+.goal{ background:var(--green-light); border-left:5px solid var(--green); padding:14px 18px; border-radius:12px; margin:14px 0; font-size:.94em;}
+
+table{ width:100%; border-collapse:collapse; font-size:.92em; margin-top:10px;}
+th,td{ padding:11px 12px; text-align:left; border-bottom:1px solid #edf1f9;}
+th{ background:var(--blue-light); color:var(--blue-dark); font-family:'Poppins',sans-serif; font-weight:600;}
+tr:hover td{ background:#f8fafe; }
+
+.acc-item{ border:1px solid #e8edf7; border-radius:14px; margin-bottom:10px; overflow:hidden;}
+.acc-head{ padding:16px 18px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+  background:#fff; font-weight:600; font-family:'Poppins',sans-serif; color:var(--blue-dark); font-size:.98em;}
+.acc-head:hover{ background:var(--blue-soft); }
+.acc-head .chev{ transition:transform .25s; color:var(--blue); }
+.acc-item.open .chev{ transform:rotate(180deg); }
+.acc-body{ max-height:0; overflow:hidden; transition:max-height .35s ease; background:#fbfcff;}
+.acc-body-inner{ padding:0 18px 18px; font-size:.93em; color:var(--muted); line-height:1.6;}
+
+.week-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:16px;}
+.week-chip{ background:#fff; border:2px solid #e8edf7; border-radius:14px; padding:12px; cursor:pointer; transition:.2s; text-align:center;}
+.week-chip:hover{ border-color:var(--blue); transform:translateY(-2px); }
+.week-chip.done{ border-color:var(--green); background:var(--green-light); }
+.week-chip .wk{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--blue-dark); font-size:1.05em;}
+.week-chip .lbl{ font-size:.75em; color:var(--muted); margin-top:2px;}
+.week-detail{ display:none; margin-top:16px; }
+.week-detail.show{ display:block; animation:fadeIn .3s ease; }
+.week-detail .card{ background:var(--blue-soft); }
+.skills-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+.skill-tag{ background:#fff; border-radius:10px; padding:8px 12px; font-size:.85em; box-shadow:0 2px 6px rgba(0,0,0,.05); flex:1; min-width:140px;}
+.skill-tag b{ display:block; color:var(--blue-dark); font-size:.8em; margin-bottom:3px;}
+
+.flash-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:16px;}
+.flash{ perspective:1000px; height:130px; cursor:pointer;}
+.flash-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flash.flipped .flash-inner{ transform:rotateY(180deg); }
+.flash-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; display:flex;
+  align-items:center; justify-content:center; text-align:center; padding:14px; font-weight:600; font-size:.95em; box-shadow:var(--shadow);}
+.flash-front{ background:#fff; color:var(--blue-dark); border:2px solid var(--blue-light); }
+.flash-back{ background:var(--blue-dark); color:#fff; transform:rotateY(180deg); font-size:.88em; font-weight:500;}
+
+.quiz-item{ background:#fff; border-radius:16px; padding:18px 20px; margin-bottom:14px; box-shadow:var(--shadow); }
+.quiz-q{ font-weight:600; margin-bottom:12px; font-size:.97em;}
+.quiz-opts{ display:flex; flex-direction:column; gap:8px;}
+.opt-btn{ text-align:left; padding:11px 14px; border-radius:10px; border:2px solid #e8edf7; background:#fff;
+  cursor:pointer; font-family:'Inter',sans-serif; font-size:.9em; transition:.15s;}
+.opt-btn:hover{ border-color:var(--blue); background:var(--blue-soft); }
+.opt-btn.correct{ border-color:var(--green); background:var(--green-light); color:#0a6b47; font-weight:600;}
+.opt-btn.wrong{ border-color:var(--red); background:var(--red-light); color:#a31217; font-weight:600;}
+.opt-btn[disabled]{ cursor:default; }
+.feedback{ margin-top:10px; font-size:.87em; padding:10px 12px; border-radius:10px; display:none;}
+.feedback.show{ display:block; }
+.feedback.ok{ background:var(--green-light); color:#0a6b47;}
+.feedback.no{ background:var(--red-light); color:#a31217;}
+
+.write-box textarea{ width:100%; min-height:110px; border:2px solid #e8edf7; border-radius:12px; padding:12px;
+  font-family:'Inter',sans-serif; font-size:.92em; resize:vertical;}
+.write-box textarea:focus{ outline:none; border-color:var(--blue); }
+.check-btn{ background:var(--blue-dark); color:#fff; border:none; padding:10px 20px; border-radius:10px;
+  font-weight:600; cursor:pointer; margin-top:10px; font-size:.88em; transition:.2s;}
+.check-btn:hover{ background:var(--blue); }
+.model-answer{ display:none; background:var(--blue-soft); border-left:4px solid var(--blue); padding:12px 14px; border-radius:10px; margin-top:10px; font-size:.88em;}
+.model-answer.show{ display:block; }
+
+.timer-card{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.timer-display{ font-family:'Poppins',sans-serif; font-size:2.2em; font-weight:700; color:var(--blue-dark); min-width:110px;}
+.timer-btn{ background:var(--blue); color:#fff; border:none; padding:12px 22px; border-radius:12px; font-weight:600; cursor:pointer; font-size:.9em;}
+.timer-btn.stop{ background:var(--red); }
+.timer-btn:hover{ opacity:.9; }
+
+.check-list{ display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+.check-row{ display:flex; align-items:center; gap:12px; background:#fff; border-radius:12px; padding:12px 16px; box-shadow:0 2px 8px rgba(0,0,0,.04); cursor:pointer; transition:.2s;}
+.check-row:hover{ background:var(--blue-soft); }
+.check-row.checked{ background:var(--green-light); }
+.check-row.checked span{ text-decoration:line-through; color:var(--muted); }
+.checkmark{ width:24px; height:24px; border-radius:7px; border:2px solid #c7d3e8; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.8em; color:#fff; transition:.2s;}
+.check-row.checked .checkmark{ background:var(--green); border-color:var(--green); }
+
+.confetti-msg{ display:none; text-align:center; background:linear-gradient(135deg,var(--green),#3fcf8e); color:#fff;
+  padding:16px; border-radius:14px; margin-top:16px; font-weight:700; font-family:'Poppins',sans-serif; }
+.confetti-msg.show{ display:block; animation:pop .4s ease; }
+@keyframes pop{ from{transform:scale(.8); opacity:0;} to{transform:scale(1); opacity:1;} }
+
+.play-btn{ display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:#fff; border:none;
+  padding:10px 18px; border-radius:12px; font-weight:600; cursor:pointer; font-size:.85em; margin-bottom:12px; transition:.2s;}
+.play-btn:hover{ background:var(--blue-dark); }
+.play-btn.playing{ background:var(--green); }
+.play-btn svg{ width:16px; height:16px; }
+.audio-hint{ font-size:.82em; color:var(--muted); margin-bottom:14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; background:#fff; padding:10px 14px; border-radius:12px; box-shadow:var(--shadow);}
+.speed-select{ border:2px solid #e8edf7; border-radius:8px; padding:6px 10px; font-family:'Inter',sans-serif; font-size:.85em; cursor:pointer;}
+
+footer{ text-align:center; padding:30px 20px; color:var(--muted); font-size:.8em; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🦷 TOEFL iBT 2026 — Plano Interativo</h1>
+  <p>Preparação de Karl, cirurgião-dentista, para a proficiência em inglês exigida pelo processo de Equivalência NDEB e faculdades de odontologia no Canadá.</p>
+  <div class="badges">
+    <span class="pill">Formato pós-jan/2026</span>
+    <span class="pill">Nível B2–C1</span>
+    <span class="pill">Foco: Odontologia</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="progress-card">
+    <div class="ring" id="progressRing" style="--pct:0"><span id="progressPct">0%</span></div>
+    <div class="progress-info">
+      <h3>Seu progresso no material</h3>
+      <p id="progressText">Clique nos quizzes, flashcards e checklist para acompanhar seu avanço em tempo real.</p>
+    </div>
+    <button id="resetBtn" onclick="resetProgress()">Reiniciar progresso</button>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="metas"><span class="dot"></span>Metas</button>
+    <button class="tab-btn" data-tab="formato"><span class="dot"></span>Formato 2026</button>
+    <button class="tab-btn" data-tab="cronograma"><span class="dot"></span>Cronograma</button>
+    <button class="tab-btn" data-tab="vocab"><span class="dot"></span>Vocabulário</button>
+    <button class="tab-btn" data-tab="reading"><span class="dot"></span>Reading</button>
+    <button class="tab-btn" data-tab="listening"><span class="dot"></span>Listening</button>
+    <button class="tab-btn" data-tab="writing"><span class="dot"></span>Writing</button>
+    <button class="tab-btn" data-tab="speaking"><span class="dot"></span>Speaking</button>
+    <button class="tab-btn" data-tab="ndeb"><span class="dot"></span>Checklist NDEB</button>
+  </div>
+
+  <div class="panel active" id="metas">
+    <div class="section-title"><div class="num">1</div><h2>Metas de Pontuação por Instituição</h2></div>
+    <div class="card">
+      <p>O TOEFL passou a usar duas escalas em paralelo desde janeiro de 2026: a tradicional (0–120) e a nova por banda (1.0–6.0)<sup>[cite:15]</sup>.</p>
+      <table>
+        <tr><th>Instituição</th><th>Escala antiga (0-120)</th><th>Escala nova (1-6)</th></tr>
+        <tr><td>NDEB — Equivalência</td><td>Varia por caso, consultar portal<sup>[cite:3][cite:20]</sup></td><td>Consultar caso a caso<sup>[cite:3]</sup></td></tr>
+        <tr><td>Universidade de Toronto</td><td>100 total, mín. 22 em Writing<sup>[cite:5]</sup></td><td>Não publicado</td></tr>
+        <tr><td>Universidade de Manitoba</td><td>100 total, mín. 24/seção<sup>[cite:11]</sup></td><td>5.0 geral, sem seção &lt;5.0<sup>[cite:11]</sup></td></tr>
+        <tr><td>UBC</td><td>93 total<sup>[cite:17][cite:21]</sup></td><td>5.0 geral; 5(listening), 4.5(demais)<sup>[cite:17][cite:21]</sup></td></tr>
+        <tr><td>McGill</td><td>90 total<sup>[cite:22]</sup></td><td>Não confirmado; + francês B2<sup>[cite:30]</sup></td></tr>
+        <tr><td>BTDPC</td><td>90 total, mín. 21/seção<sup>[cite:14]</sup></td><td>4.5 geral, sem seção &lt;4.5<sup>[cite:14]</sup></td></tr>
+      </table>
+      <div class="goal"><strong>Meta recomendada para Karl:</strong> 100+ pontos (antiga) / 5.0 geral (nova), nenhuma seção abaixo de 22 / 4.5 — cobre Toronto, Manitoba, UBC e BTDPC.</div>
+      <div class="tip"><strong>McGill</strong> exige também francês B2, o que pode não valer a pena priorizar se o foco de Karl for fora de Quebec<sup>[cite:30]</sup>.</div>
+    </div>
+  </div>
+
+  <div class="panel" id="formato">
+    <div class="section-title"><div class="num">2</div><h2>Novo Formato TOEFL iBT 2026</h2></div>
+    <p style="color:var(--muted); margin-bottom:14px;">Clique em cada seção para expandir os detalhes. Ordem fixa: Reading → Listening → Writing → Speaking, ~90 min no total<sup>[cite:10][cite:13]</sup>.</p>
+    <div id="accordion"></div>
+  </div>
+
+  <div class="panel" id="cronograma">
+    <div class="section-title"><div class="num">3</div><h2>Cronograma de 10 Semanas</h2></div>
+    <p style="color:var(--muted);">Clique em uma semana para ver o foco detalhado e marque como concluída.</p>
+    <div class="week-grid" id="weekGrid"></div>
+    <div id="weekDetailArea"></div>
+  </div>
+
+  <div class="panel" id="vocab">
+    <div class="section-title"><div class="num">4</div><h2>Flashcards de Vocabulário</h2></div>
+    <p style="color:var(--muted);">Clique em cada carta para virar e ver a tradução/definição.</p>
+    <div class="card">
+      <h3 style="color:var(--blue-dark); font-size:1em; margin-bottom:6px;">🦷 Termos clínicos</h3>
+      <div class="flash-grid" id="flashClinical"></div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--blue-dark); font-size:1em; margin-bottom:6px;">📋 Procedimentos e contexto clínico</h3>
+      <div class="flash-grid" id="flashProc"></div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--blue-dark); font-size:1em; margin-bottom:6px;">🎓 Vocabulário acadêmico (alta frequência)</h3>
+      <div class="flash-grid" id="flashAcad"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="reading">
+    <div class="section-title"><div class="num">5</div><h2>Quiz de Reading</h2></div>
+    <p style="color:var(--muted);">Clique na alternativa — feedback instantâneo com explicação.</p>
+    <div id="quizReading"></div>
+  </div>
+
+  <div class="panel" id="listening">
+    <div class="section-title"><div class="num">6</div><h2>Quiz de Listening</h2></div>
+    <p style="color:var(--muted);">Clique em "🔊 Ouvir áudio" para escutar o diálogo em inglês (voz sintetizada do navegador) antes de responder.</p>
+    <div class="audio-hint">🎧 Velocidade da fala:
+      <select class="speed-select" id="speedSelect">
+        <option value="0.75">Lenta (0.75x)</option>
+        <option value="1" selected>Normal (1x)</option>
+        <option value="1.25">Rápida (1.25x)</option>
+      </select>
+      <span style="color:var(--muted);">— funciona melhor em Chrome ou Edge</span>
+    </div>
+    <div id="quizListening"></div>
+  </div>
+
+  <div class="panel" id="writing">
+    <div class="section-title"><div class="num">7</div><h2>Prática de Writing</h2></div>
+    <div id="quizWritingBuild"></div>
+    <div class="card write-box">
+      <h3 style="font-size:1em; color:var(--blue-dark);">✉️ Write an Email (7 min · 100-150 palavras)</h3>
+      <p style="font-size:.9em; color:var(--muted);">Cenário: Você é um novo residente em um programa de qualificação odontológica no Canadá. Escreva ao coordenador: (1) confirme presença na orientação, (2) pergunte sobre equipamento necessário, (3) informe que chegará 10 min mais cedo.</p>
+      <textarea id="emailBox" placeholder="Escreva seu e-mail aqui..."></textarea>
+      <button class="check-btn" onclick="showModel('emailModel','writing1')">Ver modelo de resposta</button>
+      <div class="model-answer" id="emailModel">"Dear Dr. Thompson, Thank you for the orientation details. I confirm my attendance on Monday at 9 a.m. Could you please let me know what equipment I should bring for the clinical sessions? I plan to arrive ten minutes early to complete any necessary paperwork. Best regards, Karl."</div>
+    </div>
+    <div class="card write-box">
+      <h3 style="font-size:1em; color:var(--blue-dark);">💬 Academic Discussion (10 min · 200-250 palavras)</h3>
+      <p style="font-size:.9em; color:var(--muted);">Pergunta: "Some argue that preventive dental care should be fully covered by public health systems. Do you agree or disagree, and why?"</p>
+      <textarea id="discussBox" placeholder="Escreva sua resposta aqui..."></textarea>
+      <button class="check-btn" onclick="showModel('discussModel','writing2')">Ver dica de estrutura</button>
+      <div class="model-answer" id="discussModel">Estrutura sugerida: (1) posição clara na primeira frase; (2) duas razões com exemplos concretos; (3) reconhecer brevemente um contraponto; (4) frase final reforçando sua posição.</div>
+    </div>
+  </div>
+
+  <div class="panel" id="speaking">
+    <div class="section-title"><div class="num">8</div><h2>Prática de Speaking</h2></div>
+    <div class="card">
+      <h3 style="font-size:1em; color:var(--blue-dark);">🎙️ Listen and Repeat</h3>
+      <p style="font-size:.9em; color:var(--muted);">Clique em "Ouvir" para escutar cada frase, depois repita em voz alta gravando-se no celular:</p>
+      <div id="speakingPhrases"></div>
+    </div>
+    <div class="card timer-card">
+      <div>
+        <h3 style="font-size:1em; color:var(--blue-dark); margin-bottom:6px;">⏱️ Cronômetro — Take an Interview (45s)</h3>
+        <p style="font-size:.85em; color:var(--muted); margin:0;">Pergunta: "Why do you want to practice dentistry in Canada?" Grave sua resposta dentro do tempo.</p>
+      </div>
+      <div class="timer-display" id="timerDisplay">00:45</div>
+      <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">Iniciar</button>
+    </div>
+  </div>
+
+  <div class="panel" id="ndeb">
+    <div class="section-title"><div class="num">9</div><h2>Checklist do Processo NDEB</h2></div>
+    <div class="card">
+      <div class="check-list" id="ndebChecklist"></div>
+      <div class="confetti-msg" id="confettiMsg">🎉 Parabéns! Você concluiu todas as etapas listadas do processo NDEB.</div>
+    </div>
+    <div class="tip"><strong>Prazo de validade:</strong> resultados de TOEFL geralmente precisam ter sido obtidos há no máximo 24 meses antes da inscrição<sup>[cite:21]</sup>.</div>
+    <div class="tip"><strong>Documentação:</strong> histórico acadêmico completo com todas as disciplinas, notas e datas — históricos de faculdades afiliadas não são aceitos<sup>[cite:24]</sup>.</div>
+  </div>
+
+</div>
+
+<footer>Material baseado em dados públicos do ETS/TOEFL e sites oficiais do NDEB, Toronto, Manitoba, UBC e McGill (ago/2026). Áudios gerados por síntese de voz do navegador. Confirme sempre requisitos atualizados nos sites oficiais.</footer>
+
+<script>
+let progressState = JSON.parse(localStorage.getItem('toeflProgress')||'{}');
+function saveProgress(){ localStorage.setItem('toeflProgress', JSON.stringify(progressState)); updateRing(); }
+function markDone(key){ progressState[key]=true; saveProgress(); }
+function updateRing(){
+  const keys = Object.keys(window.allTaskKeys||{});
+  const done = keys.filter(k=>progressState[k]).length;
+  const pct = keys.length? Math.round(done/keys.length*100):0;
+  document.getElementById('progressRing').style.setProperty('--pct', pct);
+  document.getElementById('progressPct').textContent = pct+'%';
+  document.getElementById('progressText').textContent = pct===100? 'Você concluiu 100% das atividades interativas! 🎉' : `Você concluiu ${done} de ${keys.length} atividades interativas.`;
+}
+function resetProgress(){ progressState={}; localStorage.removeItem('toeflProgress'); document.querySelectorAll('.flash').forEach(f=>f.classList.remove('flipped')); document.querySelectorAll('.opt-btn').forEach(b=>{b.disabled=false; b.classList.remove('correct','wrong');}); document.querySelectorAll('.feedback').forEach(f=>f.classList.remove('show')); document.querySelectorAll('.check-row').forEach(r=>r.classList.remove('checked')); document.getElementById('confettiMsg').classList.remove('show'); updateRing(); }
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+const accData = [
+  {t:"📖 Reading (~30 min)", body:"<strong>Complete the Words:</strong> preencher lacunas em palavras num texto curto, testando vocabulário e ortografia em contexto.<br><strong>Read in Daily Life:</strong> compreensão de textos funcionais (avisos, e-mails, anúncios).<br><strong>Read an Academic Passage:</strong> leitura acadêmica com perguntas de detalhe e inferência."},
+  {t:"🎧 Listening (~29 min)", body:"<strong>Listen and Choose a Response:</strong> ouvir um trecho curto e escolher a resposta apropriada.<br><strong>Conversation:</strong> diálogos do cotidiano acadêmico.<br><strong>Announcement / Academic Talk:</strong> anúncios e palestras mais longas."},
+  {t:"✍️ Writing (~23 min, 12 itens)", body:"<strong>Build a Sentence</strong> (10 itens, ~6 min): reordenar palavras, corrigido por máquina sem crédito parcial.<sup>[cite:19]</sup><br><strong>Write an Email</strong> (1 item, ~7 min): resposta a cenário, 0-5, ~100-200 palavras.<sup>[cite:19][cite:27]</sup><br><strong>Academic Discussion</strong> (1 item, ~10 min): fórum de discussão, 0-5, ~200-250 palavras.<sup>[cite:19][cite:31]</sup>"},
+  {t:"🎙️ Speaking (~8 min, 11 itens)", body:"<strong>Listen and Repeat:</strong> repetir frases com precisão de pronúncia e entonação.<br><strong>Take an Interview:</strong> responder perguntas pessoais/acadêmicas simulando conversa natural."}
+];
+const accEl = document.getElementById('accordion');
+accData.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className='acc-item';
+  div.innerHTML = `<div class="acc-head" onclick="toggleAcc(this, ${i})"><span>${item.t}</span><span class="chev">▼</span></div><div class="acc-body"><div class="acc-body-inner">${item.body}</div></div>`;
+  accEl.appendChild(div);
+});
+function toggleAcc(head, i){
+  const item = head.parentElement;
+  const body = item.querySelector('.acc-body');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(el=>{ el.classList.remove('open'); el.querySelector('.acc-body').style.maxHeight=null; });
+  if(!isOpen){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight+'px'; markDone('acc_'+i); }
+}
+
+const weeks = [
+  {n:1, lbl:"Diagnóstico", r:"Simulado completo", l:"Simulado completo", w:"1 email + 1 discussão", s:"Gravação de 3 respostas"},
+  {n:2, lbl:"Fundamentos", r:"Complete the Words: 15 exercícios", l:"Listen and Choose: 10 diálogos", w:"Build a Sentence: 30 frases", s:"Listen and Repeat: consoantes finais"},
+  {n:3, lbl:"Cotidiano", r:"Read in Daily Life: 10 textos", l:"Conversation: 8 diálogos", w:"Revisão de erros comuns", s:"Entonação de perguntas"},
+  {n:4, lbl:"Acadêmico I", r:"Textos de biologia/saúde", l:"Academic Talk: 5 palestras", w:"Write an Email: 5 cenários", s:"Interview: motivação profissional"},
+  {n:5, lbl:"Acadêmico II", r:"Inferência e vocabulário", l:"Palestras de odontologia", w:"Write an Email: cenários sociais", s:"Interview: perguntas de opinião"},
+  {n:6, lbl:"Simulado parcial", r:"Reading completo", l:"Listening completo", w:"Academic Discussion: 5 tópicos", s:"Fluência sem pausas"},
+  {n:7, lbl:"Revisão", r:"Revisão de erros", l:"Revisão de erros", w:"Discussion cronometrado", s:"Simulado completo Speaking"},
+  {n:8, lbl:"Aplicação", r:"Vocabulário odontológico", l:"Shadowing de podcasts", w:"Build a Sentence + Email", s:"Autoanálise gravada"},
+  {n:9, lbl:"Simulado #2", r:"Cronometrado completo", l:"Cronometrado completo", w:"Cronometrado completo", s:"Cronometrado completo"},
+  {n:10, lbl:"Revisão final", r:"Simulado final", l:"Simulado final", w:"Simulado final", s:"Descanso ativo"}
+];
+const weekGrid = document.getElementById('weekGrid');
+const weekDetailArea = document.getElementById('weekDetailArea');
+weeks.forEach(w=>{
+  const chip = document.createElement('div');
+  chip.className='week-chip';
+  chip.id='chip'+w.n;
+  chip.innerHTML = `<div class="wk">Sem ${w.n}</div><div class="lbl">${w.lbl}</div>`;
+  chip.onclick = ()=>selectWeek(w.n);
+  weekGrid.appendChild(chip);
+});
+function selectWeek(n){
+  const w = weeks.find(x=>x.n===n);
+  weekDetailArea.innerHTML = `<div class="week-detail show"><div class="card">
+    <h3 style="color:var(--blue-dark); font-size:1.05em;">Semana ${w.n} — ${w.lbl}</h3>
+    <div class="skills-row">
+      <div class="skill-tag"><b>📖 Reading</b>${w.r}</div>
+      <div class="skill-tag"><b>🎧 Listening</b>${w.l}</div>
+      <div class="skill-tag"><b>✍️ Writing</b>${w.w}</div>
+      <div class="skill-tag"><b>🎙️ Speaking</b>${w.s}</div>
+    </div>
+    <button class="check-btn" onclick="completeWeek(${w.n})">Marcar semana como concluída ✓</button>
+  </div></div>`;
+  markDone('week_view_'+n);
+}
+function completeWeek(n){
+  document.getElementById('chip'+n).classList.add('done');
+  markDone('week_done_'+n);
+}
+
+const clinical = [["Tooth decay","Cárie dentária"],["Root canal","Tratamento de canal (endodontia)"],["Periodontal disease","Doença periodontal"],["Gingiva","Gengiva"],["Enamel","Esmalte"],["Malocclusion","Má-oclusão"],["Crown / Bridge","Coroa / ponte"],["Extraction","Extração"]];
+const proc = [["Informed consent","Consentimento informado"],["Anesthesia","Anestesia (local/geral)"],["Sterilization protocol","Protocolo de esterilização"],["Patient chart","Prontuário do paciente"],["Scaling and root planing","Raspagem e alisamento radicular"],["Referral","Encaminhamento"]];
+const acad = [["Hypothesis","Hipótese"],["Empirical","Empírico, baseado em observação"],["Correlation","Correlação, relação entre variáveis"],["Prevalent","Predominante, comum"],["Mitigate","Reduzir, atenuar"],["Comprehensive","Abrangente, completo"]];
+function buildFlash(container, data, prefix){
+  const el = document.getElementById(container);
+  data.forEach((pair,i)=>{
+    const f = document.createElement('div');
+    f.className='flash';
+    f.innerHTML = `<div class="flash-inner"><div class="flash-face flash-front">${pair[0]}</div><div class="flash-face flash-back">${pair[1]}</div></div>`;
+    f.onclick = ()=>{ f.classList.toggle('flipped'); markDone(prefix+i); };
+    el.appendChild(f);
+  });
+}
+buildFlash('flashClinical', clinical, 'fc_');
+buildFlash('flashProc', proc, 'fp_');
+buildFlash('flashAcad', acad, 'fa_');
+
+const readingQuiz = [
+  {q:"Complete: 'The dentist recommended a root can_ _ treatment after diagnosing severe pulp infl_mm_tion.'", opts:["canal / inflammation","canel / inflamation","canal / inflamacion","cannal / inflamation"], correct:0, exp:"'Canal' e 'inflammation' são as grafias corretas em inglês."},
+  {q:"'Notice: Due to equipment maintenance, the X-ray room will be closed on Thursday. Reschedule for Friday.' — What should patients do?", opts:["Cancel their appointment","Reschedule for Friday morning","Wait until next Thursday","Call the front desk immediately"], correct:1, exp:"O aviso instrui claramente a remarcar para sexta-feira de manhã."},
+  {q:"'Recent studies suggest untreated periodontal disease may be correlated with cardiovascular disease.' — What does 'correlated' mean here?", opts:["Caused by","Linked/associated with","Cured by","Unrelated to"], correct:1, exp:"'Correlated' significa 'associado/ligado a', não implica causalidade direta."},
+  {q:"In the same passage, is the causal mechanism between oral inflammation and systemic markers fully understood?", opts:["Yes, fully proven","No, still under investigation","It was disproven","Not mentioned"], correct:1, exp:"O texto diz que 'the exact causal mechanism remains under investigation'."}
+];
+const listeningQuiz = [
+  {audio:"Patient: I've been experiencing sharp pain when I drink cold water. Dentist: Let's take a closer look at that.", q:"Patient says: 'I've been experiencing sharp pain when I drink cold water.' Best response?", opts:["'That's not a big deal, ignore it.'","'That could indicate enamel erosion or a cavity. Let's take an X-ray.'","'You should stop drinking water.'","'I recommend surgery immediately.'"], correct:1, exp:"Resposta profissional que investiga a causa com um exame apropriado."},
+  {audio:"Professor: I'm sorry to inform you that today's practical exam has been rescheduled due to a problem with our sterilization equipment. Student: Oh, I see. When will it take place instead?", q:"Professor tells student the practical exam was rescheduled due to a sterilization equipment issue. Why was it rescheduled?", opts:["The professor was sick","Equipment problem","Student requested it","No reason given"], correct:1, exp:"O motivo dado foi um problema com o equipamento de esterilização."},
+  {audio:"Today we'll discuss the link between oral health and diabetes. Studies show that poorly controlled diabetes can worsen periodontal disease, and conversely, severe gum disease can make blood sugar control more difficult.", q:"Academic talk: 'Poorly controlled diabetes can worsen periodontal disease, and severe gum disease can make blood sugar control more difficult.' Is this relationship one-directional or bidirectional?", opts:["One-directional","Bidirectional","No relationship","Only in children"], correct:1, exp:"O texto descreve um efeito em ambas as direções — logo, bidirecional."}
+];
+function buildQuiz(container, data, prefix){
+  const el = document.getElementById(container);
+  data.forEach((item,qi)=>{
+    const div = document.createElement('div');
+    div.className='quiz-item';
+    let optsHtml = item.opts.map((o,oi)=>`<button class="opt-btn" onclick="answerQuiz(this,${qi},${oi},'${prefix}')">${o}</button>`).join('');
+    let audioHtml = item.audio ? `<button class="play-btn" id="${prefix}play${qi}" onclick="playAudio('${prefix}',${qi})"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span id="${prefix}playtxt${qi}">Ouvir áudio</span></button><br>` : '';
+    div.innerHTML = `<div class="quiz-q">${qi+1}. ${audioHtml}${item.q}</div><div class="quiz-opts">${optsHtml}</div><div class="feedback" id="${prefix}fb${qi}"></div>`;
+    el.appendChild(div);
+  });
+  window[prefix+'Data'] = data;
+}
+buildQuiz('quizReading', readingQuiz, 'rd');
+buildQuiz('quizListening', listeningQuiz, 'ls');
+
+function answerQuiz(btn, qi, oi, prefix){
+  const data = window[prefix+'Data'];
+  const item = data[qi];
+  const parent = btn.parentElement;
+  const buttons = parent.querySelectorAll('.opt-btn');
+  buttons.forEach(b=>b.disabled=true);
+  const fb = document.getElementById(prefix+'fb'+qi);
+  if(oi===item.correct){
+    btn.classList.add('correct');
+    fb.className='feedback show ok';
+    fb.innerHTML = '✅ Correto! '+item.exp;
+  } else {
+    btn.classList.add('wrong');
+    buttons[item.correct].classList.add('correct');
+    fb.className='feedback show no';
+    fb.innerHTML = '❌ Quase lá. '+item.exp;
+  }
+  markDone(prefix+'_'+qi);
+}
+
+function playAudio(prefix, qi){
+  const data = window[prefix+'Data'];
+  const item = data[qi];
+  const btn = document.getElementById(prefix+'play'+qi);
+  const txt = document.getElementById(prefix+'playtxt'+qi);
+  if(!('speechSynthesis' in window)){ alert('Seu navegador não suporta áudio embutido. Tente Chrome ou Edge.'); return; }
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.play-btn').forEach(b=>{ b.classList.remove('playing'); });
+  const utter = new SpeechSynthesisUtterance(item.audio);
+  utter.lang = 'en-US';
+  const speedEl = document.getElementById('speedSelect');
+  utter.rate = speedEl ? parseFloat(speedEl.value) : 1;
+  utter.onstart = ()=>{ btn.classList.add('playing'); txt.textContent='Reproduzindo...'; markDone(prefix+'_audio_'+qi); };
+  utter.onend = ()=>{ btn.classList.remove('playing'); txt.textContent='Ouvir novamente'; };
+  utter.onerror = ()=>{ btn.classList.remove('playing'); txt.textContent='Ouvir áudio'; };
+  const voices = window.speechSynthesis.getVoices();
+  const enVoice = voices.find(v=>v.lang==='en-US') || voices.find(v=>v.lang.startsWith('en'));
+  if(enVoice) utter.voice = enVoice;
+  window.speechSynthesis.speak(utter);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = ()=>window.speechSynthesis.getVoices(); }
+
+const buildSentence = [
+  {frag:"office / the / at / see you / dental / tomorrow / I'll", ans:"I'll see you at the dental office tomorrow."},
+  {frag:"appointment / has / been / rescheduled / your", ans:"Your appointment has been rescheduled."},
+  {frag:"insurance / cover / this / procedure / does / your", ans:"Does your insurance cover this procedure?"}
+];
+const bsEl = document.getElementById('quizWritingBuild');
+bsEl.innerHTML = '<div class="card"><h3 style="font-size:1em;color:var(--blue-dark);">🔤 Build a Sentence</h3><p style="font-size:.88em;color:var(--muted);">Clique em "Ver resposta" após tentar reordenar mentalmente.</p></div>';
+buildSentence.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className='quiz-item';
+  div.innerHTML = `<div class="quiz-q">${i+1}. ${item.frag}</div><button class="check-btn" onclick="revealSentence(this,'${item.ans.replace(/'/g,"\\'")}',${i})">Ver resposta</button><div class="feedback" id="bsfb${i}"></div>`;
+  bsEl.appendChild(div);
+});
+function revealSentence(btn, ans, i){
+  const fb = document.getElementById('bsfb'+i);
+  fb.className='feedback show ok';
+  fb.innerHTML = '✅ Gabarito: '+ans;
+  markDone('bs_'+i);
+}
+
+function showModel(id, key){
+  document.getElementById(id).classList.toggle('show');
+  markDone(key);
+}
+
+const speakingPhrases = [
+  "Could you please describe the symptoms you've been experiencing?",
+  "I'll need to take an X-ray before confirming the diagnosis.",
+  "Make sure to floss daily to prevent gum disease."
+];
+const spEl = document.getElementById('speakingPhrases');
+speakingPhrases.forEach((phrase,i)=>{
+  const div = document.createElement('div');
+  div.className='quiz-item';
+  div.style.marginBottom='10px';
+  div.innerHTML = `<button class="play-btn" id="spplay${i}" onclick="playPhrase(${i})"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span id="spplaytxt${i}">Ouvir</span></button><br>"${phrase}"`;
+  spEl.appendChild(div);
+});
+function playPhrase(i){
+  if(!('speechSynthesis' in window)){ alert('Seu navegador não suporta áudio embutido. Tente Chrome ou Edge.'); return; }
+  window.speechSynthesis.cancel();
+  const btn = document.getElementById('spplay'+i);
+  const txt = document.getElementById('spplaytxt'+i);
+  const utter = new SpeechSynthesisUtterance(speakingPhrases[i]);
+  utter.lang='en-US'; utter.rate=0.95;
+  const voices = window.speechSynthesis.getVoices();
+  const enVoice = voices.find(v=>v.lang==='en-US') || voices.find(v=>v.lang.startsWith('en'));
+  if(enVoice) utter.voice = enVoice;
+  utter.onstart=()=>{ btn.classList.add('playing'); txt.textContent='Reproduzindo...'; markDone('sp_audio_'+i); };
+  utter.onend=()=>{ btn.classList.remove('playing'); txt.textContent='Ouvir novamente'; };
+  window.speechSynthesis.speak(utter);
+}
+
+let timerInterval=null, timeLeft=45, running=false;
+function toggleTimer(){
+  const btn = document.getElementById('timerBtn');
+  const disp = document.getElementById('timerDisplay');
+  if(!running){
+    running=true; btn.textContent='Parar'; btn.classList.add('stop');
+    timerInterval = setInterval(()=>{
+      timeLeft--;
+      const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
+      const s = String(timeLeft%60).padStart(2,'0');
+      disp.textContent = m+':'+s;
+      if(timeLeft<=0){ clearInterval(timerInterval); running=false; btn.textContent='Reiniciar'; btn.classList.remove('stop'); disp.textContent='00:00'; markDone('speaking_timer'); }
+    },1000);
+  } else {
+    clearInterval(timerInterval); running=false; timeLeft=45; btn.textContent='Iniciar'; btn.classList.remove('stop'); disp.textContent='00:45';
+  }
+}
+
+const ndebSteps = [
+  "Criar conta no portal online do NDEB",
+  "Enviar documentação para verificação de credenciais (diploma e histórico completo)",
+  "Confirmar e enviar resultado oficial de TOEFL/IELTS diretamente da instituição do teste",
+  "Aprovar no exame AFK (Assessment of Fundamental Knowledge)",
+  "Completar ACJ (Assessment of Clinical Judgement) e ACS (Assessment of Clinical Skills)",
+  "Realizar o exame de certificação NDEB final",
+  "Solicitar licença provincial no órgão regulador da província de destino"
+];
+const ndebEl = document.getElementById('ndebChecklist');
+ndebSteps.forEach((step,i)=>{
+  const row = document.createElement('div');
+  row.className='check-row';
+  row.id='ndeb'+i;
+  row.innerHTML = `<div class="checkmark">✓</div><span>${step}</span>`;
+  row.onclick = ()=>{
+    row.classList.toggle('checked');
+    markDone('ndeb_'+i);
+    checkAllNdeb();
+  };
+  ndebEl.appendChild(row);
+});
+function checkAllNdeb(){
+  const all = document.querySelectorAll('#ndebChecklist .check-row');
+  const doneCount = document.querySelectorAll('#ndebChecklist .check-row.checked').length;
+  document.getElementById('confettiMsg').classList.toggle('show', doneCount===all.length);
+}
+
+window.allTaskKeys = {};
+accData.forEach((_,i)=>window.allTaskKeys['acc_'+i]=1);
+weeks.forEach(w=>window.allTaskKeys['week_done_'+w.n]=1);
+clinical.forEach((_,i)=>window.allTaskKeys['fc_'+i]=1);
+proc.forEach((_,i)=>window.allTaskKeys['fp_'+i]=1);
+acad.forEach((_,i)=>window.allTaskKeys['fa_'+i]=1);
+readingQuiz.forEach((_,i)=>window.allTaskKeys['rd_'+i]=1);
+listeningQuiz.forEach((_,i)=>window.allTaskKeys['ls_'+i]=1);
+listeningQuiz.forEach((_,i)=>window.allTaskKeys['ls_audio_'+i]=1);
+buildSentence.forEach((_,i)=>window.allTaskKeys['bs_'+i]=1);
+window.allTaskKeys['writing1']=1;
+window.allTaskKeys['writing2']=1;
+window.allTaskKeys['speaking_timer']=1;
+speakingPhrases.forEach((_,i)=>window.allTaskKeys['sp_audio_'+i]=1);
+ndebSteps.forEach((_,i)=>window.allTaskKeys['ndeb_'+i]=1);
+updateRing();
+
+Object.keys(progressState).forEach(k=>{
+  if(k.startsWith('ndeb_')){ const i=k.split('_')[1]; const row=document.getElementById('ndeb'+i); if(row) row.classList.add('checked'); }
+  if(k.startsWith('week_done_')){ const n=k.split('_')[2]; const chip=document.getElementById('chip'+n); if(chip) chip.classList.add('done'); }
+});
+checkAllNdeb();
+</script>
+</body>
+</html>

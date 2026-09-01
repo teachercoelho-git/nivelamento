@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativos em Inglês — Lição Interativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"]{
+  --color-bg:#f7f6f2; --color-surface:#f9f8f5; --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec; --color-surface-offset-2:#edeae5; --color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5; --color-border:#d4d1ca;
+  --color-text:#28251d; --color-text-muted:#7a7974; --color-text-faint:#bab9b4; --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f; --color-primary-hover:#0c4e54; --color-primary-active:#0f3638; --color-primary-highlight:#cedcd8;
+  --color-success:#437a22; --color-success-highlight:#d4dfcc;
+  --color-error:#a12c7b; --color-error-highlight:#e0ced7;
+  --color-gold:#d19900; --color-gold-highlight:#e9e0c6;
+  --radius-sm:.375rem; --radius-md:.5rem; --radius-lg:.75rem; --radius-xl:1rem; --radius-full:9999px;
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80/.06); --shadow-md:0 4px 12px oklch(0.2 0.01 80/.08); --shadow-lg:0 12px 32px oklch(0.2 0.01 80/.12);
+  --font-display:'Cabinet Grotesk','Georgia',serif; --font-body:'Work Sans','Helvetica Neue',sans-serif;
+}
+[data-theme="dark"]{
+  --color-bg:#171614; --color-surface:#1c1b19; --color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a; --color-surface-offset-2:#22211f; --color-surface-dynamic:#2d2c2a;
+  --color-divider:#262523; --color-border:#393836;
+  --color-text:#cdccca; --color-text-muted:#797876; --color-text-faint:#5a5957; --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3; --color-primary-hover:#227f8b; --color-primary-active:#1a626b; --color-primary-highlight:#313b3b;
+  --color-success:#6daa45; --color-success-highlight:#3a4435;
+  --color-error:#d163a7; --color-error-highlight:#4c3d46;
+  --color-gold:#e8af34; --color-gold-highlight:#4d4332;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.2); --shadow-md:0 4px 12px oklch(0 0 0/.3); --shadow-lg:0 12px 32px oklch(0 0 0/.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{min-height:100dvh;font-family:var(--font-body);font-size:1rem;line-height:1.6;color:var(--color-text);background:var(--color-bg);padding-bottom:4rem}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+button{cursor:pointer;font:inherit;color:inherit;background:none;border:none}
+.container{max-width:880px;margin-inline:auto;padding-inline:1.25rem}
+
+/* HEADER */
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in oklch, var(--color-bg) 85%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.25rem;max-width:880px;margin-inline:auto}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+.brand svg{width:28px;height:28px;color:var(--color-primary)}
+.progress-wrap{flex:1;max-width:260px;margin:0 1rem;display:none}
+@media(min-width:640px){.progress-wrap{display:block}}
+.progress-track{height:6px;border-radius:var(--radius-full);background:var(--color-surface-offset);overflow:hidden}
+.progress-fill{height:100%;width:0%;background:var(--color-primary);border-radius:var(--radius-full);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.theme-toggle{width:38px;height:38px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;background:var(--color-surface-offset);color:var(--color-text)}
+.theme-toggle:hover{background:var(--color-surface-dynamic)}
+.theme-toggle svg{width:18px;height:18px}
+
+/* HERO */
+.hero{padding:clamp(2.5rem,6vw,4.5rem) 1.25rem 2rem;text-align:left;max-width:880px;margin-inline:auto}
+.hero .kicker{display:inline-block;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--color-primary);font-weight:600;margin-bottom:.75rem}
+.hero h1{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:.9rem}
+.hero p{font-size:1.05rem;color:var(--color-text-muted);max-width:60ch}
+
+/* SECTION */
+section.lesson-block{padding-block:clamp(2rem,4vw,3rem);border-top:1px solid var(--color-divider)}
+.section-label{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
+.section-num{width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.section-label h2{font-size:clamp(1.3rem,2.5vw,1.7rem)}
+
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.card + .card{margin-top:1rem}
+
+/* RULE TABLE */
+.rule-grid{display:grid;gap:1rem;margin-top:1.25rem}
+@media(min-width:640px){.rule-grid{grid-template-columns:repeat(2,1fr)}}
+.rule-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow-sm)}
+.rule-card h4{font-family:var(--font-body);font-weight:700;font-size:1rem;margin-bottom:.4rem;color:var(--color-primary)}
+.rule-card p{font-size:.92rem;color:var(--color-text-muted);margin-bottom:.6rem}
+.rule-card .ex{font-size:.95rem;background:var(--color-surface-offset);border-radius:var(--radius-md);padding:.5rem .75rem;font-weight:500}
+.rule-card .ex b{color:var(--color-primary)}
+
+/* IRREGULAR TABLE */
+table.irregular{width:100%;border-collapse:collapse;margin-top:1.25rem;font-size:.95rem}
+table.irregular th{text-align:left;padding:.7rem .9rem;background:var(--color-surface-offset);font-weight:600;font-size:.85rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.03em}
+table.irregular td{padding:.7rem .9rem;border-bottom:1px solid var(--color-divider)}
+table.irregular tr:last-child td{border-bottom:none}
+table.irregular td:first-child{font-weight:600}
+table.irregular td b{color:var(--color-primary)}
+
+/* EXERCISE */
+.exercise{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.exercise + .exercise{margin-top:1rem}
+.q-text{font-size:1.05rem;font-weight:500;margin-bottom:1rem}
+.q-text .pt{display:block;font-size:.85rem;color:var(--color-text-muted);font-weight:400;margin-top:.25rem}
+.options{display:grid;gap:.6rem}
+.opt-btn{display:flex;align-items:center;gap:.6rem;text-align:left;padding:.75rem 1rem;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);font-size:.98rem;transition:border-color .18s,background .18s,transform .18s}
+.opt-btn:hover{border-color:var(--color-primary);background:var(--color-primary-highlight)}
+.opt-btn:active{transform:scale(.98)}
+.opt-btn.correct{background:var(--color-success-highlight);border-color:var(--color-success);color:var(--color-text)}
+.opt-btn.incorrect{background:var(--color-error-highlight);border-color:var(--color-error)}
+.opt-btn:disabled{cursor:default}
+.opt-letter{width:24px;height:24px;border-radius:var(--radius-full);background:var(--color-surface-offset);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.feedback{margin-top:.9rem;padding:.75rem 1rem;border-radius:var(--radius-md);font-size:.92rem;display:none;align-items:flex-start;gap:.5rem}
+.feedback.show{display:flex}
+.feedback.correct-fb{background:var(--color-success-highlight);color:var(--color-text)}
+.feedback.incorrect-fb{background:var(--color-error-highlight);color:var(--color-text)}
+.feedback svg{width:18px;height:18px;flex-shrink:0;margin-top:.1rem}
+
+/* FILL BLANK */
+.fill-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:1.05rem;margin-bottom:1rem}
+.fill-row input{width:130px;padding:.4rem .6rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface-2);font-size:.98rem;font-family:inherit}
+.fill-row input:focus-visible{outline:2px solid var(--color-primary)}
+.check-btn{margin-top:.5rem;padding:.65rem 1.4rem;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;font-weight:600;font-size:.92rem;box-shadow:var(--shadow-sm)}
+.check-btn:hover{background:var(--color-primary-hover)}
+.check-btn:disabled{opacity:.5;cursor:default}
+
+/* LISTENING */
+.audio-box{display:flex;align-items:center;gap:1rem;background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:1.1rem 1.25rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.play-btn{width:52px;height:52px;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm);transition:transform .18s}
+.play-btn:hover{background:var(--color-primary-hover);transform:scale(1.05)}
+.play-btn svg{width:22px;height:22px}
+.audio-meta{flex:1;min-width:150px}
+.audio-meta .title{font-weight:600;font-size:.95rem}
+.audio-meta .sub{font-size:.82rem;color:var(--color-text-muted)}
+.speed-row{display:flex;gap:.4rem}
+.speed-btn{padding:.35rem .7rem;border-radius:var(--radius-full);background:var(--color-surface-2);border:1px solid var(--color-border);font-size:.78rem;font-weight:600}
+.speed-btn.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+
+/* SCORE */
+.score-panel{position:fixed;bottom:1rem;right:1rem;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:.8rem 1.2rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:.7rem;z-index:60;font-size:.9rem}
+.score-panel svg{width:20px;height:20px;color:var(--color-gold)}
+#score-num{font-weight:700;font-family:var(--font-display);font-size:1.1rem;color:var(--color-primary)}
+@media(max-width:600px){.score-panel{left:1rem;right:1rem;justify-content:center}}
+
+/* FINAL */
+.final-card{text-align:center;background:linear-gradient(160deg,var(--color-primary-highlight),var(--color-surface));border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:2.5rem 1.5rem}
+.final-card h3{font-size:1.6rem;margin-bottom:.5rem}
+.final-card p{color:var(--color-text-muted);margin-bottom:1rem}
+#final-score{font-size:2.5rem;font-family:var(--font-display);color:var(--color-primary);font-weight:700}
+.retry-btn{margin-top:1rem;padding:.7rem 1.6rem;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;font-weight:600}
+.retry-btn:hover{background:var(--color-primary-hover)}
+
+.badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:.2rem .55rem;border-radius:var(--radius-full);background:var(--color-gold-highlight);color:var(--color-text);margin-left:.5rem;vertical-align:middle}
+::selection{background:oklch(from var(--color-primary) l c h/.25)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+      Compare It!
+    </div>
+    <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div>
+    <button class="theme-toggle" data-theme-toggle aria-label="Alternar tema escuro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="kicker">Lição interativa · Comparative Adjectives</span>
+  <h1>Comparativos em Inglês</h1>
+  <p>Aprenda a comparar pessoas, lugares e coisas em inglês — como em "colder than there" ou "more interesting than this" — com regras, exemplos, exercícios e um listening para praticar a pronúncia. Faça no seu ritmo e receba feedback na hora.</p>
+</section>
+
+<div class="container">
+
+<!-- SECTION 1: RULES -->
+<section class="lesson-block" id="rules">
+  <div class="section-label"><div class="section-num">1</div><h2>Como formar o comparativo</h2></div>
+
+  <div class="card">
+    <p>O comparativo em inglês serve para comparar duas coisas, e quase sempre usamos a palavra <b>than</b> (que) depois do adjetivo. A regra que você usa depende do <b>tamanho do adjetivo</b>.</p>
+  </div>
+
+  <div class="rule-grid">
+    <div class="rule-card">
+      <h4>1. Adjetivos curtos (1 sílaba) → + ER</h4>
+      <p>Adicione <b>-er</b> ao final do adjetivo.</p>
+      <div class="ex">cold → cold<b>er</b> · "It's <b>colder</b> than there."</div>
+    </div>
+    <div class="rule-card">
+      <h4>2. Terminados em E → apenas + R</h4>
+      <p>Se o adjetivo já termina em "e", adicione só <b>-r</b>.</p>
+      <div class="ex">nice → nic<b>er</b> · "This café is <b>nicer</b> than the other one."</div>
+    </div>
+    <div class="rule-card">
+      <h4>3. Consoante + vogal + consoante → dobra a consoante</h4>
+      <p>Dobre a consoante final antes de adicionar <b>-er</b>.</p>
+      <div class="ex">big → big<b>ger</b> · "The dog is <b>bigger</b> than the cat."</div>
+    </div>
+    <div class="rule-card">
+      <h4>4. Terminados em Y → troca Y por IER</h4>
+      <p>Retire o "y" e adicione <b>-ier</b>.</p>
+      <div class="ex">happy → happ<b>ier</b> · "She's <b>happier</b> than before."</div>
+    </div>
+    <div class="rule-card">
+      <h4>5. Adjetivos longos (2+ sílabas) → MORE + adjetivo</h4>
+      <p>Use <b>more</b> antes do adjetivo, sem mudar a palavra.</p>
+      <div class="ex">interesting → <b>more</b> interesting · "This book is <b>more interesting</b> than the movie."</div>
+    </div>
+    <div class="rule-card">
+      <h4>6. Comparativo de inferioridade → LESS + adjetivo</h4>
+      <p>Para dizer "menos ___ que", use <b>less</b> + adjetivo + than.</p>
+      <div class="ex">expensive → <b>less</b> expensive · "This phone is <b>less expensive</b> than that one."</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <p><b>Dica rápida:</b> se o adjetivo tem 2 sílabas e termina em -y, -er, -ow, -le, geralmente também aceita "-er" (ex: <b>narrow → narrower</b>, <b>simple → simpler</b>). Na dúvida, "more + adjetivo" quase sempre funciona e é seguro.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: IRREGULARS -->
+<section class="lesson-block" id="irregular">
+  <div class="section-label"><div class="section-num">2</div><h2>Comparativos irregulares <span class="badge">Memorize!</span></h2></div>
+  <div class="card">
+    <p>Alguns adjetivos não seguem nenhuma regra — você precisa simplesmente memorizá-los. São os mais usados no dia a dia.</p>
+    <table class="irregular">
+      <thead><tr><th>Adjetivo</th><th>Comparativo</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td>good (bom)</td><td><b>better</b></td><td>"My English is <b>better</b> than last year."</td></tr>
+        <tr><td>bad (mau)</td><td><b>worse</b></td><td>"The traffic is <b>worse</b> than yesterday."</td></tr>
+        <tr><td>far (longe)</td><td><b>farther / further</b></td><td>"My house is <b>farther</b> than yours."</td></tr>
+        <tr><td>little (pouco)</td><td><b>less</b></td><td>"I have <b>less</b> time than you."</td></tr>
+        <tr><td>many/much (muito)</td><td><b>more</b></td><td>"She has <b>more</b> money than me."</td></tr>
+        <tr><td>old (velho, informal p/ pessoas)</td><td><b>elder</b> (formal)</td><td>"He is my <b>elder</b> brother."</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: PRACTICE MULTIPLE CHOICE -->
+<section class="lesson-block" id="practice1">
+  <div class="section-label"><div class="section-num">3</div><h2>Pratique: escolha a opção correta</h2></div>
+
+  <div class="exercise" data-qid="q1">
+    <div class="q-text">Complete: "This exercise is ___ than the last one."
+      <span class="pt">(Dica: interesting = 3 sílabas)</span>
+    </div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>interestinger</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">B</span>more interesting</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>interestingest</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="q2">
+    <div class="q-text">Complete: "Brazil is much ___ than Portugal."
+      <span class="pt">(big → regra da consoante dobrada)</span>
+    </div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>more big</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">B</span>bigger</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>biger</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="q3">
+    <div class="q-text">Complete: "My cooking is ___ than my sister's."
+      <span class="pt">(good → irregular!)</span>
+    </div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>gooder</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">B</span>better</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>more good</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="q4">
+    <div class="q-text">Complete: "This city is ___ than that one."
+      <span class="pt">(happy → termina em Y)</span>
+    </div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>happyer</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">B</span>happier</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>more happy</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="q5">
+    <div class="q-text">Complete: "Today the weather is ___ than yesterday."
+      <span class="pt">(bad → irregular!)</span>
+    </div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>more bad</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">B</span>badder</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">C</span>worse</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<!-- SECTION 4: FILL IN THE BLANK -->
+<section class="lesson-block" id="practice2">
+  <div class="section-label"><div class="section-num">4</div><h2>Pratique: complete a frase</h2></div>
+  <div class="exercise">
+    <p style="margin-bottom:1rem;color:var(--color-text-muted);font-size:.92rem">Digite a forma comparativa correta do adjetivo entre parênteses. Depois clique em "Verificar".</p>
+
+    <div class="fill-row">
+      1. This bag is <input type="text" data-answer="lighter" data-word="light" placeholder="light"> than mine.
+    </div>
+    <div class="fill-row">
+      2. Her new job is <input type="text" data-answer="more difficult" data-word="difficult" placeholder="difficult"> than the old one.
+    </div>
+    <div class="fill-row">
+      3. This coffee is <input type="text" data-answer="hotter" data-word="hot" placeholder="hot"> than tea.
+    </div>
+    <div class="fill-row">
+      4. My grades this year are <input type="text" data-answer="better" data-word="good" placeholder="good"> than last year.
+    </div>
+    <div class="fill-row">
+      5. The blue dress is <input type="text" data-answer="prettier" data-word="pretty" placeholder="pretty"> than the red one.
+    </div>
+
+    <button class="check-btn" id="check-fill">Verificar respostas</button>
+    <div class="feedback" id="fill-feedback"></div>
+  </div>
+</section>
+
+<!-- SECTION 5: LISTENING -->
+<section class="lesson-block" id="listening">
+  <div class="section-label"><div class="section-num">5</div><h2>Listening: ouça e responda</h2></div>
+  <div class="card" style="margin-bottom:1.25rem">
+    <p>Clique em ▶ para ouvir a frase em inglês (o navegador vai narrar com voz sintetizada). Você pode ajustar a velocidade e ouvir quantas vezes quiser antes de responder.</p>
+  </div>
+
+  <div class="exercise" data-qid="l1">
+    <div class="audio-box">
+      <button class="play-btn" data-audio="This mountain is higher than that one." aria-label="Ouvir frase 1">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="audio-meta"><div class="title">Frase 1</div><div class="sub">Clique para ouvir</div></div>
+      <div class="speed-row">
+        <button class="speed-btn" data-rate="0.7">Lento</button>
+        <button class="speed-btn active" data-rate="1">Normal</button>
+      </div>
+    </div>
+    <div class="q-text">O que você ouviu? Escolha a frase correta:</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>This mountain is lower than that one.</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">B</span>This mountain is higher than that one.</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>This mountain is more high than that one.</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="l2">
+    <div class="audio-box">
+      <button class="play-btn" data-audio="Her English is better than mine now." aria-label="Ouvir frase 2">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="audio-meta"><div class="title">Frase 2</div><div class="sub">Clique para ouvir</div></div>
+      <div class="speed-row">
+        <button class="speed-btn" data-rate="0.7">Lento</button>
+        <button class="speed-btn active" data-rate="1">Normal</button>
+      </div>
+    </div>
+    <div class="q-text">O que você ouviu? Escolha a frase correta:</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">A</span>Her English is gooder than mine now.</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">B</span>Her English is worse than mine now.</button>
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">C</span>Her English is better than mine now.</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="l3">
+    <div class="audio-box">
+      <button class="play-btn" data-audio="This restaurant is more expensive than that cafe." aria-label="Ouvir frase 3">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="audio-meta"><div class="title">Frase 3</div><div class="sub">Clique para ouvir</div></div>
+      <div class="speed-row">
+        <button class="speed-btn" data-rate="0.7">Lento</button>
+        <button class="speed-btn active" data-rate="1">Normal</button>
+      </div>
+    </div>
+    <div class="q-text">O que você ouviu? Escolha a frase correta:</div>
+    <div class="options">
+      <button class="opt-btn" data-correct="true"><span class="opt-letter">A</span>This restaurant is more expensive than that cafe.</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">B</span>This restaurant is expensiver than that cafe.</button>
+      <button class="opt-btn" data-correct="false"><span class="opt-letter">C</span>This restaurant is less expensive than that cafe.</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<section class="lesson-block" id="final-section">
+  <div class="final-card">
+    <h3>Seu resultado</h3>
+    <p>Confira quantos pontos você fez na lição inteira.</p>
+    <div id="final-score">0 / 0</div>
+    <p id="final-msg" style="margin-top:.75rem"></p>
+    <button class="retry-btn" onclick="location.reload()">Refazer lição</button>
+  </div>
+</section>
+
+</div>
+
+<div class="score-panel">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+  <span>Pontos: <span id="score-num">0</span> / <span id="score-max">0</span></span>
+</div>
+
+<script>
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';
+    r.setAttribute('data-theme',d);
+  });
+})();
+
+let score=0, maxScore=0, answered=new Set();
+const scoreNum=document.getElementById('score-num');
+const scoreMax=document.getElementById('score-max');
+const progressFill=document.getElementById('progress-fill');
+
+function countMax(){
+  const mcqs=document.querySelectorAll('.exercise[data-qid]').length;
+  maxScore = mcqs + 5; // mcq exercises + 5 fill blanks
+  scoreMax.textContent = maxScore;
+}
+countMax();
+
+function updateProgress(){
+  const pct = Math.min(100, Math.round((answered.size/maxScore)*100));
+  progressFill.style.width = pct+'%';
+}
+
+function addScore(n){
+  score += n;
+  scoreNum.textContent = score;
+}
+
+// Multiple choice logic (rules exercises + listening)
+document.querySelectorAll('.exercise[data-qid]').forEach(ex=>{
+  const qid = ex.dataset.qid;
+  const opts = ex.querySelectorAll('.opt-btn');
+  const fb = ex.querySelector('.feedback');
+  opts.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(answered.has(qid)) return;
+      answered.add(qid);
+      updateProgress();
+      const correct = btn.dataset.correct === 'true';
+      opts.forEach(o=>o.disabled=true);
+      if(correct){
+        btn.classList.add('correct');
+        addScore(1);
+        if(fb){
+          fb.classList.add('show','correct-fb');
+          fb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Muito bem! Resposta correta.</span>';
+        }
+      } else {
+        btn.classList.add('incorrect');
+        opts.forEach(o=>{ if(o.dataset.correct==='true') o.classList.add('correct'); });
+        if(fb){
+          fb.classList.add('show','incorrect-fb');
+          fb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Quase! Revise a regra da seção 1 ou 2 e observe a resposta certa em verde.</span>';
+        }
+      }
+    });
+  });
+});
+
+// Fill in the blank logic
+document.getElementById('check-fill').addEventListener('click', ()=>{
+  const inputs = document.querySelectorAll('.fill-row input');
+  let correctCount=0;
+  inputs.forEach((inp,i)=>{
+    const val = inp.value.trim().toLowerCase();
+    const ans = inp.dataset.answer.toLowerCase();
+    inp.style.borderColor='';
+    if(val===ans){
+      inp.style.borderColor='var(--color-success)';
+      inp.style.background='var(--color-success-highlight)';
+      correctCount++;
+    } else {
+      inp.style.borderColor='var(--color-error)';
+      inp.style.background='var(--color-error-highlight)';
+    }
+  });
+  if(!answered.has('fillblanks')){
+    answered.add('fillblanks');
+    addScore(correctCount);
+    updateProgress();
+  }
+  const fb = document.getElementById('fill-feedback');
+  fb.classList.add('show');
+  if(correctCount===inputs.length){
+    fb.className='feedback show correct-fb';
+    fb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Perfeito! Você acertou todas as '+inputs.length+' frases.</span>';
+  } else {
+    fb.className='feedback show incorrect-fb';
+    fb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Você acertou '+correctCount+' de '+inputs.length+'. Os campos em rosa precisam de revisão — confira as respostas corretas: lighter, more difficult, hotter, better, prettier.</span>';
+  }
+});
+
+// Listening TTS
+let currentRate = 1;
+document.querySelectorAll('.speed-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentRate = parseFloat(btn.dataset.rate);
+  });
+});
+
+function updateFinal(){
+  document.getElementById('final-score').textContent = score+' / '+maxScore;
+  const msg = document.getElementById('final-msg');
+  const pct = maxScore? (score/maxScore*100):0;
+  if(pct>=90) msg.textContent = 'Excelente! Você domina os comparativos em inglês.';
+  else if(pct>=70) msg.textContent = 'Muito bom! Revise os irregulares para chegar a 100%.';
+  else if(pct>=40) msg.textContent = 'Bom começo — releia as regras da seção 1 e tente de novo.';
+  else msg.textContent = 'Continue praticando! Releia as seções 1 e 2 com atenção.';
+}
+const _origAddScore = addScore;
+addScore = function(n){ _origAddScore(n); updateFinal(); };
+updateFinal();
+
+document.querySelectorAll('.play-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const text = btn.dataset.audio;
+    if('speechSynthesis' in window){
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = currentRate;
+      window.speechSynthesis.speak(utter);
+    } else {
+      alert('Seu navegador não suporta leitura de voz (Web Speech API). Tente usar o Chrome ou Edge.');
+    }
+  });
+});
+</script>
+</body>
+</html>

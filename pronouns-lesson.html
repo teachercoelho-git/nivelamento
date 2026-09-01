@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula de Inglês — Bianca Caldeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-surface-offset-2: #edeae5;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #28251d;
+  --color-text-muted: #7a7974;
+  --color-text-faint: #bab9b4;
+  --color-text-inverse: #f9f8f4;
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-highlight: #cedcd8;
+  --color-success: #437a22;
+  --color-success-highlight: #d4dfcc;
+  --color-error: #a12c7b;
+  --color-error-highlight: #e0ced7;
+  --color-gold: #d19900;
+  --color-gold-highlight: #e9e0c6;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --font-display: 'Cabinet Grotesk', Georgia, serif;
+  --font-body: 'Work Sans', 'Helvetica Neue', sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-surface-offset-2: #22211f;
+  --color-divider: #262523;
+  --color-border: #393836;
+  --color-text: #cdccca;
+  --color-text-muted: #797876;
+  --color-text-faint: #5a5957;
+  --color-text-inverse: #2b2a28;
+  --color-primary: #4f98a3;
+  --color-primary-hover: #227f8b;
+  --color-primary-highlight: #313b3b;
+  --color-success: #6daa45;
+  --color-success-highlight: #3a4435;
+  --color-error: #d163a7;
+  --color-error-highlight: #4c3d46;
+  --color-gold: #e8af34;
+  --color-gold-highlight: #4d4332;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color .3s, color .3s;
+}
+img, svg { display: block; max-width: 100%; }
+::selection { background: oklch(from var(--color-primary) l c h / 0.25); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: color-mix(in oklab, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-divider);
+}
+.brand { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+.brand svg { width: 28px; height: 28px; color: var(--color-primary); }
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text);
+  transition: background .2s;
+}
+.theme-toggle:hover { background: var(--color-surface-offset); }
+
+.hero {
+  padding: clamp(2rem, 6vw, 4rem) 1.5rem 2rem;
+  max-width: 960px; margin: 0 auto;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-primary); background: var(--color-primary-highlight);
+  padding: 0.3rem 0.75rem; border-radius: var(--radius-full); margin-bottom: 1rem;
+}
+h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2rem, 1.2rem + 2.5vw, 3.2rem);
+  line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 0.75rem;
+}
+.hero p.sub { color: var(--color-text-muted); font-size: clamp(1rem, 0.95rem + 0.25vw, 1.2rem); max-width: 60ch; }
+
+.progress-wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 1rem; }
+.progress-bar-outer {
+  height: 10px; border-radius: var(--radius-full); background: var(--color-surface-offset);
+  overflow: hidden; border: 1px solid var(--color-divider);
+}
+.progress-bar-inner {
+  height: 100%; width: 0%; border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-primary), color-mix(in oklab, var(--color-primary) 60%, var(--color-gold)));
+  transition: width .5s cubic-bezier(.16,1,.3,1);
+}
+.progress-label { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.85rem; color: var(--color-text-muted); }
+#score-live { font-weight: 700; color: var(--color-primary); }
+
+main { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
+
+section.block { display: flex; flex-direction: column; gap: 1.25rem; }
+.block-header { display: flex; align-items: baseline; gap: 0.75rem; }
+.block-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--color-primary);
+  flex-shrink: 0;
+}
+.block-header h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem); }
+.block-desc { color: var(--color-text-muted); padding-left: calc(1.4rem + 0.75rem); font-size: 0.95rem; max-width: 65ch; }
+
+.theory-card {
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg); padding: clamp(1rem, 3vw, 1.75rem);
+  box-shadow: var(--shadow-sm);
+}
+.theory-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.theory-table th, .theory-table td { padding: 0.55rem 0.7rem; text-align: left; border-bottom: 1px solid var(--color-divider); }
+.theory-table th { color: var(--color-text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.theory-table tr:last-child td { border-bottom: none; }
+.theory-table td.hl { color: var(--color-primary); font-weight: 700; }
+
+.card {
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg); padding: clamp(1.1rem, 3vw, 1.75rem);
+  box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 1rem;
+  transition: box-shadow .2s;
+}
+.card.correct { box-shadow: 0 0 0 2px var(--color-success); }
+.card.incorrect { box-shadow: 0 0 0 2px var(--color-error); }
+
+.q-num { font-size: 0.8rem; font-weight: 700; color: var(--color-text-faint); letter-spacing: 0.04em; text-transform: uppercase; }
+.q-text { font-size: 1.05rem; font-weight: 500; }
+.q-text .blank { color: var(--color-primary); font-weight: 700; }
+
+.options { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.opt-btn {
+  padding: 0.7rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  background: var(--color-surface-2); color: var(--color-text); font-size: 0.95rem; font-weight: 500;
+  text-align: left; cursor: pointer; transition: all .15s;
+  min-height: 44px;
+}
+.opt-btn:hover:not(:disabled) { background: var(--color-surface-offset); border-color: var(--color-primary); }
+.opt-btn:disabled { cursor: default; }
+.opt-btn.chosen-correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-text); }
+.opt-btn.chosen-incorrect { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-text); }
+.opt-btn.reveal-correct { background: var(--color-success-highlight); border-color: var(--color-success); }
+
+.feedback {
+  display: none; align-items: flex-start; gap: 0.6rem;
+  padding: 0.8rem 1rem; border-radius: var(--radius-md); font-size: 0.9rem;
+  animation: slideIn .25s cubic-bezier(.16,1,.3,1);
+}
+.feedback.show { display: flex; }
+.feedback.ok { background: var(--color-success-highlight); color: var(--color-text); }
+.feedback.no { background: var(--color-error-highlight); color: var(--color-text); }
+.feedback svg { flex-shrink: 0; width: 20px; height: 20px; margin-top: 0.1rem; }
+.feedback.ok svg { color: var(--color-success); }
+.feedback.no svg { color: var(--color-error); }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+.text-input-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.text-input {
+  flex: 1; min-width: 160px; padding: 0.7rem 1rem; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); background: var(--color-surface-2); color: var(--color-text);
+  font-size: 0.95rem;
+}
+.text-input:disabled { opacity: 0.7; }
+.btn {
+  padding: 0.7rem 1.3rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.9rem;
+  cursor: pointer; border: none; min-height: 44px; transition: all .15s;
+}
+.btn-primary { background: var(--color-primary); color: var(--color-text-inverse); }
+.btn-primary:hover:not(:disabled) { background: var(--color-primary-hover); }
+.btn-primary:disabled { opacity: 0.5; cursor: default; }
+.btn-ghost { background: var(--color-surface-offset); color: var(--color-text); border: 1px solid var(--color-border); }
+.btn-ghost:hover { background: var(--color-surface-offset-2); }
+
+.listen-card { display: flex; flex-direction: column; gap: 1.25rem; }
+.audio-controls { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.play-btn {
+  width: 56px; height: 56px; border-radius: var(--radius-full); background: var(--color-primary);
+  color: var(--color-text-inverse); display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer; flex-shrink: 0; transition: transform .15s, background .15s;
+  box-shadow: var(--shadow-md);
+}
+.play-btn:hover { background: var(--color-primary-hover); transform: scale(1.05); }
+.play-btn svg { width: 24px; height: 24px; }
+.speed-select {
+  padding: 0.5rem 0.8rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  background: var(--color-surface-2); color: var(--color-text); font-size: 0.85rem;
+}
+.transcript-toggle { font-size: 0.85rem; color: var(--color-primary); cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0.4rem 0; }
+.transcript {
+  display: none; padding: 0.9rem 1.1rem; background: var(--color-surface-offset);
+  border-radius: var(--radius-md); font-size: 0.9rem; color: var(--color-text-muted); font-style: italic;
+}
+.transcript.show { display: block; }
+.listen-questions { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+
+.summary-card {
+  background: linear-gradient(135deg, var(--color-primary-highlight), var(--color-surface));
+  border: 1px solid var(--color-primary); border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 2.5rem); text-align: center; display: none; flex-direction: column; gap: 1rem;
+}
+.summary-card.show { display: flex; }
+.summary-card h3 { font-family: var(--font-display); font-size: clamp(1.5rem, 1rem + 2vw, 2.2rem); }
+.summary-score { font-family: var(--font-display); font-size: clamp(2.5rem, 2rem + 3vw, 4rem); font-weight: 700; color: var(--color-primary); }
+.summary-msg { color: var(--color-text-muted); max-width: 50ch; margin: 0 auto; }
+.confetti-wrap { position: relative; height: 0; }
+
+.checkall-bar {
+  position: sticky; bottom: 0; z-index: 40; display: flex; justify-content: center;
+  padding: 1rem 1.5rem; background: color-mix(in oklab, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(10px); border-top: 1px solid var(--color-divider);
+}
+.checkall-bar .btn { padding: 0.9rem 2rem; font-size: 1rem; }
+
+@media (max-width: 640px) {
+  .options { grid-template-columns: 1fr; }
+  .block-desc { padding-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Logo">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M8 12h8M12 8v8"/>
+    </svg>
+    English with Bianca
+  </div>
+  <button class="theme-toggle" data-theme-toggle aria-label="Alternar tema">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<div class="hero">
+  <span class="eyebrow">Aula interativa · Pronomes</span>
+  <h1>Personal, Object, Possessive &amp; Reflexive Pronouns</h1>
+  <p class="sub">Oi, Bianca! Nesta aula vamos revisar os pronomes em inglês com teoria rápida, exercícios com feedback na hora e um desafio de listening. Vamos lá?</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar"></div></div>
+  <div class="progress-label">
+    <span id="progress-text">0 de 16 respondidas</span>
+    <span>Acertos: <span id="score-live">0</span>/16</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- THEORY -->
+  <section class="block">
+    <div class="block-header">
+      <span class="block-num">•</span>
+      <h2>Revisão rápida</h2>
+    </div>
+    <div class="theory-card">
+      <table class="theory-table">
+        <thead><tr><th>Personal</th><th>Object</th><th>Possessive Adj.</th><th>Possessive Pron.</th><th>Reflexive</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">I</td><td>me</td><td>my</td><td>mine</td><td>myself</td></tr>
+          <tr><td class="hl">You</td><td>you</td><td>your</td><td>yours</td><td>yourself</td></tr>
+          <tr><td class="hl">He</td><td>him</td><td>his</td><td>his</td><td>himself</td></tr>
+          <tr><td class="hl">She</td><td>her</td><td>her</td><td>hers</td><td>herself</td></tr>
+          <tr><td class="hl">It</td><td>it</td><td>its</td><td>—</td><td>itself</td></tr>
+          <tr><td class="hl">We</td><td>us</td><td>our</td><td>ours</td><td>ourselves</td></tr>
+          <tr><td class="hl">They</td><td>them</td><td>their</td><td>theirs</td><td>themselves</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BLOCK 1: PERSONAL & OBJECT -->
+  <section class="block" id="block1">
+    <div class="block-header">
+      <span class="block-num">1</span>
+      <h2>Personal &amp; Object Pronouns</h2>
+    </div>
+    <p class="block-desc">Escolha o pronome correto (sujeito ou objeto) para completar cada frase.</p>
+
+    <div class="card" data-qid="1" data-correct="She">
+      <span class="q-num">Pergunta 1</span>
+      <p class="q-text"><span class="blank">___</span> is my English teacher; she is very kind.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="2" data-correct="him">
+      <span class="q-num">Pergunta 2</span>
+      <p class="q-text">Can you give the book to <span class="blank">___</span>? He asked for it.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="3" data-correct="We">
+      <span class="q-num">Pergunta 3</span>
+      <p class="q-text"><span class="blank">___</span> are going to the beach this weekend.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="4" data-correct="them">
+      <span class="q-num">Pergunta 4</span>
+      <p class="q-text">I saw Paul and Anna at the mall. I talked to <span class="blank">___</span> for a while.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- BLOCK 2: POSSESSIVE -->
+  <section class="block" id="block2">
+    <div class="block-header">
+      <span class="block-num">2</span>
+      <h2>Possessive Pronouns &amp; Adjectives</h2>
+    </div>
+    <p class="block-desc">Complete usando o adjetivo ou pronome possessivo correto.</p>
+
+    <div class="card" data-qid="5" data-correct="her">
+      <span class="q-num">Pergunta 5</span>
+      <p class="q-text">Bianca loves <span class="blank">___</span> new headphones.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="6" data-correct="mine">
+      <span class="q-num">Pergunta 6</span>
+      <p class="q-text">This pen isn't yours, it's <span class="blank">___</span>.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="7" data-correct="their">
+      <span class="q-num">Pergunta 7</span>
+      <p class="q-text">The students left <span class="blank">___</span> backpacks in the classroom.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="8" data-correct="ours">
+      <span class="q-num">Pergunta 8</span>
+      <p class="q-text">That house on the corner is <span class="blank">___</span>, not theirs.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- BLOCK 3: REFLEXIVE -->
+  <section class="block" id="block3">
+    <div class="block-header">
+      <span class="block-num">3</span>
+      <h2>Reflexive Pronouns</h2>
+    </div>
+    <p class="block-desc">Complete com o pronome reflexivo adequado (myself, yourself, himself...).</p>
+
+    <div class="card" data-qid="9" data-correct="myself">
+      <span class="q-num">Pergunta 9</span>
+      <p class="q-text">I made this cake by <span class="blank">___</span>.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="10" data-correct="himself">
+      <span class="q-num">Pergunta 10</span>
+      <p class="q-text">He hurt <span class="blank">___</span> while playing football.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="11" data-correct="themselves">
+      <span class="q-num">Pergunta 11</span>
+      <p class="q-text">The kids enjoyed <span class="blank">___</span> at the party.</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="card" data-qid="12" data-correct="yourself">
+      <span class="q-num">Pergunta 12</span>
+      <p class="q-text">Bianca, please help <span class="blank">___</span> to some cookies!</p>
+      <div class="options"></div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- BLOCK 4: LISTENING -->
+  <section class="block" id="block4">
+    <div class="block-header">
+      <span class="block-num">4</span>
+      <h2>Listening Practice</h2>
+    </div>
+    <p class="block-desc">Clique em "play" para ouvir o áudio (gerado por voz sintética) e responda às perguntas. Você pode ouvir quantas vezes quiser e ajustar a velocidade.</p>
+
+    <div class="card listen-card">
+      <span class="q-num">Áudio · A short story</span>
+      <div class="audio-controls">
+        <button class="play-btn" id="play-audio" aria-label="Reproduzir áudio">
+          <svg viewBox="0 0 24 24" fill="currentColor" id="play-icon"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <select class="speed-select" id="speed-select" aria-label="Velocidade do áudio">
+          <option value="0.75">Lento (0.75x)</option>
+          <option value="1" selected>Normal (1x)</option>
+          <option value="1.25">Rápido (1.25x)</option>
+        </select>
+        <button class="transcript-toggle" id="transcript-toggle">Mostrar transcrição</button>
+      </div>
+      <p class="transcript" id="transcript">"Bianca and her brother went to the park with their dog. She threw the ball for him, and he ran to catch it himself. 'This is our favorite place,' she said to herself, smiling."</p>
+
+      <div class="listen-questions">
+        <div class="card" data-qid="13" data-correct="her">
+          <span class="q-num">Pergunta 13</span>
+          <p class="q-text">Bianca went to the park with <span class="blank">___</span> brother.</p>
+          <div class="options"></div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="card" data-qid="14" data-correct="him">
+          <span class="q-num">Pergunta 14</span>
+          <p class="q-text">She threw the ball for <span class="blank">___</span> (the dog).</p>
+          <div class="options"></div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="card" data-qid="15" data-correct="himself">
+          <span class="q-num">Pergunta 15</span>
+          <p class="q-text">The dog ran to catch the ball <span class="blank">___</span>.</p>
+          <div class="options"></div>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="card" data-qid="16" data-correct="their">
+          <span class="q-num">Pergunta 16</span>
+          <p class="q-text">"This is <span class="blank">___</span> favorite place," she said.</p>
+          <div class="options"></div>
+          <div class="feedback"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="summary-card" id="summary-card">
+    <h3 id="summary-title">Muito bem, Bianca! 🎉</h3>
+    <div class="summary-score" id="summary-score">0/16</div>
+    <p class="summary-msg" id="summary-msg">Continue praticando! Revise as perguntas que você errou usando a tabela de revisão no topo da página.</p>
+    <button class="btn btn-primary" id="restart-btn" style="align-self:center;">Refazer exercícios</button>
+  </div>
+
+</main>
+
+<div class="checkall-bar">
+  <button class="btn btn-primary" id="reveal-all-btn">Ver resultado final</button>
+</div>
+
+<script>
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  t && t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+  });
+})();
+
+const optionsData = {
+  1: ['She','Her','He','It'],
+  2: ['he','him','his','she'],
+  3: ['We','Us','Our','They'],
+  4: ['they','their','them','theirs'],
+  5: ['her','hers','she','him'],
+  6: ['my','mine','me','myself'],
+  7: ['their','theirs','they','them'],
+  8: ['our','ours','us','their'],
+  9: ['myself','me','mine','I'],
+  10: ['him','his','himself','he'],
+  11: ['themselves','their','them','theirs'],
+  12: ['yourself','your','yours','you'],
+  13: ['her','hers','she','herself'],
+  14: ['he','him','his','himself'],
+  15: ['himself','him','his','he'],
+  16: ['their','theirs','they','them']
+};
+
+const state = {};
+const totalQuestions = 16;
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function checkIcon(ok){
+  return ok
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>';
+}
+
+const feedbackMessages = {
+  correct: ["Perfeito, Bianca! ✔️","Isso mesmo! Você acertou.","Muito bem! Continue assim."],
+  wrong: {
+    1: "Cuidado: 'She' é pronome pessoal (sujeito). Aqui a frase precisa de sujeito, não objeto.",
+    2: "'him' é o pronome de objeto para 'he'. Usamos objeto após preposições como 'to'.",
+    3: "'We' é pronome pessoal (sujeito) para 'nós'. 'Us' seria objeto.",
+    4: "'them' é o objeto de 'they'. Após 'to' usamos a forma de objeto.",
+    5: "'her' aqui é adjetivo possessivo (antes de substantivo). 'Hers' seria pronome possessivo sozinho.",
+    6: "'mine' é o pronome possessivo (substitui o substantivo). 'My' precisaria de um substantivo depois.",
+    7: "'their' é adjetivo possessivo, usado antes do substantivo 'backpacks'.",
+    8: "'ours' é o pronome possessivo — substitui 'our house' sem repetir o substantivo.",
+    9: "'myself' é reflexivo: o sujeito (I) pratica a ação em si mesmo.",
+    10: "'himself' é reflexivo, concordando com 'he'.",
+    11: "'themselves' é reflexivo plural, concordando com 'the kids'.",
+    12: "'yourself' é reflexivo, concordando com 'you' (singular).",
+    13: "'her' é adjetivo possessivo antes de 'brother'.",
+    14: "'him' é o objeto — o dog recebe a ação de 'threw the ball for'.",
+    15: "'himself' é reflexivo: o próprio dog fez a ação de pegar a bola.",
+    16: "'their' é adjetivo possessivo referindo-se a Bianca e o irmão (plural)."
+  }
+};
+
+function buildQuestion(card){
+  const qid = card.dataset.qid;
+  const correct = card.dataset.correct;
+  const opts = shuffle(optionsData[qid]);
+  const optsDiv = card.querySelector('.options');
+  const feedbackDiv = card.querySelector('.feedback');
+
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      if(state[qid] !== undefined) return;
+      const isCorrect = opt === correct;
+      state[qid] = isCorrect;
+
+      card.querySelectorAll('.opt-btn').forEach(b => {
+        b.disabled = true;
+        if(b.textContent === correct) b.classList.add('reveal-correct');
+      });
+      btn.classList.remove('reveal-correct');
+      btn.classList.add(isCorrect ? 'chosen-correct' : 'chosen-incorrect');
+      card.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+      feedbackDiv.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+      const msg = isCorrect
+        ? feedbackMessages.correct[Math.floor(Math.random()*feedbackMessages.correct.length)]
+        : `Não foi essa. A resposta correta é "<strong>${correct}</strong>". ${feedbackMessages.wrong[qid] || ''}`;
+      feedbackDiv.innerHTML = checkIcon(isCorrect) + '<span>' + msg + '</span>';
+
+      updateProgress();
+    });
+    optsDiv.appendChild(btn);
+  });
+}
+
+document.querySelectorAll('.card[data-qid]').forEach(buildQuestion);
+
+function updateProgress(){
+  const answered = Object.keys(state).length;
+  const correctCount = Object.values(state).filter(Boolean).length;
+  document.getElementById('progress-bar').style.width = (answered/totalQuestions*100) + '%';
+  document.getElementById('progress-text').textContent = `${answered} de ${totalQuestions} respondidas`;
+  document.getElementById('score-live').textContent = correctCount;
+}
+
+document.getElementById('reveal-all-btn').addEventListener('click', () => {
+  const answered = Object.keys(state).length;
+  const correctCount = Object.values(state).filter(Boolean).length;
+  const pct = Math.round((correctCount/totalQuestions)*100);
+
+  const summary = document.getElementById('summary-card');
+  document.getElementById('summary-score').textContent = correctCount + '/' + totalQuestions;
+  let msg = '';
+  let title = '';
+  if(answered < totalQuestions){
+    title = `Faltam ${totalQuestions-answered} perguntas`;
+    msg = 'Responda todas as perguntas antes de ver o resultado final para um feedback completo!';
+  } else if(pct >= 90){
+    title = 'Excelente, Bianca! 🎉';
+    msg = 'Você domina os pronomes em inglês! Continue praticando para manter a fluência.';
+  } else if(pct >= 70){
+    title = 'Muito bom trabalho! 👏';
+    msg = 'Você está no caminho certo. Revise as perguntas erradas na tabela de revisão no topo.';
+  } else {
+    title = 'Continue praticando! 💪';
+    msg = 'Revise a tabela de pronomes no início da página e tente novamente — você vai melhorar rápido!';
+  }
+  document.getElementById('summary-title').textContent = title;
+  document.getElementById('summary-msg').textContent = msg;
+  summary.classList.add('show');
+  summary.scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.getElementById('restart-btn').addEventListener('click', () => {
+  location.reload();
+});
+
+// Listening audio via Web Speech API
+const listeningText = "Bianca and her brother went to the park with their dog. She threw the ball for him, and he ran to catch it himself. This is our favorite place, she said to herself, smiling.";
+const playBtn = document.getElementById('play-audio');
+const playIcon = document.getElementById('play-icon');
+const speedSelect = document.getElementById('speed-select');
+let isPlaying = false;
+
+function playAudio(){
+  if(!('speechSynthesis' in window)){
+    alert('Seu navegador não suporta síntese de voz. Tente usar Chrome ou Edge.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(listeningText);
+  utter.lang = 'en-US';
+  utter.rate = parseFloat(speedSelect.value);
+  const voices = window.speechSynthesis.getVoices();
+  const enVoice = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+  if(enVoice) utter.voice = enVoice;
+
+  utter.onstart = () => {
+    isPlaying = true;
+    playIcon.innerHTML = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+  };
+  utter.onend = () => {
+    isPlaying = false;
+    playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+  };
+  window.speechSynthesis.speak(utter);
+}
+
+playBtn.addEventListener('click', () => {
+  if(isPlaying){
+    window.speechSynthesis.cancel();
+    isPlaying = false;
+    playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+  } else {
+    playAudio();
+  }
+});
+
+if('speechSynthesis' in window){
+  window.speechSynthesis.onvoiceschanged = () => {};
+}
+
+document.getElementById('transcript-toggle').addEventListener('click', function(){
+  const t = document.getElementById('transcript');
+  t.classList.toggle('show');
+  this.textContent = t.classList.contains('show') ? 'Ocultar transcrição' : 'Mostrar transcrição';
+});
+</script>
+</body>
+</html>

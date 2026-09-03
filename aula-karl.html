@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula de Inglês — Karl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-surface-offset-2: #edeae5;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #28251d;
+  --color-text-muted: #6f6e69;
+  --color-text-faint: #b0afa9;
+  --color-text-inverse: #f9f8f4;
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-highlight: #cedcd8;
+  --color-success: #437a22;
+  --color-success-highlight: #d4dfcc;
+  --color-error: #a12c7b;
+  --color-error-highlight: #e0ced7;
+  --color-gold: #d19900;
+  --color-gold-highlight: #e9e0c6;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'General Sans', 'Helvetica Neue', sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-surface-offset-2: #22211f;
+  --color-divider: #262523;
+  --color-border: #393836;
+  --color-text: #cdccca;
+  --color-text-muted: #918f8c;
+  --color-text-faint: #5a5957;
+  --color-text-inverse: #2b2a28;
+  --color-primary: #4f98a3;
+  --color-primary-hover: #6fb0ba;
+  --color-primary-highlight: #313b3b;
+  --color-success: #6daa45;
+  --color-success-highlight: #3a4435;
+  --color-error: #d163a7;
+  --color-error-highlight: #4c3d46;
+  --color-gold: #e8af34;
+  --color-gold-highlight: #4d4332;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+* , *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.65;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  padding-bottom: 6rem;
+}
+h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+a { color: var(--color-primary); }
+::selection { background: oklch(from var(--color-primary) l c h / 0.25); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* Header */
+header.top {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in oklab, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-divider);
+  padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display:flex; align-items:center; gap:0.6rem; font-weight:600; }
+.brand svg { color: var(--color-primary); }
+.brand span { font-family: var(--font-display); font-size: 1.15rem; }
+nav.top-nav { display:flex; gap:1.2rem; align-items:center; }
+nav.top-nav a { font-size: 0.9rem; color: var(--color-text-muted); text-decoration:none; font-weight:500; }
+nav.top-nav a:hover { color: var(--color-primary); }
+#theme-toggle { background:none; border:1px solid var(--color-border); border-radius: var(--radius-full); width:38px; height:38px; display:flex; align-items:center; justify-content:center; color: var(--color-text); cursor:pointer; }
+#theme-toggle:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* Hero */
+.hero {
+  max-width: 900px; margin: 0 auto; padding: clamp(2.5rem,6vw,4.5rem) 1.5rem 2rem;
+  text-align:left;
+}
+.hero .kicker { color: var(--color-primary); font-weight:600; font-size:0.85rem; letter-spacing: 0.06em; text-transform:uppercase; margin-bottom:0.8rem; }
+.hero h1 { font-size: clamp(2rem,1.2rem + 2.5vw,3.2rem); font-weight:600; margin-bottom:1rem; }
+.hero p.lead { color: var(--color-text-muted); max-width:65ch; font-size:1.05rem; }
+.progress-wrap { max-width:900px; margin: 1.5rem auto 0; padding: 0 1.5rem; }
+.progress-track { height:8px; background: var(--color-surface-offset); border-radius: var(--radius-full); overflow:hidden; border:1px solid var(--color-divider); }
+.progress-fill { height:100%; width:0%; background: linear-gradient(90deg, var(--color-primary), color-mix(in oklab, var(--color-primary) 60%, var(--color-gold))); transition: width 500ms cubic-bezier(0.16,1,0.3,1); border-radius: var(--radius-full); }
+.progress-label { font-size:0.8rem; color: var(--color-text-muted); margin-top:0.5rem; display:flex; justify-content:space-between; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+section.block { padding-block: clamp(2rem,5vw,3.5rem); border-top: 1px solid var(--color-divider); }
+.section-tag { display:inline-flex; align-items:center; gap:0.4rem; background: var(--color-primary-highlight); color: var(--color-primary-hover); font-size:0.78rem; font-weight:600; padding:0.3rem 0.8rem; border-radius: var(--radius-full); margin-bottom:1rem; }
+[data-theme="dark"] .section-tag { color: var(--color-primary); }
+section.block h2 { font-size: clamp(1.6rem,1.2rem + 1.5vw,2.2rem); margin-bottom:0.8rem; font-weight:600; }
+section.block > p.intro { color: var(--color-text-muted); max-width:70ch; margin-bottom:1.8rem; }
+
+/* Cards */
+.card { background: var(--color-surface); border:1px solid var(--color-divider); border-radius: var(--radius-lg); padding: clamp(1.2rem,3vw,2rem); box-shadow: var(--shadow-sm); margin-bottom:1.2rem; }
+
+/* Explanation boxes */
+.explain-grid { display:grid; grid-template-columns: 1fr; gap:1rem; margin-bottom:1.5rem; }
+@media (min-width:640px) { .explain-grid { grid-template-columns: 1fr 1fr; } }
+.explain-card { background: var(--color-surface); border:1px solid var(--color-divider); border-radius: var(--radius-lg); padding:1.3rem; }
+.explain-card h4 { font-size:1rem; margin-bottom:0.5rem; color: var(--color-primary-hover); }
+[data-theme="dark"] .explain-card h4 { color: var(--color-primary); }
+.explain-card .formula { font-family: monospace; background: var(--color-surface-offset); padding:0.5rem 0.7rem; border-radius: var(--radius-sm); display:inline-block; font-size:0.9rem; margin:0.4rem 0; }
+.explain-card ul { padding-left:1.1rem; margin-top:0.5rem; color: var(--color-text-muted); font-size:0.95rem; }
+.explain-card li { margin-bottom:0.3rem; }
+
+/* Verb table */
+.table-wrap { overflow-x:auto; border:1px solid var(--color-divider); border-radius: var(--radius-lg); margin-bottom:1.5rem; }
+table.verbs { width:100%; border-collapse:collapse; font-size:0.92rem; min-width:560px; }
+table.verbs th { text-align:left; padding:0.7rem 1rem; background: var(--color-surface-offset); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color: var(--color-text-muted); position:sticky; top:0; }
+table.verbs td { padding:0.65rem 1rem; border-top:1px solid var(--color-divider); }
+table.verbs tr:hover td { background: var(--color-surface-offset); }
+table.verbs td.pt { font-weight:600; }
+.search-box { margin-bottom:0.8rem; }
+.search-box input { width:100%; padding:0.65rem 1rem; border:1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text); font-size:0.95rem; }
+.search-box input:focus { border-color: var(--color-primary); }
+
+/* Reading text */
+.reading-text { background: var(--color-surface); border:1px solid var(--color-divider); border-radius: var(--radius-lg); padding: clamp(1.3rem,3vw,2rem); margin-bottom:1.5rem; }
+.reading-text p { max-width:70ch; margin-bottom:1rem; }
+.reading-text strong { color: var(--color-primary-hover); font-weight:600; }
+[data-theme="dark"] .reading-text strong { color: var(--color-primary); }
+
+/* Exercises */
+.exercise { background: var(--color-surface); border:1px solid var(--color-divider); border-radius: var(--radius-lg); padding: clamp(1.1rem,2.5vw,1.6rem); margin-bottom:1rem; }
+.exercise .q-num { font-size:0.78rem; font-weight:700; color: var(--color-primary); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+.exercise .q-text { font-weight:500; margin-bottom:0.9rem; }
+.exercise .q-text em { color: var(--color-text-muted); font-style: italic; }
+.options { display:flex; flex-direction:column; gap:0.6rem; }
+.option-btn {
+  text-align:left; padding:0.75rem 1rem; border:1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface-2); cursor:pointer; font-size:0.95rem; color: var(--color-text);
+  transition: all 180ms cubic-bezier(0.16,1,0.3,1);
+}
+.option-btn:hover:not(.correct):not(.wrong):not([disabled]) { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+.option-btn.correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-success); font-weight:600; }
+.option-btn.wrong { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-error); }
+.option-btn[disabled] { cursor:not-allowed; }
+
+.fill-input { display:flex; gap:0.7rem; flex-wrap:wrap; align-items:center; }
+.fill-input input[type=text] {
+  flex:1; min-width:160px; padding:0.65rem 0.9rem; border:1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface-2); color: var(--color-text); font-size:0.95rem;
+}
+.fill-input input[type=text]:focus { border-color: var(--color-primary); }
+.check-btn {
+  padding:0.65rem 1.3rem; background: var(--color-primary); color: var(--color-text-inverse); border-radius: var(--radius-md);
+  font-weight:600; font-size:0.9rem; border:none; cursor:pointer; transition: background 180ms cubic-bezier(0.16,1,0.3,1);
+}
+.check-btn:hover { background: var(--color-primary-hover); }
+.feedback { margin-top:0.7rem; font-size:0.9rem; font-weight:600; padding:0.6rem 0.9rem; border-radius: var(--radius-md); display:none; }
+.feedback.show { display:block; }
+.feedback.ok { background: var(--color-success-highlight); color: var(--color-success); }
+.feedback.no { background: var(--color-error-highlight); color: var(--color-error); }
+
+/* Score badge */
+.score-pill { position: fixed; bottom: 1.2rem; right: 1.2rem; background: var(--color-surface); border:1px solid var(--color-divider); box-shadow: var(--shadow-lg); border-radius: var(--radius-full); padding:0.7rem 1.2rem; display:flex; align-items:center; gap:0.6rem; font-weight:600; font-size:0.9rem; z-index:40; }
+.score-pill svg { color: var(--color-gold); }
+
+/* Divider label */
+.divider-label { display:flex; align-items:center; gap:1rem; margin: 2rem 0 1.5rem; }
+.divider-label::before, .divider-label::after { content:''; flex:1; height:1px; background: var(--color-divider); }
+.divider-label span { font-size:0.8rem; color: var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; }
+
+.tip-box { background: var(--color-gold-highlight); border:1px solid color-mix(in oklab, var(--color-gold) 40%, transparent); border-radius: var(--radius-lg); padding:1rem 1.3rem; font-size:0.92rem; margin-bottom:1.5rem; }
+[data-theme="dark"] .tip-box { color: var(--color-text); }
+
+footer.end { text-align:center; padding: 2.5rem 1.5rem; color: var(--color-text-faint); font-size:0.85rem; }
+
+@media (max-width: 640px) {
+  nav.top-nav a:not(.always-mobile) { display:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-label="Logo"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>English with Karl</span>
+  </div>
+  <nav class="top-nav">
+    <a href="#revisao">Revisão</a>
+    <a href="#licao">Present Perfect</a>
+    <a href="#verbos">Verbos</a>
+    <a href="#texto">Texto</a>
+    <a href="#pratica">Prática</a>
+    <button id="theme-toggle" aria-label="Alternar tema"></button>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="kicker">Aula personalizada</div>
+  <h1>Olá, Karl! Hoje vamos revisar e avançar 🎯</h1>
+  <p class="lead">Primeiro, um teste rápido de <strong>Past Perfect</strong> para confirmar que o conteúdo da última aula ficou firme. Depois, mergulhamos de cabeça no <strong>Present Perfect</strong> — com verbos irregulares, um texto para leitura e exercícios de fixação.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label"><span id="progress-text">0 de 12 exercícios concluídos</span><span id="progress-pct">0%</span></div>
+</div>
+
+<div class="container">
+
+<!-- REVISÃO PAST PERFECT -->
+<section class="block" id="revisao">
+  <span class="section-tag">Revisão</span>
+  <h2>Aquecimento: Past Perfect</h2>
+  <p class="intro">Antes de avançar, vamos garantir que o Past Perfect está bem assimilado. Lembre-se: usamos <em>had + past participle</em> para falar de uma ação que aconteceu antes de outra ação no passado.</p>
+
+  <div class="tip-box">💡 <strong>Lembrete rápido:</strong> Past Perfect = had + verbo no particípio passado. Exemplo: "When I arrived, she <strong>had already left</strong>."</div>
+
+  <div class="exercise" data-qid="r1">
+    <div class="q-num">Exercício 1 de 4 · Múltipla escolha</div>
+    <div class="q-text">By the time the movie started, we <em>______</em> our popcorn.</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false">have finished</button>
+      <button class="option-btn" data-correct="true">had finished</button>
+      <button class="option-btn" data-correct="false">finished</button>
+      <button class="option-btn" data-correct="false">has finished</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="r2">
+    <div class="q-num">Exercício 2 de 4 · Múltipla escolha</div>
+    <div class="q-text">She was tired because she <em>______</em> all night.</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false">was studying</button>
+      <button class="option-btn" data-correct="false">has studied</button>
+      <button class="option-btn" data-correct="true">had studied</button>
+      <button class="option-btn" data-correct="false">studies</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="r3">
+    <div class="q-num">Exercício 3 de 4 · Complete a frase</div>
+    <div class="q-text">Complete usando o Past Perfect do verbo <em>"eat"</em>: "When we got to the restaurant, they ______ already ______."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: had eaten" data-answer="had eaten">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="r4">
+    <div class="q-num">Exercício 4 de 4 · Complete a frase</div>
+    <div class="q-text">Complete usando o Past Perfect do verbo <em>"go"</em>: "He ______ to bed before I got home."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: had gone" data-answer="had gone">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<!-- LIÇÃO PRESENT PERFECT -->
+<section class="block" id="licao">
+  <span class="section-tag">Nova lição</span>
+  <h2>Present Perfect: conectando passado e presente</h2>
+  <p class="intro">O Present Perfect é usado para falar de ações que começaram no passado e continuam relevantes agora, experiências de vida, ou mudanças recentes. É um dos tempos mais usados no inglês do dia a dia.</p>
+
+  <div class="explain-grid">
+    <div class="explain-card">
+      <h4>Estrutura afirmativa</h4>
+      <div class="formula">Subject + have/has + past participle</div>
+      <ul>
+        <li>I / You / We / They <strong>have</strong> worked</li>
+        <li>He / She / It <strong>has</strong> worked</li>
+      </ul>
+    </div>
+    <div class="explain-card">
+      <h4>Negativa e interrogativa</h4>
+      <div class="formula">have/has + not + p.p. | Have/Has + subj + p.p.?</div>
+      <ul>
+        <li>She <strong>hasn't</strong> finished yet.</li>
+        <li><strong>Have</strong> you ever been to Japan?</li>
+      </ul>
+    </div>
+    <div class="explain-card">
+      <h4>Quando usar</h4>
+      <ul>
+        <li>Experiências de vida: "I have traveled to Peru."</li>
+        <li>Ações recentes: "She has just called."</li>
+        <li>Situações que continuam: "We have lived here for 5 years."</li>
+        <li>Mudanças: "Prices have gone up."</li>
+      </ul>
+    </div>
+    <div class="explain-card">
+      <h4>Palavras-chave</h4>
+      <ul>
+        <li><strong>already, just, yet</strong> — ações recentes</li>
+        <li><strong>ever, never</strong> — experiências</li>
+        <li><strong>for, since</strong> — duração ("for 3 years", "since 2020")</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">⚠️ <strong>Cuidado com a diferença:</strong> Present Perfect não tem tempo específico definido ("I have visited Paris"), enquanto o Simple Past sim ("I visited Paris in 2019"). Past Perfect fala do "passado do passado" — sempre em relação a outro momento passado.</div>
+</section>
+
+<!-- VERBOS IRREGULARES -->
+<section class="block" id="verbos">
+  <span class="section-tag">Referência</span>
+  <h2>Verbos irregulares essenciais</h2>
+  <p class="intro">O Present Perfect exige o <strong>past participle</strong> (terceira coluna). Muitos verbos são irregulares — memorize os mais comuns abaixo. Use a busca para filtrar.</p>
+
+  <div class="search-box">
+    <input type="text" id="verb-search" placeholder="Buscar verbo... (ex: go, eat, see)">
+  </div>
+
+  <div class="table-wrap">
+    <table class="verbs" id="verb-table">
+      <thead>
+        <tr><th>Infinitive</th><th>Simple Past</th><th>Past Participle</th><th>Tradução</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>be</td><td>was/were</td><td class="pt">been</td><td>ser/estar</td></tr>
+        <tr><td>go</td><td>went</td><td class="pt">gone</td><td>ir</td></tr>
+        <tr><td>see</td><td>saw</td><td class="pt">seen</td><td>ver</td></tr>
+        <tr><td>eat</td><td>ate</td><td class="pt">eaten</td><td>comer</td></tr>
+        <tr><td>do</td><td>did</td><td class="pt">done</td><td>fazer</td></tr>
+        <tr><td>have</td><td>had</td><td class="pt">had</td><td>ter</td></tr>
+        <tr><td>make</td><td>made</td><td class="pt">made</td><td>fazer/criar</td></tr>
+        <tr><td>write</td><td>wrote</td><td class="pt">written</td><td>escrever</td></tr>
+        <tr><td>take</td><td>took</td><td class="pt">taken</td><td>tomar/levar</td></tr>
+        <tr><td>give</td><td>gave</td><td class="pt">given</td><td>dar</td></tr>
+        <tr><td>come</td><td>came</td><td class="pt">come</td><td>vir</td></tr>
+        <tr><td>know</td><td>knew</td><td class="pt">known</td><td>saber/conhecer</td></tr>
+        <tr><td>speak</td><td>spoke</td><td class="pt">spoken</td><td>falar</td></tr>
+        <tr><td>break</td><td>broke</td><td class="pt">broken</td><td>quebrar</td></tr>
+        <tr><td>begin</td><td>began</td><td class="pt">begun</td><td>começar</td></tr>
+        <tr><td>buy</td><td>bought</td><td class="pt">bought</td><td>comprar</td></tr>
+        <tr><td>bring</td><td>brought</td><td class="pt">brought</td><td>trazer</td></tr>
+        <tr><td>think</td><td>thought</td><td class="pt">thought</td><td>pensar</td></tr>
+        <tr><td>find</td><td>found</td><td class="pt">found</td><td>encontrar</td></tr>
+        <tr><td>get</td><td>got</td><td class="pt">gotten/got</td><td>obter/ficar</td></tr>
+        <tr><td>run</td><td>ran</td><td class="pt">run</td><td>correr</td></tr>
+        <tr><td>fly</td><td>flew</td><td class="pt">flown</td><td>voar</td></tr>
+        <tr><td>drive</td><td>drove</td><td class="pt">driven</td><td>dirigir</td></tr>
+        <tr><td>read</td><td>read</td><td class="pt">read</td><td>ler</td></tr>
+        <tr><td>lose</td><td>lost</td><td class="pt">lost</td><td>perder</td></tr>
+        <tr><td>win</td><td>won</td><td class="pt">won</td><td>ganhar</td></tr>
+        <tr><td>meet</td><td>met</td><td class="pt">met</td><td>encontrar/conhecer</td></tr>
+        <tr><td>sell</td><td>sold</td><td class="pt">sold</td><td>vender</td></tr>
+        <tr><td>send</td><td>sent</td><td class="pt">sent</td><td>enviar</td></tr>
+        <tr><td>tell</td><td>told</td><td class="pt">told</td><td>contar/dizer</td></tr>
+        <tr><td>forget</td><td>forgot</td><td class="pt">forgotten</td><td>esquecer</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TEXTO -->
+<section class="block" id="texto">
+  <span class="section-tag">Leitura</span>
+  <h2>Texto: "A Big Change"</h2>
+  <p class="intro">Leia o texto abaixo e identifique os verbos no Present Perfect (destacados em negrito).</p>
+
+  <div class="reading-text">
+    <p>Maria <strong>has lived</strong> in São Paulo for ten years. She <strong>has never traveled</strong> outside Brazil, but this year everything <strong>has changed</strong>. She <strong>has just bought</strong> her first plane ticket to Portugal.</p>
+    <p>Her English <strong>has improved</strong> a lot since she <strong>has been studying</strong> with a private teacher. She <strong>has already learned</strong> the present perfect, and now she <strong>has started</strong> practicing irregular verbs every day.</p>
+    <p>"I <strong>have never felt</strong> so excited about a trip," she said. "I <strong>have prepared</strong> my documents, and I <strong>have finished</strong> packing my suitcase. I <strong>haven't slept</strong> well because I'm so nervous!"</p>
+    <p>Her friends <strong>have asked</strong> her many questions about the trip, and she <strong>has answered</strong> all of them with a big smile. This <strong>has been</strong> the best year of her life so far.</p>
+  </div>
+</section>
+
+<!-- PRATICA -->
+<section class="block" id="pratica">
+  <span class="section-tag">Fixação</span>
+  <h2>Exercícios de fixação</h2>
+  <p class="intro">Agora é sua vez, Karl! Responda os exercícios abaixo para fixar o Present Perfect.</p>
+
+  <div class="divider-label"><span>Múltipla escolha</span></div>
+
+  <div class="exercise" data-qid="p1">
+    <div class="q-num">Exercício 1 de 8</div>
+    <div class="q-text">Maria <em>______</em> in São Paulo for ten years.</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false">live</button>
+      <button class="option-btn" data-correct="true">has lived</button>
+      <button class="option-btn" data-correct="false">lived</button>
+      <button class="option-btn" data-correct="false">is living</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p2">
+    <div class="q-num">Exercício 2 de 8</div>
+    <div class="q-text">______ you ever <em>been</em> to Portugal?</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true">Have</button>
+      <button class="option-btn" data-correct="false">Did</button>
+      <button class="option-btn" data-correct="false">Has</button>
+      <button class="option-btn" data-correct="false">Do</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p3">
+    <div class="q-num">Exercício 3 de 8</div>
+    <div class="q-text">I ______ my homework yet. I need more time.</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false">didn't finish</button>
+      <button class="option-btn" data-correct="true">haven't finished</button>
+      <button class="option-btn" data-correct="false">don't finish</button>
+      <button class="option-btn" data-correct="false">wasn't finishing</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p4">
+    <div class="q-num">Exercício 4 de 8</div>
+    <div class="q-text">She ______ just ______ the news about the trip.</div>
+    <div class="options">
+      <button class="option-btn" data-correct="false">was / hearing</button>
+      <button class="option-btn" data-correct="true">has / heard</button>
+      <button class="option-btn" data-correct="false">have / heard</button>
+      <button class="option-btn" data-correct="false">did / hear</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="divider-label"><span>Complete com o verbo correto</span></div>
+
+  <div class="exercise" data-qid="p5">
+    <div class="q-num">Exercício 5 de 8</div>
+    <div class="q-text">Complete com o Present Perfect de <em>"see"</em>: "We ______ that movie three times."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: have seen" data-answer="have seen">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p6">
+    <div class="q-num">Exercício 6 de 8</div>
+    <div class="q-text">Complete com o Present Perfect de <em>"write"</em>: "He ______ two emails since this morning."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: has written" data-answer="has written">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p7">
+    <div class="q-num">Exercício 7 de 8</div>
+    <div class="q-text">Complete com o Present Perfect de <em>"lose"</em> (negativo): "They ______ their keys before, but this time it happened."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: haven't lost" data-answer="haven't lost">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="exercise" data-qid="p8">
+    <div class="q-num">Exercício 8 de 8</div>
+    <div class="q-text">Complete com <em>for</em> ou <em>since</em>: "I have known him ______ 2015."</div>
+    <div class="fill-input">
+      <input type="text" placeholder="ex: since" data-answer="since">
+      <button class="check-btn">Verificar</button>
+    </div>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+</div>
+
+<footer class="end">Aula preparada especialmente para Karl · Present Perfect & Past Perfect</footer>
+
+<div class="score-pill">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 8.5 22 9.5 17 14.5 18.5 21 12 17.5 5.5 21 7 14.5 2 9.5 9 8.5 12 2"/></svg>
+  <span id="score-text">0 / 12</span>
+</div>
+
+<script>
+(function(){
+  const toggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  let mode = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  function icon(d){ return d==='dark'
+    ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+    : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  root.setAttribute('data-theme', mode);
+  toggle.innerHTML = icon(mode);
+  toggle.addEventListener('click', ()=>{
+    mode = mode==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', mode);
+    toggle.innerHTML = icon(mode);
+  });
+})();
+
+let totalCorrect = 0;
+const TOTAL_Q = 12;
+
+function updateScore(){
+  document.getElementById('score-text').textContent = totalCorrect + ' / ' + TOTAL_Q;
+  const pct = Math.round((totalCorrect/TOTAL_Q)*100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = totalCorrect + ' de ' + TOTAL_Q + ' exercícios concluídos';
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+document.querySelectorAll('.exercise').forEach(ex => {
+  const options = ex.querySelectorAll('.option-btn');
+  if(options.length){
+    let answered = false;
+    options.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(answered) return;
+        answered = true;
+        const correct = btn.dataset.correct === 'true';
+        options.forEach(b => {
+          b.disabled = true;
+          if(b.dataset.correct === 'true') b.classList.add('correct');
+        });
+        if(!correct) btn.classList.add('wrong');
+        const fb = ex.querySelector('.feedback');
+        fb.classList.add('show');
+        if(correct){
+          fb.classList.add('ok');
+          fb.textContent = '✓ Correto! Muito bem.';
+          totalCorrect++;
+        } else {
+          fb.classList.add('no');
+          fb.textContent = '✗ Quase! A resposta correta está marcada em verde.';
+        }
+        updateScore();
+      });
+    });
+  }
+
+  const fillInput = ex.querySelector('.fill-input');
+  if(fillInput){
+    const input = fillInput.querySelector('input');
+    const btn = fillInput.querySelector('.check-btn');
+    let answered = false;
+    function check(){
+      if(answered) return;
+      const answer = input.dataset.answer.toLowerCase().trim();
+      const val = input.value.toLowerCase().trim();
+      const fb = ex.querySelector('.feedback');
+      fb.classList.add('show');
+      if(val === answer){
+        answered = true;
+        input.disabled = true; btn.disabled = true;
+        fb.classList.add('ok');
+        fb.textContent = '✓ Correto! Resposta: "' + input.dataset.answer + '"';
+        totalCorrect++;
+        updateScore();
+      } else {
+        fb.classList.remove('ok'); fb.classList.add('no');
+        fb.textContent = '✗ Tente novamente. Dica: verifique a estrutura have/has + past participle.';
+      }
+    }
+    btn.addEventListener('click', check);
+    input.addEventListener('keydown', e => { if(e.key === 'Enter') check(); });
+  }
+});
+
+document.getElementById('verb-search').addEventListener('input', function(){
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('#verb-table tbody tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

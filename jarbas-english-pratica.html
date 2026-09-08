@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarbas - Plano de Estudos de Inglês</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-surface-offset-2: #edeae5;
+  --color-surface-dynamic: #e6e4df;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+  --color-text: #28251d;
+  --color-text-muted: #6f6e69;
+  --color-text-faint: #bab9b4;
+  --color-text-inverse: #f9f8f4;
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-active: #0f3638;
+  --color-primary-highlight: #cedcd8;
+  --color-success: #437a22;
+  --color-success-highlight: #d4dfcc;
+  --color-error: #a12c7b;
+  --color-error-highlight: #e0ced7;
+  --color-warning: #964219;
+  --color-warning-highlight: #ddcfc6;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+  --font-display: 'General Sans', 'Work Sans', sans-serif;
+  --font-body: 'Work Sans', 'General Sans', sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a; --color-surface-offset-2: #22211f; --color-surface-dynamic: #2d2c2a;
+  --color-divider: #262523; --color-border: #393836;
+  --color-text: #cdccca; --color-text-muted: #948f8a; --color-text-faint: #5a5957; --color-text-inverse: #2b2a28;
+  --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b; --color-primary-highlight: #313b3b;
+  --color-success: #6daa45; --color-success-highlight: #3a4435;
+  --color-error: #d163a7; --color-error-highlight: #4c3d46;
+  --color-warning: #bb653b; --color-warning-highlight: #564942;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2); --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3); --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;scroll-padding-top:5rem}
+body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);line-height:1.6;font-size:16px}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+.container{max-width:840px;margin-inline:auto;padding-inline:1.25rem}
+
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in oklab, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.25rem;max-width:840px;margin-inline:auto}
+.brand{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-display);font-weight:600;font-size:1.05rem}
+.brand svg{width:28px;height:28px;color:var(--color-primary)}
+.theme-btn{width:38px;height:38px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);transition:background 0.18s}
+.theme-btn:hover{background:var(--color-surface-offset)}
+
+.hero{padding:3rem 0 1.5rem}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(1.75rem,1.4rem + 1.5vw,2.4rem);letter-spacing:-0.01em;margin-bottom:0.75rem}
+.hero p{color:var(--color-text-muted);max-width:62ch;font-size:1.05rem}
+.hero .tag{display:inline-block;background:var(--color-primary-highlight);color:var(--color-primary-active);font-size:0.8rem;font-weight:600;padding:0.3rem 0.75rem;border-radius:var(--radius-full);margin-bottom:1rem}
+
+.score-panel{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.score-card{flex:1;min-width:140px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1rem 1.1rem;box-shadow:var(--shadow-sm)}
+.score-card .num{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--color-primary)}
+.score-card .lbl{font-size:0.82rem;color:var(--color-text-muted);margin-top:0.15rem}
+
+nav.toc{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.75rem 0 0.5rem}
+nav.toc a{font-size:0.82rem;padding:0.4rem 0.8rem;border-radius:var(--radius-full);background:var(--color-surface-offset);color:var(--color-text-muted);text-decoration:none;border:1px solid var(--color-border);transition:all 0.18s}
+nav.toc a:hover{background:var(--color-primary-highlight);color:var(--color-primary-active)}
+
+section.topic{padding:2.75rem 0;border-top:1px solid var(--color-divider)}
+.topic-head{margin-bottom:1.25rem}
+.topic-head .badge{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--color-warning);background:var(--color-warning-highlight);padding:0.25rem 0.6rem;border-radius:var(--radius-sm);display:inline-block;margin-bottom:0.6rem}
+.topic-head .badge.ok{color:var(--color-success);background:var(--color-success-highlight)}
+.topic-head h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:0.4rem}
+.topic-head .why{color:var(--color-text-muted);font-size:0.95rem;max-width:70ch}
+
+.rule-box{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem;margin-bottom:1.5rem}
+.rule-box h3{font-size:0.9rem;font-weight:600;color:var(--color-primary);margin-bottom:0.5rem;font-family:var(--font-display)}
+.rule-box p{font-size:0.92rem;color:var(--color-text-muted)}
+.rule-box code{background:var(--color-surface-offset);padding:0.1rem 0.4rem;border-radius:var(--radius-sm);font-size:0.88em;color:var(--color-text)}
+
+.q-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.25rem 1.35rem;margin-bottom:1rem;box-shadow:var(--shadow-sm)}
+.q-card .q-num{font-size:0.78rem;color:var(--color-text-faint);font-weight:600;margin-bottom:0.35rem}
+.q-card .q-text{font-size:1.02rem;font-weight:500;margin-bottom:0.9rem}
+.options{display:flex;flex-direction:column;gap:0.5rem}
+.opt{display:flex;align-items:center;gap:0.7rem;padding:0.65rem 0.85rem;border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;transition:all 0.15s;font-size:0.95rem;min-height:44px}
+.opt:hover{background:var(--color-surface-offset)}
+.opt.selected{border-color:var(--color-primary);background:var(--color-primary-highlight)}
+.opt.correct{border-color:var(--color-success);background:var(--color-success-highlight);color:var(--color-text)}
+.opt.incorrect{border-color:var(--color-error);background:var(--color-error-highlight)}
+.opt input{accent-color:var(--color-primary);width:16px;height:16px;flex-shrink:0}
+.opt .opt-letter{font-weight:700;font-size:0.8rem;color:var(--color-text-faint);width:1.2em}
+.feedback{margin-top:0.85rem;padding:0.75rem 0.9rem;border-radius:var(--radius-md);font-size:0.9rem;display:none}
+.feedback.show{display:block;animation:fadeIn 0.25s ease}
+.feedback.correct-fb{background:var(--color-success-highlight);color:var(--color-text);border-left:3px solid var(--color-success)}
+.feedback.incorrect-fb{background:var(--color-error-highlight);color:var(--color-text);border-left:3px solid var(--color-error)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+.recap{background:var(--color-primary-highlight);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1.25rem}
+.recap h3{font-family:var(--font-display);color:var(--color-primary-active);margin-bottom:0.6rem;font-size:1.1rem}
+.recap ul{padding-left:1.2rem;font-size:0.93rem;color:var(--color-text)}
+.recap li{margin-bottom:0.3rem}
+
+.note-box{background:var(--color-surface-offset);border:1px dashed var(--color-border);border-radius:var(--radius-lg);padding:1.25rem;color:var(--color-text-muted);font-size:0.92rem;text-align:center}
+
+footer{padding:3rem 0;text-align:center;color:var(--color-text-faint);font-size:0.85rem;border-top:1px solid var(--color-divider)}
+
+@media (max-width:600px){
+  .hero h1{font-size:1.6rem}
+  .score-panel{gap:0.6rem}
+  section.topic{padding:2rem 0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" aria-label="logo"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.5l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Jarbas · English Practice</span>
+    </div>
+    <button class="theme-btn" data-theme-toggle aria-label="Switch to dark mode">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <span class="tag">Nível estimado: A2 → B1 (9/20 no teste)</span>
+    <h1>Seu plano de prática personalizado</h1>
+    <p>Com base no teste de nivelamento, você já domina bem o Present Simple, mas apresenta dificuldades espalhadas em passado simples, present perfect, futuro, modais, condicional, voz passiva e reported speech. Cada exercício abaixo dá feedback instantâneo — responda e veja a explicação na hora.</p>
+    <div class="score-panel">
+      <div class="score-card"><div class="num" id="live-score">0/17</div><div class="lbl">Pontuação nesta sessão</div></div>
+      <div class="score-card"><div class="num">9/20</div><div class="lbl">Pontuação no teste original</div></div>
+      <div class="score-card"><div class="num">6</div><div class="lbl">Tópicos de revisão</div></div>
+    </div>
+    <nav class="toc" aria-label="Navegação por tópico">
+      <a href="#topic1">1. Present Simple ✓</a>
+      <a href="#topic2">2. Past Simple</a>
+      <a href="#topic3">3. Present Perfect</a>
+      <a href="#topic4">4. Futuro</a>
+      <a href="#topic5">5. Modais &amp; Condicional</a>
+      <a href="#topic6">6. Passiva &amp; Reported Speech</a>
+      <a href="#topic7">7. Preposições &amp; Gerúndio</a>
+      <a href="#writing">8. Redação</a>
+    </nav>
+  </section>
+
+  <!-- TOPIC 1 -->
+  <section class="topic" id="topic1">
+    <div class="topic-head">
+      <span class="badge ok">Quase perfeito (2/3)</span>
+      <h2>Present Simple — revisão rápida</h2>
+      <p class="why">Você acertou "am/is" e "there is", mas errou a conjugação de "study" na 3ª pessoa. É só um detalhe para consolidar.</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p>Com <code>he / she / it</code>, o verbo no Present Simple recebe <code>-s</code> (ou <code>-es</code>, <code>-ies</code>): <code>study → studies</code>, <code>go → goes</code>, <code>watch → watches</code>.</p>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Correto! 'Studies' é a forma certa para 'she' no Present Simple." data-explain-incorrect="A resposta certa é 'studies'. Com he/she/it, adicionamos -s ao verbo.">
+      <div class="q-num">Questão 1</div>
+      <div class="q-text">She _____ English every day.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q1-1"> study</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q1-1"> studies</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q1-1"> studying</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q1-1"> is study</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Exatamente! 'Watches' — verbo terminado em -ch ganha -es." data-explain-incorrect="A resposta certa é 'watches'. Verbos terminados em -ch, -sh, -ss, -x ganham -es.">
+      <div class="q-num">Questão 2</div>
+      <div class="q-text">He _____ TV after dinner every night.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q1-2"> watch</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q1-2"> watches</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q1-2"> is watch</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q1-2"> watching</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 2 -->
+  <section class="topic" id="topic2">
+    <div class="topic-head">
+      <span class="badge">Errou as Q5 e Q6</span>
+      <h2>Past Simple — negativa e pergunta</h2>
+      <p class="why">Você acertou "went" (afirmativa), mas errou a negativa ("doesn't finish" em vez de "didn't finish") e a pergunta ("Does" em vez de "Did"). O padrão indica confusão entre presente e passado nas estruturas negativa/interrogativa.</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p>Negativa: <code>didn't + verbo no infinitivo</code> (<code>didn't finish</code>, nunca "didn't finished"). Pergunta: <code>Did + sujeito + verbo no infinitivo</code> (<code>Did you see...?</code>), nunca "Does...?" para o passado.</p>
+    </div>
+
+    <div class="q-card" data-answer="c" data-explain-correct="Isso! 'Didn't finish' — negativa no passado sempre usa didn't + infinitivo." data-explain-incorrect="A resposta certa é 'didn't finish'. Nunca combine 'didn't' com verbo no passado.">
+      <div class="q-num">Questão 3</div>
+      <div class="q-text">They _____ the homework yesterday.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q2-1"> doesn't finish</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q2-1"> don't finish</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q2-1"> didn't finish</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q2-1"> didn't finished</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Muito bem! 'Did' é o auxiliar para perguntas no passado." data-explain-incorrect="A resposta certa é 'Did'. Para perguntas no passado usamos 'Did + sujeito + verbo no infinitivo', nunca 'Does'.">
+      <div class="q-num">Questão 4</div>
+      <div class="q-text">_____ you see the new movie last weekend?</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q2-2"> Do</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q2-2"> Did</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q2-2"> Does</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q2-2"> Are</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="c" data-explain-correct="Correto! 'Didn't arrive' — negativa no passado." data-explain-incorrect="A resposta certa é 'didn't arrive'. Nunca use 'didn't' com verbo no passado.">
+      <div class="q-num">Questão 5</div>
+      <div class="q-text">He _____ on time yesterday.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q2-3"> doesn't arrive</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q2-3"> didn't arrived</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q2-3"> didn't arrive</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q2-3"> don't arrive</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 3 -->
+  <section class="topic" id="topic3">
+    <div class="topic-head">
+      <span class="badge">Errou a Q9</span>
+      <h2>Present Perfect — ações contínuas com "since"</h2>
+      <p class="why">Você respondeu "is living" em vez de "has lived". O Present Perfect conecta o passado ao presente, especialmente com "since/for".</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p>Estrutura: <code>have/has + participle</code>. Use para ações que começaram no passado e continuam agora, especialmente com <code>since/for</code>: <code>He has lived here since 2020.</code></p>
+    </div>
+
+    <div class="q-card" data-answer="c" data-explain-correct="Isso! 'Has lived' — ação que começou em 2020 e continua até hoje." data-explain-incorrect="A resposta certa é 'has lived'. 'Since 2020' indica que a ação começou no passado e continua agora — isso é Present Perfect.">
+      <div class="q-num">Questão 6</div>
+      <div class="q-text">He _____ here since 2020.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q3-1"> lives</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q3-1"> lived</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q3-1"> has lived</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q3-1"> is living</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Correto! 'Have worked' — ação contínua desde um ponto no passado até agora." data-explain-incorrect="A resposta certa é 'have worked'. 'For five years' indica duração contínua até o presente — Present Perfect.">
+      <div class="q-num">Questão 7</div>
+      <div class="q-text">I _____ at this company for five years.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q3-2"> work</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q3-2"> have worked</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q3-2"> worked</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q3-2"> am working</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 4 -->
+  <section class="topic" id="topic4">
+    <div class="topic-head">
+      <span class="badge">Errou a Q12</span>
+      <h2>Futuro — decisão já tomada com "going to"</h2>
+      <p class="why">Você usou "are" em vez de "are going to" quando a frase já indicava uma decisão tomada ("We already decided").</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p><code>be + going to + verbo</code> para planos já decididos: <code>We are going to buy a car. We already decided.</code> Não use apenas "are" sem o "going to" antes do verbo.</p>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Muito bem! Decisão já tomada = 'are going to'." data-explain-incorrect="A resposta certa é 'are going to'. 'We already decided' indica plano decidido — usamos going to, e nunca apenas 'are' sozinho antes do verbo principal.">
+      <div class="q-num">Questão 8</div>
+      <div class="q-text">We _____ buy a new car next month. We already decided.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q4-1"> will</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q4-1"> are going to</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q4-1"> might</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q4-1"> are</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Isso! 'Am going to' é o plano marcado para amanhã." data-explain-incorrect="A resposta certa é 'am going to'. Planos já marcados usam 'be + going to + verbo'.">
+      <div class="q-num">Questão 9</div>
+      <div class="q-text">Tomorrow I _____ to the gym at 7 a.m.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q4-2"> go</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q4-2"> am going</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q4-2"> went</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q4-2"> going</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 5 -->
+  <section class="topic" id="topic5">
+    <div class="topic-head">
+      <span class="badge">Errou as Q13 e Q14</span>
+      <h2>Modais e condicional (Second Conditional)</h2>
+      <p class="why">Você respondeu "can" em vez de "mustn't" para proibição, e "have" em vez de "had" no condicional hipotético.</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p><code>mustn't</code> = proibido (regra forte), diferente de <code>can</code> (permissão). No Second Conditional, o verbo depois de "if" fica no passado: <code>If I had enough money, I would travel.</code></p>
+    </div>
+
+    <div class="q-card" data-answer="c" data-explain-correct="Isso! 'Mustn't' expressa proibição total." data-explain-incorrect="A resposta certa é 'mustn't'. 'It's forbidden' é a pista de proibição — 'can' não expressa essa força.">
+      <div class="q-num">Questão 10</div>
+      <div class="q-text">You _____ smoke in the hospital. It's forbidden.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q5-1"> can</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q5-1"> must</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q5-1"> mustn't</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q5-1"> should</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Perfeito! 'Had' no if-clause do Second Conditional." data-explain-incorrect="A resposta certa é 'had'. No Second Conditional, o verbo depois de 'if' fica no passado simples, mesmo sendo uma situação hipotética do presente.">
+      <div class="q-num">Questão 11</div>
+      <div class="q-text">If I _____ enough money, I would travel around the world.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q5-2"> have</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q5-2"> had</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q5-2"> will have</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q5-2"> would have</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Isso! 'Would buy' é o resultado hipotético." data-explain-incorrect="A resposta certa é 'would buy'. A parte principal do Second Conditional usa would + verbo no infinitivo.">
+      <div class="q-num">Questão 12</div>
+      <div class="q-text">If she won the lottery, she _____ a new house.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q5-3"> buys</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q5-3"> would buy</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q5-3"> will buy</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q5-3"> bought</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 6 -->
+  <section class="topic" id="topic6">
+    <div class="topic-head">
+      <span class="badge">Errou as Q16 e Q17</span>
+      <h2>Voz passiva e reported speech</h2>
+      <p class="why">Você respondeu "reads" em vez de "is read" na passiva, e "has been" em vez de "was" no reported speech. Faltou o auxiliar correto em ambos os casos.</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p>Passiva no presente: <code>is/are + participle</code> (<code>is read</code>, não apenas "reads"). Reported speech: o tempo verbal recua um passo (<code>is → was</code>, nunca "has been" quando o original é presente simples).</p>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Isso! 'Is read' — presente na voz passiva, precisa do auxiliar 'is'." data-explain-incorrect="A resposta certa é 'is read'. É uma ação habitual/geral no presente, então usamos 'is' + particípio, nunca o verbo sozinho.">
+      <div class="q-num">Questão 13</div>
+      <div class="q-text">The book _____ by millions of people every year.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q6-1"> reads</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q6-1"> is read</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q6-1"> was read</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q6-1"> has read</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Correto! Em reported speech, 'is' recua para 'was'." data-explain-incorrect="A resposta certa é 'was'. Em discurso indireto, o presente ('is') recua para o passado ('was') — 'has been' não é a transformação correta aqui.">
+      <div class="q-num">Questão 14</div>
+      <div class="q-text">She said that she _____ tired.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q6-2"> is</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q6-2"> was</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q6-2"> has been</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q6-2"> will be</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Isso! 'Was built' — passiva no passado precisa do auxiliar 'was'." data-explain-incorrect="A resposta certa é 'was built'. A voz passiva sempre precisa do verbo 'to be' antes do particípio.">
+      <div class="q-num">Questão 15</div>
+      <div class="q-text">The house _____ in 1920.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q6-3"> built</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q6-3"> was built</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q6-3"> has built</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q6-3"> is built</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- TOPIC 7 -->
+  <section class="topic" id="topic7">
+    <div class="topic-head">
+      <span class="badge">Errou as Q19 e Q20</span>
+      <h2>Preposições e gerúndio depois de verbos/expressões</h2>
+      <p class="why">Você respondeu "see" em vez de "seeing" e "on" em vez de "at" — expressões fixas que precisam de uma preposição específica seguida de gerúndio.</p>
+    </div>
+    <div class="rule-box">
+      <h3>Regra rápida</h3>
+      <p><code>look forward to + gerúndio</code> (<code>looking forward to seeing you</code>). <code>good/bad at + gerúndio</code> (<code>good at playing the piano</code>). Depois de preposição, o verbo sempre vai para -ing.</p>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Perfeito! 'To seeing' — depois de 'to' (preposição aqui), usamos gerúndio." data-explain-incorrect="A resposta certa é 'to seeing'. Em 'look forward to', o 'to' é preposição, então o verbo vai para -ing (seeing), não infinitivo.">
+      <div class="q-num">Questão 16</div>
+      <div class="q-text">I'm looking forward _____ you next week.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q7-1"> to see</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q7-1"> to seeing</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q7-1"> see</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q7-1"> seeing</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="b" data-explain-correct="Isso! 'Good at' é a combinação fixa correta." data-explain-incorrect="A resposta certa é 'at'. A expressão fixa é 'good at + gerúndio', não 'good on'.">
+      <div class="q-num">Questão 17</div>
+      <div class="q-text">He's good _____ playing the piano.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q7-2"> in</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q7-2"> at</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q7-2"> on</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q7-2"> for</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q-card" data-answer="c" data-explain-correct="Muito bem! Depois de 'interested in', usamos gerúndio." data-explain-incorrect="A resposta certa é 'learning'. Depois de preposições como 'in', o verbo sempre vai para -ing.">
+      <div class="q-num">Questão 18</div>
+      <div class="q-text">She is interested in _____ English.</div>
+      <div class="options">
+        <label class="opt" data-value="a"><span class="opt-letter">A</span><input type="radio" name="q7-3"> learn</label>
+        <label class="opt" data-value="b"><span class="opt-letter">B</span><input type="radio" name="q7-3"> to learn</label>
+        <label class="opt" data-value="c"><span class="opt-letter">C</span><input type="radio" name="q7-3"> learning</label>
+        <label class="opt" data-value="d"><span class="opt-letter">D</span><input type="radio" name="q7-3"> learned</label>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="topic" id="writing">
+    <div class="topic-head">
+      <span class="badge">Sem amostra de redação</span>
+      <h2>Redação não enviada</h2>
+      <p class="why">Jarbas não enviou a seção de escrita do teste. Recomendo pedir essa amostra na próxima aula — ela ajuda a identificar erros de estrutura de frase que não aparecem nas questões de múltipla escolha.</p>
+    </div>
+    <div class="note-box">
+      Sugestão: peça a ele para escrever 3-5 frases sobre a rotina diária, últimas férias ou planos futuros, e refaça essa seção com feedback personalizado como fizemos para a Bianca.
+    </div>
+  </section>
+
+  <section class="topic" id="summary">
+    <div class="topic-head">
+      <h2>Prioridades para as próximas aulas</h2>
+      <p class="why">Ordem sugerida de foco, do mais urgente para o mais avançado:</p>
+    </div>
+    <div class="recap" style="background:var(--color-surface);border:1px solid var(--color-border)">
+      <ul>
+        <li><strong>1. Voz passiva:</strong> reforçar que o auxiliar (is/was) nunca pode ser omitido antes do particípio.</li>
+        <li><strong>2. Modais e condicional:</strong> diferenciar "mustn't" de "can", e fixar a estrutura do Second Conditional (if + passado, would + verbo).</li>
+        <li><strong>3. Past Simple:</strong> praticar negativa e pergunta, que são os pontos mais frágeis dentro do passado.</li>
+        <li><strong>4. Reported speech:</strong> praticar a "regra do recuo" dos tempos verbais.</li>
+        <li><strong>5. Expressões fixas:</strong> memorizar combinações comuns de preposição + gerúndio (good at, interested in, look forward to).</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Material de estudo personalizado — baseado no teste de nivelamento de Jarbas · Setembro 2026
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.q-card').forEach(function(card){
+  const correctAnswer = card.dataset.answer;
+  const opts = card.querySelectorAll('.opt');
+  const feedback = card.querySelector('.feedback');
+  let answered = false;
+  opts.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(answered) return;
+      answered = true;
+      const chosen = opt.dataset.value;
+      opts.forEach(function(o){
+        o.querySelector('input').disabled = true;
+        if(o.dataset.value === correctAnswer){
+          o.classList.add('correct');
+        } else if(o === opt){
+          o.classList.add('incorrect');
+        }
+      });
+      opt.querySelector('input').checked = true;
+      feedback.classList.add('show');
+      if(chosen === correctAnswer){
+        feedback.classList.add('correct-fb');
+        feedback.textContent = card.dataset.explainCorrect;
+        updateScore(1);
+      } else {
+        feedback.classList.add('incorrect-fb');
+        feedback.textContent = card.dataset.explainIncorrect;
+        updateScore(0);
+      }
+    });
+  });
+});
+
+let score = 0, answeredCount = 0;
+const totalQuestions = document.querySelectorAll('.q-card').length;
+function updateScore(points){
+  score += points;
+  answeredCount++;
+  document.getElementById('live-score').textContent = score + '/' + totalQuestions;
+}
+
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  if(t){
+    t.addEventListener('click', function(){
+      d = d === 'dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', d);
+      t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
+      t.innerHTML = d === 'dark'
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    });
+  }
+})();
+</script>
+</body>
+</html>

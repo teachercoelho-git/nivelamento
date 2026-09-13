@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plano de Estudos de Inglês — Sara</title>
+  <style>
+    :root {
+      --navy: #183153;
+      --blue: #2867b2;
+      --sky: #eaf4ff;
+      --green: #18794e;
+      --green-bg: #e9f8ef;
+      --red: #bb2d3b;
+      --red-bg: #fff0f1;
+      --amber: #8a5a00;
+      --amber-bg: #fff7df;
+      --ink: #172033;
+      --muted: #5a687d;
+      --line: #d9e1ea;
+      --white: #ffffff;
+      --shadow: 0 8px 25px rgba(24, 49, 83, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f6f8fb;
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #132b4b, #2867b2);
+      color: white;
+      padding: 48px 20px 42px;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; }
+    h2 { margin: 0; font-size: 1.55rem; color: var(--navy); }
+    h3 { margin: 0; font-size: 1.08rem; }
+    .subtitle { margin: 0; font-size: 1.08rem; opacity: .92; }
+    main { padding: 28px 20px 56px; }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 0 0 22px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .stat {
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--sky);
+      border: 1px solid #cce2fa;
+    }
+    .stat strong { display: block; color: var(--navy); font-size: 1.5rem; }
+    .stat span { color: var(--muted); font-size: .93rem; }
+    .note {
+      margin-top: 18px;
+      background: var(--amber-bg);
+      border-left: 5px solid #e0a42b;
+      padding: 14px 16px;
+      border-radius: 8px;
+    }
+    .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 32px; height: 32px; border-radius: 50%; background: var(--blue); color: white; font-weight: 800;
+    }
+    .section-description { color: var(--muted); margin: 0 0 20px; }
+    .question {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 18px;
+      margin: 15px 0;
+      background: #fff;
+    }
+    .question.correct-card { border-color: #a7dec0; }
+    .question.incorrect-card { border-color: #f0a8b0; }
+    .question-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .question-number { color: var(--blue); font-weight: 800; white-space: nowrap; }
+    .prompt { margin: 0; font-weight: 700; font-size: 1.05rem; }
+    .status {
+      display: inline-block;
+      margin-top: 11px;
+      padding: 4px 9px;
+      font-size: .82rem;
+      font-weight: 800;
+      border-radius: 999px;
+    }
+    .status.correct { color: var(--green); background: var(--green-bg); }
+    .status.incorrect { color: var(--red); background: var(--red-bg); }
+    .answers { display: grid; gap: 8px; margin-top: 15px; }
+    button.option {
+      appearance: none;
+      text-align: left;
+      border: 1px solid #cfd9e6;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 9px;
+      padding: 11px 13px;
+      cursor: pointer;
+      font: inherit;
+      transition: .18s ease;
+    }
+    button.option:hover, button.option:focus-visible { border-color: var(--blue); background: var(--sky); outline: none; }
+    button.option.selected { border: 2px solid var(--blue); background: #edf5ff; font-weight: 700; }
+    button.option.right { border-color: var(--green); background: var(--green-bg); color: #125a38; }
+    button.option.wrong { border-color: var(--red); background: var(--red-bg); color: #8b1c27; }
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 9px;
+      background: #f7f9fc;
+      border-left: 4px solid var(--blue);
+    }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--green-bg); border-left-color: var(--green); }
+    .feedback.bad { background: var(--red-bg); border-left-color: var(--red); }
+    .feedback p { margin: 0 0 7px; }
+    .feedback p:last-child { margin-bottom: 0; }
+    .key { color: var(--blue); font-weight: 800; }
+    .practice-box { background: #f7fbff; border: 1px solid #cfe3f6; border-radius: 11px; padding: 17px; margin-top: 18px; }
+    .practice-box ul { margin: 8px 0 0; padding-left: 20px; }
+    .writing-original, .writing-model {
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 13px;
+    }
+    .writing-original { background: var(--red-bg); border: 1px solid #f3c5c9; }
+    .writing-model { background: var(--green-bg); border: 1px solid #bfdfcc; }
+    .writing-original p, .writing-model p { margin: 6px 0 0; }
+    .checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+    .check-item { background: #f7f9fc; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .tip { color: var(--muted); font-size: .92rem; }
+    footer { text-align: center; color: var(--muted); padding: 0 20px 35px; font-size: .92rem; }
+    @media (max-width: 560px) {
+      .card { padding: 18px; }
+      .question { padding: 15px; }
+      .question-top { display: block; }
+      .question-number { display: block; margin-bottom: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Material de Estudo — Sara</h1>
+      <p class="subtitle">English Placement Test: correção guiada, prática e feedback instantâneo</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>Resultado e foco de estudo</h2>
+      <div class="summary-grid">
+        <div class="stat"><strong>9 / 20</strong><span>Respostas corretas</span></div>
+        <div class="stat"><strong>45%</strong><span>Aproveitamento inicial</span></div>
+        <div class="stat"><strong>11</strong><span>Pontos para revisar</span></div>
+        <div class="stat"><strong>A1–A2*</strong><span>Faixa sugerida para estudo</span></div>
+      </div>
+      <div class="note">
+        <strong>Como usar:</strong> clique em uma alternativa em cada questão. O material mostra imediatamente se a escolha está certa, destaca a resposta correta e explica a regra. Mesmo nas questões que Sara acertou, vale tentar novamente para consolidar o conteúdo.<br><br>
+        <span class="tip">*Esta é uma estimativa diagnóstica baseada no teste e na amostra curta de escrita; não substitui uma avaliação completa de produção oral e escrita.</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">1</span><h2>Gramática básica e Present Simple</h2></div>
+      <p class="section-description">Foco: verbo <em>to be</em>, terceira pessoa do singular e <em>there is</em>.</p>
+      <div id="section-1"></div>
+      <div class="practice-box">
+        <h3>Mini-prática</h3>
+        <ul>
+          <li>Complete: “My sister ___ a teacher.”</li>
+          <li>Complete: “He ___ coffee every morning.”</li>
+          <li>Complete: “There ___ two chairs in the room.”</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">2</span><h2>Past Simple</h2></div>
+      <p class="section-description">Foco: verbos irregulares, negativa e pergunta no passado.</p>
+      <div id="section-2"></div>
+      <div class="practice-box">
+        <h3>Regra essencial</h3>
+        <p>Com <strong>did</strong> e <strong>didn't</strong>, o verbo volta para a forma base: <em>Did you go?</em> / <em>They didn't finish.</em></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">3</span><h2>Present Continuous e Present Perfect</h2></div>
+      <p class="section-description">Foco: ações acontecendo agora e experiências ou situações que continuam até o presente.</p>
+      <div id="section-3"></div>
+      <div class="practice-box">
+        <h3>Contraste rápido</h3>
+        <p><strong>Right now</strong> → <em>She is reading.</em> &nbsp;|&nbsp; <strong>since 2020</strong> → <em>He has lived here since 2020.</em></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">4</span><h2>Formas de futuro</h2></div>
+      <p class="section-description">Foco: planos já combinados, previsões e intenções decididas.</p>
+      <div id="section-4"></div>
+      <div class="practice-box">
+        <h3>Guia prático</h3>
+        <p><em>Be going to</em> é muito comum para planos e intenções: “I am going to study tonight.” Use <em>will</em> frequentemente para previsões: “I think it will rain.”</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">5</span><h2>Modals e conditionals</h2></div>
+      <p class="section-description">Foco: obrigação, proibição, dedução e hipótese.</p>
+      <div id="section-5"></div>
+      <div class="practice-box">
+        <h3>Padrão do Second Conditional</h3>
+        <p><em>If + past simple, would + verbo base.</em><br>Exemplo: “If I <strong>had</strong> more time, I <strong>would learn</strong> Spanish.”</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">6</span><h2>Passive Voice e Reported Speech</h2></div>
+      <p class="section-description">Foco: voz passiva no presente e no passado; discurso indireto no passado.</p>
+      <div id="section-6"></div>
+      <div class="practice-box">
+        <h3>Fórmulas úteis</h3>
+        <p><strong>Passive:</strong> subject + <em>be</em> + past participle → “The house <em>was built</em> in 1920.”<br><strong>Reported speech:</strong> “I am tired” → She said that she <em>was</em> tired.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">7</span><h2>Expressões e preposições</h2></div>
+      <p class="section-description">Foco: combinações fixas que precisam ser aprendidas em blocos.</p>
+      <div id="section-7"></div>
+      <div class="practice-box">
+        <h3>Blocos para memorizar</h3>
+        <p><em>look forward to + verb-ing</em> · <em>be good at + noun / verb-ing</em></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><span class="badge">✍</span><h2>Writing: rotina diária</h2></div>
+      <p class="section-description">A frase de Sara comunica a ideia, mas pode ficar mais natural, completa e organizada.</p>
+      <div class="writing-original">
+        <h3>Texto original</h3>
+        <p><em>“My daily routine is basically sleep, go to work, cook and make tasks at home.”</em></p>
+      </div>
+      <div class="writing-model">
+        <h3>Versão corrigida — simples e natural</h3>
+        <p><em>“My daily routine is basically sleeping, going to work, cooking, and doing chores at home.”</em></p>
+      </div>
+      <div class="writing-model">
+        <h3>Modelo expandido — 3 a 5 frases</h3>
+        <p><em>“On weekdays, I usually go to work in the morning. After work, I cook dinner and do chores at home. In the evening, I like to relax and sleep early. My routine is busy, but I try to have some time for myself.”</em></p>
+      </div>
+      <div class="practice-box">
+        <h3>Por que corrigimos?</h3>
+        <ul>
+          <li>Após “is basically”, use verbos com <em>-ing</em> para listar atividades: <em>sleeping, going, cooking</em>.</li>
+          <li><em>Make tasks</em> não soa natural neste contexto. Para tarefas domésticas, diga <em>do chores</em> ou <em>do housework</em>.</li>
+          <li>Para a tarefa proposta, desenvolva a ideia em 3 a 5 frases, incluindo horários, frequência e preferências.</li>
+        </ul>
+      </div>
+      <div class="checklist">
+        <div class="check-item">✓ Comece com: <em>On weekdays, I usually...</em></div>
+        <div class="check-item">✓ Use conectores: <em>then, after that, in the evening</em></div>
+        <div class="check-item">✓ Termine com uma opinião: <em>I like... / I don't like...</em></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Prioridades para a próxima semana</h2>
+      <ol>
+        <li>Revisar o <em>Past Simple</em>, especialmente perguntas com <em>did</em> e verbos irregulares como <em>went</em>.</li>
+        <li>Praticar <em>Present Continuous</em>: <em>am/is/are + verb-ing</em>.</li>
+        <li>Estudar futuro com <em>be going to</em> e <em>will</em>.</li>
+        <li>Memorizar estruturas-chave: <em>mustn't</em>, <em>if I had... I would...</em>, <em>good at</em> e <em>look forward to + -ing</em>.</li>
+        <li>Escrever uma rotina de 4 frases usando <em>usually</em>, <em>after work</em>, <em>then</em> e <em>in the evening</em>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>Material interativo preparado para revisão individual de inglês.</footer>
+
+  <script>
+    const questions = [
+      { section: 1, n: 1, text: 'My name _____ Carlos and I _____ from Brazil.', options: ['a) is / is', 'b) am / is', 'c) is / am', 'd) are / am'], correct: 2, student: 2, explanation: 'Com “My name”, usamos “is”: My name is Carlos. Com “I”, usamos “am”: I am from Brazil.' },
+      { section: 1, n: 2, text: 'She _____ English every day.', options: ['a) study', 'b) studies', 'c) studying', 'd) is study'], correct: 1, student: 1, explanation: 'No Present Simple, he/she/it pede geralmente verbo com -s: she studies.' },
+      { section: 1, n: 3, text: 'There _____ a book on the table.', options: ['a) am', 'b) is', 'c) are', 'd) be'], correct: 1, student: 2, explanation: '“A book” é singular. Por isso, usamos “There is a book”. “There are” é usado com plural: There are two books.' },
+      { section: 2, n: 4, text: 'Last year I _____ to Italy on vacation.', options: ['a) go', 'b) went', 'c) goed', 'd) going'], correct: 1, student: 3, explanation: '“Last year” indica passado. O passado irregular de “go” é “went”, não “goed”.' },
+      { section: 2, n: 5, text: 'They _____ the homework yesterday.', options: ["a) doesn't finish", "b) don't finish", "c) didn't finish", "d) didn't finished"], correct: 2, student: 0, explanation: 'No negativo do passado, use “didn\'t + verbo base”: They didn\'t finish. Depois de didn\'t, não use “finished”.' },
+      { section: 2, n: 6, text: '_____ you see the new movie last weekend?', options: ['a) Do', 'b) Did', 'c) Does', 'd) Are'], correct: 1, student: 1, explanation: '“Last weekend” pede passado. Perguntas no Past Simple usam “Did + sujeito + verbo base”: Did you see...?' },
+      { section: 3, n: 7, text: 'Right now, she _____ a book in her room.', options: ['a) reads', 'b) read', 'c) is reading', 'd) reading'], correct: 2, student: 2, explanation: '“Right now” indica uma ação em progresso agora. Use Present Continuous: is + reading.' },
+      { section: 3, n: 8, text: 'I _____ to Paris three times.', options: ['a) went', 'b) go', 'c) have been', 'd) was'], correct: 2, student: 2, explanation: 'Para falar de experiências de vida sem dizer quando aconteceram, use Present Perfect: I have been to Paris three times.' },
+      { section: 3, n: 9, text: 'He _____ here since 2020.', options: ['a) lives', 'b) lived', 'c) has lived', 'd) is living'], correct: 2, student: 3, explanation: '“Since 2020” mostra algo que começou no passado e continua agora. Use Present Perfect: He has lived here since 2020.' },
+      { section: 4, n: 10, text: 'Tomorrow I _____ to the gym at 7 a.m.', options: ['a) go', 'b) am going', 'c) went', 'd) going'], correct: 1, student: 1, explanation: 'Para um plano marcado no futuro, use Present Continuous: I am going to the gym tomorrow.' },
+      { section: 4, n: 11, text: 'I think it _____ rain tomorrow.', options: ['a) is', 'b) will', 'c) going to', 'd) is going'], correct: 1, student: 2, explanation: 'Depois de “I think”, uma previsão normalmente usa “will + verbo base”: I think it will rain tomorrow.' },
+      { section: 4, n: 12, text: 'We _____ buy a new car next month. We already decided.', options: ['a) will', 'b) are going to', 'c) might', 'd) are'], correct: 1, student: 3, explanation: 'A decisão já foi tomada; portanto, usamos “be going to”: We are going to buy a new car. A opção “are” está incompleta.' },
+      { section: 5, n: 13, text: 'You _____ smoke in the hospital. It\'s forbidden.', options: ['a) can', 'b) must', "c) mustn't", 'd) should'], correct: 2, student: 2, explanation: '“It\'s forbidden” significa que é proibido. “Mustn\'t” expressa proibição: You mustn\'t smoke.' },
+      { section: 5, n: 14, text: 'If I _____ enough money, I would travel around the world.', options: ['a) have', 'b) had', 'c) will have', 'd) would have'], correct: 1, student: 2, explanation: 'Esta é uma hipótese no presente/futuro (Second Conditional): If + past simple, would + verbo base. Portanto: If I had..., I would travel...' },
+      { section: 5, n: 15, text: 'She _____ be at home. Her car is in the garage.', options: ['a) can', 'b) should', 'c) must', 'd) would'], correct: 2, student: 0, explanation: 'A evidência (o carro está na garagem) permite uma dedução forte: She must be at home. Aqui “must” significa “deve estar”.' },
+      { section: 6, n: 16, text: 'The book _____ by millions of people every year.', options: ['a) reads', 'b) is read', 'c) was read', 'd) has read'], correct: 1, student: 1, explanation: 'A frase está na voz passiva e fala de hábito (“every year”): is + past participle → The book is read.' },
+      { section: 6, n: 17, text: 'She said that she _____ tired.', options: ['a) is', 'b) was', 'c) has been', 'd) will be'], correct: 1, student: 2, explanation: 'No reported speech, ao relatar uma fala no passado (“said”), “am/is” geralmente muda para “was”: She said that she was tired.' },
+      { section: 6, n: 18, text: 'The house _____ in 1920.', options: ['a) built', 'b) was built', 'c) has built', 'd) is built'], correct: 1, student: 1, explanation: 'A casa recebeu a ação no passado. Use voz passiva no passado: was + built → The house was built in 1920.' },
+      { section: 7, n: 19, text: 'I\'m looking forward _____ you next week.', options: ['a) to see', 'b) to seeing', 'c) see', 'd) seeing'], correct: 1, student: 0, explanation: '“Look forward to” é uma expressão fixa. Aqui “to” é preposição, então o verbo seguinte recebe -ing: looking forward to seeing you.' },
+      { section: 7, n: 20, text: 'He\'s good _____ playing the piano.', options: ['a) in', 'b) at', 'c) on', 'd) for'], correct: 1, student: 0, explanation: 'A combinação fixa é “good at + atividade”: He is good at playing the piano.' }
+    ];
+
+    const bySection = {};
+    questions.forEach(q => (bySection[q.section] ??= []).push(q));
+
+    function makeQuestion(q) {
+      const initialStatus = q.student === q.correct;
+      const box = document.createElement('article');
+      box.className = `question ${initialStatus ? 'correct-card' : 'incorrect-card'}`;
+      const options = q.options.map((option, i) => `
+        <button class="option ${i === q.student ? 'selected' : ''}" data-index="${i}" type="button">${option}</button>`).join('');
+      box.innerHTML = `
+        <div class="question-top">
+          <span class="question-number">Questão ${q.n}</span>
+          <p class="prompt">${q.text}</p>
+        </div>
+        <span class="status ${initialStatus ? 'correct' : 'incorrect'}">${initialStatus ? '✓ Resposta original: correta' : '✗ Resposta original: revisar'}</span>
+        <div class="answers">${options}</div>
+        <div class="feedback" aria-live="polite"></div>`;
+
+      const feedback = box.querySelector('.feedback');
+      box.querySelectorAll('.option').forEach(button => {
+        button.addEventListener('click', () => {
+          const selected = Number(button.dataset.index);
+          const isCorrect = selected === q.correct;
+          box.querySelectorAll('.option').forEach((item, i) => {
+            item.classList.remove('selected', 'right', 'wrong');
+            if (i === q.correct) item.classList.add('right');
+          });
+          button.classList.add('selected');
+          if (!isCorrect) button.classList.add('wrong');
+          feedback.className = `feedback show ${isCorrect ? 'good' : 'bad'}`;
+          feedback.innerHTML = isCorrect
+            ? `<p><strong>Correto! Muito bem.</strong></p><p>${q.explanation}</p>`
+            : `<p><strong>Ainda não.</strong> A resposta correta é <span class="key">${q.options[q.correct]}</span>.</p><p>${q.explanation}</p>`;
+        });
+      });
+      return box;
+    }
+
+    Object.entries(bySection).forEach(([section, list]) => {
+      const target = document.getElementById(`section-${section}`);
+      list.forEach(q => target.appendChild(makeQuestion(q)));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Tone Lab | Juliane</title>
+  <style>
+    :root{
+      --navy:#15324b; --blue:#2878b5; --sky:#eaf5fb; --cream:#fffaf2;
+      --ink:#24313c; --muted:#62717f; --green:#2e8b70; --amber:#ce7a24;
+      --red:#b94b59; --white:#fff; --line:#dce7ee; --shadow:0 14px 35px rgba(21,50,75,.10);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(145deg,var(--cream),#f4f9fc 48%,#eaf3f8);color:var(--ink);line-height:1.55}
+    header{background:linear-gradient(120deg,var(--navy),#245c7d);color:white;padding:52px 22px 68px;position:relative;overflow:hidden}
+    header:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.08);right:-70px;top:-110px}
+    .wrap{max-width:980px;margin:auto}
+    .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;font-weight:800;color:#a8daf3}
+    h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin:.35rem 0 1rem}
+    header p{max-width:720px;font-size:1.08rem;margin:0;color:#e6f3fa}
+    main{max-width:980px;margin:-30px auto 64px;padding:0 20px;position:relative}
+    .panel{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow);margin-bottom:22px}
+    h2{color:var(--navy);margin:.1rem 0 .6rem;font-size:1.45rem}
+    h3{margin:.2rem 0;color:var(--navy)}
+    .goal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .goal div{background:var(--sky);padding:15px;border-radius:15px;font-size:.94rem}
+    .goal strong{display:block;color:var(--blue);margin-bottom:4px}
+    .tone-scale{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .pill{border-radius:999px;padding:7px 11px;font-size:.82rem;font-weight:750;color:white}
+    .direct{background:var(--red)} .neutral{background:var(--blue)} .warm{background:var(--green)} .formal{background:#7059a6}
+    .pair{border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:16px;background:#fff}
+    .meaning{color:var(--muted);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+    .sentences{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .sentence{padding:15px;border-radius:14px;background:#f8fbfd;border-left:5px solid var(--blue)}
+    .sentence strong{display:block;margin-bottom:5px;color:var(--navy)}
+    .tone-note{font-size:.9rem;color:var(--muted);margin-top:7px}
+    .tip{background:#fff3df;border-left:5px solid var(--amber);padding:15px 17px;border-radius:12px;margin-top:18px}
+    .exercise{background:#f8fbfd;border-radius:16px;padding:18px;margin-top:14px}
+    select,input[type=text]{width:100%;padding:11px 12px;border:1px solid #bdcfda;border-radius:10px;background:#fff;font-size:1rem;margin:8px 0}
+    button{border:0;border-radius:11px;background:var(--navy);color:white;padding:11px 16px;font-weight:750;cursor:pointer;margin-top:8px}
+    button:hover{background:var(--blue)}
+    .feedback{margin-top:10px;font-weight:700;min-height:24px}
+    details{margin-top:12px;background:#eef7f3;border-radius:12px;padding:12px 15px}
+    summary{cursor:pointer;font-weight:800;color:var(--green)}
+    footer{text-align:center;color:var(--muted);font-size:.9rem;padding:10px 20px 35px}
+    @media(max-width:700px){.goal,.sentences{grid-template-columns:1fr}header{padding-top:38px}.panel{padding:20px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">English lesson • Tone & meaning</div>
+    <h1>Same meaning.<br>Different tone.</h1>
+    <p>Juliane, nesta lição você verá como pequenas mudanças de vocabulário e estrutura podem fazer uma frase soar mais direta, educada, calorosa ou formal.</p>
+  </div>
+</header>
+<main>
+  <section class="panel">
+    <h2>Objetivo da lição</h2>
+    <p>Reconhecer o tom de uma frase e escolher a versão mais adequada para cada situação.</p>
+    <div class="goal">
+      <div><strong>1. Observe</strong>Compare frases com a mesma mensagem.</div>
+      <div><strong>2. Perceba</strong>Note as palavras que suavizam ou reforçam o tom.</div>
+      <div><strong>3. Pratique</strong>Escolha e reescreva frases conforme o contexto.</div>
+    </div>
+    <div class="tone-scale">
+      <span class="pill direct">Direct</span><span class="pill neutral">Neutral</span><span class="pill warm">Warm & polite</span><span class="pill formal">Formal</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>1. Compare os exemplos</h2>
+
+    <div class="pair">
+      <div class="meaning">Significado: envie o relatório hoje</div>
+      <div class="sentences">
+        <div class="sentence"><strong>Send me the report today.</strong><div class="tone-note">Direto e firme. Pode soar como ordem.</div></div>
+        <div class="sentence"><strong>Could you please send me the report today?</strong><div class="tone-note">Educado e colaborativo. O pedido fica mais suave.</div></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="meaning">Significado: não concordo</div>
+      <div class="sentences">
+        <div class="sentence"><strong>I disagree.</strong><div class="tone-note">Claro e direto.</div></div>
+        <div class="sentence"><strong>I see your point, but I have a different perspective.</strong><div class="tone-note">Diplomático. Reconhece a opinião da outra pessoa.</div></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="meaning">Significado: houve um erro</div>
+      <div class="sentences">
+        <div class="sentence"><strong>You made a mistake.</strong><div class="tone-note">Direto e pessoal. Pode parecer acusatório.</div></div>
+        <div class="sentence"><strong>There seems to be a mistake here.</strong><div class="tone-note">Neutro e impessoal. Foca no problema, não na pessoa.</div></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="meaning">Significado: preciso de mais tempo</div>
+      <div class="sentences">
+        <div class="sentence"><strong>I need more time.</strong><div class="tone-note">Objetivo e informal.</div></div>
+        <div class="sentence"><strong>Would it be possible to extend the deadline?</strong><div class="tone-note">Mais formal e cuidadoso.</div></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="meaning">Significado: fale comigo depois</div>
+      <div class="sentences">
+        <div class="sentence"><strong>Talk to me later.</strong><div class="tone-note">Direto. Dependendo da voz, pode soar frio.</div></div>
+        <div class="sentence"><strong>Let’s catch up later when you have a moment.</strong><div class="tone-note">Amigável, leve e acolhedor.</div></div>
+      </div>
+    </div>
+
+    <div class="tip"><strong>Dica:</strong> palavras como <em>could</em>, <em>would</em>, <em>please</em>, <em>perhaps</em> e <em>seems</em> costumam suavizar o tom. Já frases curtas no imperativo tendem a soar mais diretas.</div>
+  </section>
+
+  <section class="panel">
+    <h2>2. Identifique o tom</h2>
+    <div class="exercise">
+      <label for="q1"><strong>“Would you mind checking this when you have a chance?”</strong></label>
+      <select id="q1"><option value="">Escolha...</option><option value="direct">Direto</option><option value="polite">Educado e acolhedor</option><option value="accusing">Acusatório</option></select>
+      <button onclick="checkQ1()">Verificar</button>
+      <div id="f1" class="feedback"></div>
+    </div>
+    <div class="exercise">
+      <label for="q2"><strong>“Fix this now.”</strong></label>
+      <select id="q2"><option value="">Escolha...</option><option value="direct">Direto e urgente</option><option value="formal">Formal e diplomático</option><option value="warm">Caloroso</option></select>
+      <button onclick="checkQ2()">Verificar</button>
+      <div id="f2" class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>3. Sua vez</h2>
+    <p>Reescreva cada frase sem mudar a mensagem, mas usando o tom solicitado.</p>
+    <div class="exercise">
+      <strong>A. Torne mais educada:</strong> “Give me an update.”
+      <input id="a1" type="text" placeholder="Escreva sua versão em inglês..." />
+    </div>
+    <div class="exercise">
+      <strong>B. Torne mais diplomática:</strong> “Your idea won’t work.”
+      <input id="a2" type="text" placeholder="Escreva sua versão em inglês..." />
+    </div>
+    <div class="exercise">
+      <strong>C. Torne mais calorosa:</strong> “Contact me tomorrow.”
+      <input id="a3" type="text" placeholder="Escreva sua versão em inglês..." />
+    </div>
+    <details>
+      <summary>Ver possíveis respostas</summary>
+      <p><strong>A.</strong> Could you please give me an update?</p>
+      <p><strong>B.</strong> I understand your idea, but we may need to consider another approach.</p>
+      <p><strong>C.</strong> Feel free to contact me tomorrow. I’ll be happy to help.</p>
+      <p><em>Outras respostas também podem estar corretas.</em></p>
+    </details>
+  </section>
+
+  <section class="panel">
+    <h2>4. Desafio final</h2>
+    <p>Imagine que um colega ainda não enviou uma informação importante. Escreva três versões do mesmo pedido:</p>
+    <ol>
+      <li>uma versão <strong>direta</strong>;</li>
+      <li>uma versão <strong>educada e profissional</strong>;</li>
+      <li>uma versão <strong>calorosa e amigável</strong>.</li>
+    </ol>
+    <p>Depois, explique em português quais palavras mudaram o tom.</p>
+  </section>
+</main>
+<footer>English Tone Lab • Lição preparada para Juliane</footer>
+<script>
+function feedback(id, ok, right){
+  const el=document.getElementById(id);
+  el.textContent=ok?'✓ Correto!':right;
+  el.style.color=ok?'#2e8b70':'#b94b59';
+}
+function checkQ1(){const v=document.getElementById('q1').value;feedback('f1',v==='polite',v?'Tente novamente: “Would you mind...?” suaviza o pedido.':'Escolha uma opção.');}
+function checkQ2(){const v=document.getElementById('q2').value;feedback('f2',v==='direct',v?'Tente novamente: o imperativo curto transmite urgência.':'Escolha uma opção.');}
+</script>
+</body>
+</html>

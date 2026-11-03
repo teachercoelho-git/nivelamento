@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Homework | Clara & Bianca</title>
+  <style>
+    :root{
+      --navy:#183153;--blue:#3478c9;--sky:#eaf4ff;--cream:#fffaf0;
+      --coral:#ff7a6b;--green:#2f9e76;--yellow:#ffd166;--ink:#263238;
+      --muted:#657786;--white:#fff;--line:#dbe7f3;--red:#d64545;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#f7fbff,#fff8ef);color:var(--ink);line-height:1.55}
+    .container{max-width:980px;margin:auto;padding:24px}
+    header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;border-radius:24px;padding:34px;box-shadow:0 16px 35px rgba(24,49,83,.18)}
+    header h1{margin:0 0 8px;font-size:clamp(28px,5vw,46px)}
+    header p{margin:0;font-size:18px;opacity:.95}
+    .student-box{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+    .student-box label{flex:1;min-width:230px;font-weight:bold}
+    .student-box input{width:100%;margin-top:6px;padding:12px;border:2px solid transparent;border-radius:12px;font-size:16px}
+    .progress-wrap{margin:22px 0 0;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;height:14px}
+    #progress{height:100%;width:0;background:var(--yellow);transition:.35s}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:26px;margin:22px 0;box-shadow:0 10px 26px rgba(24,49,83,.08)}
+    h2{color:var(--navy);margin-top:0;font-size:28px}
+    h3{color:var(--blue);margin-bottom:8px}
+    .tip{background:var(--cream);border-left:6px solid var(--yellow);padding:16px;border-radius:10px;margin:14px 0}
+    .rule{background:var(--sky);padding:18px;border-radius:16px;margin:14px 0}
+    table{width:100%;border-collapse:collapse;margin:14px 0}
+    th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}
+    th{background:var(--sky);color:var(--navy)}
+    .example{font-weight:bold;color:var(--navy)}
+    .exercise{border-top:1px dashed var(--line);padding-top:18px;margin-top:18px}
+    .question{margin:15px 0;padding:15px;background:#fbfdff;border-radius:14px;border:1px solid var(--line)}
+    .question p{margin:0 0 9px;font-weight:bold}
+    input[type="text"],select,textarea{width:100%;padding:11px 12px;border:2px solid #cbd9e6;border-radius:10px;font-size:16px;background:white}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(52,120,201,.12)}
+    .options label{display:block;margin:8px 0;padding:8px 10px;border-radius:9px;cursor:pointer}
+    .options label:hover{background:var(--sky)}
+    .feedback{margin-top:8px;font-weight:bold;min-height:22px}
+    .correct{color:var(--green)}.incorrect{color:var(--red)}
+    button{border:0;border-radius:13px;padding:13px 18px;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
+    button:hover{transform:translateY(-1px)}
+    .check{background:var(--blue);color:white}.reset{background:#edf1f5;color:var(--navy)}.copy{background:var(--green);color:white}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .mini{padding:16px;border-radius:15px;background:var(--sky)}
+    .score{font-size:25px;font-weight:bold;color:var(--navy);padding:14px;background:var(--cream);border-radius:14px;margin-top:18px}
+    footer{text-align:center;color:var(--muted);padding:20px}
+    @media(max-width:600px){.container{padding:12px}.card,header{padding:20px}table{font-size:14px}}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>English Homework</h1>
+    <p>Clara & Bianca: Personal Pronouns, Object Pronouns, He/She/It + S, and Questions</p>
+    <div class="student-box">
+      <label>Student name<input id="studentName" type="text" placeholder="Clara or Bianca"></label>
+      <label>Date<input id="date" type="text" placeholder="DD/MM/YYYY"></label>
+    </div>
+    <div class="progress-wrap"><div id="progress"></div></div>
+  </header>
+
+  <section class="card">
+    <h2>1. Quick Review</h2>
+    <h3>Subject and object pronouns</h3>
+    <table>
+      <thead><tr><th>Subject</th><th>Object</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td>me</td><td>I like Anna. Anna likes <b>me</b>.</td></tr>
+        <tr><td>you</td><td>you</td><td>You help Tom. Tom helps <b>you</b>.</td></tr>
+        <tr><td>he</td><td>him</td><td>He knows Julia. Julia knows <b>him</b>.</td></tr>
+        <tr><td>she</td><td>her</td><td>She calls Pedro. Pedro calls <b>her</b>.</td></tr>
+        <tr><td>it</td><td>it</td><td>The dog is cute. I love <b>it</b>.</td></tr>
+        <tr><td>we</td><td>us</td><td>We visit Grandma. Grandma visits <b>us</b>.</td></tr>
+        <tr><td>they</td><td>them</td><td>They see the children. I see <b>them</b>.</td></tr>
+      </tbody>
+    </table>
+    <div class="rule"><b>Subject pronoun</b> comes before the verb: <span class="example">She likes music.</span><br><b>Object pronoun</b> comes after the verb or a preposition: <span class="example">I like her. / Talk to him.</span></div>
+
+    <h3>The “S” with he, she and it</h3>
+    <div class="mini-grid">
+      <div class="mini"><b>I / You / We / They</b><br>I work.<br>They play.</div>
+      <div class="mini"><b>He / She / It</b><br>He work<b>s</b>.<br>She play<b>s</b>.</div>
+    </div>
+    <div class="tip"><b>Remember:</b> In affirmative sentences, add <b>-s</b> to the verb with <b>he, she, it</b>. But after <b>does</b> or <b>doesn't</b>, use the verb without S: <b>Does she like pizza?</b> / <b>She doesn't like pizza.</b></div>
+
+    <h3>How to make questions</h3>
+    <div class="rule">
+      <b>Do + I/you/we/they + verb...?</b><br>
+      Do they study English?<br><br>
+      <b>Does + he/she/it + verb...?</b><br>
+      Does she study English? <b>Not:</b> Does she studies...?
+    </div>
+  </section>
+
+  <section class="card" data-section>
+    <h2>2. Subject or Object Pronoun?</h2>
+    <p>Choose the best answer.</p>
+    <div id="pronounQuestions"></div>
+  </section>
+
+  <section class="card" data-section>
+    <h2>3. Add the Verb Correctly</h2>
+    <p>Write the correct form of the verb in parentheses.</p>
+    <div id="verbQuestions"></div>
+  </section>
+
+  <section class="card" data-section>
+    <h2>4. Build the Questions</h2>
+    <p>Put the words in the correct order. Use capital letters and a question mark if possible.</p>
+    <div id="questionBuilder"></div>
+  </section>
+
+  <section class="card" data-section>
+    <h2>5. Choose Do or Does</h2>
+    <div id="doDoesQuestions"></div>
+  </section>
+
+  <section class="card" data-section>
+    <h2>6. Personal Answers</h2>
+    <p>Answer with complete sentences. There is no automatic correction in this section.</p>
+    <div class="question"><p>1. Do you study English every week?</p><textarea id="personal1" rows="2" placeholder="Yes, I do. I study English..."></textarea></div>
+    <div class="question"><p>2. Does your mother like music?</p><textarea id="personal2" rows="2" placeholder="Yes, she does. / No, she doesn't."></textarea></div>
+    <div class="question"><p>3. Who helps you with your homework?</p><textarea id="personal3" rows="2" placeholder="My... helps me."></textarea></div>
+    <div class="question"><p>4. Write one sentence with <b>him</b>, <b>her</b>, <b>us</b> or <b>them</b>.</p><textarea id="personal4" rows="2" placeholder="Example: I see them at school."></textarea></div>
+  </section>
+
+  <section class="card">
+    <h2>Finish</h2>
+    <p>Click <b>Check answers</b>. Then copy your work and send it to your teacher.</p>
+    <div class="buttons">
+      <button class="check" onclick="checkAll()">✓ Check answers</button>
+      <button class="copy" onclick="copyAnswers()">Copy answers</button>
+      <button class="reset" onclick="resetHomework()">Start again</button>
+    </div>
+    <div id="finalScore" class="score">Score: not checked yet</div>
+    <div id="copyStatus" class="feedback"></div>
+  </section>
+
+  <footer>Made especially for Clara and Bianca. Take your time and read every sentence carefully!</footer>
+</div>
+
+<script>
+const pronouns = [
+  {q:'Maria is my friend. ___ is very funny.', options:['She','Her'], a:'She'},
+  {q:'I call Maria every day. I call ___.', options:['she','her'], a:'her'},
+  {q:'Pedro and Lucas are at school. ___ study English.', options:['They','Them'], a:'They'},
+  {q:'The teacher helps Clara and me. The teacher helps ___.', options:['we','us'], a:'us'},
+  {q:'My brother is nice. I play with ___.', options:['he','him'], a:'him'},
+  {q:'Bianca and I like music. ___ listen to music together.', options:['We','Us'], a:'We'},
+  {q:'The books are new. I read ___ at home.', options:['they','them'], a:'them'},
+  {q:'This is my cat. ___ sleeps a lot.', options:['It','Its'], a:'It'}
+];
+const verbs = [
+  {q:'She ___ (play) volleyball on Fridays.',a:['plays']},
+  {q:'They ___ (play) volleyball on Fridays.',a:['play']},
+  {q:'He ___ (watch) TV after dinner.',a:['watches']},
+  {q:'I ___ (watch) TV after dinner.',a:['watch']},
+  {q:'My dog ___ (like) the garden.',a:['likes']},
+  {q:'We ___ (study) English at school.',a:['study']},
+  {q:'Clara ___ (go) to school by car.',a:['goes']},
+  {q:'Bianca and Clara ___ (go) to class together.',a:['go']}
+];
+const builders = [
+  {q:'you / like / chocolate',a:['do you like chocolate?','do you like chocolate']},
+  {q:'she / play / tennis',a:['does she play tennis?','does she play tennis']},
+  {q:'they / live / in brazil',a:['do they live in brazil?','do they live in brazil']},
+  {q:'he / study / english',a:['does he study english?','does he study english']},
+  {q:'your friends / help / you',a:['do your friends help you?','do your friends help you']},
+  {q:'the dog / sleep / in the house',a:['does the dog sleep in the house?','does the dog sleep in the house']}
+];
+const doDoes = [
+  {q:'___ you like ice cream?',a:'Do'},
+  {q:'___ Clara speak English?',a:'Does'},
+  {q:'___ they play soccer?',a:'Do'},
+  {q:'___ your father work on Saturdays?',a:'Does'},
+  {q:'___ we have homework today?',a:'Do'},
+  {q:'___ the cat sleep on the sofa?',a:'Does'}
+];
+function render(){
+  document.getElementById('pronounQuestions').innerHTML=pronouns.map((x,i)=>`<div class="question"><p>${i+1}. ${x.q}</p><select id="p${i}" onchange="updateProgress()"><option value="">Choose...</option>${x.options.map(o=>`<option>${o}</option>`).join('')}</select><div id="fp${i}" class="feedback"></div></div>`).join('');
+  document.getElementById('verbQuestions').innerHTML=verbs.map((x,i)=>`<div class="question"><p>${i+1}. ${x.q}</p><input id="v${i}" type="text" oninput="updateProgress()" placeholder="Type the verb"><div id="fv${i}" class="feedback"></div></div>`).join('');
+  document.getElementById('questionBuilder').innerHTML=builders.map((x,i)=>`<div class="question"><p>${i+1}. ${x.q}</p><input id="b${i}" type="text" oninput="updateProgress()" placeholder="Write the complete question"><div id="fb${i}" class="feedback"></div></div>`).join('');
+  document.getElementById('doDoesQuestions').innerHTML=doDoes.map((x,i)=>`<div class="question"><p>${i+1}. ${x.q}</p><select id="d${i}" onchange="updateProgress()"><option value="">Choose...</option><option>Do</option><option>Does</option></select><div id="fd${i}" class="feedback"></div></div>`).join('');
+}
+function normalize(s){return s.trim().toLowerCase().replace(/\s+/g,' ')}
+function mark(id,feedbackId,isCorrect,answer){
+  const el=document.getElementById(id), fb=document.getElementById(feedbackId);
+  el.style.borderColor=isCorrect?'var(--green)':'var(--red)';
+  fb.className='feedback '+(isCorrect?'correct':'incorrect');
+  fb.textContent=isCorrect?'Correct! ✓':'Review it. Correct answer: '+answer;
+}
+function checkAll(){
+  let score=0,total=pronouns.length+verbs.length+builders.length+doDoes.length;
+  pronouns.forEach((x,i)=>{let ok=document.getElementById('p'+i).value===x.a;score+=ok;mark('p'+i,'fp'+i,ok,x.a)});
+  verbs.forEach((x,i)=>{let ok=x.a.includes(normalize(document.getElementById('v'+i).value));score+=ok;mark('v'+i,'fv'+i,ok,x.a[0])});
+  builders.forEach((x,i)=>{let ok=x.a.includes(normalize(document.getElementById('b'+i).value));score+=ok;mark('b'+i,'fb'+i,ok,x.a[0])});
+  doDoes.forEach((x,i)=>{let ok=document.getElementById('d'+i).value===x.a;score+=ok;mark('d'+i,'fd'+i,ok,x.a)});
+  const pct=Math.round(score/total*100);
+  let msg=pct>=90?'Excellent work!':pct>=70?'Good job! Review the red answers.':'Keep practicing. Read the review and try again.';
+  document.getElementById('finalScore').textContent=`Score: ${score}/${total} (${pct}%) — ${msg}`;
+  updateProgress();
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function updateProgress(){
+  const ids=[...pronouns.map((_,i)=>'p'+i),...verbs.map((_,i)=>'v'+i),...builders.map((_,i)=>'b'+i),...doDoes.map((_,i)=>'d'+i),'personal1','personal2','personal3','personal4'];
+  const done=ids.filter(id=>document.getElementById(id).value.trim()).length;
+  document.getElementById('progress').style.width=(done/ids.length*100)+'%';
+}
+function copyAnswers(){
+  const name=document.getElementById('studentName').value||'Not informed';
+  const date=document.getElementById('date').value||'Not informed';
+  let text=`ENGLISH HOMEWORK - CLARA & BIANCA\nStudent: ${name}\nDate: ${date}\n\n`;
+  text+='2. SUBJECT OR OBJECT PRONOUN?\n'+pronouns.map((x,i)=>`${i+1}. ${document.getElementById('p'+i).value||'[blank]'}`).join('\n');
+  text+='\n\n3. VERBS\n'+verbs.map((x,i)=>`${i+1}. ${document.getElementById('v'+i).value||'[blank]'}`).join('\n');
+  text+='\n\n4. QUESTIONS\n'+builders.map((x,i)=>`${i+1}. ${document.getElementById('b'+i).value||'[blank]'}`).join('\n');
+  text+='\n\n5. DO OR DOES\n'+doDoes.map((x,i)=>`${i+1}. ${document.getElementById('d'+i).value||'[blank]'}`).join('\n');
+  text+='\n\n6. PERSONAL ANSWERS\n'+[1,2,3,4].map(i=>`${i}. ${document.getElementById('personal'+i).value||'[blank]'}`).join('\n');
+  text+='\n\n'+document.getElementById('finalScore').textContent;
+  navigator.clipboard.writeText(text).then(()=>{document.getElementById('copyStatus').textContent='Answers copied! Now send them to your teacher.'}).catch(()=>{document.getElementById('copyStatus').textContent='Could not copy automatically. Please select and copy your answers manually.'});
+}
+function resetHomework(){if(confirm('Do you want to erase all answers?')){location.reload()}}
+render();
+['personal1','personal2','personal3','personal4'].forEach(id=>document.getElementById(id).addEventListener('input',updateProgress));
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Plans | Tati & Cris</title>
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --paper: #fffdf9;
+      --ink: #263238;
+      --muted: #66736f;
+      --green: #245c4b;
+      --green-2: #3f806b;
+      --red: #a64046;
+      --gold: #d7aa52;
+      --line: #e5ddd2;
+      --shadow: 0 14px 38px rgba(48, 55, 51, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(215,170,82,.15), transparent 22rem),
+        radial-gradient(circle at 92% 18%, rgba(36,92,75,.10), transparent 26rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 70px 22px 90px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #173f35 0%, #2b6956 65%, #7e3037 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 50%;
+    }
+    header::before { width: 240px; height: 240px; top: -120px; left: -70px; }
+    header::after { width: 320px; height: 320px; right: -120px; bottom: -220px; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #f0d397;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 830px;
+      margin: 0 auto 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    header p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: rgba(255,255,255,.82);
+      font-size: 1.03rem;
+    }
+
+    main {
+      width: min(1040px, calc(100% - 28px));
+      margin: -42px auto 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .toolbar, .card {
+      background: var(--paper);
+      border: 1px solid rgba(229,221,210,.9);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+    }
+
+    .toolbar {
+      padding: 16px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar strong { color: var(--green); }
+
+    .speed {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    select {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: 22px;
+    }
+
+    .profile-card { margin-bottom: 0; }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .person {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: white;
+      background: var(--green);
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .cris .avatar { background: var(--red); }
+
+    h2, h3 { margin: 0; line-height: 1.2; }
+    h2 { font-family: Georgia, serif; font-size: 1.8rem; }
+    h3 { font-size: 1rem; }
+
+    .level {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    .reading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.13rem;
+      line-height: 1.88;
+    }
+
+    .audio-btn, .stop-btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-size: .86rem;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .audio-btn {
+      color: white;
+      background: var(--green);
+      white-space: nowrap;
+    }
+    .cris .audio-btn { background: var(--red); }
+    .audio-btn:hover, .stop-btn:hover { transform: translateY(-2px); }
+    .audio-btn.playing { background: var(--gold); color: #3d3120; }
+
+    .stop-btn { background: #e9ece9; color: #394642; }
+
+    .vocab {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+    .tag {
+      padding: 6px 10px;
+      border-radius: 9px;
+      color: var(--green);
+      background: #eaf3ef;
+      font-size: .8rem;
+      font-weight: 750;
+    }
+
+    .dialogue { margin-top: 22px; }
+    .dialogue .card-head { align-items: center; }
+    .dialogue-list { display: grid; gap: 13px; }
+    .line {
+      max-width: 82%;
+      padding: 14px 17px;
+      border-radius: 18px 18px 18px 5px;
+      background: #edf5f1;
+      border: 1px solid #dceae4;
+    }
+    .line.cris-line {
+      justify-self: end;
+      border-radius: 18px 18px 5px 18px;
+      background: #f8eded;
+      border-color: #efdada;
+    }
+    .line strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--green);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .line.cris-line strong { color: var(--red); }
+
+    .practice {
+      background: linear-gradient(135deg, #fffaf0, #fffdf9);
+      border-left: 5px solid var(--gold);
+    }
+    .practice ol { margin-bottom: 0; padding-left: 22px; }
+    .practice li { margin: 9px 0; }
+
+    .status {
+      min-height: 1.3em;
+      color: var(--green);
+      font-weight: 750;
+      font-size: .87rem;
+    }
+
+    footer {
+      padding: 0 20px 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    @media (max-width: 760px) {
+      header { padding-top: 52px; }
+      .grid { grid-template-columns: 1fr; }
+      .profile-card { margin-bottom: 22px; }
+      .line { max-width: 94%; }
+      .card-head { flex-direction: column; }
+      .toolbar { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">High-Intermediate Reading Practice</p>
+    <h1>Christmas Plans & Family Traditions</h1>
+    <p>Read the texts aloud, listen to the audio, and then practise the dialogue between Tati and Cris.</p>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Audio settings">
+      <div>
+        <strong>Listening tip:</strong> Listen once, read along, and then repeat without the audio.
+      </div>
+      <div class="speed">
+        <label for="speedSelect">Audio speed</label>
+        <select id="speedSelect">
+          <option value="0.75">Slow</option>
+          <option value="0.9" selected>Natural</option>
+          <option value="1">Fast</option>
+        </select>
+        <button class="stop-btn" type="button" onclick="stopAudio()">■ Stop</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card profile-card tati">
+        <div class="card-head">
+          <div class="person">
+            <div class="avatar">T</div>
+            <div>
+              <h2>Tati's Christmas</h2>
+              <span class="level">Reading 1</span>
+            </div>
+          </div>
+          <button class="audio-btn" type="button" onclick="speakText('tatiText', this)">▶ Listen</button>
+        </div>
+
+        <div id="tatiText" class="reading">
+          Tati is not planning to travel this year, although she will be on vacation in December. She intends to celebrate Christmas with her mother, grandmother, cousins, and other relatives. Her family does not usually exchange presents at Christmas. Instead, they focus on enjoying one another's company, sharing a delicious meal, and spending quality time together. Each person brings a dish or something to eat, and everything is placed on the table for everyone to share. For Tati, the celebration is less about gifts and more about creating warm memories with the people she loves.
+        </div>
+
+        <div class="vocab">
+          <h3>Useful expressions</h3>
+          <div class="tags">
+            <span class="tag">be on vacation</span>
+            <span class="tag">exchange presents</span>
+            <span class="tag">enjoy one another's company</span>
+            <span class="tag">spend quality time</span>
+            <span class="tag">bring a dish</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card profile-card cris">
+        <div class="card-head">
+          <div class="person">
+            <div class="avatar">C</div>
+            <div>
+              <h2>Cris's Christmas</h2>
+              <span class="level">Reading 2</span>
+            </div>
+          </div>
+          <button class="audio-btn" type="button" onclick="speakText('crisText', this)">▶ Listen</button>
+        </div>
+
+        <div id="crisText" class="reading">
+          Cris normally has Christmas Eve dinner with her husband's family on December twenty-fourth. The following day, she usually has lunch with her own family. Their meals often include traditional Brazilian Christmas dishes, such as roast Chester, rice, and Brazilian-style potato salad with mayonnaise. Last year, her family organized a Secret Santa gift exchange. However, it was not an annual tradition, and they still have not decided whether they will do it again this year. Regardless of the final plan, Cris looks forward to gathering around the table and celebrating with both sides of the family.
+        </div>
+
+        <div class="vocab">
+          <h3>Useful expressions</h3>
+          <div class="tags">
+            <span class="tag">Christmas Eve</span>
+            <span class="tag">the following day</span>
+            <span class="tag">traditional dishes</span>
+            <span class="tag">Secret Santa</span>
+            <span class="tag">both sides of the family</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card dialogue">
+      <div class="card-head">
+        <div>
+          <p class="eyebrow" style="color: var(--red); margin-bottom: 5px;">Conversation Practice</p>
+          <h2>A conversation between Tati and Cris</h2>
+        </div>
+        <button class="audio-btn" type="button" onclick="speakDialogue(this)">▶ Play dialogue</button>
+      </div>
+
+      <div id="dialogueText" class="dialogue-list">
+        <div class="line"><strong>Tati</strong>Cris, have you made any plans for Christmas yet?</div>
+        <div class="line cris-line"><strong>Cris</strong>More or less. On Christmas Eve, we usually have dinner with my husband's family, and on Christmas Day, we have lunch with my family. What about you?</div>
+        <div class="line"><strong>Tati</strong>I am not travelling this year, but I will be on vacation in December. I am going to celebrate with my mother, grandmother, cousins, and the rest of the family.</div>
+        <div class="line cris-line"><strong>Cris</strong>That sounds lovely. Do you exchange presents?</div>
+        <div class="line"><strong>Tati</strong>Not really. Instead of buying presents, everyone brings something to eat. We put all the dishes on the table and share everything.</div>
+        <div class="line cris-line"><strong>Cris</strong>I like that idea. It probably makes the celebration feel more relaxed and meaningful.</div>
+        <div class="line"><strong>Tati</strong>Exactly. The most important thing for us is being together, eating, talking, and having fun. What do you usually eat?</div>
+        <div class="line cris-line"><strong>Cris</strong>We normally have Chester, rice, potato salad with mayonnaise, and other traditional Brazilian Christmas dishes.</div>
+        <div class="line"><strong>Tati</strong>Do you also have a Secret Santa gift exchange?</div>
+        <div class="line cris-line"><strong>Cris</strong>We did one last year, but we have not decided whether to do it again this year. We will probably make that decision closer to Christmas.</div>
+        <div class="line"><strong>Tati</strong>Whatever you decide, I hope you have a wonderful time with both families.</div>
+        <div class="line cris-line"><strong>Cris</strong>Thank you! I hope you have a joyful and relaxing Christmas, too.</div>
+      </div>
+      <p id="audioStatus" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card practice">
+      <h2>Speaking challenge</h2>
+      <ol>
+        <li>Listen to each text and underline the expressions that are new to you.</li>
+        <li>Read your own text aloud twice: first slowly, then at a natural pace.</li>
+        <li>Practise the dialogue together and then switch roles.</li>
+        <li>Close the page and describe your Christmas traditions without reading.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>English reading and speaking practice • Tati & Cris</footer>
+
+  <script>
+    let currentButton = null;
+
+    function getEnglishVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      return voices.find(v => v.lang === 'en-US')
+        || voices.find(v => v.lang.startsWith('en-GB'))
+        || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    function resetButton() {
+      if (currentButton) {
+        currentButton.textContent = currentButton.dataset.dialogue ? '▶ Play dialogue' : '▶ Listen';
+        currentButton.classList.remove('playing');
+        currentButton = null;
+      }
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+      resetButton();
+      document.getElementById('audioStatus').textContent = '';
+    }
+
+    function playUtterance(text, button, statusText) {
+      stopAudio();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const selectedVoice = getEnglishVoice();
+      if (selectedVoice) utterance.voice = selectedVoice;
+      utterance.lang = selectedVoice ? selectedVoice.lang : 'en-US';
+      utterance.rate = Number(document.getElementById('speedSelect').value);
+      utterance.pitch = 1;
+
+      currentButton = button;
+      button.classList.add('playing');
+      button.textContent = '❚❚ Playing';
+      document.getElementById('audioStatus').textContent = statusText || '';
+
+      utterance.onend = () => {
+        resetButton();
+        document.getElementById('audioStatus').textContent = '';
+      };
+      utterance.onerror = () => {
+        resetButton();
+        document.getElementById('audioStatus').textContent = 'Audio could not be played. Please try another browser.';
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakText(id, button) {
+      const text = document.getElementById(id).innerText.trim();
+      playUtterance(text, button, 'Playing the reading...');
+    }
+
+    function speakDialogue(button) {
+      button.dataset.dialogue = 'true';
+      const lines = Array.from(document.querySelectorAll('#dialogueText .line'))
+        .map(line => line.innerText.replace('\n', ': '));
+      playUtterance(lines.join('. '), button, 'Playing the complete dialogue...');
+    }
+
+    window.speechSynthesis.onvoiceschanged = getEnglishVoice;
+    window.addEventListener('beforeunload', () => window.speechSynthesis.cancel());
+  </script>
+</body>
+</html>

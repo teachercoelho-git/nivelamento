@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara's English Homework</title>
+<style>
+:root{--navy:#24324a;--blue:#5d7ca6;--sky:#eaf3fa;--cream:#fffaf2;--coral:#e58b7b;--green:#6a9b84;--red:#c95c5c;--text:#293342;--white:#fff;--shadow:0 12px 30px rgba(36,50,74,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:linear-gradient(140deg,#eef6fb 0%,#fffaf2 58%,#f6ebed 100%);line-height:1.55}
+header{background:linear-gradient(120deg,#263852,#5d7ca6);color:white;padding:44px 20px 70px;text-align:center}header h1{font-size:clamp(2rem,5vw,3.4rem);margin:0 0 8px}header p{margin:0 auto;max-width:680px;font-size:1.08rem;opacity:.92}.badge{display:inline-block;background:#ffffff20;border:1px solid #ffffff48;border-radius:999px;padding:6px 13px;margin-bottom:16px;font-weight:700;letter-spacing:.04em}
+main{width:min(960px,92%);margin:-40px auto 60px}.card{background:#fff;border-radius:22px;padding:28px;margin:20px 0;box-shadow:var(--shadow);border:1px solid #ffffff}.card h2{color:var(--navy);margin-top:0}.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}.goal{background:var(--cream);border-left:5px solid var(--coral);padding:18px;border-radius:14px}.progress-wrap{position:sticky;top:10px;z-index:4;background:#fffffff0;backdrop-filter:blur(8px);padding:12px 15px;border-radius:14px;box-shadow:var(--shadow);margin-bottom:18px}.progress-bar{height:10px;background:#e7edf3;border-radius:10px;overflow:hidden}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--green));transition:.35s}.progress-text{text-align:right;font-size:.84rem;font-weight:700;margin-top:5px;color:var(--blue)}
+.phrase{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:16px;margin:12px 0;background:var(--sky);border-radius:14px}.phrase strong{color:var(--navy)}.translation{display:block;color:#667181;font-size:.92rem}.audio-btn,.small-btn,.check-btn,.final-btn{border:0;border-radius:12px;cursor:pointer;font-weight:700;transition:.2s}.audio-btn{background:var(--navy);color:white;padding:11px 14px;min-width:108px}.audio-btn:hover,.small-btn:hover,.check-btn:hover,.final-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}.audio-btn.speaking{background:var(--coral)}
+.voice-box{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#f4f7fa;padding:14px;border-radius:14px;margin:16px 0}.voice-box select{max-width:100%;padding:9px;border:1px solid #cad4df;border-radius:10px;background:white}.voice-note{font-size:.86rem;color:#687484}
+.story{font-size:1.08rem;background:var(--cream);padding:22px;border-radius:16px;border-left:5px solid var(--green)}.story mark{background:#dcefe6;color:#263852;padding:1px 3px;border-radius:4px}.story-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.small-btn{background:var(--blue);color:#fff;padding:10px 13px}.small-btn.secondary{background:#e9eef4;color:var(--navy)}
+.question{padding:20px 0;border-bottom:1px solid #e7edf3}.question:last-child{border-bottom:0}.question p{font-weight:700}.answers{display:grid;gap:9px}.option{display:block;border:2px solid #e1e7ee;border-radius:12px;padding:11px 13px;cursor:pointer;transition:.2s}.option:hover{border-color:#a7bad0;background:#f7fafc}.option input{margin-right:9px}.check-btn{margin-top:12px;background:var(--navy);color:white;padding:10px 16px}.feedback{margin-top:10px;min-height:26px;font-weight:700}.correct{color:var(--green)}.wrong{color:var(--red)}
+.fill-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}.fill-row input{flex:1;min-width:220px;padding:11px;border:2px solid #d9e2eb;border-radius:10px;font-size:1rem}.final{background:linear-gradient(135deg,#fff8ed,#eaf4f0);text-align:center}.final-btn{font-size:1rem;background:var(--coral);color:white;padding:13px 20px}.result{font-size:1.1rem;font-weight:700;margin-top:14px}.footer{text-align:center;color:#697585;font-size:.85rem;margin:30px}
+@media(max-width:700px){.intro{grid-template-columns:1fr}.phrase{grid-template-columns:1fr}.audio-btn{width:100%}.card{padding:21px}.fill-row{display:block}.fill-row input,.fill-row button{width:100%;margin:5px 0}}
+</style>
+</head>
+<body>
+<header><div class="badge">PRE-INTERMEDIATE • HOMEWORK</div><h1>Sara's English Homework</h1><p>Listening, reading and practice with useful expressions from your real life.</p></header>
+<main>
+<div class="progress-wrap"><div class="progress-bar"><div class="progress" id="progress"></div></div><div class="progress-text" id="progressText">0 of 9 activities completed</div></div>
+<section class="card intro"><div><h2>Hi, Sara! 👋</h2><p>Today you will practice six useful expressions about work, plants and your weekend in Itanhaém.</p></div><div class="goal"><strong>Your mission</strong><br>Listen carefully, read aloud and complete the activities. You can repeat each audio as many times as you want.</div></section>
+<section class="card"><h2>1. Listen and repeat 🎧</h2><p>Choose an English voice and click each audio button. For the most natural result, use <strong>Microsoft Aria, Jenny, Sonia</strong> or another English voice available on your device.</p>
+<div class="voice-box"><label for="voice"><strong>English voice:</strong></label><select id="voice"></select><span class="voice-note">The voices available depend on your browser and device.</span></div>
+<div id="phrases"></div></section>
+<section class="card"><h2>2. Sara's day and weekend 📖</h2><div class="story" id="story">Today I left work early. I stayed at the clinic for a <mark>while</mark> and talked to Paola about her plants. She loves her plants, and <mark>she takes care of them</mark> every day. Plants <mark>need time to grow</mark>, so we need to be patient. I also talked to the girls about life and the patients at the clinic. This weekend, I'm going to Itanhaém, <mark>but unfortunately</mark>, the weather forecast is not very good. <mark>I heard it's going to rain</mark>. I still want to enjoy my weekend, <mark>even when the weather isn't perfect</mark>.</div><div class="story-controls"><button class="small-btn" onclick="speak(document.getElementById('story').innerText,this)">▶ Listen to the full text</button><button class="small-btn secondary" onclick="stopSpeech()">■ Stop</button></div></section>
+<section class="card"><h2>3. Choose the correct answer ✅</h2><div id="quiz"></div></section>
+<section class="card"><h2>4. Complete the sentences ✍️</h2><p>Type the missing expression. Capital letters do not matter.</p><div id="fills"></div></section>
+<section class="card final"><h2>Finish your homework 🌟</h2><p>Complete all the questions, then check your result.</p><button class="final-btn" onclick="showResult()">See my final result</button><div class="result" id="result"></div></section>
+</main><div class="footer">Made especially for Sara • English practice</div>
+<script>
+const phraseData=[
+['While','enquanto','I talked to Paola while I was waiting for my ride.'],
+['She takes care of them','ela cuida delas','Paola has many plants. She takes care of them every day.'],
+['Need time to grow','precisam de tempo para crescer','Plants need time to grow.'],
+['But unfortunately','mas, infelizmente','I want to go to the beach, but unfortunately, it is going to rain.'],
+["I heard it's going to rain",'ouvi dizer que vai chover',"I heard it's going to rain in Itanhaém this weekend."],
+["Even when the weather isn't perfect",'mesmo quando o tempo não está perfeito',"We can have a good weekend even when the weather isn't perfect."]
+];
+let voices=[],selectedVoice=null,completed=new Set(),score=0;
+function loadVoices(){voices=speechSynthesis.getVoices();const sel=document.getElementById('voice');sel.innerHTML='';let english=voices.filter(v=>v.lang.toLowerCase().startsWith('en'));english.sort((a,b)=>{const fav=/Aria|Jenny|Sonia|Guy|Ryan|Natural/i;return Number(fav.test(b.name))-Number(fav.test(a.name));});(english.length?english:voices).forEach((v,i)=>{let o=document.createElement('option');o.value=voices.indexOf(v);o.textContent=`${v.name} (${v.lang})`;sel.appendChild(o);if(/Aria|Jenny|Sonia|Natural/i.test(v.name)&&!selectedVoice){sel.value=voices.indexOf(v);selectedVoice=v;}});if(!selectedVoice&&english.length)selectedVoice=english[0];}
+speechSynthesis.onvoiceschanged=loadVoices;loadVoices();document.getElementById('voice').onchange=e=>selectedVoice=voices[e.target.value];
+function speak(text,btn){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.87;u.pitch=1.02;if(selectedVoice)u.voice=selectedVoice;if(btn){btn.classList.add('speaking');const old=btn.textContent;btn.textContent='🔊 Playing...';u.onend=()=>{btn.classList.remove('speaking');btn.textContent=old};u.onerror=u.onend}speechSynthesis.speak(u)}
+function stopSpeech(){speechSynthesis.cancel();document.querySelectorAll('.speaking').forEach(b=>{b.classList.remove('speaking');b.textContent=b.dataset.label||'▶ Play audio'})}
+const phrases=document.getElementById('phrases');phraseData.forEach((p,i)=>{const d=document.createElement('div');d.className='phrase';d.innerHTML=`<div><strong>${p[0]}</strong><span class="translation">${p[1]}</span><div>${p[2]}</div></div><button class="audio-btn" data-label="▶ Play audio">▶ Play audio</button>`;d.querySelector('button').onclick=function(){speak(p[2],this)};phrases.appendChild(d)});
+const quizData=[
+{q:'I listen to music ___ I work.',a:['while','but unfortunately','even when'],c:0,e:'“While” connects two actions happening at the same time.'},
+{q:'Paola has many plants. ___ every day.',a:['She takes care of them','She take care them','She takes care them'],c:0,e:'Use “takes” with she, and “of them” for “delas”.'},
+{q:'Plants ___ . Be patient!',a:['need time grow','need time to grow','needs time to grow'],c:1,e:'After “need time”, use “to + verb”: to grow.'},
+{q:'I wanted a sunny weekend, ___, it is going to rain.',a:['while','but unfortunately','need time to grow'],c:1,e:'“But unfortunately” introduces disappointing information.'},
+{q:'Which sentence is correct?',a:["I heard it's going to be rain.","I heard it's going to rain.","I heard it going rain."],c:1,e:'Use “going to + verb”: going to rain. Or use “going to be + adjective”: going to be rainy.'},
+{q:'We can enjoy Itanhaém ___ .',a:["even when the weather isn't perfect","while weather not perfect","but unfortunately weather"],c:0,e:'“Even when” means “mesmo quando”.'}
+];
+const quiz=document.getElementById('quiz');quizData.forEach((x,i)=>{const d=document.createElement('div');d.className='question';d.innerHTML=`<p>${i+1}. ${x.q}</p><div class="answers">${x.a.map((a,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}">${a}</label>`).join('')}</div><button class="check-btn">Check answer</button><div class="feedback" id="fb${i}"></div>`;d.querySelector('button').onclick=()=>checkQuiz(i,x.c,x.e);quiz.appendChild(d)});
+function checkQuiz(i,c,e){const chosen=document.querySelector(`input[name=q${i}]:checked`),fb=document.getElementById('fb'+i);if(!chosen){fb.className='feedback wrong';fb.textContent='Choose an answer first.';return}if(+chosen.value===c){fb.className='feedback correct';fb.textContent='✓ Correct! Great job.';markDone('q'+i)}else{fb.className='feedback wrong';fb.textContent='Not yet. '+e+' Try again!'}}
+const fillData=[
+{pre:'I talked to the girls ',ans:'while',post:' I was at the clinic.'},
+{pre:'Paola loves her plants. ',ans:'She takes care of them',post:' every day.'},
+{pre:'I checked the forecast. ',ans:"I heard it's going to rain",post:' this weekend.'}
+];
+const fills=document.getElementById('fills');fillData.forEach((x,i)=>{const d=document.createElement('div');d.className='fill-row';d.innerHTML=`<span>${x.pre}</span><input aria-label="Missing expression ${i+1}"/><span>${x.post}</span><button class="check-btn">Check</button><div class="feedback" id="fillfb${i}"></div>`;d.querySelector('button').onclick=()=>checkFill(i,x.ans,d.querySelector('input'));fills.appendChild(d)});
+function norm(s){return s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?]/g,'').replace(/\s+/g,' ').trim()}
+function checkFill(i,ans,input){const fb=document.getElementById('fillfb'+i);if(norm(input.value)===norm(ans)){fb.className='feedback correct';fb.textContent='✓ Correct!';markDone('f'+i)}else{fb.className='feedback wrong';fb.textContent='Try again. Listen to the examples above if you need help.'}}
+function markDone(id){completed.add(id);document.getElementById('progress').style.width=(completed.size/9*100)+'%';document.getElementById('progressText').textContent=`${completed.size} of 9 activities completed`}
+function showResult(){const r=document.getElementById('result');if(completed.size===9)r.innerHTML='Excellent, Sara! 🎉 You completed all 9 activities. Now read the full text aloud one more time.';else r.innerHTML=`You completed ${completed.size} of 9 activities. Keep going. You can do it! 💪`}
+</script>
+</body>
+</html>
